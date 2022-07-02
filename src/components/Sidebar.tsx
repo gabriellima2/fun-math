@@ -3,9 +3,10 @@ import Link from "next/link";
 import { Dialog } from "@headlessui/react";
 import { BsFillGrid3X3GapFill, BsXLg } from "react-icons/bs";
 
-import { links } from "../contents/links";
+import { links } from "../contents";
+import { Links } from "../types";
 
-type NavLinkProps = typeof links[0];
+type NavLinkProps = Links;
 
 const NavLink = (props: NavLinkProps) => (
 	<li className="w-full">
