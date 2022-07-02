@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { Sidebar } from "./Sidebar";
+
 export const Header = () => (
 	<header className="w-full flex justify-center p-3 px-4">
 		<Link href="/">
@@ -8,5 +10,6 @@ export const Header = () => (
 				<Image src="/logo.svg" width={100} height={60} />
 			</a>
 		</Link>
+		<Sidebar />
 	</header>
 );
