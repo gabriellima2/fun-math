@@ -11,7 +11,7 @@ module.exports = {
 				"home-mobile": "url('../../public/mb-home-bg.png')",
 			},
 			colors: {
-				main: "#0A0A0A",
+				main: "#0E0E0E",
 				pink: {
 					100: "#D2CEDC",
 					200: "#D9CDEA",
@@ -29,6 +29,7 @@ module.exports = {
 				},
 				accents: {
 					purple: "#9740EF",
+					pink: "#DCB0F0",
 				},
 			},
 			fontFamily: {
