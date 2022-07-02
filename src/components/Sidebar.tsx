@@ -11,7 +11,7 @@ type NavLinkProps = Links;
 const NavLink = (props: NavLinkProps) => (
 	<li className="w-full">
 		<Link href={props.href}>
-			<a className="w-full bg-gradient-to-r from-accents-purple ... flex items-center gap-2 text-lg capitalize p-4 my-2 rounded-md transition-hover hover:brightness-75 focus:brightness-75">
+			<a className="w-full bg-gradient-to-r from-accents-purple flex items-center gap-2 text-lg capitalize p-4 my-2 rounded-md transition-hover hover:brightness-75 focus:brightness-75">
 				<i className="text-2xl self-start">
 					{React.createElement(props.icon, null)}
 				</i>
@@ -40,7 +40,7 @@ export const Sidebar = () => {
 			<div className="fixed inset-0 bg-black-800/60" aria-hidden="true" />
 
 			<div className="inset-0 absolute right-0 top-0 z-45 flex flex-col items-end">
-				<Dialog.Panel className="w-full md:max-w-md h-1/2 flex-center--col bg-black-700 relative">
+				<Dialog.Panel className="w-full md:max-w-md h-fit flex-center--col bg-black-700 relative py-20">
 					<Dialog.Title className="hidden">Barra de navegação</Dialog.Title>
 					<button
 						onClick={() => setIsOpen(false)}
