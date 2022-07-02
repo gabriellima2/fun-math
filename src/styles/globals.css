@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+	@apply bg-main text-pink-100 font-poppins;
+}
+
+.main-button {
+	@apply bg-accents-purple p-3 flex items-center gap-3 rounded-sm text-pink-100;
+}
