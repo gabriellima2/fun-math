@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BsFillArrowRightSquareFill } from "react-icons/bs";
 
 import { Card } from "../components/Card";
+import { Character } from "../components/Character";
 
 import { Common } from "../layouts/Common";
 
@@ -13,9 +14,9 @@ const Home: NextPage = () => {
 		<Common>
 			<main
 				id="home"
-				className="min-h-full bg-home-mobile md:bg-home-desktop bg-cover bg-no-repeat bg-center p-4 pb-24"
+				className="min-h-full lg:w-full lg:grid lg:grid-cols-[repeat(2,_50%)] lg:place-items-center bg-home-mobile md:bg-home-desktop bg-cover bg-no-repeat bg-center p-4 pb-24"
 			>
-				<section className="lg:w-fit flex-center--col gap-10 lg:items-center mt-36 lg:mt-44 lg:ml-48">
+				<section className="lg:w-fit flex-center--col gap-10 lg:items-center mt-36 lg:mt-44 lg:ml-30">
 					<section>
 						<h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-pink-200 font-staatliches tracking-wider flex flex-col">
 							<span className="text-6xl md:text-8xl after:content-['👋'] after:text-4xl after:md:text-6xl">
@@ -35,6 +36,9 @@ const Home: NextPage = () => {
 							</i>
 						</a>
 					</Link>
+				</section>
+				<section className="hidden lg:block">
+					<Character />
 				</section>
 			</main>
 			<section
