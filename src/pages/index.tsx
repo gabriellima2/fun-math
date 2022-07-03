@@ -11,7 +11,10 @@ import { cards } from "../contents";
 const Home: NextPage = () => {
 	return (
 		<Common>
-			<main className="min-h-full bg-home-mobile md:bg-home-desktop bg-cover bg-no-repeat bg-center p-4 pb-24">
+			<main
+				id="home"
+				className="min-h-full bg-home-mobile md:bg-home-desktop bg-cover bg-no-repeat bg-center p-4 pb-24"
+			>
 				<section className="lg:w-fit flex-center--col gap-10 lg:items-center mt-36 lg:mt-44 lg:ml-48">
 					<section>
 						<h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-pink-200 font-staatliches tracking-wider flex flex-col">
@@ -24,7 +27,7 @@ const Home: NextPage = () => {
 							Aqui na FunMath! você aprende e se diverte
 						</p>
 					</section>
-					<Link href="/">
+					<Link href="/learning">
 						<a className="main-button text-sm md:text-base md:p-3 md:px-4 mb-36 lg:mb-44 transition-hover hover:brightness-75">
 							Comece Agora{" "}
 							<i className="text-xl md:text-4xl opacity-70">
@@ -34,7 +37,10 @@ const Home: NextPage = () => {
 					</Link>
 				</section>
 			</main>
-			<section className="h-full bg-black-800 p-4 lg:p-12 py-7 text-center lg:relative">
+			<section
+				id="howItWork"
+				className="h-full bg-black-800 p-4 lg:p-12 py-7 text-center lg:relative"
+			>
 				<div className="flex-center--col lg:flex-row lg:gap-16 lg:justify-evenly">
 					<section className="flex-center--col gap-5 lg:items-start lg:text-left">
 						<h1 className="max-w-[220px] md:max-w-none md:w-72 lg:w-full lg:max-w-[530px] font-staatliches text-3xl md:text-4xl lg:text-7xl text-purple-200 tracking-wide">
@@ -53,7 +59,7 @@ const Home: NextPage = () => {
 						</ul>
 					</section>
 				</div>
-				<Link href="/">
+				<Link href="/learning">
 					<a className="text-accents-pink font-semibold underline focus:brightness-75 hover:brightness-50 transition-hover">
 						Fiquei interessado! Quero aprender
 					</a>

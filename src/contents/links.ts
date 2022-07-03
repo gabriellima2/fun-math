@@ -8,12 +8,12 @@ export const links = [
 	{
 		id: 0,
 		name: "Início",
-		href: "/",
+		href: "/#home",
 		icon: BsFillHouseFill,
 	},
 	{
 		id: 1,
-		name: "Sobre",
+		name: "Como Funciona?",
 		href: "/#howItWork",
 		icon: BsFillQuestionCircleFill,
 	},

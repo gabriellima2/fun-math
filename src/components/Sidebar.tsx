@@ -6,10 +6,12 @@ import { BsFillGrid3X3GapFill, BsXLg } from "react-icons/bs";
 import { links } from "../contents";
 import { Links } from "../types";
 
-type NavLinkProps = Links;
+type NavLinkProps = Links & {
+	closeSidebar: () => void;
+};
 
 const NavLink = (props: NavLinkProps) => (
-	<li className="w-full">
+	<li onClick={props.closeSidebar} className="w-full">
 		<Link href={props.href}>
 			<a className="w-full bg-gradient-to-r from-accents-purple flex items-center gap-2 text-lg capitalize p-4 my-2 rounded-md transition-hover hover:brightness-75 focus:brightness-75">
 				<i className="text-2xl self-start">
@@ -51,7 +53,11 @@ export const Sidebar = () => {
 					<nav className="w-full p-4">
 						<ul>
 							{links.map((link) => (
-								<NavLink {...link} key={link.id} />
+								<NavLink
+									{...link}
+									closeSidebar={() => setIsOpen(false)}
+									key={link.id}
+								/>
 							))}
 						</ul>
 					</nav>
