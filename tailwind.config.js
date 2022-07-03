@@ -11,7 +11,7 @@ module.exports = {
 				"home-mobile": "url('../../public/mb-home-bg.png')",
 			},
 			colors: {
-				main: "#0E0E0E",
+				main: "#0A0A0A",
 				pink: {
 					100: "#D2CEDC",
 					200: "#D9CDEA",
@@ -35,6 +35,12 @@ module.exports = {
 			fontFamily: {
 				poppins: ["Poppins", "sans-serif"],
 				staatliches: ["Staatliches", "cursive"],
+			},
+			gridTemplateColumns: {
+				2: "repeat(2, minmax(230px, 340px))",
+			},
+			gridTemplateRows: {
+				4: "repeat(4, minmax(auto, 160px))",
 			},
 		},
 	},
