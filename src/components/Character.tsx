@@ -49,7 +49,7 @@ export const Character = () => {
 				height={370}
 				className="cursor-pointer"
 			/>
-			<div className="flex gap-24 absolute top-[87px] left-[68px]">
+			<div className={`flex gap-24 absolute top-[88px] left-[68px]`}>
 				<Eye centralize={centerIris} blink={eyeIsBlinking} />
 				<Eye centralize={centerIris} blink={eyeIsBlinking} />
 			</div>
