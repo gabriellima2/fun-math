@@ -16,7 +16,7 @@ export const Card = (props: CardProps) => (
 			<div className="w-12 h-12 xl:h-16 xl:w-20 relative">
 				<Image {...props.image} layout="fill" />
 			</div>
-			<h1 className="text-xl lg:text-2xl font-staatliches text-purple-200/70 mt-1">
+			<h1 className="text-xl lg:text-2xl font-accent text-purple-200/70 mt-1">
 				{props.title}
 			</h1>
 			<p className="md:w-max[270px] md:h-[70px] lg:h-auto text-sm lg:text-base lg:leading-5 text-center opacity-80">

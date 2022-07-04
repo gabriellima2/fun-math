@@ -33,8 +33,8 @@ module.exports = {
 				},
 			},
 			fontFamily: {
-				poppins: ["Poppins", "sans-serif"],
-				staatliches: ["Staatliches", "cursive"],
+				main: ["Poppins", "sans-serif"],
+				accent: ["Staatliches", "cursive"],
 			},
 			gridTemplateColumns: {
 				2: "repeat(2, minmax(230px, 340px))",

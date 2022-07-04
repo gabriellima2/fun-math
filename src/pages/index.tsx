@@ -18,7 +18,7 @@ const Home: NextPage = () => {
 			>
 				<section className="lg:w-fit flex-center--col gap-10 lg:items-center mt-36 lg:mt-44 lg:ml-30">
 					<section>
-						<h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-pink-200 font-staatliches tracking-wider flex flex-col">
+						<h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-pink-200 font-accent tracking-wider flex flex-col">
 							<span className="text-6xl md:text-8xl after:content-['👋'] after:text-4xl after:md:text-6xl">
 								Olá
 							</span>
@@ -47,7 +47,7 @@ const Home: NextPage = () => {
 			>
 				<div className="flex-center--col lg:flex-row lg:gap-16 lg:justify-evenly">
 					<section className="flex-center--col gap-5 lg:items-start lg:text-left">
-						<h1 className="max-w-[220px] md:max-w-none md:w-72 lg:w-full lg:max-w-[530px] font-staatliches text-3xl md:text-4xl lg:text-7xl text-purple-200 tracking-wide">
+						<h1 className="max-w-[220px] md:max-w-none md:w-72 lg:w-full lg:max-w-[530px] font-accent text-3xl md:text-4xl lg:text-7xl text-purple-200 tracking-wide">
 							Funcionamento simples e intuitivo
 						</h1>
 						<p className="max-w-xs md:w-96 lg:w-[400px] text-sm md:text-base lg:text-lg">

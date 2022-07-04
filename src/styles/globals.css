@@ -7,7 +7,7 @@ html {
 }
 
 body {
-	@apply bg-main text-pink-100 font-poppins;
+	@apply bg-main text-pink-100 font-main;
 }
 
 body::-webkit-scrollbar{
