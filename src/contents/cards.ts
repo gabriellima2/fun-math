@@ -7,7 +7,7 @@ export const cards = [
 		},
 		title: "Escolha um operador",
 		description:
-			"Escolha entre os 4 (quatro) operadores matemáticos básicos para aprender",
+			"Escolha entre os 4 operadores matemáticos básicos para aprender",
 	},
 	{
 		id: "1",
@@ -16,7 +16,8 @@ export const cards = [
 			alt: "Caderno com desenhos",
 		},
 		title: "Explicação e exemplos",
-		description: "Aprenda a teoria e veja exemplos do operador escolhido",
+		description:
+			"Veja uma breve teoria para servir como base na hora de praticar",
 	},
 	{
 		id: "2",

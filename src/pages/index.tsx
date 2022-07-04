@@ -25,7 +25,7 @@ const Home: NextPage = () => {
 							Seja bem-vindo&#40;a&#41;!
 						</h1>
 						<p className="w-[230px] md:w-[260px] lg:w-[290px] text-sm md:text-base lg:text-lg text-center text-pink-100/80 m-auto mt-3">
-							Aqui na FunMath! você aprende e se diverte
+							Aqui na FunMath! você prática e se diverte
 						</p>
 					</section>
 					<Link href="/learning">
@@ -65,7 +65,7 @@ const Home: NextPage = () => {
 				</div>
 				<Link href="/learning">
 					<a className="text-accents-pink font-semibold underline focus:brightness-75 hover:brightness-50 transition-hover">
-						Fiquei interessado! Quero aprender
+						Fiquei interessado! Quero praticar
 					</a>
 				</Link>
 			</section>
