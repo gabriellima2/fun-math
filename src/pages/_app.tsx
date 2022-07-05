@@ -1,13 +1,13 @@
 import type { AppProps } from "next/app";
 
-import { HeadSEO } from "../infra/HeadSEO";
+import { Seo } from "../components/Infra";
 
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<>
-			<HeadSEO />
+			<Seo />
 			<Component {...pageProps} />
 		</>
 	);

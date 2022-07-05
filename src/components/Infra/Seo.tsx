@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-export const HeadSEO = () => (
+export const Seo = () => (
 	<Head>
 		<meta
 			name="description"

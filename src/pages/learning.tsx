@@ -1,4 +1,4 @@
-import { BackButton } from "../components/Buttons/BackButton";
+import { BackButton } from "../components/Buttons";
 
 import { Common } from "../layouts/Common";
 

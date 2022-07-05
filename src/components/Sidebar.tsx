@@ -3,8 +3,10 @@ import Link from "next/link";
 import { Dialog } from "@headlessui/react";
 import { BsFillGrid3X3GapFill, BsXLg } from "react-icons/bs";
 
-import { links } from "../contents";
+import { Copyright } from "./Infra";
+
 import { Links } from "../types";
+import { links } from "../contents";
 
 type NavLinkProps = Links & {
 	closeSidebar: () => void;
@@ -61,9 +63,7 @@ export const Sidebar = () => {
 							))}
 						</ul>
 					</nav>
-					<small className="absolute bottom-9 font-medium">
-						&copy; FunMath! - {new Date().getFullYear()}
-					</small>
+					<Copyright />
 				</Dialog.Panel>
 			</div>
 		</Dialog>
