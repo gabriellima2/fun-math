@@ -7,9 +7,9 @@ export const BackButton = () => {
 	return (
 		<button
 			onClick={() => route.back()}
-			className="flex-center--row text-lg uppercase font-medium transition-colors hover:text-accents-pink"
+			className="flex-center--row text-sm lg:text-lg uppercase font-medium transition-colors hover:text-accents-pink"
 		>
-			<i className="text-4xl">
+			<i className="text-3xl lg:text-4xl">
 				<BsArrowLeftShort />
 			</i>
 			Voltar
