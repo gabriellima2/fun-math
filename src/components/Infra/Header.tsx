@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { Sidebar } from "./Sidebar";
+import { Sidebar } from "../Sidebar";
 
 export const Header = () => (
 	<header className="w-full flex justify-between items-center p-4 pt-6 px-8">
