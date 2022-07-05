@@ -43,7 +43,7 @@ const Home: NextPage = () => {
 			</main>
 			<section
 				id="howItWork"
-				className="h-full bg-black-800 p-4 lg:p-12 py-7 text-center lg:relative"
+				className="h-full bg-black-800 p-4 lg:p-12 py-7 text-center"
 			>
 				<div className="flex-center--col lg:flex-row lg:gap-16 lg:justify-evenly">
 					<section className="flex-center--col gap-5 lg:items-start lg:text-left">

@@ -1,3 +1,4 @@
 import { BackButton } from "./BackButton";
+import { GoToTopButton } from "./GoToTopButton";
 
-export { BackButton };
+export { BackButton, GoToTopButton };
