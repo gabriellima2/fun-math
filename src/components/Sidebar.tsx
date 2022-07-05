@@ -63,7 +63,9 @@ export const Sidebar = () => {
 							))}
 						</ul>
 					</nav>
-					<Copyright />
+					<span className="absolute bottom-9 ">
+						<Copyright />
+					</span>
 				</Dialog.Panel>
 			</div>
 		</Dialog>
