@@ -1,5 +1,5 @@
 export const Copyright = () => (
-	<small className="absolute bottom-9 font-medium">
+	<small className="font-medium">
 		&copy; FunMath! - {new Date().getFullYear()}
 	</small>
 );
