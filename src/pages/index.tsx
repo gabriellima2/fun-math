@@ -1,13 +1,8 @@
 import type { NextPage } from "next";
 import Link from "next/link";
-import {
-	BsArrowRight,
-	BsArrowRightSquare,
-	BsFillArrowRightSquareFill,
-} from "react-icons/bs";
+import { BsArrowRight } from "react-icons/bs";
 
 import { Card } from "../components/Card";
-import { Character } from "../components/Character";
 
 import { Common } from "../layouts/Common";
 
