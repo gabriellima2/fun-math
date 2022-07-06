@@ -23,7 +23,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .main-button {
-	@apply bg-accents-purple p-4 flex items-center gap-3 rounded-md text-pink-100;
+	@apply bg-accents-purple p-4 flex items-center gap-3 text-pink-100;
 }
 
 .flex-center--col {

@@ -1,6 +1,10 @@
 import type { NextPage } from "next";
 import Link from "next/link";
-import { BsFillArrowRightSquareFill } from "react-icons/bs";
+import {
+	BsArrowRight,
+	BsArrowRightSquare,
+	BsFillArrowRightSquareFill,
+} from "react-icons/bs";
 
 import { Card } from "../components/Card";
 import { Character } from "../components/Character";
@@ -14,32 +18,25 @@ const Home: NextPage = () => {
 		<Common>
 			<main
 				id="home"
-				className="min-h-full lg:w-full lg:grid lg:grid-cols-[repeat(2,_50%)] lg:place-items-center bg-home-mobile md:bg-home-desktop bg-cover bg-no-repeat bg-center p-4 pb-24"
+				className="min-h-full lg:w-full flex-center--col gap-8 md:gap-12 bg-home-mobile md:bg-home-desktop bg-cover bg-no-repeat bg-center p-4 pb-24"
 			>
-				<section className="lg:w-fit flex-center--col gap-10 lg:items-center mt-36 lg:mt-44 lg:ml-30">
-					<section>
-						<h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-pink-200 font-accent tracking-wider flex flex-col">
-							<span className="text-6xl md:text-8xl after:content-['👋'] after:text-4xl after:md:text-6xl">
-								Olá
-							</span>
-							Seja bem-vindo&#40;a&#41;!
-						</h1>
-						<p className="w-[230px] md:w-[260px] lg:w-[290px] text-sm md:text-base lg:text-lg text-center text-pink-100/80 m-auto mt-3">
-							Aqui na FunMath! você prática e se diverte
-						</p>
-					</section>
-					<Link href="/learning">
-						<a className="main-button text-sm md:text-base md:p-3 md:px-4 mb-36 lg:mb-44 transition-hover hover:brightness-75">
-							Comece Agora{" "}
-							<i className="text-xl md:text-4xl opacity-70">
-								<BsFillArrowRightSquareFill />
-							</i>
-						</a>
-					</Link>
+				<section className="mt-36 lg:mt-44 lg:ml-30 text-center">
+					<h1 className="w-[380px] md:w-[745px] text-4xl md:text-6xl lg:text-7xl font-medium text-pink-200 font-accent tracking-wider">
+						operadores matemáticos básicos na prática
+					</h1>
+					<h2 className="w-[320px] md:w-[450px] text-sm md:text-lg lg:text-xl text-center text-pink-100/80 m-auto mt-4">
+						Pratique e relembre cálculos com operadores básicos com diversos
+						exercícios
+					</h2>
 				</section>
-				<section className="hidden lg:block">
-					<Character />
-				</section>
+				<Link href="/learning">
+					<a className="w-fit main-button font-semibold text-base md:text-lg md:px-6 mb-36 lg:mb-36 transition-hover hover:brightness-75">
+						Comece Agora{" "}
+						<i className="text-xl md:text-2xl ml-2">
+							<BsArrowRight />
+						</i>
+					</a>
+				</Link>
 			</main>
 			<section
 				id="howItWork"
