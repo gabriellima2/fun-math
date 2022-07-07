@@ -1,22 +1,28 @@
-import React from "react";
+import Image from "next/image";
+import React, { useContext } from "react";
+
+import { SelectedOperatorContext } from "../../contexts/SelectedOperatorContext";
 
 import { operators } from "../../contents";
 
-interface OperatorListProps {
-	selectThisOperator: (operator: string) => void;
-}
+const OperatorsList = () => {
+	const { currentOperator, selectOperator } = useContext(
+		SelectedOperatorContext
+	);
 
-const OperatorsList = (props: OperatorListProps) => {
 	return (
-		<ul className="flex gap-4 flex-wrap">
+		<ul className="flex gap-3 flex-wrap">
 			{operators.map((operator) => (
 				<ol>
 					<button
 						type="button"
-						onClick={() => props.selectThisOperator(operator.id)}
-						className="bg-main p-2 px-4 rounded-full text-2xl font-bold"
+						disabled={currentOperator == operator.id}
+						onClick={() => selectOperator(operator.id)}
+						className="w-12 md:w-20 h-12 md:h-20 flex-center--row disabled:bg-main rounded-full text-2xl md:text-5xl font-bold"
 					>
-						{operator.symbol}
+						<div className="w-7 md:w-12 h-7 md:h-12 relative">
+							<Image src={operator.symbol} layout="fill" />
+						</div>
 						<span className="hidden">Operador de {operator.name}</span>
 					</button>
 				</ol>
