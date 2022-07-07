@@ -16,10 +16,10 @@ const Home: NextPage = () => {
 				className="min-h-full lg:w-full flex-center--col gap-8 md:gap-12 bg-home-mobile md:bg-home-desktop bg-cover bg-no-repeat bg-center p-4 pb-24"
 			>
 				<section className="mt-36 lg:mt-44 lg:ml-30 text-center">
-					<h1 className="w-[380px] md:w-[745px] text-4xl md:text-6xl lg:text-7xl font-medium text-pink-200 font-accent tracking-wider">
+					<h1 className="w-full min-w-auto max-w-[400px] md:w-[745px] text-4xl md:text-6xl lg:text-7xl font-medium text-pink-200 font-accent tracking-wider">
 						operadores matemáticos básicos na prática
 					</h1>
-					<h2 className="w-[320px] md:w-[450px] text-sm md:text-lg lg:text-xl text-center text-pink-100/80 m-auto mt-4">
+					<h2 className="w-full min-w-auto max-w-[320px] md:w-[450px] text-sm md:text-lg lg:text-xl text-center text-pink-100/80 m-auto mt-4">
 						Pratique e relembre cálculos com operadores básicos com diversos
 						exercícios
 					</h2>
