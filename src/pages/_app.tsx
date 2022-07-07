@@ -4,17 +4,17 @@ import { ApolloProvider } from "@apollo/client";
 import { Seo } from "../components/Infra";
 
 import { client } from "../lib/client";
-import { SelectedOperatorContextProvider } from "../contexts/SelectedOperatorContext";
+import { UserChoicesContextProvider } from "../contexts/UserChoicesContext";
 
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<ApolloProvider client={client}>
-			<SelectedOperatorContextProvider>
+			<UserChoicesContextProvider>
 				<Seo />
 				<Component {...pageProps} />
-			</SelectedOperatorContextProvider>
+			</UserChoicesContextProvider>
 		</ApolloProvider>
 	);
 }

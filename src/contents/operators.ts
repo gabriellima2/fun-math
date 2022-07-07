@@ -1,22 +1,22 @@
 export const operators = [
 	{
-		id: "sum",
-		name: "Soma",
-		symbol: "+",
+		id: "addition",
+		name: "Adição",
+		symbol: "/operators/addition.svg",
 	},
 	{
 		id: "subtraction",
 		name: "Subtração",
-		symbol: "-",
+		symbol: "/operators/subtraction.svg",
 	},
 	{
 		id: "division",
 		name: "Divisão",
-		symbol: "÷",
+		symbol: "/operators/division.svg",
 	},
 	{
 		id: "multiply",
 		name: "Multiplicação",
-		symbol: "x",
+		symbol: "/operators/multiply.svg",
 	},
 ];
