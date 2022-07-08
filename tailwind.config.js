@@ -29,7 +29,10 @@ module.exports = {
 				},
 				accents: {
 					purple: "#9740EF",
-					pink: "#DCB0F0",
+					pink: {
+						100: "#DCB0F0",
+						900: "#D2278E",
+					},
 				},
 			},
 			fontFamily: {

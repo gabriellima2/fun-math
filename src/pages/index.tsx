@@ -56,7 +56,7 @@ const Home: NextPage = () => {
 					</section>
 				</div>
 				<Link href="/learning">
-					<a className="text-accents-pink font-semibold underline focus:brightness-75 hover:brightness-50 transition-hover">
+					<a className="text-accents-pink-100 font-semibold underline focus:brightness-75 hover:brightness-50 transition-hover">
 						Fiquei interessado! Quero praticar
 					</a>
 				</Link>
