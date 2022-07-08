@@ -37,3 +37,19 @@ body::-webkit-scrollbar-thumb {
 .transition-hover {
 	transition: all 0.3s ease-in;
 }
+
+.container {
+	@apply lg:max-w-4xl text-left p-5 bg-black-600/80 rounded-2xl;
+}
+
+.subtitle {
+	@apply font-medium text-base md:text-lg uppercase mb-5 ml-4;
+}
+
+.options {
+	@apply bg-main flex items-center gap-6 p-8 rounded-2xl disabled:border-solid disabled:border-2 disabled:border-accents-pink-900;
+}
+
+.options__text {
+	@apply  font-accent text-lg md:text-xl tracking-wide capitalize;
+}
