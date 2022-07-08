@@ -5,28 +5,30 @@ import { UserChoicesContext } from "../contexts/UserChoicesContext";
 
 import { operators } from "../contents";
 
-const OperatorsList = () => {
+export const OperatorsList = React.memo(() => {
 	const { userChoices, selectOperatorType } = useContext(UserChoicesContext);
 
 	return (
-		<ul className="flex gap-3 flex-wrap">
+		<ul className="grid grid-cols-[repeat(2,_1fr)] grid-rows-2 gap-2">
 			{operators.map((operator) => (
-				<ol>
+				<li key={operator.id}>
 					<button
 						type="button"
+						title={`Escolher operador de ${operator.name}`}
 						disabled={userChoices.operatorType == operator.id}
+						aria-pressed={userChoices.operatorType == operator.id}
 						onClick={() => selectOperatorType(operator.id)}
-						className="w-12 md:w-20 h-12 md:h-20 flex-center--row disabled:bg-main rounded-full text-2xl md:text-5xl font-bold"
+						className="options w-full justify-center sm:justify-start "
 					>
-						<div className="w-7 md:w-12 h-7 md:h-12 relative">
+						<div className="w-8 md:w-12 h-8 md:h-12 relative">
 							<Image src={operator.symbol} layout="fill" />
 						</div>
-						<span className="hidden">Operador de {operator.name}</span>
+						<span className="hidden options__text sm:inline">
+							{operator.name}
+						</span>
 					</button>
-				</ol>
+				</li>
 			))}
 		</ul>
 	);
-};
-
-export default React.memo(OperatorsList);
+});
