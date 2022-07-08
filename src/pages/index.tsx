@@ -3,10 +3,11 @@ import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 
 import { Card } from "../components/Card";
+import { MainButton } from "../components/Buttons";
 
 import { Common } from "../layouts/Common";
 
-import { cards } from "../contents";
+import { cards } from "../constants";
 
 const Home: NextPage = () => {
 	return (
@@ -24,14 +25,7 @@ const Home: NextPage = () => {
 						exercícios
 					</h2>
 				</section>
-				<Link href="/learning">
-					<a className="w-fit main-button font-semibold text-base md:text-lg md:px-6 mb-36 lg:mb-36 transition-hover hover:brightness-75">
-						Comece Agora{" "}
-						<i className="text-xl md:text-2xl ml-2">
-							<BsArrowRight />
-						</i>
-					</a>
-				</Link>
+				<MainButton href="/learning" text="comece agora" icon={BsArrowRight} />
 			</main>
 			<section
 				id="howItWork"

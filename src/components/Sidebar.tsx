@@ -6,7 +6,7 @@ import { BsFillGrid3X3GapFill, BsXLg } from "react-icons/bs";
 import { Copyright } from "./Infra";
 
 import { Links } from "../types";
-import { links } from "../contents";
+import { links } from "../constants";
 
 type NavLinkProps = Links & {
 	closeSidebar: () => void;

@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 
 import { UserChoicesContext } from "../contexts/UserChoicesContext";
 
-import { operators } from "../contents";
+import { operators } from "../constants";
 
 export const OperatorsList = React.memo(() => {
 	const { userChoices, selectOperatorType } = useContext(UserChoicesContext);

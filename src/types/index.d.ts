@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { cards, links } from "../contents";
+import { cards, links } from "../constants";
 
 export type WithChildren<T = unknown> = {
 	children: ReactNode;

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 
 import { UserChoicesContext } from "../contexts/UserChoicesContext";
 
-import { exerciseTypes } from "../contents";
+import { exerciseTypes } from "../constants";
 
 export const ExerciseTypes = () => {
 	const { userChoices, selectExerciseType } = useContext(UserChoicesContext);
