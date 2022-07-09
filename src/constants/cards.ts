@@ -12,21 +12,21 @@ export const cards = [
 	{
 		id: "1",
 		image: {
-			src: "/cards/text-and-examples.svg",
-			alt: "Caderno com desenhos",
-		},
-		title: "Explicação e exemplos",
-		description:
-			"Veja uma breve teoria para servir como base na hora de praticar",
-	},
-	{
-		id: "2",
-		image: {
 			src: "/cards/practice.svg",
 			alt: "Lápis em um caderno",
 		},
 		title: "Pratique com exercícios",
 		description:
 			"Coloque em prática o que foi aprendido. Lembre-se o aprendizado vem da prática",
+	},
+	{
+		id: "2",
+		image: {
+			src: "/cards/tips-help.svg",
+			alt: "Caderno com desenhos",
+		},
+		title: "Dicas e ajuda",
+		description:
+			"Ficou travado em algum exercício? Temos dicas e ajudas disponíveis para melhorar sua experiência",
 	},
 ];
