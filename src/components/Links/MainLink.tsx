@@ -2,14 +2,14 @@ import Link from "next/link";
 import React from "react";
 import { IconType } from "react-icons";
 
-interface MainButtonProps {
-	text: string;
+import { LinkDefaultProps } from "../../types";
+
+interface MainLinkProps extends LinkDefaultProps {
 	icon: IconType;
-	href: string;
 	isDisabled: boolean;
 }
 
-export const MainButton = (props: MainButtonProps) => (
+export const MainLink = (props: MainLinkProps) => (
 	<Link href={props.isDisabled ? "" : props.href}>
 		<a
 			href={props.isDisabled ? "" : props.href}
@@ -19,7 +19,7 @@ export const MainButton = (props: MainButtonProps) => (
 				props.isDisabled && "pointer-events-none opacity-40"
 			} w-fit main-button capitalize font-semibold text-base md:text-lg md:px-6 mb-36 lg:mb-36 transition-hover hover:brightness-75`}
 		>
-			{props.text}{" "}
+			{props.children}{" "}
 			<i className="text-xl md:text-2xl ml-2">
 				{React.createElement(props.icon, null)}
 			</i>
@@ -27,8 +27,8 @@ export const MainButton = (props: MainButtonProps) => (
 	</Link>
 );
 
-const defaultProps: Pick<MainButtonProps, "isDisabled"> = {
+const defaultProps: Pick<MainLinkProps, "isDisabled"> = {
 	isDisabled: false,
 };
 
-MainButton.defaultProps = defaultProps;
+MainLink.defaultProps = defaultProps;

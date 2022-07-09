@@ -1,9 +1,8 @@
 import type { NextPage } from "next";
-import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 
 import { Card } from "../components/Card";
-import { MainButton } from "../components/Buttons";
+import { TextLink, MainLink } from "../components/Links";
 
 import { Common } from "../layouts/Common";
 
@@ -25,7 +24,9 @@ const Home: NextPage = () => {
 						exercícios
 					</h2>
 				</section>
-				<MainButton href="/learning" text="comece agora" icon={BsArrowRight} />
+				<MainLink href="/choose-options" icon={BsArrowRight}>
+					comece agora
+				</MainLink>
 			</main>
 			<section
 				id="howItWork"
@@ -49,11 +50,10 @@ const Home: NextPage = () => {
 						</ul>
 					</section>
 				</div>
-				<Link href="/learning">
-					<a className="text-accents-pink-100 font-semibold underline focus:brightness-75 hover:brightness-50 transition-hover">
-						Fiquei interessado! Quero praticar
-					</a>
-				</Link>
+
+				<TextLink href="choose-options">
+					Fiquei interessado! Quero praticar
+				</TextLink>
 			</section>
 		</Common>
 	);

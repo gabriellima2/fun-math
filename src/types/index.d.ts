@@ -8,3 +8,7 @@ export type WithChildren<T = unknown> = {
 export type Cards = typeof cards[0];
 
 export type Links = typeof links[0];
+
+export interface LinkDefaultProps extends WithChildren {
+	href: string;
+}
