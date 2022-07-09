@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { BsArrowRightShort } from "react-icons/bs";
 
-import { BackButton, MainButton } from "../components/Buttons";
+import { MainLink } from "../components/Links";
+import { BackButton } from "../components/Buttons";
 import { OperatorsList } from "../components/OperatorsList";
 import { ExerciseTypes } from "../components/ExerciseTypes";
 
@@ -9,7 +10,7 @@ import { Customized } from "../layouts/Customized";
 
 import { UserChoicesContext } from "../contexts/UserChoicesContext";
 
-const Learning = () => {
+const ChooseOptions = () => {
 	const { userChoices } = useContext(UserChoicesContext);
 
 	return (
@@ -29,12 +30,13 @@ const Learning = () => {
 						<ExerciseTypes />
 					</section>
 
-					<MainButton
+					<MainLink
 						href="/exercises"
-						text={"começar"}
 						icon={BsArrowRightShort}
 						isDisabled={!userChoices.exerciseType || !userChoices.operatorType}
-					/>
+					>
+						começar
+					</MainLink>
 				</main>
 
 				<span className="fixed bottom-6 left-8">
@@ -45,4 +47,4 @@ const Learning = () => {
 	);
 };
 
-export default Learning;
+export default ChooseOptions;
