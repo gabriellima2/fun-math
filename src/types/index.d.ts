@@ -12,3 +12,5 @@ export type Links = typeof links[0];
 export interface LinkDefaultProps extends WithChildren {
 	href: string;
 }
+
+export type ClassName = string;
