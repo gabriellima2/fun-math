@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { MouseEvent, ReactNode } from "react";
 import { cards, links } from "../constants";
 
 export type WithChildren<T = unknown> = {
@@ -14,3 +14,5 @@ export interface LinkDefaultProps extends WithChildren {
 }
 
 export type ClassName = string;
+
+export type CanvasEvent = MouseEvent | globalThis.MouseEvent;
