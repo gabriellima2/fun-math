@@ -24,7 +24,10 @@ const Home: NextPage = () => {
 						exercícios
 					</h2>
 				</section>
-				<MainLink href="/choose-options" icon={BsArrowRight}>
+				<MainLink
+					href="/choose-options"
+					icon={{ element: BsArrowRight, label: "Seta para direita" }}
+				>
 					comece agora
 				</MainLink>
 			</main>
