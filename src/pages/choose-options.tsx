@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useRouter } from "next/router";
 import { BsArrowRightShort } from "react-icons/bs";
 
 import { OperatorsList } from "../components/OperatorsList";
@@ -10,9 +11,14 @@ import { Customized } from "../layouts/Customized";
 import { UserChoicesContext } from "../contexts/UserChoicesContext";
 
 const ChooseOptions = () => {
+	const router = useRouter();
 	const { userChoices } = useContext(UserChoicesContext);
 
-	const handleSubmit = () => {};
+	const handleSubmit = () => {
+		if (!userChoices.exerciseType || !userChoices.operatorType) return;
+
+		router.push("/exercises");
+	};
 
 	return (
 		<Customized>
@@ -21,7 +27,7 @@ const ChooseOptions = () => {
 					<form
 						onSubmit={(e) => {
 							e.preventDefault();
-							handleSubmit;
+							handleSubmit();
 						}}
 						className="w-full flex-center--col gap-6 text-center"
 					>
