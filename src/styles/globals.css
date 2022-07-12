@@ -61,3 +61,13 @@ body::-webkit-scrollbar-thumb {
 .disabled {
 	@apply pointer-events-none opacity-40;
 }
+
+::-webkit-color-swatch {
+	border-radius: 50%;
+	border: none;
+}
+
+::-moz-color-swatch {
+	border-radius: 50%;
+	border: none;
+}

@@ -7,8 +7,8 @@ import { Customized } from "../layouts/Customized";
 const Exercises: NextPage = () => {
 	return (
 		<Customized>
-			<div>
-				<section className="flex-center--row w-[95vw] h-full overflow-hidden">
+			<div className="flex-center--row">
+				<section className=" w-[95vw] max-w-[1000px] h-full max-h-[700px] md:max-h-[1/2] overflow-hidden">
 					<Canvas />
 				</section>
 			</div>

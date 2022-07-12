@@ -2,8 +2,18 @@ import { useRef, useState } from "react";
 
 import { useCanvas } from "../hooks/useCanvas";
 
+import { ColorPicker } from "./ColorPicker";
+
 import { CanvasEvent } from "../types";
 import { createMouseEvent } from "../utils/createMouseEvent";
+
+const Tools = () => {
+	return (
+		<section>
+			<ColorPicker />
+		</section>
+	);
+};
 
 export const Canvas = () => {
 	const [isDrawing, setIsDrawing] = useState(false);
@@ -43,20 +53,23 @@ export const Canvas = () => {
 	};
 
 	return (
-		<canvas
-			ref={canvasRef}
-			onMouseDown={startDrawing}
-			onTouchStart={({ touches }) =>
-				createMouseEvent(touches[0], "mousedown", startDrawing)
-			}
-			onMouseMove={draw}
-			onTouchMove={({ touches }) =>
-				createMouseEvent(touches[0], "mousemove", draw)
-			}
-			onMouseUp={stopDrawing}
-			onTouchEnd={stopDrawing}
-			onMouseLeave={stopDrawing}
-			className="object-contain bg-black-200"
-		/>
+		<div>
+			<Tools />
+			<canvas
+				ref={canvasRef}
+				onMouseDown={startDrawing}
+				onTouchStart={({ touches }) =>
+					createMouseEvent(touches[0], "mousedown", startDrawing)
+				}
+				onMouseMove={draw}
+				onTouchMove={({ touches }) =>
+					createMouseEvent(touches[0], "mousemove", draw)
+				}
+				onMouseUp={stopDrawing}
+				onTouchEnd={stopDrawing}
+				onMouseLeave={stopDrawing}
+				className="object-contain bg-black-200"
+			/>
+		</div>
 	);
 };
