@@ -8,18 +8,30 @@ import { createMouseEvent } from "../utils/createMouseEvent";
 export const Canvas = () => {
 	const [isDrawing, setIsDrawing] = useState(false);
 	const canvasRef = useRef<null | HTMLCanvasElement>(null);
-	const { contextRef } = useCanvas(canvasRef);
+	const { contextRef } = useCanvas(canvasRef, { color: "white", width: 5 });
 
 	const draw = ({ clientX, clientY }: CanvasEvent) => {
-		if (!isDrawing) return;
+		const boundingRect = canvasRef.current?.getBoundingClientRect();
 
-		contextRef.current?.lineTo(clientX, clientY);
+		if (!isDrawing || !boundingRect) return;
+
+		contextRef.current?.lineTo(
+			clientX - boundingRect.left,
+			clientY - boundingRect.top
+		);
 		contextRef.current?.stroke();
 	};
 
 	const startDrawing = ({ clientX, clientY }: CanvasEvent) => {
+		const boundingRect = canvasRef.current?.getBoundingClientRect();
+
+		if (!boundingRect) return;
+
 		contextRef.current?.beginPath();
-		contextRef.current?.moveTo(clientX, clientY);
+		contextRef.current?.moveTo(
+			clientX - boundingRect.left,
+			clientY - boundingRect.top
+		);
 
 		setIsDrawing(true);
 	};
@@ -31,22 +43,20 @@ export const Canvas = () => {
 	};
 
 	return (
-		<div>
-			<canvas
-				ref={canvasRef}
-				onMouseDown={startDrawing}
-				onTouchStart={({ touches }) =>
-					createMouseEvent(touches[0], "mousedown", startDrawing)
-				}
-				onMouseMove={draw}
-				onTouchMove={({ touches }) =>
-					createMouseEvent(touches[0], "mousemove", draw)
-				}
-				onMouseUp={stopDrawing}
-				onTouchEnd={stopDrawing}
-				onMouseLeave={stopDrawing}
-				className="w-full object-contain"
-			/>
-		</div>
+		<canvas
+			ref={canvasRef}
+			onMouseDown={startDrawing}
+			onTouchStart={({ touches }) =>
+				createMouseEvent(touches[0], "mousedown", startDrawing)
+			}
+			onMouseMove={draw}
+			onTouchMove={({ touches }) =>
+				createMouseEvent(touches[0], "mousemove", draw)
+			}
+			onMouseUp={stopDrawing}
+			onTouchEnd={stopDrawing}
+			onMouseLeave={stopDrawing}
+			className="object-contain bg-black-200"
+		/>
 	);
 };
