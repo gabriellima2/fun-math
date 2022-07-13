@@ -8,13 +8,15 @@ interface UserChoice {
 	exerciseType: null | string;
 }
 
-interface UserChoicesContextTypes {
+interface UserChoicesContextProperties {
 	userChoices: UserChoice;
 	selectOperatorType: (operator: string) => void;
 	selectExerciseType: (exercise: string) => void;
 }
 
-export const UserChoicesContext = createContext({} as UserChoicesContextTypes);
+export const UserChoicesContext = createContext(
+	{} as UserChoicesContextProperties
+);
 
 export const UserChoicesContextProvider = ({ children }: WithChildren) => {
 	const [userChoices, setUserChoices] = useState({

@@ -1,17 +1,20 @@
 import { useState } from "react";
 import { BsCaretDownFill } from "react-icons/bs";
 
-export const ColorPicker = () => {
-	const [currentColor, setCurrentColor] = useState("#ffffff");
+interface ColorPickerProps {
+	color: string;
+	changeColor: (color: string) => void;
+}
 
+export const ColorPicker = (props: ColorPickerProps) => {
 	return (
 		<div className="w-fit flex-center--col">
 			<input
 				type="color"
 				name="color"
 				id="colorPicker"
-				value={currentColor}
-				onChange={(e) => setCurrentColor(e.target.value)}
+				value={props.color}
+				onChange={(e) => props.changeColor(e.target.value)}
 				className="w-[30px] h-[33px] appearance-none border-none bg-transparent cursor-pointer"
 			/>
 			<label htmlFor="colorPicker">

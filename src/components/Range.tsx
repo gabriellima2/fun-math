@@ -1,0 +1,34 @@
+interface RangeProps {
+	id: string;
+	name: string;
+	label: string;
+	value: string;
+	min: string;
+	max: string;
+	changeValue: (param: string) => void;
+}
+
+export const Range = (props: RangeProps) => (
+	<>
+		<label htmlFor={props.id} className="hidden">
+			{props.label}
+		</label>
+		<input
+			type="range"
+			value={props.value}
+			onChange={(e) => props.changeValue(e.target.value)}
+			min={props.min}
+			max={props.max}
+			step="1"
+			name={props.name}
+			id={props.id}
+		/>
+	</>
+);
+
+const defaultProps: Pick<RangeProps, "max" | "min"> = {
+	min: "1",
+	max: "20",
+};
+
+Range.defaultProps = defaultProps;

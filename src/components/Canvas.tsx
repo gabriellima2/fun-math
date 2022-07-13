@@ -3,22 +3,21 @@ import { useRef, useState } from "react";
 import { useCanvas } from "../hooks/useCanvas";
 
 import { ColorPicker } from "./ColorPicker";
+import { Range } from "./Range";
 
 import { CanvasEvent } from "../types";
 import { createMouseEvent } from "../utils/createMouseEvent";
 
-const Tools = () => {
-	return (
-		<section>
-			<ColorPicker />
-		</section>
-	);
-};
+const CANVAS_BACKGROUND_COLOR = "#262626";
 
 export const Canvas = () => {
 	const [isDrawing, setIsDrawing] = useState(false);
+
 	const canvasRef = useRef<null | HTMLCanvasElement>(null);
-	const { contextRef } = useCanvas(canvasRef, { color: "white", width: 5 });
+	const { contextRef, styles, activateEraser } = useCanvas(
+		canvasRef,
+		CANVAS_BACKGROUND_COLOR
+	);
 
 	const draw = ({ clientX, clientY }: CanvasEvent) => {
 		const boundingRect = canvasRef.current?.getBoundingClientRect();
@@ -54,7 +53,23 @@ export const Canvas = () => {
 
 	return (
 		<div>
-			<Tools />
+			<section>
+				<ColorPicker
+					color={styles.currentColor}
+					changeColor={styles.changeCurrentColor}
+				/>
+
+				<Range
+					id="lineWidth"
+					name="lineWidth"
+					label="Mude a largura dos traços"
+					min="1"
+					max="30"
+					value={styles.strokeWidth}
+					changeValue={styles.changeStrokeWidth}
+				/>
+				<button onClick={activateEraser}>Borracha</button>
+			</section>
 			<canvas
 				ref={canvasRef}
 				onMouseDown={startDrawing}

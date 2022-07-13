@@ -1,11 +1,19 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import { CanvasRef, CanvasStyle } from "../types/hooks";
+import { CanvasRef } from "../types/hooks";
 
 const SPACING = 50;
 
-export function useCanvas(canvasRef: CanvasRef, style: CanvasStyle) {
+export function useCanvas(canvasRef: CanvasRef, canvasBackgroundColor: string) {
 	const contextRef = useRef<null | CanvasRenderingContext2D>(null);
+	const [currentColor, setCurrentColor] = useState("#ffffff");
+	const [strokeWidth, setStrokeWidth] = useState("5");
+
+	const changeCurrentColor = (color: string) => setCurrentColor(color);
+
+	const changeStrokeWidth = (width: string) => setStrokeWidth(width);
+
+	const activateEraser = () => setCurrentColor(canvasBackgroundColor);
 
 	const setCanvasSize = (canvas: HTMLCanvasElement) => {
 		const clientWidth = window.innerWidth - SPACING;
@@ -21,8 +29,8 @@ export function useCanvas(canvasRef: CanvasRef, style: CanvasStyle) {
 	const setContextSettings = (context: CanvasRenderingContext2D) => {
 		context.scale(1, 1);
 		context.lineCap = "round";
-		context.strokeStyle = style.color;
-		context.lineWidth = style.width;
+		context.strokeStyle = currentColor;
+		context.lineWidth = Number(strokeWidth);
 
 		contextRef.current = context;
 	};
@@ -40,6 +48,11 @@ export function useCanvas(canvasRef: CanvasRef, style: CanvasStyle) {
 		setCanvasSize(canvas);
 		context.putImageData(canvasBackup, 0, 0);
 	};
+
+	useEffect(
+		() => setContextSettings(canvasRef.current.getContext("2d")),
+		[currentColor, strokeWidth]
+	);
 
 	useEffect(() => {
 		const canvas = canvasRef.current;
@@ -60,5 +73,12 @@ export function useCanvas(canvasRef: CanvasRef, style: CanvasStyle) {
 
 	return {
 		contextRef,
+		styles: {
+			currentColor,
+			strokeWidth,
+			changeCurrentColor,
+			changeStrokeWidth,
+		},
+		activateEraser,
 	};
 }
