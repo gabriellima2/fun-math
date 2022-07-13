@@ -24,8 +24,17 @@ export const UserChoicesContextProvider = ({ children }: WithChildren) => {
 	const selectOperatorType = (operator: string) =>
 		setUserChoices((prevState) => ({ ...prevState, operatorType: operator }));
 
-	const selectExerciseType = (exercise: string) =>
+	const selectExerciseType = (exercise: string) => {
+		if (exercise === "problem") {
+			return setUserChoices((prevState) => ({
+				...prevState,
+				exerciseType: exercise,
+				operatorType: null,
+			}));
+		}
+
 		setUserChoices((prevState) => ({ ...prevState, exerciseType: exercise }));
+	};
 
 	return (
 		<UserChoicesContext.Provider
