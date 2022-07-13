@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useRouter } from "next/router";
-import { BsArrowRightShort } from "react-icons/bs";
+import { BsArrowRightShort, BsFillExclamationCircleFill } from "react-icons/bs";
 
 import { OperatorsList } from "../components/OperatorsList";
 import { ExerciseTypes } from "../components/ExerciseTypes";
@@ -10,6 +10,7 @@ import { Customized } from "../layouts/Customized";
 
 import { UserChoicesContext } from "../contexts/UserChoicesContext";
 import { exerciseTypesID } from "../constants";
+import { Icon } from "../components/Icon";
 
 const ChooseOptions = () => {
 	const router = useRouter();
@@ -46,7 +47,7 @@ const ChooseOptions = () => {
 						}}
 						className="w-full flex-center--col gap-6 text-center"
 					>
-						<h1 className="font-accent text-xl md:text-3xl mb-4">
+						<h1 className="text-xl md:text-3xl mb-4">
 							Selecione as opções para praticar
 						</h1>
 						<fieldset className="container">
@@ -61,8 +62,13 @@ const ChooseOptions = () => {
 									<OperatorsList />
 								</>
 							) : (
-								<h2 className="subtitle mt-5">
-									OBS: Esse tipo de exercício usa operadores aleatórios
+								<h2 className="subtitle mt-5 flex-center--row gap-4">
+									<Icon
+										label="Icone de aviso"
+										element={BsFillExclamationCircleFill}
+										className="text-xl"
+									/>
+									Esse tipo de exercício usa operadores aleatórios
 								</h2>
 							)}
 						</fieldset>

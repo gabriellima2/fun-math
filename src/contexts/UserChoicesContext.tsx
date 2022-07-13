@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 
 import { WithChildren } from "../types";
+import { exerciseTypesID } from "../constants";
 
 interface UserChoice {
 	operatorType: null | string;
@@ -25,7 +26,7 @@ export const UserChoicesContextProvider = ({ children }: WithChildren) => {
 		setUserChoices((prevState) => ({ ...prevState, operatorType: operator }));
 
 	const selectExerciseType = (exercise: string) => {
-		if (exercise === "problem") {
+		if (exercise === exerciseTypesID.problem) {
 			return setUserChoices((prevState) => ({
 				...prevState,
 				exerciseType: exercise,
