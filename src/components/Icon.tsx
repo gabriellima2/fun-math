@@ -1,10 +1,8 @@
 import React from "react";
 
-import { ClassName, IconDefaultProps } from "../types";
+import { IconDefaultProps } from "../types";
 
-interface IconProps extends IconDefaultProps {
-	className?: ClassName;
-}
+interface IconProps extends IconDefaultProps {}
 
 export const Icon = (props: IconProps) => (
 	<i aria-label={props.label} className={props.className}>
