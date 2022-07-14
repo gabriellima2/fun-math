@@ -35,3 +35,9 @@ export interface LinkDefaultProps extends WithChildren {
 	icon: IconDefaultProps;
 	title?: Title;
 }
+
+export interface DrawingTool {
+	type: string;
+	color: string;
+	width: number;
+}

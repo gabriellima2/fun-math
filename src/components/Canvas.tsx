@@ -1,63 +1,68 @@
 import { useRef, useState } from "react";
 import { BsFillEraserFill, BsFillPencilFill } from "react-icons/bs";
 
-import { ITools, useCanvas } from "../hooks/useCanvas";
+import { useBasicCanvas, useCanvasSuperset } from "../hooks/Canvas/";
 
 import { Range } from "./Range";
 import { ColorPicker } from "./ColorPicker";
 import { IconButton } from "./Buttons/IconButton";
 
 import { CanvasEvent } from "../types";
+import { CanvasRef, ContextRef } from "../types/hooks";
 import { createMouseEvent } from "../utils/createMouseEvent";
 
-const CANVAS_BACKGROUND_COLOR = "#262626";
+interface ToolsProps {
+	canvasRef: CanvasRef;
+	contextRef: ContextRef;
+}
 
-interface ToolsProps extends ITools {}
+const Tools = (props: ToolsProps) => {
+	const { currentTool, changeCurrentTool, changeColor, changeWidth, clear } =
+		useCanvasSuperset(props.canvasRef, props.contextRef);
 
-const Tools = (props: ToolsProps) => (
-	<section className="flex items-center justify-between p-2 bg-black-400/70">
-		<div className="flex-center--row gap-2">
-			<ColorPicker
-				color={props.currentColor}
-				changeColor={props.changeCurrentColor}
-			/>
-			<IconButton
-				onClick={() => props.changeCurrentObject("pencil")}
+	return (
+		<section className="flex items-center justify-between p-2 bg-black-400/70">
+			<div className="flex-center--row gap-2">
+				<ColorPicker color={currentTool.color} changeColor={changeColor} />
+				<IconButton
+					onClick={() => changeCurrentTool("pencil")}
+					type="button"
+					title="Lápis"
+					icon={{ element: BsFillPencilFill, label: "Icone de Lápis" }}
+				/>
+				<IconButton
+					onClick={() => changeCurrentTool("eraser")}
+					type="button"
+					title="Borracha"
+					icon={{ element: BsFillEraserFill, label: "Icone de Borracha" }}
+				/>
+
+				<Range
+					id="lineWidth"
+					name="lineWidth"
+					label="Mude a largura dos traços"
+					min="1"
+					max="30"
+					value={currentTool.width.toString()}
+					changeValue={changeWidth}
+				/>
+			</div>
+			<button
 				type="button"
-				title="Lápis"
-				icon={{ element: BsFillPencilFill, label: "Icone de Lápis" }}
-			/>
-			<IconButton
-				onClick={() => props.changeCurrentObject("eraser")}
-				type="button"
-				title="Borracha"
-				icon={{ element: BsFillEraserFill, label: "Icone de Borracha" }}
-			/>
-
-			<Range
-				id="lineWidth"
-				name="lineWidth"
-				label="Mude a largura dos traços"
-				min="1"
-				max="30"
-				value={props.strokeWidth.toString()}
-				changeValue={props.changeStrokeWidth}
-			/>
-		</div>
-		<button
-			type="button"
-			className="button--default p-2 px-4 rounded-md font-accent tracking-wider"
-		>
-			Limpar
-		</button>
-	</section>
-);
+				onClick={clear}
+				className="button--default p-2 px-4 rounded-md font-accent tracking-wider"
+			>
+				Limpar
+			</button>
+		</section>
+	);
+};
 
 export const Canvas = () => {
 	const [isDrawing, setIsDrawing] = useState(false);
 
 	const canvasRef = useRef<null | HTMLCanvasElement>(null);
-	const { contextRef, tools } = useCanvas(canvasRef, CANVAS_BACKGROUND_COLOR);
+	const { contextRef } = useBasicCanvas(canvasRef);
 
 	const draw = ({ clientX, clientY }: CanvasEvent) => {
 		const boundingRect = canvasRef.current?.getBoundingClientRect();
@@ -93,7 +98,7 @@ export const Canvas = () => {
 
 	return (
 		<>
-			<Tools {...tools} />
+			<Tools canvasRef={canvasRef} contextRef={contextRef} />
 			<canvas
 				ref={canvasRef}
 				onMouseDown={startDrawing}

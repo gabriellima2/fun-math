@@ -5,7 +5,7 @@ interface RangeProps {
 	value: string;
 	min: string;
 	max: string;
-	changeValue: (param: string) => void;
+	changeValue: (param: number) => void;
 }
 
 export const Range = (props: RangeProps) => (
@@ -16,7 +16,7 @@ export const Range = (props: RangeProps) => (
 		<input
 			type="range"
 			value={props.value}
-			onChange={(e) => props.changeValue(e.target.value)}
+			onChange={(e) => props.changeValue(Number(e.target.value))}
 			min={props.min}
 			max={props.max}
 			step="1"
