@@ -1,5 +1,6 @@
-import { useState } from "react";
 import { BsCaretDownFill } from "react-icons/bs";
+
+import { Icon } from "./Icon";
 
 interface ColorPickerProps {
 	color: string;
@@ -15,13 +16,15 @@ export const ColorPicker = (props: ColorPickerProps) => {
 				id="colorPicker"
 				value={props.color}
 				onChange={(e) => props.changeColor(e.target.value)}
-				className="w-[30px] h-[33px] appearance-none border-none bg-transparent cursor-pointer"
+				className="w-8 h-9 appearance-none border-none bg-transparent cursor-pointer"
 			/>
 			<label htmlFor="colorPicker">
 				<span className="hidden">Selecione a cor</span>
-				<i aria-label="Icone de seta">
-					<BsCaretDownFill />
-				</i>
+				<Icon
+					label="Icone de seta"
+					element={BsCaretDownFill}
+					className="text-base"
+				/>
 			</label>
 		</div>
 	);
