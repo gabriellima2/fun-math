@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import { BsFillEraserFill, BsFillPencilFill } from "react-icons/bs";
 
 import { useBasicCanvas, useCanvasSuperset } from "../hooks/Canvas/";
 
@@ -9,7 +8,9 @@ import { IconButton } from "./Buttons/IconButton";
 
 import { CanvasEvent } from "../types";
 import { CanvasRef, ContextRef } from "../types/hooks";
+
 import { createMouseEvent } from "../utils/createMouseEvent";
+import { tools } from "../constants";
 
 interface ToolsProps {
 	canvasRef: CanvasRef;
@@ -22,20 +23,22 @@ const Tools = (props: ToolsProps) => {
 
 	return (
 		<section className="flex items-center justify-between p-2 bg-black-400/70">
-			<div className="flex-center--row gap-2">
+			<div className="flex-center--row gap-4 md:gap-6">
 				<ColorPicker color={currentTool.color} changeColor={changeColor} />
-				<IconButton
-					onClick={() => changeCurrentTool("pencil")}
-					type="button"
-					title="Lápis"
-					icon={{ element: BsFillPencilFill, label: "Icone de Lápis" }}
-				/>
-				<IconButton
-					onClick={() => changeCurrentTool("eraser")}
-					type="button"
-					title="Borracha"
-					icon={{ element: BsFillEraserFill, label: "Icone de Borracha" }}
-				/>
+				{tools.list.map((tool) => (
+					<IconButton
+						type="button"
+						title={tool.name}
+						onClick={() => changeCurrentTool(tool.id)}
+						icon={{
+							element: tool.icon,
+							label: `Icone de ${tool.name}`,
+							className: `${
+								tool.id === currentTool.type && "text-white/40 transition-all"
+							} text-xl`,
+						}}
+					/>
+				))}
 
 				<Range
 					id="lineWidth"
@@ -50,7 +53,7 @@ const Tools = (props: ToolsProps) => {
 			<button
 				type="button"
 				onClick={clear}
-				className="button--default p-2 px-4 rounded-md font-accent tracking-wider"
+				className="button--default p-2 px-3 md:px-4 rounded-md font-accent text-sm md:text-base tracking-wider"
 			>
 				Limpar
 			</button>
@@ -98,7 +101,6 @@ export const Canvas = () => {
 
 	return (
 		<>
-			<Tools canvasRef={canvasRef} contextRef={contextRef} />
 			<canvas
 				ref={canvasRef}
 				onMouseDown={startDrawing}
@@ -114,6 +116,7 @@ export const Canvas = () => {
 				onMouseLeave={stopDrawing}
 				className="object-contain bg-black-200 rounded-md h-full"
 			/>
+			<Tools canvasRef={canvasRef} contextRef={contextRef} />
 		</>
 	);
 };

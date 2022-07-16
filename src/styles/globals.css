@@ -67,11 +67,26 @@ body::-webkit-scrollbar-thumb {
 }
 
 ::-webkit-color-swatch {
-	border-radius: 50%;
-	border: none;
+	@apply border-none rounded-full;
 }
 
 ::-moz-color-swatch {
-	border-radius: 50%;
-	border: none;
+	@apply w-8 h-8 border-none rounded-full;
+}
+
+input[type="range"] {
+	@apply appearance-none h-1 rounded-md bg-accents-pink-100;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+	@apply appearance-none w-4 h-4 border-none rounded-full bg-accents-pink-900 cursor-ew-resize;
+
+}
+
+input[type="range"]::-moz-range-thumb {
+	@apply w-4 h-4 border-none rounded-full bg-accents-pink-900 cursor-ew-resize;
+}
+
+input[type="range"]::-ms-thumb {
+	@apply w-4 h-4 border-none rounded-full bg-accents-pink-900 cursor-ew-resize;
 }

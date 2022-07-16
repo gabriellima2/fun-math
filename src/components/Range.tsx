@@ -22,6 +22,7 @@ export const Range = (props: RangeProps) => (
 			step="1"
 			name={props.name}
 			id={props.id}
+			className="appearance-none"
 		/>
 	</>
 );

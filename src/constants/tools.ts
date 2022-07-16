@@ -1,3 +1,4 @@
+import { BsFillEraserFill, BsFillPencilFill } from "react-icons/bs";
 import { DrawingTool } from "../types";
 
 enum typeOfTools {
@@ -17,8 +18,22 @@ const initialPencil: DrawingTool = {
 	width: 5,
 };
 
+const list = [
+	{
+		id: typeOfTools.pencil,
+		name: "Lápis",
+		icon: BsFillPencilFill,
+	},
+	{
+		id: typeOfTools.eraser,
+		name: "Borracha",
+		icon: BsFillEraserFill,
+	},
+];
+
 export const tools = {
 	typeOfTools,
 	initialEraser,
 	initialPencil,
+	list,
 };
