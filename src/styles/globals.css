@@ -43,7 +43,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .container {
-	@apply lg:max-w-4xl text-left p-5 bg-black-600/80 rounded-2xl;
+	@apply lg:max-w-4xl text-left p-5 rounded-2xl;
 }
 
 .subtitle {

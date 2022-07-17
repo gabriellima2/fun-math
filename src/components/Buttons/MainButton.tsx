@@ -12,6 +12,7 @@ interface MainButtonProps extends ButtonDefaultProps {
 export const MainButton = (props: MainButtonProps) => (
 	<button
 		type={props.type}
+		title={props.title}
 		onClick={props.onClick}
 		disabled={props.disabled}
 		className={`${props.disabled && "disabled"} ${

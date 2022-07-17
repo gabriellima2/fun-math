@@ -50,12 +50,12 @@ const ChooseOptions = () => {
 						<h1 className="text-xl md:text-3xl mb-4">
 							Selecione as opções para praticar
 						</h1>
-						<fieldset className="container">
+						<fieldset className="container bg-black-600/80">
 							<h2 className="subtitle">Tipo de exercícios</h2>
 							<ExerciseTypes />
 						</fieldset>
 
-						<fieldset aria-live="polite" className="container">
+						<fieldset aria-live="polite" className="container bg-black-600/80">
 							{userChoices.exerciseType !== exerciseTypesID.problem ? (
 								<>
 									<h2 className="subtitle">Tipo de operador</h2>
@@ -73,19 +73,26 @@ const ChooseOptions = () => {
 							)}
 						</fieldset>
 
-						<MainButton
-							type="submit"
-							disabled={isDisabled()}
-							icon={{ element: BsArrowRightShort, label: "Seta para direita" }}
-						>
-							começar
-						</MainButton>
+						<section className="container flex justify-between">
+							<BackButton />
+
+							<MainButton
+								type="submit"
+								title="Começar"
+								disabled={isDisabled()}
+								className="p-2 sm:p-4 md:px-5 rounded-2xl text-base capitalize"
+								icon={{
+									element: BsArrowRightShort,
+									label:
+										"Icone de seta para direita, indica a inicialização da prática",
+									className: "text-3xl sm:text-2xl",
+								}}
+							>
+								<span className="hidden sm:block">começar</span>
+							</MainButton>
+						</section>
 					</form>
 				</main>
-
-				<span className="fixed bottom-6 left-8">
-					<BackButton />
-				</span>
 			</>
 		</Customized>
 	);
