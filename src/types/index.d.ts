@@ -24,10 +24,10 @@ export interface IconDefaultProps {
 }
 
 export interface ButtonDefaultProps extends WithChildren {
-	icon: IconDefaultProps;
 	type: "button" | "submit" | "reset" | undefined;
 	className?: ClassName;
 	title?: Title;
+	onClick?: (param: unknown) => void;
 }
 
 export interface LinkDefaultProps extends WithChildren {

@@ -27,7 +27,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .button--default {
-	@apply bg-accents-purple text-pink-100 capitalize transition-hover hover:brightness-75;
+	@apply bg-accents-purple text-pink-100 transition-hover hover:brightness-75;
 }
 
 .flex-center--col {

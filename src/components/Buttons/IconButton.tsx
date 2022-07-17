@@ -1,9 +1,10 @@
 import { Icon } from "../Icon";
 
-import { ButtonDefaultProps } from "../../types";
+import { ButtonDefaultProps, IconDefaultProps } from "../../types";
 
 interface IconButtonProps extends Omit<ButtonDefaultProps, "children"> {
 	onClick?: (e: unknown) => void;
+	icon: IconDefaultProps;
 }
 
 export const IconButton = (props: IconButtonProps) => (

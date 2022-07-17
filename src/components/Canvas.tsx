@@ -11,6 +11,7 @@ import { CanvasRef, ContextRef } from "../types/hooks";
 
 import { createMouseEvent } from "../utils/createMouseEvent";
 import { tools } from "../constants";
+import { MainButton } from "./Buttons";
 
 interface ToolsProps {
 	canvasRef: CanvasRef;
@@ -23,19 +24,20 @@ const Tools = (props: ToolsProps) => {
 
 	return (
 		<section className="flex items-center justify-between p-2 bg-black-400/70 rounded-br-md rounded-bl-md">
-			<div className="flex-center--row gap-4 md:gap-6">
+			<div className="flex-center--row gap-3 md:gap-6">
 				<ColorPicker color={currentTool.color} changeColor={changeColor} />
 				{tools.list.map((tool) => (
 					<IconButton
 						type="button"
 						title={tool.name}
 						onClick={() => changeCurrentTool(tool.id)}
+						className={`${
+							tool.id === currentTool.type &&
+							"bg-main/40 rounded-md text-white/40 transition-all"
+						} p-2`}
 						icon={{
 							element: tool.icon,
 							label: `Icone de ${tool.name}`,
-							className: `${
-								tool.id === currentTool.type && "text-white/40 transition-all"
-							} text-xl`,
 						}}
 					/>
 				))}
@@ -50,13 +52,13 @@ const Tools = (props: ToolsProps) => {
 					changeValue={changeWidth}
 				/>
 			</div>
-			<button
+			<MainButton
 				type="button"
 				onClick={clear}
-				className="button--default p-2 px-3 md:px-4 rounded-md font-accent text-sm md:text-base tracking-wider"
+				className="rounded-md p-[10px] md:p-3 text-2xs md:text-xs uppercase tracking-wider"
 			>
 				Limpar
-			</button>
+			</MainButton>
 		</section>
 	);
 };

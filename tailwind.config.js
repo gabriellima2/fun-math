@@ -39,6 +39,9 @@ module.exports = {
 				main: ["Poppins", "sans-serif"],
 				accent: ["Staatliches", "cursive"],
 			},
+			fontSize: {
+				"2xs": ".6rem",
+			},
 			gridTemplateColumns: {
 				2: "repeat(2, minmax(230px, 340px))",
 			},
