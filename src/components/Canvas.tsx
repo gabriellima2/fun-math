@@ -5,13 +5,13 @@ import { useBasicCanvas, useCanvasSuperset } from "../hooks/Canvas/";
 import { Range } from "./Range";
 import { ColorPicker } from "./ColorPicker";
 import { IconButton } from "./Buttons/IconButton";
+import { MainButton } from "./Buttons";
 
 import { CanvasEvent } from "../types";
 import { CanvasRef, ContextRef } from "../types/hooks";
 
 import { createMouseEvent } from "../utils/createMouseEvent";
 import { tools } from "../constants";
-import { MainButton } from "./Buttons";
 
 interface ToolsProps {
 	canvasRef: CanvasRef;
