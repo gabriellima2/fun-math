@@ -8,7 +8,7 @@ const Exercises: NextPage = () => {
 	return (
 		<Customized>
 			<div className="flex-center--row">
-				<section className=" w-[95vw] max-w-[1000px] md:max-h-[1/2] overflow-hidden">
+				<section className="w-[95vw] max-w-fit md:max-h-[1/2] overflow-hidden">
 					<Canvas />
 				</section>
 			</div>
