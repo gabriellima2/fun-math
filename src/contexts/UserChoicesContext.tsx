@@ -12,6 +12,7 @@ interface UserChoicesContextProperties {
 	userChoices: UserChoice;
 	selectOperatorType: (operator: string) => void;
 	selectExerciseType: (exercise: string) => void;
+	userChoicesAreNotValid: () => boolean;
 }
 
 export const UserChoicesContext = createContext(
@@ -39,12 +40,27 @@ export const UserChoicesContextProvider = ({ children }: WithChildren) => {
 		setUserChoices((prevState) => ({ ...prevState, exerciseType: exercise }));
 	};
 
+	const userChoicesAreNotValid = () => {
+		if (userChoices.exerciseType) {
+			if (userChoices.exerciseType === exerciseTypesID.problem) {
+				return false;
+			}
+
+			if (userChoices.operatorType) {
+				return false;
+			}
+		}
+
+		return true;
+	};
+
 	return (
 		<UserChoicesContext.Provider
 			value={{
 				userChoices,
 				selectOperatorType,
 				selectExerciseType,
+				userChoicesAreNotValid,
 			}}
 		>
 			{children}

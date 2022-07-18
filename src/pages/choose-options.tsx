@@ -5,33 +5,20 @@ import { BsArrowRightShort, BsFillExclamationCircleFill } from "react-icons/bs";
 import { OperatorsList } from "../components/OperatorsList";
 import { ExerciseTypes } from "../components/ExerciseTypes";
 import { BackButton, MainButton } from "../components/Buttons";
+import { Icon } from "../components/Icon";
 
 import { Customized } from "../layouts/Customized";
 
 import { UserChoicesContext } from "../contexts/UserChoicesContext";
 import { exerciseTypesID } from "../constants";
-import { Icon } from "../components/Icon";
 
 const ChooseOptions = () => {
 	const router = useRouter();
-	const { userChoices } = useContext(UserChoicesContext);
-
-	const isDisabled = () => {
-		if (userChoices.exerciseType) {
-			if (userChoices.exerciseType === exerciseTypesID.problem) {
-				return false;
-			}
-
-			if (userChoices.operatorType) {
-				return false;
-			}
-		}
-
-		return true;
-	};
+	const { userChoices, userChoicesAreNotValid } =
+		useContext(UserChoicesContext);
 
 	const handleSubmit = () => {
-		if (isDisabled()) return;
+		if (userChoicesAreNotValid()) return;
 
 		router.push("/exercises");
 	};
@@ -79,7 +66,7 @@ const ChooseOptions = () => {
 							<MainButton
 								type="submit"
 								title="Começar"
-								disabled={isDisabled()}
+								disabled={userChoicesAreNotValid()}
 								className="p-2 sm:p-4 md:px-5 rounded-2xl text-base capitalize"
 								icon={{
 									element: BsArrowRightShort,
