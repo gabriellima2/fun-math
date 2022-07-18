@@ -3,6 +3,7 @@ import { NextPage } from "next";
 import { Canvas } from "../components/Canvas";
 
 import { Customized } from "../layouts/Customized";
+import { WithOptionSelected } from "../HOC/WithOptionSelected";
 
 const Exercises: NextPage = () => {
 	return (
@@ -26,4 +27,4 @@ const Exercises: NextPage = () => {
 	);
 };
 
-export default Exercises;
+export default WithOptionSelected(Exercises);
