@@ -2,21 +2,25 @@ export const operators = [
 	{
 		id: "addition",
 		name: "Adição",
-		symbol: "/operators/addition.svg",
+		symbol: "+",
+		image: "/operators/addition.svg",
 	},
 	{
 		id: "subtraction",
 		name: "Subtração",
-		symbol: "/operators/subtraction.svg",
+		symbol: "-",
+		image: "/operators/subtraction.svg",
 	},
 	{
 		id: "division",
 		name: "Divisão",
-		symbol: "/operators/division.svg",
+		symbol: "÷",
+		image: "/operators/division.svg",
 	},
 	{
 		id: "multiply",
 		name: "Multiplicação",
-		symbol: "/operators/multiply.svg",
+		symbol: "x",
+		image: "/operators/multiply.svg",
 	},
 ];
