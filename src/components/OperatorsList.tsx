@@ -3,25 +3,31 @@ import React, { useContext } from "react";
 
 import { Radio } from "./Radio";
 
-import { UserChoicesContext } from "../contexts/UserChoicesContext";
+import { UserSelectedOptionsContext } from "../contexts/UserSelectedOptionsContext";
 
 import { operators } from "../constants";
 
 export const OperatorsList = React.memo(() => {
-	const { userChoices, selectOperatorType } = useContext(UserChoicesContext);
+	const { userSelectedOptions, selectOperator } = useContext(
+		UserSelectedOptionsContext
+	);
 
 	return (
 		<Radio.Group
 			label="Tipos de operadores"
-			handleChange={selectOperatorType}
-			currentActiveOption={userChoices.operatorType}
+			handleChange={selectOperator}
+			currentActiveOption={userSelectedOptions.operator?.id || null}
 			className="grid grid-cols-[repeat(2,_1fr)] grid-rows-2 gap-2"
 		>
 			{operators.map((operator) => (
 				<Radio.Option value={operator.id} key={operator.id}>
 					<>
 						<div className="w-8 md:w-12 h-8 md:h-12 relative">
-							<Image src={operator.symbol} layout="fill" />
+							<Image
+								src={operator.image}
+								alt={`Operador de ${operator.name}`}
+								layout="fill"
+							/>
 						</div>
 						<span className="hidden options__text sm:inline">
 							{operator.name}

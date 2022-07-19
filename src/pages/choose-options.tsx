@@ -9,16 +9,17 @@ import { Icon } from "../components/Icon";
 
 import { Customized } from "../layouts/Customized";
 
-import { UserChoicesContext } from "../contexts/UserChoicesContext";
-import { exerciseTypesID } from "../constants";
+import { UserSelectedOptionsContext } from "../contexts/UserSelectedOptionsContext";
+import { exercises } from "../constants";
 
 const ChooseOptions = () => {
 	const router = useRouter();
-	const { userChoices, userChoicesAreNotValid } =
-		useContext(UserChoicesContext);
+	const { userSelectedOptions, userSelectedOptionsAreNotValid } = useContext(
+		UserSelectedOptionsContext
+	);
 
 	const handleSubmit = () => {
-		if (userChoicesAreNotValid()) return;
+		if (userSelectedOptionsAreNotValid()) return;
 
 		router.push("/exercises");
 	};
@@ -43,7 +44,7 @@ const ChooseOptions = () => {
 						</fieldset>
 
 						<fieldset aria-live="polite" className="container bg-black-600/80">
-							{userChoices.exerciseType !== exerciseTypesID.problem ? (
+							{userSelectedOptions.exercise !== exercises.type.problem ? (
 								<>
 									<h2 className="subtitle">Tipo de operador</h2>
 									<OperatorsList />
@@ -66,7 +67,7 @@ const ChooseOptions = () => {
 							<MainButton
 								type="submit"
 								title="Começar"
-								disabled={userChoicesAreNotValid()}
+								disabled={userSelectedOptionsAreNotValid()}
 								className="p-2 sm:p-4 md:px-5 rounded-2xl text-base capitalize"
 								icon={{
 									element: BsArrowRightShort,

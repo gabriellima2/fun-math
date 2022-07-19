@@ -1,22 +1,24 @@
 import { useRouter } from "next/router";
 import React, { useContext, useEffect } from "react";
 
-import { UserChoicesContext } from "../contexts/UserChoicesContext";
+import { UserSelectedOptionsContext } from "../contexts/UserSelectedOptionsContext";
 
 export function WithOptionSelected<P extends object>(
 	Component: React.ComponentType<P>
 ) {
 	return (props: P) => {
-		const { userChoicesAreNotValid } = useContext(UserChoicesContext);
+		const { userSelectedOptionsAreNotValid } = useContext(
+			UserSelectedOptionsContext
+		);
 		const router = useRouter();
 
 		useEffect(() => {
-			if (userChoicesAreNotValid()) {
+			if (userSelectedOptionsAreNotValid()) {
 				router.push("/choose-options");
 			}
 		}, []);
 
-		if (userChoicesAreNotValid()) return null;
+		if (userSelectedOptionsAreNotValid()) return null;
 
 		return <Component {...props} />;
 	};
