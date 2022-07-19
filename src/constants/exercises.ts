@@ -1,19 +1,21 @@
 import { BsQuestionDiamondFill, BsShuffle } from "react-icons/bs";
 
-export enum exerciseTypesID {
+enum type {
 	random = "random",
 	problem = "problem",
 }
 
-export const exerciseTypes = [
+const data = [
 	{
-		id: exerciseTypesID.random,
+		id: type.random,
 		name: "Cálculos aleatórios",
 		icon: BsShuffle,
 	},
 	{
-		id: exerciseTypesID.problem,
+		id: type.problem,
 		name: "Situações-problema",
 		icon: BsQuestionDiamondFill,
 	},
 ];
+
+export const exercises = { type, data };
