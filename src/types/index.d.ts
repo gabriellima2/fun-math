@@ -1,11 +1,13 @@
 import { MouseEvent, ReactNode } from "react";
 import { IconType } from "react-icons";
 
-import { cards, links } from "../constants";
+import { cards, links, operators } from "../constants";
 
 export type Cards = typeof cards[0];
 
 export type Links = typeof links[0];
+
+export type Operators = typeof operators[0];
 
 export type ClassName = string;
 

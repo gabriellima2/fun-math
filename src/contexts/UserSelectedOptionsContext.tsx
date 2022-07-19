@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 import { Operators, WithChildren } from "../types";
 import { exercises } from "../constants";
-import { getOperator } from "../utils/getOperator";
+import { getOperatorData } from "../utils/getOperatorData";
 
 export type SelectedOperator = Pick<Operators, "id" | "symbol">;
 export type SelectedExercise = string;
@@ -32,7 +32,7 @@ export const UserSelectedOptionsContextProvider = ({
 	const selectOperator = (selectedOperatorName: string) => {
 		setUserSelectedOptions((prevState) => ({
 			...prevState,
-			operator: getOperator(selectedOperatorName),
+			operator: getOperatorData(selectedOperatorName),
 		}));
 	};
 
