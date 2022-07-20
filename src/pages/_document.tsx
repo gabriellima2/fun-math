@@ -12,7 +12,7 @@ export default class Document extends NextDocument {
 						crossOrigin="true"
 					/>
 					<link
-						href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Staatliches&display=swap"
+						href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Staatliches&family=Coda&display=swap"
 						rel="stylesheet"
 					/>
 				</Head>

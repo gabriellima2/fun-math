@@ -34,10 +34,15 @@ module.exports = {
 						900: "#D2278E",
 					},
 				},
+				canvas: {
+					area: "#262626",
+					tools: "#171717",
+				},
 			},
 			fontFamily: {
 				main: ["Poppins", "sans-serif"],
 				accent: ["Staatliches", "cursive"],
+				util: ["Coda, cursive"],
 			},
 			fontSize: {
 				"2xs": ".6rem",
