@@ -23,7 +23,7 @@ const Tools = (props: ToolsProps) => {
 		useCanvasSuperset(props.canvasRef, props.contextRef);
 
 	return (
-		<section className="flex items-center justify-between p-2 bg-black-400/70 rounded-br-md rounded-bl-md">
+		<section className="flex items-center justify-between p-2 bg-canvas-tools rounded-br-md rounded-bl-md">
 			<div className="flex-center--row gap-3 md:gap-6">
 				<ColorPicker color={currentTool.color} changeColor={changeColor} />
 				{tools.list.map((tool) => (
@@ -116,7 +116,7 @@ export const Canvas = () => {
 				onMouseUp={stopDrawing}
 				onTouchEnd={stopDrawing}
 				onMouseLeave={stopDrawing}
-				className="h-full object-contain bg-black-200"
+				className="h-full object-contain bg-canvas-area"
 			/>
 			<Tools canvasRef={canvasRef} contextRef={contextRef} />
 		</>
