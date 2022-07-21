@@ -2,8 +2,12 @@ import { useEffect, useState } from "react";
 
 import { SelectedOperator } from "../../contexts/UserSelectedOptionsContext";
 
-import { generateRandomNumber } from "../../utils/generateRandomNumber";
 import { ExerciseGenerator } from "../../types/hooks";
+import {
+	limitDecimalPlaces,
+	generateRandomNumber,
+	getFloatNumberProperties,
+} from "../../utils/handleNumbers";
 
 interface Operator extends SelectedOperator {}
 
@@ -37,24 +41,39 @@ export function useRandomCalculationGenerator(
 		if (!calculationNumbers.firstNumber || !calculationNumbers.secondNumber)
 			return;
 
+		let correctResult: string | null = null;
+
 		switch (operator.id) {
 			case "addition":
-				return (
+				correctResult = (
 					calculationNumbers.firstNumber + calculationNumbers.secondNumber
 				).toString();
 			case "subtraction":
-				return (
+				correctResult = (
 					calculationNumbers.firstNumber - calculationNumbers.secondNumber
 				).toString();
 			case "multiply":
-				return (
+				correctResult = (
 					calculationNumbers.firstNumber * calculationNumbers.secondNumber
 				).toString();
 			case "division":
-				return (
+				correctResult = (
 					calculationNumbers.firstNumber / calculationNumbers.secondNumber
-				).toFixed(2);
+				).toString();
 		}
+
+		const DECIMAL_PLACES = 3;
+		const { numbersAfterDecimalPoint } = getFloatNumberProperties(
+			correctResult!
+		);
+
+		if (
+			!correctResult?.includes(".") ||
+			numbersAfterDecimalPoint.length < DECIMAL_PLACES
+		)
+			return correctResult;
+
+		return limitDecimalPlaces(correctResult, DECIMAL_PLACES);
 	};
 
 	useEffect(() => generateNumber("firstNumber"), []);

@@ -20,6 +20,8 @@ const Exercises: NextPage = () => {
 	const exercise = useExercise(userSelectedOptions);
 
 	useEffect(() => {
+		if (!value) return;
+
 		debounce(
 			() => exercise?.checkUserAnswer(value, exercise.getCorrectResult),
 			800
