@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 
 import { SelectedOperator } from "../../contexts/UserSelectedOptionsContext";
 
-import { ExerciseGenerator } from "../../types/hooks";
+import { ExerciseGenerator, GetCorrectResult } from "../../types/hooks";
 import {
-	limitDecimalPlaces,
 	generateRandomNumber,
-	getFloatNumberProperties,
+	limitDecimalPlaces,
 } from "../../utils/handleNumbers";
+
+const MIN_DECIMAL_PLACES = 4;
 
 interface Operator extends SelectedOperator {}
 
@@ -31,13 +32,13 @@ export function useRandomCalculationGenerator(
 	) => {
 		setCalculationNumbers((prevState) => ({
 			...prevState,
-			[key]: generateRandomNumber(max),
+			[key]: generateRandomNumber(max, 1, Math),
 		}));
 	};
 
 	const getNextExercise = () => generateNumber("firstNumber");
 
-	const getCorrectResult = () => {
+	const getCorrectResult: GetCorrectResult = () => {
 		if (!calculationNumbers.firstNumber || !calculationNumbers.secondNumber)
 			return;
 
@@ -62,18 +63,7 @@ export function useRandomCalculationGenerator(
 				).toString();
 		}
 
-		const DECIMAL_PLACES = 3;
-		const { numbersAfterDecimalPoint } = getFloatNumberProperties(
-			correctResult!
-		);
-
-		if (
-			!correctResult?.includes(".") ||
-			numbersAfterDecimalPoint.length < DECIMAL_PLACES
-		)
-			return correctResult;
-
-		return limitDecimalPlaces(correctResult, DECIMAL_PLACES);
+		return limitDecimalPlaces(correctResult!, MIN_DECIMAL_PLACES);
 	};
 
 	useEffect(() => generateNumber("firstNumber"), []);

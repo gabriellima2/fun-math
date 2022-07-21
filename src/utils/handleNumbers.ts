@@ -4,8 +4,12 @@ interface FloatNumberProperties {
 	numbersAfterDecimalPoint: string;
 }
 
-export function generateRandomNumber(max = 100, min = 1) {
+export function generateRandomNumber(max = 100, min = 1, Math: Math) {
 	return Math.floor(Math.random() * max + min);
+}
+
+export function isFloat(value: string) {
+	return value.includes(".") || value.includes(",");
 }
 
 export function replaceCommaWithDot(value: string) {
@@ -33,4 +37,11 @@ export function limitDecimalPlaces(value: string, decimalPlaces: number) {
 	if (numbersAfterDecimalPoint.length < decimalPlaces) return value;
 
 	return value.slice(0, decimalPointIndex + decimalPlaces);
+}
+
+export function floatNumberIsValid(value: string, decimalPlaces: number) {
+	const { numbersAfterDecimalPoint } = getFloatNumberProperties(value);
+	const decimalPlacesOfValue = numbersAfterDecimalPoint.length;
+
+	return decimalPlacesOfValue >= decimalPlaces;
 }
