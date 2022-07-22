@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { SelectedOperator } from "../../contexts/UserSelectedOptionsContext";
 
 import { ExerciseGenerator, GetCorrectResult } from "../../types/hooks";
+import { operators } from "../../constants";
 import {
 	generateRandomNumber,
 	limitDecimalPlaces,
@@ -26,10 +27,17 @@ export function useRandomCalculationGenerator(
 			secondNumber: null,
 		} as CalculationNumbers);
 
+	const isDivisionOrMultiply = () => {
+		return (
+			operator.id === operators.type.division ||
+			operator.id === operators.type.multiply
+		);
+	};
+
 	const generateNumber = (
 		key: "firstNumber" | "secondNumber",
 		max: number = 100,
-		min: number = 10
+		min: number = 1
 	) => {
 		setCalculationNumbers((prevState) => ({
 			...prevState,
@@ -37,7 +45,11 @@ export function useRandomCalculationGenerator(
 		}));
 	};
 
-	const getNextExercise = () => generateNumber("firstNumber", 100);
+	const getNextExercise = () => {
+		if (isDivisionOrMultiply()) return generateNumber("firstNumber", 80, 10);
+
+		generateNumber("firstNumber");
+	};
 
 	const getCorrectResult: GetCorrectResult = () => {
 		if (!calculationNumbers.firstNumber || !calculationNumbers.secondNumber)
@@ -46,32 +58,38 @@ export function useRandomCalculationGenerator(
 		let correctResult: string | null = null;
 
 		switch (operator.id) {
-			case "addition":
+			case operators.type.addition:
 				correctResult = (
 					calculationNumbers.firstNumber + calculationNumbers.secondNumber
 				).toString();
-			case "subtraction":
+
+			case operators.type.subtraction:
 				correctResult = (
 					calculationNumbers.firstNumber - calculationNumbers.secondNumber
 				).toString();
-			case "multiply":
-				correctResult = (
-					calculationNumbers.firstNumber * calculationNumbers.secondNumber
-				).toString();
-			case "division":
+
+			case operators.type.division:
 				correctResult = (
 					calculationNumbers.firstNumber / calculationNumbers.secondNumber
+				).toString();
+
+			case operators.type.multiply:
+				correctResult = (
+					calculationNumbers.firstNumber * calculationNumbers.secondNumber
 				).toString();
 		}
 
 		return limitDecimalPlaces(correctResult!, MIN_DECIMAL_PLACES);
 	};
 
-	useEffect(() => generateNumber("firstNumber", 100), []);
+	useEffect(() => {
+		if (isDivisionOrMultiply()) return generateNumber("firstNumber", 80, 10);
+
+		generateNumber("firstNumber");
+	}, []);
 
 	useEffect(() => {
-		if (operator.id === "division")
-			return generateNumber("secondNumber", 10, 1);
+		if (isDivisionOrMultiply()) return generateNumber("secondNumber", 10, 1);
 
 		generateNumber("secondNumber", calculationNumbers.firstNumber!);
 	}, [calculationNumbers.firstNumber]);
