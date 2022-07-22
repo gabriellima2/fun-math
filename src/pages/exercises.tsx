@@ -12,7 +12,7 @@ import { Customized } from "../layouts/Customized";
 import { WithOptionSelected } from "../HOC/WithOptionSelected";
 
 import { UserSelectedOptionsContext } from "../contexts/UserSelectedOptionsContext";
-import { debounce } from "../utils/debouce";
+import { debounce } from "../utils/debounce";
 
 const Exercises: NextPage = () => {
 	const [value, setValue] = useState("");
