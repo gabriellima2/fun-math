@@ -19,7 +19,7 @@ export const OperatorsList = React.memo(() => {
 			currentActiveOption={userSelectedOptions.operator?.id || null}
 			className="grid grid-cols-[repeat(2,_1fr)] grid-rows-2 gap-2"
 		>
-			{operators.map((operator) => (
+			{operators.data.map((operator) => (
 				<Radio.Option value={operator.id} key={operator.id}>
 					<>
 						<div className="w-8 md:w-12 h-8 md:h-12 relative">
