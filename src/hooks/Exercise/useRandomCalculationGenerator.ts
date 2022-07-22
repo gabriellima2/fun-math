@@ -8,7 +8,7 @@ import {
 	limitDecimalPlaces,
 } from "../../utils/handleNumbers";
 
-const MIN_DECIMAL_PLACES = 4;
+const MIN_DECIMAL_PLACES = 3;
 
 interface Operator extends SelectedOperator {}
 
@@ -28,15 +28,16 @@ export function useRandomCalculationGenerator(
 
 	const generateNumber = (
 		key: "firstNumber" | "secondNumber",
-		max: number = 100
+		max: number = 100,
+		min: number = 10
 	) => {
 		setCalculationNumbers((prevState) => ({
 			...prevState,
-			[key]: generateRandomNumber(max, 1, Math),
+			[key]: generateRandomNumber(max, min, Math),
 		}));
 	};
 
-	const getNextExercise = () => generateNumber("firstNumber");
+	const getNextExercise = () => generateNumber("firstNumber", 100);
 
 	const getCorrectResult: GetCorrectResult = () => {
 		if (!calculationNumbers.firstNumber || !calculationNumbers.secondNumber)
@@ -66,9 +67,12 @@ export function useRandomCalculationGenerator(
 		return limitDecimalPlaces(correctResult!, MIN_DECIMAL_PLACES);
 	};
 
-	useEffect(() => generateNumber("firstNumber"), []);
+	useEffect(() => generateNumber("firstNumber", 100), []);
 
 	useEffect(() => {
+		if (operator.id === "division")
+			return generateNumber("secondNumber", 10, 1);
+
 		generateNumber("secondNumber", calculationNumbers.firstNumber!);
 	}, [calculationNumbers.firstNumber]);
 
