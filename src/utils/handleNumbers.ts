@@ -4,7 +4,7 @@ interface FloatNumberProperties {
 	numbersAfterDecimalPoint: string;
 }
 
-export function generateRandomNumber(max = 100, min = 1, Math: Math) {
+export function generateRandomNumber(max: number, min: number, Math: Math) {
 	return Math.floor(Math.random() * max + min);
 }
 

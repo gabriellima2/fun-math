@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useRandomCalculationGenerator } from "./useRandomCalculationGenerator";
 
 import { UserSelectedOptions } from "../../contexts/UserSelectedOptionsContext";
+import { isFloat, replaceCommaWithDot } from "../../utils/handleNumbers";
 import { Exercise, GetCorrectResult } from "../../types/hooks";
 import { exercises } from "../../constants";
 
@@ -24,6 +25,12 @@ export function useExercise(
 		const correctResult = getCorrectResult();
 
 		if (!correctResult) return;
+
+		if (isFloat(userAnswer)) {
+			const userAnswerFormatted = replaceCommaWithDot(userAnswer);
+
+			return setUserAnswerIsCorrect(userAnswerFormatted === correctResult);
+		}
 
 		setUserAnswerIsCorrect(userAnswer === correctResult);
 	};
