@@ -3,9 +3,10 @@ import { useContext, useEffect, useState } from "react";
 
 import { useExercise } from "../hooks/Exercise/useExercise";
 
-import { Canvas } from "../components/Canvas";
 import { InsertAnswer } from "../components/InsertAnswer";
 import { TextButton } from "../components/Buttons";
+import { Status } from "../components/Status";
+import { Canvas } from "../components/Canvas";
 
 import { Customized } from "../layouts/Customized";
 import { WithOptionSelected } from "../HOC/WithOptionSelected";
@@ -30,29 +31,33 @@ const Exercises: NextPage = () => {
 
 	return (
 		<Customized>
-			<div className="flex-center--col p-4">
-				<main className="flex flex-col">
-					<h1 className="text-xl md:text-2xl lg:text-3xl text-center tracking-wide mb-4">
+			<div className="flex-center--col gap-8 px-2 pb-6">
+				<main className="w-full flex-center--col gap-2">
+					<h1 className="text-lg md:text-2xl lg:text-3xl text-center tracking-wide mb-4">
 						{exercise?.description}
 					</h1>
-					<section className="flex-center--col">
-						<div className="self-end p-2 px-3 relative rounded-t-lg bg-canvas-area">
-							<InsertAnswer value={value} changeValue={setValue} />
-						</div>
-						<div className="w-[95vw] max-w-fit md:max-h-[1/2] overflow-hidden">
-							<Canvas />
-						</div>
-						<div className="self-start">
+					<div>
+						<InsertAnswer value={value} changeValue={setValue} />
+					</div>
+				</main>
+
+				<section className="flex-center--col gap-3">
+					<div className="w-full sm:self-end sm:w-1/3 ">
+						<Status />
+					</div>
+					<div className="w-[95vw] max-w-fit md:max-h-[1/2] overflow-hidden relative">
+						<span className="absolute top-2 right-4">
 							<TextButton
 								type="button"
 								onClick={exercise?.getNextExercise}
-								className="mt-4 ml-4 text-sm md:text-base"
+								className="text-xs md:text-sm"
 							>
 								Pular exercício
 							</TextButton>
-						</div>
-					</section>
-				</main>
+						</span>
+						<Canvas />
+					</div>
+				</section>
 			</div>
 		</Customized>
 	);
