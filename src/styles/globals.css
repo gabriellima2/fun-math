@@ -70,6 +70,11 @@ body::-webkit-scrollbar-thumb {
 	@apply pointer-events-none opacity-40;
 }
 
+.scroll--block {
+	@apply overflow-hidden lg:overflow-auto;
+
+}
+
 ::-webkit-color-swatch {
 	@apply border-none rounded-full;
 }
@@ -93,4 +98,8 @@ input[type="range"]::-moz-range-thumb {
 
 input[type="range"]::-ms-thumb {
 	@apply w-4 h-4 border-none rounded-full bg-accents-pink-900 cursor-ew-resize;
+}
+
+.outline-custom--focus {
+	@apply focus:outline-none focus:ring-2 focus:ring-accents-purple focus:ring-offset-1 focus:ring-offset-transparent;
 }

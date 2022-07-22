@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { useBasicCanvas, useCanvasSuperset } from "../hooks/Canvas/";
 
@@ -63,11 +63,23 @@ const Tools = (props: ToolsProps) => {
 	);
 };
 
+const CLASS_SCROLL_BLOCK = "scroll--block";
+
 export const Canvas = () => {
 	const [isDrawing, setIsDrawing] = useState(false);
 
 	const canvasRef = useRef<null | HTMLCanvasElement>(null);
 	const { contextRef } = useBasicCanvas(canvasRef);
+
+	useEffect(() => {
+		const html = document.documentElement;
+
+		if (html.classList.contains(CLASS_SCROLL_BLOCK)) {
+			return html.classList.remove(CLASS_SCROLL_BLOCK);
+		}
+
+		html.classList.add(CLASS_SCROLL_BLOCK);
+	}, [isDrawing]);
 
 	const draw = ({ clientX, clientY }: CanvasEvent) => {
 		const boundingRect = canvasRef.current?.getBoundingClientRect();
