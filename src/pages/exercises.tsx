@@ -25,7 +25,7 @@ const Exercises: NextPage = () => {
 
 		debounce(
 			() => exercise?.checkUserAnswer(value, exercise.getCorrectResult),
-			800
+			950
 		);
 	}, [value]);
 
@@ -43,14 +43,25 @@ const Exercises: NextPage = () => {
 
 				<section className="flex-center--col gap-3">
 					<div className="w-full sm:self-end sm:w-1/3 ">
-						<Status />
+						<Status
+							type={
+								exercise?.userAnswerIsCorrect == null
+									? "default"
+									: exercise?.userAnswerIsCorrect
+									? "success"
+									: "error"
+							}
+						/>
 					</div>
 					<div className="w-[95vw] max-w-fit md:max-h-[1/2] overflow-hidden relative">
-						<span className="absolute top-2 right-4">
+						<span className="w-full flex justify-between pointer-events-none p-4 absolute top-0">
+							<p className="text-sm pointer-events-none font-medium text-white/50">
+								Espaço para rascunho
+							</p>
 							<TextButton
 								type="button"
 								onClick={exercise?.getNextExercise}
-								className="text-xs md:text-sm"
+								className="text-xs md:text-sm pointer-events-auto"
 							>
 								Pular exercício
 							</TextButton>
