@@ -62,21 +62,25 @@ export function useRandomCalculationGenerator(
 				correctResult = (
 					calculationNumbers.firstNumber + calculationNumbers.secondNumber
 				).toString();
+				break;
 
 			case operators.type.subtraction:
 				correctResult = (
 					calculationNumbers.firstNumber - calculationNumbers.secondNumber
 				).toString();
+				break;
 
 			case operators.type.division:
 				correctResult = (
 					calculationNumbers.firstNumber / calculationNumbers.secondNumber
 				).toString();
+				break;
 
 			case operators.type.multiply:
 				correctResult = (
 					calculationNumbers.firstNumber * calculationNumbers.secondNumber
 				).toString();
+				break;
 		}
 
 		return limitDecimalPlaces(correctResult!, MIN_DECIMAL_PLACES);
