@@ -55,35 +55,33 @@ export function useRandomCalculationGenerator(
 		if (!calculationNumbers.firstNumber || !calculationNumbers.secondNumber)
 			return;
 
-		let correctResult: string | null = null;
+		let correctResult: number | null = null;
 
 		switch (operator.id) {
 			case operators.type.addition:
-				correctResult = (
-					calculationNumbers.firstNumber + calculationNumbers.secondNumber
-				).toString();
+				correctResult =
+					calculationNumbers.firstNumber + calculationNumbers.secondNumber;
 				break;
 
 			case operators.type.subtraction:
-				correctResult = (
-					calculationNumbers.firstNumber - calculationNumbers.secondNumber
-				).toString();
+				correctResult =
+					calculationNumbers.firstNumber - calculationNumbers.secondNumber;
 				break;
 
 			case operators.type.division:
-				correctResult = (
-					calculationNumbers.firstNumber / calculationNumbers.secondNumber
-				).toString();
+				correctResult =
+					calculationNumbers.firstNumber / calculationNumbers.secondNumber;
 				break;
 
 			case operators.type.multiply:
-				correctResult = (
-					calculationNumbers.firstNumber * calculationNumbers.secondNumber
-				).toString();
+				correctResult =
+					calculationNumbers.firstNumber * calculationNumbers.secondNumber;
 				break;
 		}
 
-		return limitDecimalPlaces(correctResult!, MIN_DECIMAL_PLACES);
+		if (!correctResult) return;
+
+		return limitDecimalPlaces(correctResult.toString(), MIN_DECIMAL_PLACES);
 	};
 
 	useEffect(() => {
