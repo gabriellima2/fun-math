@@ -1,5 +1,5 @@
 export const Copyright = () => (
 	<small className="font-medium">
-		&copy; FunMath! - {new Date().getFullYear()}
+		FunMath! &copy; {new Date().getFullYear()}
 	</small>
 );
