@@ -13,7 +13,7 @@ export type GetCorrectResult = () => string | null | undefined;
 
 export interface Exercise {
 	description: string;
-	userAnswerIsCorrect: boolean | null;
+	userAnswerIsCorrect: boolean | undefined;
 	checkUserAnswer: (
 		userAnswer: string,
 		getCorrectResult: GetCorrectResult

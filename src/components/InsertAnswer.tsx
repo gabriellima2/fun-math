@@ -1,5 +1,6 @@
 interface InsertAnswerProps {
 	value: string;
+	isInvalid: boolean | undefined;
 	changeValue: (newValue: string) => void;
 }
 
@@ -14,6 +15,7 @@ export const InsertAnswer = (props: InsertAnswerProps) => {
 				name="answer"
 				id="insert-answer"
 				value={props.value}
+				aria-invalid={props.isInvalid}
 				onChange={(e) => props.changeValue(e.target.value)}
 				placeholder="Digite aqui..."
 				className="w-32 md:w-auto h-10 p-1 px-2 font-util text-sm md:text-base font-medium tracking-wide rounded-lg bg-transparent border-2 border-white/30 transition-all outline-custom--focus focus:border-transparent"

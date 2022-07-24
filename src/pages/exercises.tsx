@@ -20,8 +20,16 @@ const Exercises: NextPage = () => {
 
 	const exercise = useExercise(userSelectedOptions);
 
+	const preparationsForTheNextExercise = () => {
+		setValue("");
+		exercise?.clearUserAnswerIsCorrect();
+		exercise?.getNextExercise();
+	};
+
 	useEffect(() => {
-		if (!value) return;
+		if (exercise?.userAnswerIsCorrect !== undefined) {
+			exercise?.clearUserAnswerIsCorrect();
+		}
 
 		debounce(
 			() => exercise?.checkUserAnswer(value, exercise.getCorrectResult),
@@ -31,39 +39,42 @@ const Exercises: NextPage = () => {
 
 	return (
 		<Customized>
-			<div className="flex-center--col gap-8 px-2 pb-6">
-				<main className="w-full flex-center--col gap-2">
-					<h1 className="text-lg md:text-2xl lg:text-3xl text-center tracking-wide mb-4">
+			<div className="flex-center--col gap-8 px-2 py-6">
+				<main className="w-full flex-center--col gap-2 sticky top-0 pt-2">
+					<h1 className="text-3xl md:text-4xl text-center tracking-wide mb-4">
 						{exercise?.description}
 					</h1>
-					<div>
-						<InsertAnswer value={value} changeValue={setValue} />
+					<div className="flex-center--row gap-3">
+						<InsertAnswer
+							value={value}
+							changeValue={setValue}
+							isInvalid={exercise?.userAnswerIsCorrect}
+						/>
+						{exercise?.userAnswerIsCorrect !== undefined && (
+							<Status
+								type={exercise?.userAnswerIsCorrect ? "success" : "error"}
+							/>
+						)}
 					</div>
 				</main>
 
 				<section className="flex-center--col gap-3">
-					<div className="w-full sm:self-end sm:w-1/3 ">
-						<Status
-							type={
-								exercise?.userAnswerIsCorrect == null
-									? "default"
-									: exercise?.userAnswerIsCorrect
-									? "success"
-									: "error"
-							}
-						/>
-					</div>
-					<div className="w-[95vw] max-w-fit md:max-h-[1/2] overflow-hidden relative">
+					<div className="w-[95vw] xl:w-[70vw] max-w-fit md:max-h-[1/2] overflow-hidden relative">
 						<span className="w-full flex justify-between pointer-events-none p-4 absolute top-0">
 							<p className="text-sm pointer-events-none font-medium text-white/50">
 								Espaço para rascunho
 							</p>
 							<TextButton
 								type="button"
-								onClick={exercise?.getNextExercise}
-								className="text-xs md:text-sm pointer-events-auto"
+								onClick={preparationsForTheNextExercise}
+								className={`${
+									exercise?.userAnswerIsCorrect && "text-green-400"
+								} text-xs md:text-sm font-util tracking-wider pointer-events-auto`}
 							>
-								Pular exercício
+								<span aria-live="polite" aria-atomic="true">
+									{exercise?.userAnswerIsCorrect ? "Próximo" : "Pular"}{" "}
+								</span>
+								Exercício
 							</TextButton>
 						</span>
 						<Canvas />

@@ -13,10 +13,10 @@ export function useExercise(
 	selectedOptions: SelectedOptions
 ): Exercise | undefined {
 	const [userAnswerIsCorrect, setUserAnswerIsCorrect] = useState<
-		boolean | null
-	>(null);
+		boolean | undefined
+	>(undefined);
 
-	const clearUserAnswerIsCorrect = () => setUserAnswerIsCorrect(null);
+	const clearUserAnswerIsCorrect = () => setUserAnswerIsCorrect(undefined);
 
 	const checkUserAnswer = (
 		userAnswer: string,
