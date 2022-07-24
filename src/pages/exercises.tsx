@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { useExercise } from "../hooks/Exercise/useExercise";
 
@@ -7,8 +7,8 @@ import { InsertAnswer } from "../components/InsertAnswer";
 import { TextButton } from "../components/Buttons";
 import { Status } from "../components/Status";
 import { Canvas } from "../components/Canvas";
+import { Helpers } from "../components/Helpers";
 
-import { Customized } from "../layouts/Customized";
 import { WithOptionSelected } from "../HOC/WithOptionSelected";
 
 import { UserSelectedOptionsContext } from "../contexts/UserSelectedOptionsContext";
@@ -38,8 +38,11 @@ const Exercises: NextPage = () => {
 	}, [value]);
 
 	return (
-		<Customized>
+		<>
 			<div className="flex-center--col gap-8 px-2 py-6">
+				<header className="w-full flex">
+					<Helpers />
+				</header>
 				<main className="w-full flex-center--col gap-2 sticky top-0 pt-2">
 					<h1 className="text-3xl md:text-4xl text-center tracking-wide mb-4">
 						{exercise?.description}
@@ -81,7 +84,7 @@ const Exercises: NextPage = () => {
 					</div>
 				</section>
 			</div>
-		</Customized>
+		</>
 	);
 };
 
