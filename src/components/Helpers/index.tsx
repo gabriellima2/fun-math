@@ -16,7 +16,7 @@ interface OptionsProps {
 
 const Options = ({ Helper }: OptionsProps) => (
 	<Accordion.Group>
-		<Accordion.Button className="w-full flex justify-between items-center p-3 my-2 rounded-md bg-accents-pink-100/20 text-accents-pink-100 font-semibold">
+		<Accordion.Button className="w-full flex justify-between items-center p-3 my-2 rounded-md bg-accents-pink-100/20 text-accents-pink-100 font-semibold transition-hover hover:bg-accents-pink-100/30">
 			<Helper.Button />
 		</Accordion.Button>
 		<Accordion.Panel>
