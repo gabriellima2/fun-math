@@ -58,3 +58,7 @@ export interface DrawingTool {
 export interface P extends object {}
 
 export type ComponentType = React.ComponentType<P>;
+
+export interface Props extends WithChildren {
+	className?: ClassName;
+}
