@@ -22,11 +22,11 @@ export function useExercise(
 		userAnswer: string,
 		getCorrectResult: GetCorrectResult
 	) => {
-		if (!userAnswer) return;
+		if (userAnswer === "") return;
 
 		const correctResult = getCorrectResult();
 
-		if (!correctResult) return;
+		if (!Number(correctResult)) return;
 
 		if (isFloat(userAnswer)) {
 			const userAnswerFormatted = replaceCommaWithDot(userAnswer);
