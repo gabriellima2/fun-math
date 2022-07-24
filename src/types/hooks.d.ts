@@ -20,9 +20,11 @@ export interface Exercise {
 	) => void;
 	getNextExercise: () => void;
 	getCorrectResult: GetCorrectResult;
+	clearUserAnswerIsCorrect: () => void;
 }
 
 export interface ExerciseGenerator
-	extends Omit<Exercise, "checkUserAnswer" | "userAnswerIsCorrect"> {
-	getCorrectResult: GetCorrectResult;
-}
+	extends Omit<
+		Exercise,
+		"checkUserAnswer" | "userAnswerIsCorrect" | "clearUserAnswerIsCorrect"
+	> {}

@@ -29,6 +29,7 @@ export interface ButtonDefaultProps extends WithChildren {
 	type: "button" | "submit" | "reset" | undefined;
 	className?: ClassName;
 	title?: Title;
+	disabled?: boolean;
 	onClick?: (param: unknown) => void;
 }
 
