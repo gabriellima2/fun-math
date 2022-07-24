@@ -16,6 +16,8 @@ export function useExercise(
 		boolean | null
 	>(null);
 
+	const clearUserAnswerIsCorrect = () => setUserAnswerIsCorrect(null);
+
 	const checkUserAnswer = (
 		userAnswer: string,
 		getCorrectResult: GetCorrectResult
@@ -42,6 +44,7 @@ export function useExercise(
 		return {
 			userAnswerIsCorrect,
 			checkUserAnswer,
+			clearUserAnswerIsCorrect,
 			...useRandomCalculationGenerator(selectedOptions.operator),
 		};
 }
