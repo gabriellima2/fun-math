@@ -32,7 +32,9 @@ export const Helpers = () => {
 				<BsFillQuestionCircleFill />
 			</Popover.Button>
 			<Popover.Panel className="absolute z-50">
-				<div className="w-min-auto w-[270px] sm:w-96 max-h-[420px] overflow-y-auto flex-center--col max-w-md rounded-xl px-3 py-4 bg-black-400 z-50">
+				<div className="w-min-auto w-[270px] sm:w-96 max-h-[420px] overflow-y-auto flex-center--col max-w-md rounded-xl px-3 py-4 bg-black-400 z-50 border-2 border-black-100">
+					<h1 className="text-2xl">Ajuda</h1>
+
 					{HelperComponents.map((Helper, index) => (
 						<Options Helper={Helper} key={index} />
 					))}
