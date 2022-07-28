@@ -19,7 +19,7 @@ const Options = ({ Helper }: OptionsProps) => (
 		<Accordion.Button className="w-full flex justify-between items-center gap-4 p-3 my-2 rounded-md bg-accents-pink-100/20 text-accents-pink-100 font-semibold transition-hover hover:bg-accents-pink-100/30">
 			<Helper.Button />
 		</Accordion.Button>
-		<Accordion.Panel>
+		<Accordion.Panel className="h-1/2 overflow-y-auto">
 			<Helper.Content />
 		</Accordion.Panel>
 	</Accordion.Group>
@@ -28,11 +28,11 @@ const Options = ({ Helper }: OptionsProps) => (
 export const Helpers = () => {
 	return (
 		<Popover.Group>
-			<Popover.Button className="text-3xl">
+			<Popover.Button className="text-xl md:text-2xl">
 				<BsFillQuestionCircleFill />
 			</Popover.Button>
 			<Popover.Panel className="absolute z-50">
-				<div className="w-auto sm:w-96 flex-center--col max-w-md rounded-xl px-3 py-4 bg-black-400 z-50">
+				<div className="w-min-auto w-[270px] sm:w-96 max-h-[420px] overflow-y-auto flex-center--col max-w-md rounded-xl px-3 py-4 bg-black-400 z-50">
 					{HelperComponents.map((Helper, index) => (
 						<Options Helper={Helper} key={index} />
 					))}

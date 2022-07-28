@@ -40,14 +40,15 @@ const Exercises: NextPage = () => {
 	return (
 		<>
 			<div className="flex-center--col gap-8 px-2 py-6">
-				<header className="w-full flex">
-					<Helpers />
-				</header>
-				<main className="w-full flex-center--col gap-2 sticky top-0 pt-2">
-					<h1 className="text-3xl md:text-4xl text-center tracking-wide mb-4">
-						{exercise?.description}
-					</h1>
-					<div className="flex-center--row gap-3">
+				<main className="w-full flex-center--col gap-2 sticky top-0 py-3 bg-main/60">
+					<section className="flex-center--row gap-2">
+						<Helpers />
+
+						<h1 className="text-3xl md:text-4xl text-center">
+							{exercise?.description}
+						</h1>
+					</section>
+					<section className="flex-center--row gap-3">
 						<Input.Text
 							type="number"
 							id="insert-answer"
@@ -64,27 +65,27 @@ const Exercises: NextPage = () => {
 								type={exercise?.userAnswerIsCorrect ? "success" : "error"}
 							/>
 						)}
-					</div>
+					</section>
+					<TextButton
+						type="button"
+						onClick={preparationsForTheNextExercise}
+						className={`${
+							exercise?.userAnswerIsCorrect && "text-green-400"
+						} mt-4 text-xs md:text-sm font-util tracking-wider pointer-events-auto`}
+					>
+						<span aria-live="polite" aria-atomic="true">
+							{exercise?.userAnswerIsCorrect ? "Próximo" : "Pular"}{" "}
+						</span>
+						Exercício
+					</TextButton>
 				</main>
 
 				<section className="flex-center--col gap-3">
-					<div className="w-[95vw] xl:w-[70vw] max-w-fit md:max-h-[1/2] overflow-hidden relative">
-						<span className="w-full flex justify-between pointer-events-none p-4 absolute top-0">
+					<div className="w-[95vw] xl:w-[70vw] max-w-fit md:max-h-[1/2] overflow-hidden">
+						<span className="w-full flex justify-between pointer-events-none p-4">
 							<p className="text-sm pointer-events-none font-medium text-white/50">
 								Espaço para rascunho
 							</p>
-							<TextButton
-								type="button"
-								onClick={preparationsForTheNextExercise}
-								className={`${
-									exercise?.userAnswerIsCorrect && "text-green-400"
-								} text-xs md:text-sm font-util tracking-wider pointer-events-auto`}
-							>
-								<span aria-live="polite" aria-atomic="true">
-									{exercise?.userAnswerIsCorrect ? "Próximo" : "Pular"}{" "}
-								</span>
-								Exercício
-							</TextButton>
 						</span>
 						<Canvas />
 					</div>
@@ -94,4 +95,5 @@ const Exercises: NextPage = () => {
 	);
 };
 
-export default WithOptionSelected(Exercises);
+//export default WithOptionSelected(Exercises);
+export default Exercises;
