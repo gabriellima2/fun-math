@@ -1,24 +1,55 @@
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 
-const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+import { Input } from "../Inputs";
+
+import { debounce } from "../../utils/debounce.ts";
+
+interface MultiplicationTableProps {
+	currentNumber: number;
+}
+
+const values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+const MultiplicationTable = (props: MultiplicationTableProps) => (
+	<ol className="w-full flex-center--col gap-1 mt-2">
+		{values.map((value) => (
+			<li key={value} className="font-main font-semibold text-md tracking-wide">
+				{props.currentNumber} X {value} = {props.currentNumber * value}
+			</li>
+		))}
+	</ol>
+);
 
 const Button = () => <span>Quero ver a tabuada</span>;
 
 const Content = () => {
 	const [currentNumber, setCurrentNumber] = useState("");
 
+	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+		const typedValue = e.target.value;
+
+		if (Number(typedValue) > 100) return;
+
+		setCurrentNumber(e.target.value);
+	};
+
 	return (
 		<div className="flex-center--col gap-4 p-2">
 			<header>
-				<label>
-					<input
-						type="number"
-						onChange={(e) => setCurrentNumber(e.target.value)}
-						value={currentNumber}
-						placeholder="Digite o número"
-						className="h-10 p-1 px-2 font-util text-sm md:text-base font-medium tracking-wide rounded-lg bg-transparent border-2 border-white/30 transition-all outline-custom--focus focus:border-transparent"
-					/>
-				</label>
+				<Input.Text
+					type="number"
+					id="number"
+					name="number"
+					value={currentNumber}
+					onChange={handleChange}
+				>
+					<p className="relative">
+						Número
+						<span className="w-fit text-sm opacity-50 absolute -bottom-4 left-0">
+							(0 à 100)
+						</span>
+					</p>
+				</Input.Text>
 			</header>
 			<main
 				aria-live="polite"
@@ -31,13 +62,7 @@ const Content = () => {
 						: "Digite o número acima!"}
 				</h1>
 				{currentNumber && (
-					<ol className="w-full flex-center--col gap-1 mt-2">
-						{numbers.map((value) => (
-							<li className="font-main font-semibold text-md tracking-wide">
-								{currentNumber} X {value} = {Number(currentNumber) * value}
-							</li>
-						))}
-					</ol>
+					<MultiplicationTable currentNumber={Number(currentNumber)} />
 				)}
 			</main>
 		</div>

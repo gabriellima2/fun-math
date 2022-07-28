@@ -3,11 +3,11 @@ import React, { useContext, useEffect, useState } from "react";
 
 import { useExercise } from "../hooks/Exercise/useExercise";
 
-import { InsertAnswer } from "../components/InsertAnswer";
 import { TextButton } from "../components/Buttons";
 import { Status } from "../components/Status";
 import { Canvas } from "../components/Canvas";
 import { Helpers } from "../components/Helpers";
+import { Input } from "../components/Inputs";
 
 import { WithOptionSelected } from "../HOC/WithOptionSelected";
 
@@ -15,13 +15,13 @@ import { UserSelectedOptionsContext } from "../contexts/UserSelectedOptionsConte
 import { debounce } from "../utils/debounce";
 
 const Exercises: NextPage = () => {
-	const [value, setValue] = useState("");
+	const [typedAnswer, setTypedAnswer] = useState("");
 	const { userSelectedOptions } = useContext(UserSelectedOptionsContext);
 
 	const exercise = useExercise(userSelectedOptions);
 
 	const preparationsForTheNextExercise = () => {
-		setValue("");
+		setTypedAnswer("");
 		exercise?.clearUserAnswerIsCorrect();
 		exercise?.getNextExercise();
 	};
@@ -32,10 +32,10 @@ const Exercises: NextPage = () => {
 		}
 
 		debounce(
-			() => exercise?.checkUserAnswer(value, exercise.getCorrectResult),
+			() => exercise?.checkUserAnswer(typedAnswer, exercise.getCorrectResult),
 			950
 		);
-	}, [value]);
+	}, [typedAnswer]);
 
 	return (
 		<>
@@ -48,11 +48,17 @@ const Exercises: NextPage = () => {
 						{exercise?.description}
 					</h1>
 					<div className="flex-center--row gap-3">
-						<InsertAnswer
-							value={value}
-							changeValue={setValue}
-							isInvalid={exercise?.userAnswerIsCorrect}
-						/>
+						<Input.Text
+							type="number"
+							id="insert-answer"
+							name="answer"
+							value={typedAnswer}
+							onChange={(e) => setTypedAnswer(e.target.value)}
+							isInvalid={!exercise?.userAnswerIsCorrect}
+							className="w-32 md:w-auto h-10"
+						>
+							<span className="mr-1 font-semibold">R:</span>O resultado é{" "}
+						</Input.Text>
 						{exercise?.userAnswerIsCorrect !== undefined && (
 							<Status
 								type={exercise?.userAnswerIsCorrect ? "success" : "error"}

@@ -1,4 +1,9 @@
-import React, { InputHTMLAttributes, MouseEvent, ReactNode } from "react";
+import React, {
+	InputHTMLAttributes,
+	MouseEvent,
+	ReactNode,
+	ChangeEvent,
+} from "react";
 import { IconType } from "react-icons";
 
 import { cards, links, operators } from "../constants";
@@ -46,7 +51,7 @@ export interface InputDefaultProps extends WithChildren, InputHTMLAttributes {
 	value: string;
 	placeholder?: string;
 	className?: ClassName;
-	onChange?: (param: unknown) => unknown;
+	onChange: (param: ChangeEvent<HTMLInputElement>) => unknown;
 }
 
 export interface DrawingTool {
@@ -55,7 +60,7 @@ export interface DrawingTool {
 	width: number;
 }
 
-export interface P extends object {}
+export type P = object;
 
 export type ComponentType = React.ComponentType<P>;
 
