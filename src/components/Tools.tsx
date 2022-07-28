@@ -34,6 +34,7 @@ export const Tools = (props: ToolsProps) => {
 						data-action={tool.action}
 						aria-pressed={tool.id === currentTool.type}
 						onClick={() => changeCurrentTool(tool.id)}
+						key={tool.id}
 						className={`${
 							tool.id === currentTool.type && ACTIVE_TOOL_STYLE
 						} p-2`}
