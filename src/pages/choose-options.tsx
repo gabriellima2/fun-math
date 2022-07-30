@@ -44,7 +44,7 @@ const ChooseOptions = () => {
 						</fieldset>
 
 						<fieldset aria-live="polite" className="container bg-black-600/80">
-							{userSelectedOptions.exercise !== exercises.type.problem ? (
+							{userSelectedOptions.exercise?.id !== exercises.type.problem ? (
 								<>
 									<h2 className="subtitle">Tipo de operador</h2>
 									<OperatorsList />

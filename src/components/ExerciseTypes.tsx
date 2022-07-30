@@ -15,7 +15,7 @@ export const ExerciseTypes = React.memo(() => {
 		<Radio.Group
 			label="Tipos de exercícios disponíveis"
 			handleChange={selectExercise}
-			currentActiveOption={userSelectedOptions.exercise}
+			currentActiveOption={userSelectedOptions.exercise?.id || null}
 			className="flex flex-col gap-2 sm:flex-row"
 		>
 			{exercises.data.map((exercise) => (
