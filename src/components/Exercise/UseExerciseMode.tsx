@@ -18,7 +18,7 @@ interface FetchProps {
 const Client = (props: ClientProps) => {
 	const exerciseClient = useExerciseClient(props.operator);
 
-	return <ExerciseContent {...exerciseClient} />;
+	return <ExerciseContent exerciseContent={exerciseClient} />;
 };
 
 const Fetch = (props: FetchProps) => {
@@ -26,7 +26,11 @@ const Fetch = (props: FetchProps) => {
 
 	if (error) return <h1>Error</h1>;
 
-	return <>{loading ? <h1>Loading</h1> : <ExerciseContent {...data} />}</>;
+	return (
+		<>
+			{loading ? <h1>Loading</h1> : <ExerciseContent exerciseContent={data} />}
+		</>
+	);
 };
 
 export const UseExerciseMode = { Client, Fetch };

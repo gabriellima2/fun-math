@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 import { useExercise } from "../../hooks/Exercise/useExercise";
 
@@ -7,10 +7,14 @@ import { Status } from "../../components/Status";
 import { Helpers } from "../../components/Helpers";
 import { Input } from "../../components/Inputs";
 
+import { CurrentExerciseContext } from "../../contexts/CurrentExerciseContext";
+
 import { ExerciseMode } from "../../types/hooks";
 import { debounce } from "../../utils/debounce";
 
-interface ExerciseContentProps extends ExerciseMode {}
+interface ExerciseContentProps {
+	exerciseContent: ExerciseMode;
+}
 
 interface InsertAnswerProps {
 	value: string;
@@ -52,22 +56,28 @@ const ChangeExercise = (props: ChangeExerciseProps) => (
 	</TextButton>
 );
 
-export const ExerciseContent = (props: ExerciseContentProps) => {
+export const ExerciseContent = ({ exerciseContent }: ExerciseContentProps) => {
 	const exercise = useExercise();
 	const [typedAnswer, setTypedAnswer] = useState("");
+	const { addNewCurrentExercise } = useContext(CurrentExerciseContext);
 
 	const preparationsForTheNextExercise = () => {
 		setTypedAnswer("");
 		exercise.clearUserAnswerIsCorrect();
-		props.getNextExercise();
+		exerciseContent.getNextExercise();
 	};
+
+	useEffect(() => addNewCurrentExercise(exerciseContent), []);
 
 	useEffect(() => {
 		if (exercise.userAnswerIsCorrect !== undefined) {
 			exercise.clearUserAnswerIsCorrect();
 		}
 
-		debounce(() => exercise.checkUserAnswer(typedAnswer, props.solution), 950);
+		debounce(
+			() => exercise.checkUserAnswer(typedAnswer, exerciseContent.solution),
+			950
+		);
 	}, [typedAnswer]);
 
 	return (
@@ -75,7 +85,9 @@ export const ExerciseContent = (props: ExerciseContentProps) => {
 			<section className="flex-center--row gap-2">
 				<Helpers />
 
-				<h1 className="text-3xl md:text-4xl text-center">{props.text}</h1>
+				<h1 className="text-3xl md:text-4xl text-center">
+					{exerciseContent.text}
+				</h1>
 			</section>
 			<section className="flex-center--row gap-3">
 				<InsertAnswer

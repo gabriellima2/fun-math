@@ -1,5 +1,19 @@
-const Button = () => <>Dicas</>;
+import { useContext } from "react";
 
-const Content = () => <h1>Dicas</h1>;
+import { CurrentExerciseContext } from "../../contexts/CurrentExerciseContext";
 
-export const TipHelper = { Button, Content };
+const ButtonText = () => <>Quero alguma dica</>;
+
+const Content = () => {
+	const { currentExercise } = useContext(CurrentExerciseContext);
+
+	return (
+		<h2>
+			{currentExercise.tip
+				? currentExercise.tip
+				: "Desculpe, no momento não temos dicas específicas para esse exercício."}
+		</h2>
+	);
+};
+
+export const TipHelper = { ButtonText, Content };
