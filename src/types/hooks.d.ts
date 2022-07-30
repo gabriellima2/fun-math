@@ -9,22 +9,9 @@ export interface CanvasStyle {
 	color: string;
 }
 
-export type GetCorrectResult = () => string | null | undefined;
-
-export interface Exercise {
-	description: string;
-	userAnswerIsCorrect: boolean | undefined;
-	checkUserAnswer: (
-		userAnswer: string,
-		getCorrectResult: GetCorrectResult
-	) => void;
+export interface ExerciseMode {
+	text: string;
+	tip: string | null;
+	solution: string;
 	getNextExercise: () => void;
-	getCorrectResult: GetCorrectResult;
-	clearUserAnswerIsCorrect: () => void;
 }
-
-export interface ExerciseGenerator
-	extends Omit<
-		Exercise,
-		"checkUserAnswer" | "userAnswerIsCorrect" | "clearUserAnswerIsCorrect"
-	> {}

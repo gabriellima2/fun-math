@@ -6,13 +6,15 @@ import React, {
 } from "react";
 import { IconType } from "react-icons";
 
-import { cards, links, operators } from "../constants";
+import { cards, links, operators, exercises } from "../constants";
 
 export type Cards = typeof cards[0];
 
 export type Links = typeof links[0];
 
 export type Operators = typeof operators.data[0];
+
+export type Exercises = typeof exercises.data[0];
 
 export type ClassName = string;
 

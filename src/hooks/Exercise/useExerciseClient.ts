@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { SelectedOperator } from "../../contexts/UserSelectedOptionsContext";
 
-import { ExerciseGenerator, GetCorrectResult } from "../../types/hooks";
+import { ExerciseMode } from "../../types/hooks";
 import { operators } from "../../constants";
 import {
 	generateRandomNumber,
@@ -11,16 +11,12 @@ import {
 
 const MIN_DECIMAL_PLACES = 3;
 
-interface Operator extends SelectedOperator {}
-
 interface CalculationNumbers {
 	firstNumber: number | null;
 	secondNumber: number | null;
 }
 
-export function useRandomCalculationGenerator(
-	operator: Operator
-): ExerciseGenerator {
+export function useExerciseClient(operator: SelectedOperator): ExerciseMode {
 	const [calculationNumbers, setCalculationNumbers] =
 		useState<CalculationNumbers>({
 			firstNumber: null,
@@ -51,7 +47,7 @@ export function useRandomCalculationGenerator(
 		generateNumber("firstNumber");
 	};
 
-	const getCorrectResult: GetCorrectResult = () => {
+	const getCorrectResult = () => {
 		if (!calculationNumbers.firstNumber || !calculationNumbers.secondNumber)
 			return;
 
@@ -97,8 +93,9 @@ export function useRandomCalculationGenerator(
 	}, [calculationNumbers.firstNumber]);
 
 	return {
-		description: `Qual o resultado de ${calculationNumbers.firstNumber} ${operator.symbol} ${calculationNumbers.secondNumber}?`,
+		text: `Qual o resultado de ${calculationNumbers.firstNumber} ${operator.symbol} ${calculationNumbers.secondNumber}?`,
+		tip: null,
+		solution: getCorrectResult(),
 		getNextExercise,
-		getCorrectResult,
 	};
 }
