@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 
-import { Radio } from "./Radio";
+import { Radio } from "../Radio";
 
-import { UserSelectedOptionsContext } from "../contexts/UserSelectedOptionsContext";
+import { UserSelectedOptionsContext } from "../../contexts/UserSelectedOptionsContext";
 
-import { exercises } from "../constants";
+import { exercises } from "../../constants";
 
-export const ExerciseTypes = React.memo(() => {
+const ExerciseTypes = () => {
 	const { userSelectedOptions, selectExercise } = useContext(
 		UserSelectedOptionsContext
 	);
@@ -34,4 +34,6 @@ export const ExerciseTypes = React.memo(() => {
 			))}
 		</Radio.Group>
 	);
-});
+};
+
+export default React.memo(ExerciseTypes);

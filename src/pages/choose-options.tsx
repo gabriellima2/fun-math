@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { BsArrowRightShort, BsFillExclamationCircleFill } from "react-icons/bs";
 
 import { OperatorsList } from "../components/OperatorsList";
-import { ExerciseTypes } from "../components/ExerciseTypes";
+import { ExerciseTypes } from "../components/Exercise";
 import { BackButton, MainButton } from "../components/Buttons";
 import { Icon } from "../components/Icon";
 

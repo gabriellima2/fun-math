@@ -16,6 +16,17 @@ interface CalculationNumbers {
 	secondNumber: number | null;
 }
 
+const getCalculationResultByOperatorType = {
+	[operators.type.addition]: (firstNumber: number, secondNumber: number) =>
+		firstNumber + secondNumber,
+	[operators.type.subtraction]: (firstNumber: number, secondNumber: number) =>
+		firstNumber - secondNumber,
+	[operators.type.division]: (firstNumber: number, secondNumber: number) =>
+		firstNumber / secondNumber,
+	[operators.type.multiply]: (firstNumber: number, secondNumber: number) =>
+		firstNumber * secondNumber,
+};
+
 export function useExerciseClient(operator: SelectedOperator): ExerciseMode {
 	const [calculationNumbers, setCalculationNumbers] =
 		useState<CalculationNumbers>({
@@ -32,8 +43,8 @@ export function useExerciseClient(operator: SelectedOperator): ExerciseMode {
 
 	const generateNumber = (
 		key: "firstNumber" | "secondNumber",
-		max: number = 100,
-		min: number = 1
+		max = 100,
+		min = 1
 	) => {
 		setCalculationNumbers((prevState) => ({
 			...prevState,
@@ -51,31 +62,11 @@ export function useExerciseClient(operator: SelectedOperator): ExerciseMode {
 		if (!calculationNumbers.firstNumber || !calculationNumbers.secondNumber)
 			return;
 
-		let correctResult: number | null = null;
+		const { firstNumber, secondNumber } = calculationNumbers;
 
-		switch (operator.id) {
-			case operators.type.addition:
-				correctResult =
-					calculationNumbers.firstNumber + calculationNumbers.secondNumber;
-				break;
-
-			case operators.type.subtraction:
-				correctResult =
-					calculationNumbers.firstNumber - calculationNumbers.secondNumber;
-				break;
-
-			case operators.type.division:
-				correctResult =
-					calculationNumbers.firstNumber / calculationNumbers.secondNumber;
-				break;
-
-			case operators.type.multiply:
-				correctResult =
-					calculationNumbers.firstNumber * calculationNumbers.secondNumber;
-				break;
-		}
-
-		if (!correctResult) return;
+		const getCalculationResult =
+			getCalculationResultByOperatorType[operator.id];
+		const correctResult = getCalculationResult(firstNumber, secondNumber);
 
 		return limitDecimalPlaces(correctResult.toString(), MIN_DECIMAL_PLACES);
 	};
