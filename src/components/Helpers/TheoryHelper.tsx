@@ -1,5 +1,5 @@
-const Button = () => <>Teoria</>;
+const ButtonText = () => <>Teoria</>;
 
 const Content = () => <h1>Teoria</h1>;
 
-export const TheoryHelper = { Button, Content };
+export const TheoryHelper = { ButtonText, Content };

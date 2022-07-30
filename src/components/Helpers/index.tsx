@@ -17,9 +17,9 @@ interface OptionsProps {
 const Options = ({ Helper }: OptionsProps) => (
 	<Accordion.Group>
 		<Accordion.Button className="w-full flex justify-between items-center gap-4 p-3 my-2 rounded-md bg-accents-pink-100/20 text-accents-pink-100 font-semibold transition-hover hover:bg-accents-pink-100/30">
-			<Helper.Button />
+			<Helper.ButtonText />
 		</Accordion.Button>
-		<Accordion.Panel className="h-1/2 overflow-y-auto">
+		<Accordion.Panel className="w-full max-h-[200px] md:max-h-[280px] overflow-y-auto font-util p-3 rounded-md bg-black-500/50">
 			<Helper.Content />
 		</Accordion.Panel>
 	</Accordion.Group>
@@ -32,7 +32,7 @@ export const Helpers = () => {
 				<BsFillQuestionCircleFill />
 			</Popover.Button>
 			<Popover.Panel className="absolute z-50">
-				<div className="w-min-auto w-[270px] sm:w-96 max-h-[420px] overflow-y-auto flex-center--col max-w-md rounded-xl px-3 py-4 bg-black-400 z-50 border-2 border-black-100">
+				<div className="w-min-auto w-[270px] sm:w-96 flex-center--col max-w-md rounded-xl px-3 py-4 bg-black-400 z-50 border-2 border-black-100">
 					<h1 className="text-2xl">Ajuda</h1>
 
 					{HelperComponents.map((Helper, index) => (

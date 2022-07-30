@@ -2,8 +2,6 @@ import { useState, ChangeEvent } from "react";
 
 import { Input } from "../Inputs";
 
-import { debounce } from "../../utils/debounce.ts";
-
 interface MultiplicationTableProps {
 	currentNumber: number;
 }
@@ -20,7 +18,7 @@ const MultiplicationTable = (props: MultiplicationTableProps) => (
 	</ol>
 );
 
-const Button = () => <span>Quero ver a tabuada</span>;
+const ButtonText = () => <span>Quero ver a tabuada</span>;
 
 const Content = () => {
 	const [currentNumber, setCurrentNumber] = useState("");
@@ -34,7 +32,7 @@ const Content = () => {
 	};
 
 	return (
-		<div className="flex-center--col gap-4 p-2">
+		<div className="flex-center--col gap-6 p-2">
 			<header>
 				<Input.Text
 					type="number"
@@ -45,7 +43,7 @@ const Content = () => {
 				>
 					<p className="relative">
 						Número
-						<span className="w-fit text-sm opacity-50 absolute -bottom-4 left-0">
+						<span className="w-fit text-xs lg:text-sm opacity-50 absolute -bottom-4 left-0">
 							(0 à 100)
 						</span>
 					</p>
@@ -69,4 +67,4 @@ const Content = () => {
 	);
 };
 
-export const MultiplicationTableHelper = { Button, Content };
+export const MultiplicationTableHelper = { ButtonText, Content };
