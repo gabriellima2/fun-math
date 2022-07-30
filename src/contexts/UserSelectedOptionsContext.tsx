@@ -1,11 +1,12 @@
 import { createContext, useState } from "react";
 
-import { Operators, WithChildren } from "../types";
+import { Operators, Exercises, WithChildren } from "../types";
 import { exercises } from "../constants";
 import { getOperatorData } from "../utils/getOperatorData";
+import { getExerciseData } from "../utils/getExerciseData";
 
 export type SelectedOperator = Pick<Operators, "id" | "symbol">;
-export type SelectedExercise = string;
+export type SelectedExercise = Exercises;
 
 export interface UserSelectedOptions {
 	operator: SelectedOperator | null;
@@ -41,19 +42,19 @@ export const UserSelectedOptionsContextProvider = ({
 			return setUserSelectedOptions((prevState) => ({
 				...prevState,
 				operator: null,
-				exercise: selectedExerciseName,
+				exercise: getExerciseData(selectedExerciseName),
 			}));
 		}
 
 		setUserSelectedOptions((prevState) => ({
 			...prevState,
-			exercise: selectedExerciseName,
+			exercise: getExerciseData(selectedExerciseName),
 		}));
 	};
 
 	const userSelectedOptionsAreNotValid = () => {
 		if (userSelectedOptions.exercise) {
-			if (userSelectedOptions.exercise === exercises.type.problem) {
+			if (userSelectedOptions.exercise.id === exercises.type.problem) {
 				return false;
 			}
 
