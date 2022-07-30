@@ -5,6 +5,7 @@ import { Seo } from "../components/Infra";
 
 import { client } from "../lib/client";
 import { UserSelectedOptionsContextProvider } from "../contexts/UserSelectedOptionsContext";
+import { CurrentExerciseContextProvider } from "../contexts/CurrentExerciseContext";
 
 import "../styles/globals.css";
 
@@ -12,8 +13,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<ApolloProvider client={client}>
 			<UserSelectedOptionsContextProvider>
-				<Seo />
-				<Component {...pageProps} />
+				<CurrentExerciseContextProvider>
+					<Seo />
+					<Component {...pageProps} />
+				</CurrentExerciseContextProvider>
 			</UserSelectedOptionsContextProvider>
 		</ApolloProvider>
 	);
