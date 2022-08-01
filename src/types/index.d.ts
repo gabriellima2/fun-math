@@ -69,3 +69,7 @@ export type ComponentType = React.ComponentType<P>;
 export interface Props extends WithChildren {
 	className?: ClassName;
 }
+
+export type DefaultRefType<T> = null | T;
+
+export type CanvasElement = DefaultRefType<HTMLCanvasElement>;

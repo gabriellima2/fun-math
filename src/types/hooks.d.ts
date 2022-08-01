@@ -1,6 +1,8 @@
 import { MutableRefObject } from "react";
 
-export type CanvasRef = MutableRefObject<HTMLCanvasElement | null>;
+import { CanvasElement } from ".";
+
+export type CanvasRef = MutableRefObject<CanvasElement>;
 
 export type ContextRef = MutableRefObject<CanvasRenderingContext2D | null>;
 

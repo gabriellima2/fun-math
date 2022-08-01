@@ -1,4 +1,9 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, {
+	useEffect,
+	useState,
+	useContext,
+	MutableRefObject,
+} from "react";
 
 import { useExercise } from "../../hooks/Exercise/useExercise";
 
@@ -9,11 +14,11 @@ import { Input } from "../../components/Inputs";
 
 import { CurrentExerciseContext } from "../../contexts/CurrentExerciseContext";
 
-import { ExerciseMode } from "../../types/hooks";
+import { CanvasUtilsRef } from "../Draw/Canvas";
 import { debounce } from "../../utils/debounce";
 
 interface ExerciseContentProps {
-	exerciseContent: ExerciseMode;
+	canvasUtilsRef: MutableRefObject<CanvasUtilsRef | null>;
 }
 
 interface InsertAnswerProps {
@@ -56,18 +61,18 @@ const ChangeExercise = (props: ChangeExerciseProps) => (
 	</TextButton>
 );
 
-export const ExerciseContent = ({ exerciseContent }: ExerciseContentProps) => {
+export const ExerciseContent = (props: ExerciseContentProps) => {
 	const exercise = useExercise();
 	const [typedAnswer, setTypedAnswer] = useState("");
-	const { addNewCurrentExercise } = useContext(CurrentExerciseContext);
+	const { currentExercise } = useContext(CurrentExerciseContext);
 
 	const preparationsForTheNextExercise = () => {
 		setTypedAnswer("");
 		exercise.clearUserAnswerIsCorrect();
-		exerciseContent.getNextExercise();
-	};
+		props.canvasUtilsRef.current?.clear();
 
-	useEffect(() => addNewCurrentExercise(exerciseContent), []);
+		currentExercise.getNextExercise();
+	};
 
 	useEffect(() => {
 		if (exercise.userAnswerIsCorrect !== undefined) {
@@ -75,7 +80,7 @@ export const ExerciseContent = ({ exerciseContent }: ExerciseContentProps) => {
 		}
 
 		debounce(
-			() => exercise.checkUserAnswer(typedAnswer, exerciseContent.solution),
+			() => exercise.checkUserAnswer(typedAnswer, currentExercise.solution),
 			950
 		);
 	}, [typedAnswer]);
@@ -86,7 +91,7 @@ export const ExerciseContent = ({ exerciseContent }: ExerciseContentProps) => {
 				<Helpers />
 
 				<h1 className="text-3xl md:text-4xl text-center">
-					{exerciseContent.text}
+					{currentExercise.text}
 				</h1>
 			</section>
 			<section className="flex-center--row gap-3">
