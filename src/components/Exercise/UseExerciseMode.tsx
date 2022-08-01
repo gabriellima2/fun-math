@@ -1,35 +1,45 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useMemo, ReactNode } from "react";
 import { useQuery, gql } from "@apollo/client";
 
 import { CurrentExerciseContext } from "../../contexts/CurrentExerciseContext";
 import { useExerciseClient } from "../../hooks/Exercise/useExerciseClient";
 
-import { Operators, WithChildren } from "../../types";
+import { Operators } from "../../types";
 
-interface ClientProps extends WithChildren {
+interface Children {
+	children?: ReactNode;
+}
+
+interface ClientProps extends Children {
 	operator: Operators;
 }
 
-interface FetchProps extends WithChildren {
+interface FetchProps extends Children {
 	query: ReturnType<typeof gql>;
 }
 
 const Client = (props: ClientProps) => {
-	const { addNewCurrentExercise } = useContext(CurrentExerciseContext);
-	const exerciseClient = useExerciseClient(props.operator);
+	const { addCurrentExercise } = useContext(CurrentExerciseContext);
+	const newExercise = useExerciseClient(props.operator);
 
+	const newExerciseMemoized = useMemo(
+		() => newExercise,
+		[newExercise.solution]
+	);
+
+	// Usa-se o Objeto Memoizado para evitar loops, mas com dados atualizados.
 	useEffect(() => {
-		addNewCurrentExercise(exerciseClient);
-	}, []);
+		addCurrentExercise(newExerciseMemoized);
+	}, [newExerciseMemoized]);
 
 	return <>{props.children}</>;
 };
 
 const Fetch = (props: FetchProps) => {
-	const { addNewCurrentExercise } = useContext(CurrentExerciseContext);
+	const { addCurrentExercise } = useContext(CurrentExerciseContext);
 	const { loading, error, data } = useQuery(props.query);
 
-	useEffect(() => addNewCurrentExercise(data), [data]);
+	useEffect(() => addCurrentExercise(data), []);
 
 	if (error) return <h1>Error</h1>;
 

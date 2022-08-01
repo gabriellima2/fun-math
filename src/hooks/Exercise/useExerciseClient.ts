@@ -7,13 +7,17 @@ import { operators } from "../../constants";
 import {
 	generateRandomNumber,
 	limitDecimalPlaces,
+	isFloat,
 } from "../../utils/handleNumbers";
 
 const MIN_DECIMAL_PLACES = 3;
 
-interface CalculationNumbers {
-	firstNumber: number | null;
-	secondNumber: number | null;
+type NumberState = number | null;
+
+interface NumbersData {
+	firstNumber: NumberState;
+	secondNumber: NumberState;
+	solution: NumberState;
 }
 
 const getCalculationResultByOperatorType = {
@@ -28,11 +32,11 @@ const getCalculationResultByOperatorType = {
 };
 
 export function useExerciseClient(operator: SelectedOperator): ExerciseMode {
-	const [calculationNumbers, setCalculationNumbers] =
-		useState<CalculationNumbers>({
-			firstNumber: null,
-			secondNumber: null,
-		} as CalculationNumbers);
+	const [numbersData, setNumbersData] = useState<NumbersData>({
+		firstNumber: null,
+		secondNumber: null,
+		solution: null,
+	} as NumbersData);
 
 	const isDivisionOrMultiply = () => {
 		return (
@@ -41,52 +45,46 @@ export function useExerciseClient(operator: SelectedOperator): ExerciseMode {
 		);
 	};
 
-	const generateNumber = (
-		key: "firstNumber" | "secondNumber",
-		max = 100,
-		min = 1
-	) => {
-		setCalculationNumbers((prevState) => ({
-			...prevState,
-			[key]: generateRandomNumber(max, min, Math),
-		}));
-	};
-
-	const getNextExercise = () => {
-		if (isDivisionOrMultiply()) return generateNumber("firstNumber", 80, 10);
-
-		generateNumber("firstNumber");
-	};
-
-	const getCorrectResult = () => {
-		if (!calculationNumbers.firstNumber || !calculationNumbers.secondNumber)
-			return;
-
-		const { firstNumber, secondNumber } = calculationNumbers;
-
+	const getCorrectSolution = (firstNumber: number, secondNumber: number) => {
 		const getCalculationResult =
 			getCalculationResultByOperatorType[operator.id];
+
 		const correctResult = getCalculationResult(firstNumber, secondNumber);
 
-		return limitDecimalPlaces(correctResult.toString(), MIN_DECIMAL_PLACES);
+		if (isFloat(correctResult.toString())) {
+			return Number(
+				limitDecimalPlaces(correctResult.toString(), MIN_DECIMAL_PLACES)
+			);
+		}
+
+		return correctResult;
 	};
 
-	useEffect(() => {
-		if (isDivisionOrMultiply()) return generateNumber("firstNumber", 80, 10);
+	const getDataForExercise = () => {
+		const generatedFirstNumber = generateRandomNumber(100, 1, Math);
+		const generatedSecondNumber = generateRandomNumber(
+			generatedFirstNumber,
+			1,
+			Math
+		);
+		const solution = getCorrectSolution(
+			generatedFirstNumber,
+			generatedSecondNumber
+		);
 
-		generateNumber("firstNumber");
-	}, []);
+		setNumbersData({
+			firstNumber: generatedFirstNumber,
+			secondNumber: generatedSecondNumber,
+			solution,
+		});
+	};
 
-	useEffect(() => {
-		if (isDivisionOrMultiply()) return generateNumber("secondNumber", 10, 1);
-
-		generateNumber("secondNumber", calculationNumbers.firstNumber!);
-	}, [calculationNumbers.firstNumber]);
+	useEffect(() => getDataForExercise(), []);
 
 	return {
-		text: `Qual o resultado de ${calculationNumbers.firstNumber} ${operator.symbol} ${calculationNumbers.secondNumber}?`,
+		text: `Qual o resultado de ${numbersData.firstNumber} ${operator.symbol} ${numbersData.secondNumber}?`,
 		tip: null,
-		solution: getCorrectResult(),
-		getNextExercise,
+		solution: numbersData.solution?.toString(),
+		getNextExercise: getDataForExercise,
 	};
 }

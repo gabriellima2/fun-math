@@ -3,11 +3,11 @@ import { useState, createContext } from "react";
 import { WithChildren } from "../types";
 import { ExerciseMode } from "../types/hooks";
 
-type CurrentExercise = Omit<ExerciseMode, "getNextExercise">;
+type CurrentExercise = ExerciseMode;
 
 interface CurrentExerciseContextProperties {
 	currentExercise: CurrentExercise;
-	addNewCurrentExercise: (exercise: CurrentExercise) => void;
+	addCurrentExercise: (exercise: CurrentExercise) => void;
 }
 
 export const CurrentExerciseContext = createContext(
@@ -19,12 +19,12 @@ export const CurrentExerciseContextProvider = ({ children }: WithChildren) => {
 		{} as CurrentExercise
 	);
 
-	const addNewCurrentExercise = (exercise: CurrentExercise) =>
+	const addCurrentExercise = (exercise: CurrentExercise) =>
 		setCurrentExercise(exercise);
 
 	return (
 		<CurrentExerciseContext.Provider
-			value={{ currentExercise, addNewCurrentExercise }}
+			value={{ currentExercise, addCurrentExercise }}
 		>
 			{children}
 		</CurrentExerciseContext.Provider>
