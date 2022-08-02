@@ -1,26 +1,28 @@
-import { useEffect, useState, useImperativeHandle, forwardRef } from "react";
+import {
+	useEffect,
+	useState,
+	useImperativeHandle,
+	forwardRef,
+	useRef,
+} from "react";
 
 import { useBasicCanvas } from "../../hooks/Canvas/";
 
 import { Tools } from "./Tools";
 
 import { CanvasEvent } from "../../types";
-import { CanvasRef } from "../../types/hooks";
 import { createMouseEvent } from "../../utils/createMouseEvent";
 
 const CLASS_SCROLL_BLOCK = "scroll--block";
 
-interface CanvasProps {
-	canvasRef: CanvasRef;
+export interface CanvasUtils {
+	clearCanvas: () => void;
 }
 
-export interface CanvasUtilsRef {
-	clear: () => void;
-}
-
-export const Canvas = forwardRef<CanvasUtilsRef, CanvasProps>((props, ref) => {
+export const Canvas = forwardRef<CanvasUtils, {}>((props, ref) => {
 	const [isDrawing, setIsDrawing] = useState(false);
-	const { contextRef } = useBasicCanvas(props.canvasRef);
+	const canvasRef = useRef<null | HTMLCanvasElement>(null);
+	const { contextRef } = useBasicCanvas(canvasRef);
 
 	useEffect(() => {
 		const html = document.documentElement;
@@ -33,7 +35,7 @@ export const Canvas = forwardRef<CanvasUtilsRef, CanvasProps>((props, ref) => {
 	}, [isDrawing]);
 
 	const draw = ({ clientX, clientY }: CanvasEvent) => {
-		const boundingRect = props.canvasRef.current?.getBoundingClientRect();
+		const boundingRect = canvasRef.current?.getBoundingClientRect();
 
 		if (!isDrawing || !boundingRect) return;
 
@@ -45,7 +47,7 @@ export const Canvas = forwardRef<CanvasUtilsRef, CanvasProps>((props, ref) => {
 	};
 
 	const startDrawing = ({ clientX, clientY }: CanvasEvent) => {
-		const boundingRect = props.canvasRef.current?.getBoundingClientRect();
+		const boundingRect = canvasRef.current?.getBoundingClientRect();
 
 		if (!boundingRect) return;
 
@@ -64,8 +66,8 @@ export const Canvas = forwardRef<CanvasUtilsRef, CanvasProps>((props, ref) => {
 		setIsDrawing(false);
 	};
 
-	const clear = () => {
-		const canvas = props.canvasRef.current;
+	const clearCanvas = () => {
+		const canvas = canvasRef.current;
 		const ctx = canvas?.getContext("2d");
 
 		if (!canvas || !ctx) return;
@@ -75,7 +77,7 @@ export const Canvas = forwardRef<CanvasUtilsRef, CanvasProps>((props, ref) => {
 
 	useImperativeHandle(ref, () => {
 		return {
-			clear,
+			clearCanvas,
 		};
 	});
 
@@ -83,7 +85,7 @@ export const Canvas = forwardRef<CanvasUtilsRef, CanvasProps>((props, ref) => {
 		<>
 			<canvas
 				id="to-draw"
-				ref={props.canvasRef}
+				ref={canvasRef}
 				onMouseDown={startDrawing}
 				onTouchStart={({ touches }) =>
 					createMouseEvent(touches[0], "mousedown", startDrawing)
@@ -98,9 +100,9 @@ export const Canvas = forwardRef<CanvasUtilsRef, CanvasProps>((props, ref) => {
 				className="h-full object-contain bg-canvas-area"
 			/>
 			<Tools
-				canvasRef={props.canvasRef}
+				canvasRef={canvasRef}
 				contextRef={contextRef}
-				clearCanvas={clear}
+				canvasUtils={{ clearCanvas }}
 			/>
 		</>
 	);

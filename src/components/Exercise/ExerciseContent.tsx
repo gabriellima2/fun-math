@@ -14,11 +14,11 @@ import { Input } from "../../components/Inputs";
 
 import { CurrentExerciseContext } from "../../contexts/CurrentExerciseContext";
 
-import { CanvasUtilsRef } from "../Draw/Canvas";
+import { CanvasUtilsRef } from "../../types";
 import { debounce } from "../../utils/debounce";
 
 interface ExerciseContentProps {
-	canvasUtilsRef: MutableRefObject<CanvasUtilsRef | null>;
+	canvasUtilsRef: MutableRefObject<CanvasUtilsRef>;
 }
 
 interface InsertAnswerProps {
@@ -66,10 +66,12 @@ export const ExerciseContent = (props: ExerciseContentProps) => {
 	const [typedAnswer, setTypedAnswer] = useState("");
 	const { currentExercise } = useContext(CurrentExerciseContext);
 
+	console.log(props);
+
 	const preparationsForTheNextExercise = () => {
 		setTypedAnswer("");
 		exercise.clearUserAnswerIsCorrect();
-		props.canvasUtilsRef.current?.clear();
+		props.canvasUtilsRef?.current?.clearCanvas();
 
 		currentExercise.getNextExercise();
 	};

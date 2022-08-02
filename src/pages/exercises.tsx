@@ -1,18 +1,18 @@
 import { NextPage } from "next";
 
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 
 import { Canvas } from "../components/Draw";
 import { UseExerciseMode, ExerciseContent } from "../components/Exercise";
 import { WithOptionSelected } from "../HOC/WithOptionSelected";
 
 import { UserSelectedOptionsContext } from "../contexts/UserSelectedOptionsContext";
-import { CanvasUtilsRef } from "../components/Draw/Canvas";
+import { CanvasUtils } from "../components/Draw/Canvas";
 import { exercises } from "../constants";
-import { CanvasElement } from "../types";
+import { CanvasElement, CanvasUtilsRef } from "../types";
 
 const Exercises: NextPage = () => {
-	const canvasUtilsRef = useRef<null | CanvasUtilsRef>(null);
+	const canvasUtilsRef = useRef<CanvasUtilsRef>(null);
 	const canvasElementRef = useRef<CanvasElement>(null);
 	const { userSelectedOptions } = useContext(UserSelectedOptionsContext);
 
@@ -37,7 +37,7 @@ const Exercises: NextPage = () => {
 								Espaço para rascunho
 							</p>
 						</span>
-						<Canvas canvasRef={canvasElementRef} ref={canvasUtilsRef} />
+						<Canvas ref={canvasUtilsRef} />
 					</div>
 				</section>
 			</div>

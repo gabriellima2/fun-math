@@ -6,6 +6,7 @@ import React, {
 } from "react";
 import { IconType } from "react-icons";
 
+import { CanvasUtils } from "../components/Draw/Canvas";
 import { cards, links, operators, exercises } from "../constants";
 
 export type Cards = typeof cards[0];
@@ -20,7 +21,17 @@ export type ClassName = string;
 
 export type Title = string;
 
+export type DefaultRefType<T> = null | T;
+
 export type CanvasEvent = MouseEvent | globalThis.MouseEvent;
+
+export type CanvasElement = DefaultRefType<HTMLCanvasElement>;
+
+export type CanvasUtilsRef = DefaultRefType<CanvasUtils>;
+
+export type P = object;
+
+export type ComponentType = React.ComponentType<P>;
 
 export type WithChildren<T = unknown> = {
 	children: ReactNode;
@@ -37,7 +48,7 @@ export interface ButtonDefaultProps extends WithChildren {
 	className?: ClassName;
 	title?: Title;
 	disabled?: boolean;
-	onClick?: (param: unknown) => void;
+	onClick?: (param?: MouseEvent<HTMLButtonElement>) => void;
 }
 
 export interface LinkDefaultProps extends WithChildren {
@@ -62,14 +73,6 @@ export interface DrawingTool {
 	width: number;
 }
 
-export type P = object;
-
-export type ComponentType = React.ComponentType<P>;
-
 export interface Props extends WithChildren {
 	className?: ClassName;
 }
-
-export type DefaultRefType<T> = null | T;
-
-export type CanvasElement = DefaultRefType<HTMLCanvasElement>;

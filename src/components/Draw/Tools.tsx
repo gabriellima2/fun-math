@@ -5,7 +5,7 @@ import { MainButton } from "../Buttons";
 import { Range } from "../Range";
 import { Icon } from "../Icon";
 
-import { CanvasUtilsRef } from "./Canvas";
+import { CanvasUtils } from "./Canvas";
 import { CanvasRef, ContextRef } from "../../types/hooks";
 
 import { tools } from "../../constants";
@@ -13,7 +13,7 @@ import { tools } from "../../constants";
 interface ToolsProps {
 	canvasRef: CanvasRef;
 	contextRef: ContextRef;
-	clearCanvas: () => void;
+	canvasUtils: CanvasUtils;
 }
 
 interface ToolButtonsProps {
@@ -47,6 +47,8 @@ export const Tools = (props: ToolsProps) => {
 	const { currentTool, changeCurrentTool, changeColor, changeWidth, clear } =
 		useCanvasSuperset(props.canvasRef, props.contextRef);
 
+	console.log(props);
+
 	return (
 		<section
 			aria-controls="to-draw"
@@ -71,7 +73,7 @@ export const Tools = (props: ToolsProps) => {
 			<MainButton
 				type="button"
 				title="Limpar rabiscos"
-				onClick={props.clearCanvas}
+				onClick={() => props.canvasUtils.clearCanvas()}
 				className="rounded-md p-[10px] md:p-3 text-2xs md:text-xs uppercase tracking-wider"
 			>
 				Limpar
