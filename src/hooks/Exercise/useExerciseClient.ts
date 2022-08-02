@@ -10,17 +10,32 @@ import {
 	isFloat,
 } from "../../utils/handleNumbers";
 
-const MIN_DECIMAL_PLACES = 3;
-
 type NumberState = number | null;
+
+interface Limitations {
+	max: number;
+	min: number;
+}
 
 interface NumbersData {
 	firstNumber: NumberState;
 	secondNumber: NumberState;
-	solution: NumberState;
+	result: NumberState;
 }
 
-const getCalculationResultByOperatorType = {
+const MIN_DECIMAL_PLACES = 3;
+
+const DEFAULT_LIMITATIONS: Limitations = {
+	max: 100,
+	min: 1,
+};
+
+const SPECIFIC_LIMITATIONS: Limitations = {
+	max: 80,
+	min: 10,
+};
+
+const calculationByOperators = {
 	[operators.type.addition]: (firstNumber: number, secondNumber: number) =>
 		firstNumber + secondNumber,
 	[operators.type.subtraction]: (firstNumber: number, secondNumber: number) =>
@@ -32,11 +47,11 @@ const getCalculationResultByOperatorType = {
 };
 
 export function useExerciseClient(operator: SelectedOperator): ExerciseMode {
-	const [numbersData, setNumbersData] = useState<NumbersData>({
-		firstNumber: null,
-		secondNumber: null,
-		solution: null,
-	} as NumbersData);
+	const [numbersData, setNumbersData] = useState<NumbersData>(
+		{} as NumbersData
+	);
+
+	const getCalculationResult = calculationByOperators[operator.id];
 
 	const isDivisionOrMultiply = () => {
 		return (
@@ -45,37 +60,44 @@ export function useExerciseClient(operator: SelectedOperator): ExerciseMode {
 		);
 	};
 
-	const getCorrectSolution = (firstNumber: number, secondNumber: number) => {
-		const getCalculationResult =
-			getCalculationResultByOperatorType[operator.id];
+	const handleResult = (firstNumber: number, secondNumber: number) => {
+		const calculationResult = getCalculationResult(
+			firstNumber,
+			secondNumber
+		).toString();
 
-		const correctResult = getCalculationResult(firstNumber, secondNumber);
-
-		if (isFloat(correctResult.toString())) {
-			return Number(
-				limitDecimalPlaces(correctResult.toString(), MIN_DECIMAL_PLACES)
-			);
+		if (isFloat(calculationResult)) {
+			return Number(limitDecimalPlaces(calculationResult, MIN_DECIMAL_PLACES));
 		}
 
-		return correctResult;
+		return Number(calculationResult);
+	};
+
+	const generateNumber = (limitations: Limitations) => {
+		return generateRandomNumber(limitations.max, limitations.min, Math);
 	};
 
 	const getDataForExercise = () => {
-		const generatedFirstNumber = generateRandomNumber(100, 1, Math);
-		const generatedSecondNumber = generateRandomNumber(
-			generatedFirstNumber,
-			1,
-			Math
-		);
-		const solution = getCorrectSolution(
-			generatedFirstNumber,
-			generatedSecondNumber
-		);
+		let firstNumber: number;
+		let secondNumber: number;
+
+		if (isDivisionOrMultiply()) {
+			firstNumber = generateNumber(SPECIFIC_LIMITATIONS);
+			secondNumber = generateNumber({ max: SPECIFIC_LIMITATIONS.min, min: 2 });
+		} else {
+			firstNumber = generateNumber(DEFAULT_LIMITATIONS);
+			secondNumber = generateNumber({
+				...DEFAULT_LIMITATIONS,
+				max: firstNumber,
+			});
+		}
+
+		const result = handleResult(firstNumber, secondNumber);
 
 		setNumbersData({
-			firstNumber: generatedFirstNumber,
-			secondNumber: generatedSecondNumber,
-			solution,
+			firstNumber,
+			secondNumber,
+			result,
 		});
 	};
 
@@ -84,7 +106,7 @@ export function useExerciseClient(operator: SelectedOperator): ExerciseMode {
 	return {
 		text: `Qual o resultado de ${numbersData.firstNumber} ${operator.symbol} ${numbersData.secondNumber}?`,
 		tip: null,
-		solution: numbersData.solution?.toString(),
+		result: numbersData.result?.toString() || "",
 		getNextExercise: getDataForExercise,
 	};
 }

@@ -66,8 +66,6 @@ export const ExerciseContent = (props: ExerciseContentProps) => {
 	const [typedAnswer, setTypedAnswer] = useState("");
 	const { currentExercise } = useContext(CurrentExerciseContext);
 
-	console.log(props);
-
 	const preparationsForTheNextExercise = () => {
 		setTypedAnswer("");
 		exercise.clearUserAnswerIsCorrect();
@@ -82,7 +80,7 @@ export const ExerciseContent = (props: ExerciseContentProps) => {
 		}
 
 		debounce(
-			() => exercise.checkUserAnswer(typedAnswer, currentExercise.solution),
+			() => exercise.checkUserAnswer(typedAnswer, currentExercise.result),
 			950
 		);
 	}, [typedAnswer]);

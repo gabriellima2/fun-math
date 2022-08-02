@@ -22,10 +22,7 @@ const Client = (props: ClientProps) => {
 	const { addCurrentExercise } = useContext(CurrentExerciseContext);
 	const newExercise = useExerciseClient(props.operator);
 
-	const newExerciseMemoized = useMemo(
-		() => newExercise,
-		[newExercise.solution]
-	);
+	const newExerciseMemoized = useMemo(() => newExercise, [newExercise.result]);
 
 	// Usa-se o Objeto Memoizado para evitar loops, mas com dados atualizados.
 	useEffect(() => {

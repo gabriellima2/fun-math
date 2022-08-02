@@ -14,6 +14,6 @@ export interface CanvasStyle {
 export interface ExerciseMode {
 	text: string;
 	tip: string | null;
-	solution: string;
+	result: string;
 	getNextExercise: () => void;
 }

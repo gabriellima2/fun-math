@@ -4,7 +4,7 @@ import { isFloat, replaceCommaWithDot } from "../../utils/handleNumbers";
 
 export interface Exercise {
 	userAnswerIsCorrect: boolean | undefined;
-	checkUserAnswer: (userAnswer: string, solution: string) => void;
+	checkUserAnswer: (userAnswer: string, result: string) => void;
 	clearUserAnswerIsCorrect: () => void;
 }
 
@@ -15,16 +15,18 @@ export function useExercise(): Exercise {
 
 	const clearUserAnswerIsCorrect = () => setUserAnswerIsCorrect(undefined);
 
-	const checkUserAnswer = (userAnswer: string, solution: string) => {
+	const checkUserAnswer = (userAnswer: string, result: string) => {
 		if (userAnswer === "") return;
 
 		if (isFloat(userAnswer)) {
 			const userAnswerFormatted = replaceCommaWithDot(userAnswer);
 
-			return setUserAnswerIsCorrect(userAnswerFormatted === solution);
+			return setUserAnswerIsCorrect(userAnswerFormatted == result);
 		}
 
-		setUserAnswerIsCorrect(userAnswer === solution);
+		console.log(userAnswer, result);
+
+		setUserAnswerIsCorrect(userAnswer == result);
 	};
 
 	return {
