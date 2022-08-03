@@ -1,9 +1,9 @@
 import { NextPage } from "next";
-
 import React, { useContext, useRef, useState } from "react";
 
 import { Canvas } from "../components/Draw";
 import { UseExerciseMode, ExerciseContent } from "../components/Exercise";
+import { Helpers } from "../components/Helpers";
 import { WithOptionSelected } from "../HOC/WithOptionSelected";
 
 import { UserSelectedOptionsContext } from "../contexts/UserSelectedOptionsContext";
@@ -27,6 +27,7 @@ const Exercises: NextPage = () => {
 					) : (
 						<UseExerciseMode.Client operator={userSelectedOptions.operator} />
 					)}
+					<Helpers />
 					<ExerciseContent canvasUtilsRef={canvasUtilsRef} />
 				</main>
 

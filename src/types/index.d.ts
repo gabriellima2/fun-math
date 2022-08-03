@@ -13,9 +13,9 @@ export type Cards = typeof cards[0];
 
 export type Links = typeof links[0];
 
-export type Operators = typeof operators.data[0];
+export type OperatorType = typeof operators.data[0];
 
-export type Exercises = typeof exercises.data[0];
+export type ExerciseType = typeof exercises.data[0];
 
 export type ClassName = string;
 

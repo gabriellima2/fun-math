@@ -1,12 +1,12 @@
 import { createContext, useState } from "react";
 
-import { Operators, Exercises, WithChildren } from "../types";
+import { OperatorType, ExerciseType, WithChildren } from "../types";
 import { exercises } from "../constants";
 import { getOperatorData } from "../utils/getOperatorData";
 import { getExerciseData } from "../utils/getExerciseData";
 
-export type SelectedOperator = Pick<Operators, "id" | "symbol">;
-export type SelectedExercise = Exercises;
+export type SelectedOperator = Pick<OperatorType, "id" | "symbol">;
+export type SelectedExercise = ExerciseType;
 
 export interface UserSelectedOptions {
 	operator: SelectedOperator | null;

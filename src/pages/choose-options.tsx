@@ -6,6 +6,7 @@ import { Operators } from "../components/Operators";
 import { ExerciseTypes } from "../components/Exercise";
 import { BackButton, MainButton } from "../components/Buttons";
 import { Icon } from "../components/Icon";
+import { Helpers } from "../components/Helpers";
 
 import { Customized } from "../layouts/Customized";
 
@@ -58,7 +59,7 @@ const ChooseOptions = () => {
 									>
 										<Operators.List
 											showOperatorName={true}
-											sizeImage="w-8 md:w-12 h-8 md:h-12"
+											imageSize="w-8 md:w-12 h-8 md:h-12"
 										/>
 									</Operators.Container>
 								</>

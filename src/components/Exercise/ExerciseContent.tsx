@@ -9,7 +9,6 @@ import { useExercise } from "../../hooks/Exercise/useExercise";
 
 import { TextButton } from "../../components/Buttons";
 import { Status } from "../../components/Status";
-import { Helpers } from "../../components/Helpers";
 import { Input } from "../../components/Inputs";
 
 import { CurrentExerciseContext } from "../../contexts/CurrentExerciseContext";
@@ -87,13 +86,9 @@ export const ExerciseContent = (props: ExerciseContentProps) => {
 
 	return (
 		<>
-			<section className="flex-center--row gap-2">
-				<Helpers />
-
-				<h1 className="text-3xl md:text-4xl text-center">
-					{currentExercise.text}
-				</h1>
-			</section>
+			<h1 className="text-3xl md:text-4xl text-center">
+				{currentExercise.text}
+			</h1>
 			<section className="flex-center--row gap-3">
 				<InsertAnswer
 					value={typedAnswer}

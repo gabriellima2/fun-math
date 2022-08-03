@@ -24,8 +24,6 @@ export function useExercise(): Exercise {
 			return setUserAnswerIsCorrect(userAnswerFormatted == result);
 		}
 
-		console.log(userAnswer, result);
-
 		setUserAnswerIsCorrect(userAnswer == result);
 	};
 
