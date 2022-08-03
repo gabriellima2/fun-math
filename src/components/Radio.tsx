@@ -2,14 +2,14 @@ import { RadioGroup } from "@headlessui/react";
 
 import { ClassName, WithChildren } from "../types";
 
-interface GroupProps extends WithChildren {
+export interface GroupProps extends WithChildren {
 	label: string;
 	currentActiveOption: string | null;
 	handleChange: (param: string) => void;
 	className?: ClassName;
 }
 
-interface OptionProps extends WithChildren {
+export interface OptionProps extends WithChildren {
 	value: string;
 	className?: ClassName;
 }

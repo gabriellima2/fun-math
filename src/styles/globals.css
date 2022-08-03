@@ -14,15 +14,16 @@ body h1 {
 	@apply text-pink-200 font-accent;
 }
 
-body::-webkit-scrollbar{
+::-webkit-scrollbar {
 	width: 6px;
+	height: 4px;
 }
 
-body::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
 	@apply bg-black-300;
 }
 
-body::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
 	@apply bg-white/60;
 }
 
@@ -63,7 +64,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .options__text {
-	@apply  font-accent text-lg md:text-xl tracking-wide capitalize;
+	@apply font-accent text-lg md:text-xl tracking-wide capitalize;
 }
 
 .disabled {
@@ -72,7 +73,6 @@ body::-webkit-scrollbar-thumb {
 
 .scroll--block {
 	@apply overflow-hidden lg:overflow-auto;
-
 }
 
 ::-webkit-color-swatch {
@@ -89,7 +89,6 @@ input[type="range"] {
 
 input[type="range"]::-webkit-slider-thumb {
 	@apply appearance-none w-4 h-4 border-none rounded-full bg-accents-pink-900 cursor-ew-resize;
-
 }
 
 input[type="range"]::-moz-range-thumb {
