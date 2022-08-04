@@ -3,16 +3,19 @@ import React from "react";
 
 import { Radio, GroupProps, OptionProps } from "./Radio";
 
-import { ClassName } from "../types";
+import { ClassName, OperatorType } from "../types";
 import { operators } from "../constants";
 
 type ContainerProps = Omit<GroupProps, "label">;
 
-interface ListProps {
+interface ItemProps {
+	operator: OperatorType;
 	className?: ClassName;
 	showOperatorName: boolean;
-	sizeImage: ClassName;
+	imageSize: ClassName;
 }
+
+interface ListProps extends Omit<ItemProps, "operator"> {}
 
 const Container = (props: ContainerProps) => (
 	<Radio.Group
@@ -25,31 +28,33 @@ const Container = (props: ContainerProps) => (
 	</Radio.Group>
 );
 
-const List = React.memo((props: ListProps) => (
-	<>
-		{operators.data.map((operator) => (
-			<Radio.Option
-				value={operator.id}
-				key={operator.id}
-				className={props.className}
-			>
-				<>
-					<div className={`${props.sizeImage} relative`}>
-						<Image
-							src={operator.image}
-							alt={`Operador de ${operator.name}`}
-							layout="fill"
-						/>
-					</div>
-					{props.showOperatorName && (
-						<span className="hidden options__text sm:inline">
-							{operator.name}
-						</span>
-					)}
-				</>
-			</Radio.Option>
-		))}
-	</>
-));
+const Item = ({ operator, ...props }: ItemProps) => (
+	<Radio.Option value={operator.id} className={props.className}>
+		<>
+			<div className={`${props.imageSize} relative`}>
+				<Image
+					src={operator.image}
+					alt={`Operador de ${operator.name}`}
+					layout="fill"
+				/>
+			</div>
+			{props.showOperatorName && (
+				<span className="uppercase hidden options__text sm:inline">
+					{operator.name}
+				</span>
+			)}
+		</>
+	</Radio.Option>
+);
+
+const List = React.memo((props: ListProps) => {
+	return (
+		<>
+			{operators.data.map((operator) => (
+				<Item operator={operator} {...props} key={operator.id} />
+			))}
+		</>
+	);
+});
 
 export const Operators = { Container, List };
