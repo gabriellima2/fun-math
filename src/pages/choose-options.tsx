@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { BsArrowRightShort, BsFillExclamationCircleFill } from "react-icons/bs";
 
 import { Operators } from "../components/Operators";
-import { ExerciseTypes } from "../components/Exercise";
+import { Exercises } from "../components/Exercise";
 import { BackButton, MainButton } from "../components/Buttons";
 import { Icon } from "../components/Icon";
 import { Helpers } from "../components/Helpers";
@@ -43,7 +43,7 @@ const ChooseOptions = () => {
 						</h1>
 						<fieldset className="container bg-black-600/80">
 							<h2 className="subtitle">Tipo de exercícios</h2>
-							<ExerciseTypes />
+							<Exercises />
 						</fieldset>
 
 						<fieldset aria-live="polite" className="container bg-black-600/80">

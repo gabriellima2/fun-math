@@ -4,14 +4,14 @@ import { useQuery, gql } from "@apollo/client";
 import { CurrentExerciseContext } from "../../contexts/CurrentExerciseContext";
 import { useExerciseClient } from "../../hooks/Exercise/useExerciseClient";
 
-import { OperatorType } from "../../types";
+import { SelectedOperator } from "../../contexts/UserSelectedOptionsContext";
 
 interface Children {
 	children?: ReactNode;
 }
 
 interface ClientProps extends Children {
-	operator: OperatorType;
+	operator: SelectedOperator;
 }
 
 interface FetchProps extends Children {

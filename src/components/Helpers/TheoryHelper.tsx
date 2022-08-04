@@ -4,9 +4,6 @@ import { gql, useLazyQuery } from "@apollo/client";
 
 import { Loading, Error } from "../Infra";
 import { Operators } from "../Operators";
-import { Radio } from "../Radio";
-
-import { operators } from "../../constants";
 
 interface OperatorInformation {
 	aboutOperator: {

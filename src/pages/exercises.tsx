@@ -16,16 +16,20 @@ const Exercises: NextPage = () => {
 	const canvasElementRef = useRef<CanvasElement>(null);
 	const { userSelectedOptions } = useContext(UserSelectedOptionsContext);
 
-	if (!userSelectedOptions) return null;
+	if (Object.keys(userSelectedOptions).length <= 0) return null;
 
 	return (
 		<>
 			<div className="flex-center--col gap-8 px-2 py-6">
-				<main className="w-full flex-center--col gap-2 sticky top-0 py-3 bg-main/60">
+				<main
+					aria-live="polite"
+					aria-atomic="true"
+					className="w-full flex-center--col gap-2 sticky top-0 py-3 bg-main/60"
+				>
 					{userSelectedOptions.exercise?.mode == exercises.mode.fetch ? (
 						<UseExerciseMode.Fetch query={null} />
 					) : (
-						<UseExerciseMode.Client operator={userSelectedOptions.operator} />
+						<UseExerciseMode.Client operator={userSelectedOptions.operator!} />
 					)}
 					<Helpers />
 					<ExerciseContent canvasUtilsRef={canvasUtilsRef} />

@@ -1,6 +1,6 @@
 import { RadioGroup } from "@headlessui/react";
 
-import { ClassName, WithChildren } from "../types";
+import { ClassName, WithChildren } from "../../../types";
 
 export interface GroupProps extends WithChildren {
 	label: string;

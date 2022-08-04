@@ -44,10 +44,8 @@ const ToolButtons = (props: ToolButtonsProps) => (
 );
 
 export const Tools = (props: ToolsProps) => {
-	const { currentTool, changeCurrentTool, changeColor, changeWidth, clear } =
+	const { currentTool, changeCurrentTool, changeColor, changeWidth } =
 		useCanvasSuperset(props.canvasRef, props.contextRef);
-
-	console.log(props);
 
 	return (
 		<section
