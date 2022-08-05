@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { useState, useEffect } from "react";
 import { gql, useLazyQuery } from "@apollo/client";
 
