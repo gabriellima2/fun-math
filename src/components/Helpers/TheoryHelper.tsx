@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { gql, useLazyQuery } from "@apollo/client";
+import { gql } from "@apollo/client";
 
 import { Loading, Error } from "../Infra";
 import { Operators } from "../Operators";
+import { useLazyFetch } from "../../hooks/useFetch";
 
 interface OperatorInformation {
 	aboutOperator: {
@@ -40,20 +41,22 @@ const AboutOperator = ({ data }: AboutOperatorProps) => (
 const ButtonText = () => <>Sobre os operadores</>;
 
 const Content = () => {
-	const [currentOperator, setCurrentOperator] = useState("addition");
-	const [getOperatorInformation, { loading, error, data }] = useLazyQuery<
+	const [currentOperatorName, setCurrentOperatorName] = useState("addition");
+	const [getOperatorInformation, { loading, error, data }] = useLazyFetch<
 		OperatorInformation,
 		OperatorInformationVars
-	>(GET_OPERATOR_INFORMATION, { variables: { name: currentOperator } });
+	>(GET_OPERATOR_INFORMATION, {
+		variables: { name: currentOperatorName },
+	});
 
 	const changeCurrentOperator = (operator: string) =>
-		setCurrentOperator(operator);
+		setCurrentOperatorName(operator);
 
 	useEffect(() => {
 		const getData = async () => await getOperatorInformation();
 
 		getData();
-	}, [currentOperator]);
+	}, [currentOperatorName]);
 
 	if (error) return <Error message="Ocorreu um erro, tente novamente!" />;
 
@@ -62,7 +65,7 @@ const Content = () => {
 			<section>
 				<Operators.Container
 					handleChange={changeCurrentOperator}
-					currentActiveOption={currentOperator}
+					currentActiveOption={currentOperatorName}
 					className="flex gap-2 overflow-x-scroll p-2 md:p-3 pb-3 md:pb-4 rounded-md bg-black-600/90"
 				>
 					<Operators.List

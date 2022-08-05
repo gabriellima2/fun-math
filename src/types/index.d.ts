@@ -7,9 +7,7 @@ import React, {
 import { IconType } from "react-icons";
 
 import { CanvasUtils } from "../components/Draw/Canvas";
-import { cards, links, operators, exercises } from "../constants";
-
-export type Cards = typeof cards[0];
+import { links, operators, exercises } from "../constants";
 
 export type Links = typeof links[0];
 
