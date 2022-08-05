@@ -23,11 +23,13 @@ const list = [
 		id: typeOfTools.pencil,
 		name: "Lápis",
 		icon: BsFillPencilFill,
+		action: "Fazer rabiscos",
 	},
 	{
 		id: typeOfTools.eraser,
 		name: "Borracha",
 		icon: BsFillEraserFill,
+		action: "Apagar rabiscos",
 	},
 ];
 

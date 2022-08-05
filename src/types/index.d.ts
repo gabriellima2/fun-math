@@ -1,17 +1,35 @@
-import { MouseEvent, ReactNode } from "react";
+import React, {
+	InputHTMLAttributes,
+	MouseEvent,
+	ReactNode,
+	ChangeEvent,
+} from "react";
 import { IconType } from "react-icons";
 
-import { cards, links } from "../constants";
-
-export type Cards = typeof cards[0];
+import { CanvasUtils } from "../components/Draw/Canvas";
+import { links, operators, exercises } from "../constants";
 
 export type Links = typeof links[0];
+
+export type OperatorType = typeof operators.data[0];
+
+export type ExerciseType = typeof exercises.data[0];
 
 export type ClassName = string;
 
 export type Title = string;
 
+export type DefaultRefType<T> = null | T;
+
 export type CanvasEvent = MouseEvent | globalThis.MouseEvent;
+
+export type CanvasElement = DefaultRefType<HTMLCanvasElement>;
+
+export type CanvasUtilsRef = DefaultRefType<CanvasUtils>;
+
+export type P = object;
+
+export type ComponentType = React.ComponentType<P>;
 
 export type WithChildren<T = unknown> = {
 	children: ReactNode;
@@ -27,7 +45,8 @@ export interface ButtonDefaultProps extends WithChildren {
 	type: "button" | "submit" | "reset" | undefined;
 	className?: ClassName;
 	title?: Title;
-	onClick?: (param: unknown) => void;
+	disabled?: boolean;
+	onClick?: (param?: MouseEvent<HTMLButtonElement>) => void;
 }
 
 export interface LinkDefaultProps extends WithChildren {
@@ -36,8 +55,22 @@ export interface LinkDefaultProps extends WithChildren {
 	title?: Title;
 }
 
+export interface InputDefaultProps extends WithChildren, InputHTMLAttributes {
+	type?: HTMLInputTypeAttribute | undefined;
+	id: string;
+	name: string;
+	value: string;
+	placeholder?: string;
+	className?: ClassName;
+	onChange: (param: ChangeEvent<HTMLInputElement>) => unknown;
+}
+
 export interface DrawingTool {
 	type: string;
 	color: string;
 	width: number;
+}
+
+export interface Props extends WithChildren {
+	className?: ClassName;
 }

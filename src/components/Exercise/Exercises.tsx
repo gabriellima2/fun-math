@@ -1,22 +1,24 @@
 import React, { useContext } from "react";
 
-import { Radio } from "./Radio";
+import { Radio } from "../Infra/Accessibility/Radio";
 
-import { UserChoicesContext } from "../contexts/UserChoicesContext";
+import { UserSelectedOptionsContext } from "../../contexts/UserSelectedOptionsContext";
 
-import { exerciseTypes } from "../constants";
+import { exercises } from "../../constants";
 
-export const ExerciseTypes = React.memo(() => {
-	const { userChoices, selectExerciseType } = useContext(UserChoicesContext);
+export const Exercises = React.memo(() => {
+	const { userSelectedOptions, selectExercise } = useContext(
+		UserSelectedOptionsContext
+	);
 
 	return (
 		<Radio.Group
 			label="Tipos de exercícios disponíveis"
-			handleChange={selectExerciseType}
-			currentActiveOption={userChoices.exerciseType}
+			handleChange={selectExercise}
+			currentActiveOption={userSelectedOptions.exercise?.id || null}
 			className="flex flex-col gap-2 sm:flex-row"
 		>
-			{exerciseTypes.map((exercise) => (
+			{exercises.data.map((exercise) => (
 				<Radio.Option
 					value={exercise.id}
 					key={exercise.id}

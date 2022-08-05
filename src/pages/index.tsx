@@ -1,14 +1,31 @@
+import { gql } from "@apollo/client";
 import type { NextPage } from "next";
+import { GetStaticProps } from "next";
 import { BsArrowRight } from "react-icons/bs";
 
 import { Card } from "../components/Card";
 import { TextLink, MainLink } from "../components/Links";
 
 import { Common } from "../layouts/Common";
+import { client } from "../lib/client";
 
-import { cards } from "../constants";
+export interface CardContent {
+	title: string;
+	description: string;
+	icon: {
+		url: string;
+	};
+}
 
-const Home: NextPage = () => {
+interface CardData {
+	cards: CardContent[];
+}
+
+type HomeProps = CardData;
+
+const SECONDS_TO_REVALIDATE = 60;
+
+const Home: NextPage<HomeProps> = ({ cards }) => {
 	return (
 		<Common>
 			<main
@@ -47,8 +64,8 @@ const Home: NextPage = () => {
 					</section>
 					<section className="mt-12 mb-8">
 						<ul className="flex-center--col md:flex-row md:items-center lg:grid lg:grid-cols-2 lg:grid-rows-4 lg:place-items-center gap-4 lg:gap-3">
-							{cards.map((card) => (
-								<Card {...card} key={card.id} />
+							{cards.map((card, index) => (
+								<Card {...card} index={index} key={card.title} />
 							))}
 						</ul>
 					</section>
@@ -63,3 +80,26 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export const getStaticProps: GetStaticProps = async () => {
+	const { data } = await client.query<CardData>({
+		query: gql`
+			query GetCards {
+				cards {
+					title
+					description
+					icon {
+						url
+					}
+				}
+			}
+		`,
+	});
+
+	return {
+		props: {
+			cards: data.cards,
+		},
+		revalidate: SECONDS_TO_REVALIDATE,
+	};
+};

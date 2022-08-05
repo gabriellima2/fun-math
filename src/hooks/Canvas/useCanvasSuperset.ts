@@ -11,7 +11,6 @@ interface CanvasSuperset {
 	changeColor: (color: string) => void;
 	changeWidth: (width: number) => void;
 	changeCurrentTool: (tool: string) => void;
-	clear: () => void;
 }
 
 export function useCanvasSuperset(
@@ -47,20 +46,10 @@ export function useCanvasSuperset(
 		});
 	}, [currentTool]);
 
-	const clear = () => {
-		const canvas = canvasRef.current;
-		const ctx = canvas?.getContext("2d");
-
-		if (!canvas || !ctx) return;
-
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
-	};
-
 	return {
 		currentTool,
 		changeColor,
 		changeWidth,
 		changeCurrentTool,
-		clear,
 	};
 }

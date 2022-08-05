@@ -10,7 +10,7 @@ export function useBasicCanvas(canvasRef: CanvasRef) {
 
 	const setCanvasSize = (canvas: HTMLCanvasElement) => {
 		const clientWidth = window.innerWidth;
-		const clientHeight = window.innerHeight / 1.3;
+		const clientHeight = window.innerHeight / 1.4;
 
 		canvas.width = clientWidth;
 		canvas.height = clientHeight;

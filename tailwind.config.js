@@ -16,6 +16,7 @@ module.exports = {
 					100: "#D2CEDC",
 					200: "#D9CDEA",
 				},
+				util: "#171717B3",
 				black: {
 					100: "#292929",
 					200: "#262626",
@@ -34,10 +35,15 @@ module.exports = {
 						900: "#D2278E",
 					},
 				},
+				canvas: {
+					area: "#262626",
+					tools: "#171717",
+				},
 			},
 			fontFamily: {
 				main: ["Poppins", "sans-serif"],
 				accent: ["Staatliches", "cursive"],
+				util: ["Coda, cursive"],
 			},
 			fontSize: {
 				"2xs": ".6rem",

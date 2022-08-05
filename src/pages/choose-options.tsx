@@ -2,36 +2,27 @@ import { useContext } from "react";
 import { useRouter } from "next/router";
 import { BsArrowRightShort, BsFillExclamationCircleFill } from "react-icons/bs";
 
-import { OperatorsList } from "../components/OperatorsList";
-import { ExerciseTypes } from "../components/ExerciseTypes";
+import { Operators } from "../components/Operators";
+import { Exercises } from "../components/Exercise";
 import { BackButton, MainButton } from "../components/Buttons";
+import { Icon } from "../components/Icon";
+import { Helpers } from "../components/Helpers";
 
 import { Customized } from "../layouts/Customized";
 
-import { UserChoicesContext } from "../contexts/UserChoicesContext";
-import { exerciseTypesID } from "../constants";
-import { Icon } from "../components/Icon";
+import { UserSelectedOptionsContext } from "../contexts/UserSelectedOptionsContext";
+import { exercises } from "../constants";
 
 const ChooseOptions = () => {
 	const router = useRouter();
-	const { userChoices } = useContext(UserChoicesContext);
-
-	const isDisabled = () => {
-		if (userChoices.exerciseType) {
-			if (userChoices.exerciseType === exerciseTypesID.problem) {
-				return false;
-			}
-
-			if (userChoices.operatorType) {
-				return false;
-			}
-		}
-
-		return true;
-	};
+	const {
+		userSelectedOptions,
+		selectOperator,
+		userSelectedOptionsAreNotValid,
+	} = useContext(UserSelectedOptionsContext);
 
 	const handleSubmit = () => {
-		if (isDisabled()) return;
+		if (userSelectedOptionsAreNotValid()) return;
 
 		router.push("/exercises");
 	};
@@ -52,14 +43,25 @@ const ChooseOptions = () => {
 						</h1>
 						<fieldset className="container bg-black-600/80">
 							<h2 className="subtitle">Tipo de exercícios</h2>
-							<ExerciseTypes />
+							<Exercises />
 						</fieldset>
 
 						<fieldset aria-live="polite" className="container bg-black-600/80">
-							{userChoices.exerciseType !== exerciseTypesID.problem ? (
+							{userSelectedOptions.exercise?.id !== exercises.type.problem ? (
 								<>
 									<h2 className="subtitle">Tipo de operador</h2>
-									<OperatorsList />
+									<Operators.Container
+										handleChange={selectOperator}
+										currentActiveOption={
+											userSelectedOptions.operator?.id || null
+										}
+										className="grid grid-cols-[repeat(2,_1fr)] grid-rows-2 gap-2"
+									>
+										<Operators.List
+											showOperatorName={true}
+											imageSize="w-8 md:w-12 h-8 md:h-12"
+										/>
+									</Operators.Container>
 								</>
 							) : (
 								<h2 className="subtitle mt-5 flex-center--row gap-4">
@@ -79,7 +81,7 @@ const ChooseOptions = () => {
 							<MainButton
 								type="submit"
 								title="Começar"
-								disabled={isDisabled()}
+								disabled={userSelectedOptionsAreNotValid()}
 								className="p-2 sm:p-4 md:px-5 rounded-2xl text-base capitalize"
 								icon={{
 									element: BsArrowRightShort,
