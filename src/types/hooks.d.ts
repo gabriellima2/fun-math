@@ -5,9 +5,9 @@ import { CanvasElement } from ".";
 
 export type CanvasRef = MutableRefObject<CanvasElement>;
 
-export type ContextRef = MutableRefObject<CanvasRenderingContext2D | null>;
+export type Context2DRef = MutableRefObject<CanvasRenderingContext2D | null>;
 
-export interface CanvasStyle {
+export interface StylesForCanvasContext {
 	width: number;
 	color: string;
 }

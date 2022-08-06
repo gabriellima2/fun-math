@@ -1,16 +1,22 @@
 import { useEffect, useRef } from "react";
 
-import { CanvasRef } from "../../types/hooks";
-import { setCanvasContext } from "../../utils/setCanvasContext";
+import {
+	CanvasRef,
+	Context2DRef,
+	StylesForCanvasContext,
+} from "../../types/hooks";
 
 import { tools } from "../../constants";
 
+const MARGIN_Y = 1.4;
+
+// Adiciona configurações básicas do Canvas.
 export function useBasicCanvas(canvasRef: CanvasRef) {
-	const contextRef = useRef<null | CanvasRenderingContext2D>(null);
+	const context2DRef = useRef<null | CanvasRenderingContext2D>(null);
 
 	const setCanvasSize = (canvas: HTMLCanvasElement) => {
 		const clientWidth = window.innerWidth;
-		const clientHeight = window.innerHeight / 1.4;
+		const clientHeight = window.innerHeight / MARGIN_Y;
 
 		canvas.width = clientWidth;
 		canvas.height = clientHeight;
@@ -19,7 +25,7 @@ export function useBasicCanvas(canvasRef: CanvasRef) {
 		canvas.style.height = `${clientHeight}px;`;
 	};
 
-	// Faz "backup" do conteúdo do canvas e redimensiona o canvas.
+	// Faz "backup" do conteúdo do canvas e redimensiona-o.
 	const handleResized = (
 		canvas: HTMLCanvasElement,
 		context: CanvasRenderingContext2D
@@ -33,6 +39,24 @@ export function useBasicCanvas(canvasRef: CanvasRef) {
 		context.putImageData(canvasBackup, 0, 0);
 	};
 
+	// Adiciona novos estilos ao Canvas atualizando o Contexto2D dele.
+	const updateCanvasContext2D = (
+		canvasRef: CanvasRef,
+		context2DRef: Context2DRef,
+		styles: StylesForCanvasContext
+	) => {
+		const ctx = canvasRef.current?.getContext("2d");
+
+		if (!ctx) return;
+
+		ctx.scale(1, 1);
+		ctx.lineCap = "round";
+		ctx.strokeStyle = styles.color;
+		ctx.lineWidth = styles.width;
+
+		context2DRef.current = ctx;
+	};
+
 	useEffect(() => {
 		const canvas = canvasRef.current;
 		const context = canvas?.getContext("2d");
@@ -40,7 +64,7 @@ export function useBasicCanvas(canvasRef: CanvasRef) {
 		if (!canvas || !context) return;
 
 		setCanvasSize(canvas);
-		setCanvasContext(canvasRef, contextRef, {
+		updateCanvasContext2D(canvasRef, context2DRef, {
 			color: tools.initialPencil.color,
 			width: tools.initialPencil.width,
 		});
@@ -54,6 +78,7 @@ export function useBasicCanvas(canvasRef: CanvasRef) {
 	}, []);
 
 	return {
-		contextRef,
+		context2DRef,
+		updateCanvasContext2D,
 	};
 }

@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import { useCanvasSuperset } from "../../hooks/Canvas/";
 
 import { ColorPicker } from "../ColorPicker";
@@ -5,15 +7,27 @@ import { MainButton } from "../Buttons";
 import { Range } from "../Range";
 import { Icon } from "../Icon";
 
+import {
+	CanvasRef,
+	Context2DRef,
+	StylesForCanvasContext,
+} from "../../types/hooks";
 import { CanvasUtils } from "./Canvas";
-import { CanvasRef, ContextRef } from "../../types/hooks";
 
 import { tools } from "../../constants";
 
+interface Utils extends CanvasUtils {
+	updateCanvasContext2D: (
+		canvasRef: CanvasRef,
+		context2DRef: Context2DRef,
+		styles: StylesForCanvasContext
+	) => void;
+}
+
 interface ToolsProps {
 	canvasRef: CanvasRef;
-	contextRef: ContextRef;
-	canvasUtils: CanvasUtils;
+	context2DRef: Context2DRef;
+	utils: Utils;
 }
 
 interface ToolButtonsProps {
@@ -43,9 +57,17 @@ const ToolButtons = (props: ToolButtonsProps) => (
 	</>
 );
 
-export const Tools = (props: ToolsProps) => {
+export const Tools = ({ utils, ...props }: ToolsProps) => {
 	const { currentTool, changeCurrentTool, changeColor, changeWidth } =
-		useCanvasSuperset(props.canvasRef, props.contextRef);
+		useCanvasSuperset();
+
+	// Quando mudar algo adiciona os novos estilos ao contexto do canvas.
+	useEffect(() => {
+		utils.updateCanvasContext2D(props.canvasRef, props.context2DRef, {
+			color: currentTool.color,
+			width: currentTool.width,
+		});
+	}, [currentTool]);
 
 	return (
 		<section
@@ -71,7 +93,7 @@ export const Tools = (props: ToolsProps) => {
 			<MainButton
 				type="button"
 				title="Limpar rabiscos"
-				onClick={() => props.canvasUtils.clearCanvas()}
+				onClick={() => utils.clearCanvas()}
 				className="rounded-md p-[10px] md:p-3 text-2xs md:text-xs uppercase tracking-wider"
 			>
 				Limpar
