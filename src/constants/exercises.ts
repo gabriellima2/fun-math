@@ -35,4 +35,10 @@ const data: Exercise[] = [
 	},
 ];
 
-export const exercises = { type, data, mode };
+function search(id: string) {
+	const [exercise] = exercises.data.filter((exercise) => exercise.id === id);
+
+	return exercise;
+}
+
+export const exercises = { type, data, mode, search };

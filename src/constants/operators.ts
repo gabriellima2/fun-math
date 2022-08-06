@@ -44,4 +44,10 @@ const data = [
 	},
 ];
 
-export const operators = { type, data, calculations };
+function search(id: string) {
+	const [operator] = operators.data.filter((operator) => operator.id === id);
+
+	return operator;
+}
+
+export const operators = { type, data, calculations, search };
