@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useMemo, ReactNode } from "react";
-import { useQuery, gql } from "@apollo/client";
+
+import { useExerciseFetch, useExerciseClient } from "../../hooks/Exercise";
+
+import { Error, Loading } from "../Infra";
 
 import { CurrentExerciseContext } from "../../contexts/CurrentExerciseContext";
-import { useExerciseClient } from "../../hooks/Exercise/useExerciseClient";
-
 import { SelectedOperator } from "../../contexts/UserSelectedOptionsContext";
 
 interface Children {
@@ -15,32 +16,44 @@ interface ClientProps extends Children {
 }
 
 interface FetchProps extends Children {
-	query: ReturnType<typeof gql>;
+	queryName: string;
 }
 
+// Gerar exercícios no Client
 const Client = (props: ClientProps) => {
 	const { addCurrentExercise } = useContext(CurrentExerciseContext);
-	const newExercise = useExerciseClient(props.operator);
+	const { data, error } = useExerciseClient(props.operator);
 
-	const newExerciseMemoized = useMemo(() => newExercise, [newExercise.result]);
+	const dataMemoized = useMemo(() => data, [data?.result]);
 
-	// Usa-se o Objeto Memoizado para evitar loops, mas com dados atualizados.
+	// Usa-se o Objeto Memoizado para evitar loops, assim adicionando os dados atualizados.
 	useEffect(() => {
-		addCurrentExercise(newExerciseMemoized);
-	}, [newExerciseMemoized]);
+		if (!dataMemoized) return;
+
+		addCurrentExercise(dataMemoized);
+	}, [dataMemoized]);
+
+	if (error?.message) return <Error message={error.message} />;
 
 	return <>{props.children}</>;
 };
 
-const Fetch = (props: FetchProps) => {
+// Pegar exercícios de API
+const Fetch = ({ queryName, ...props }: FetchProps) => {
 	const { addCurrentExercise } = useContext(CurrentExerciseContext);
-	const { loading, error, data } = useQuery(props.query);
+	const { loading, error, data } = useExerciseFetch({ queryName });
 
-	useEffect(() => addCurrentExercise(data), []);
+	const dataMemoized = useMemo(() => data, [data?.result]);
 
-	if (error) return <h1>Error</h1>;
+	useEffect(() => {
+		if (!dataMemoized) return;
 
-	return <>{loading ? <h1>Loading</h1> : props.children}</>;
+		addCurrentExercise(dataMemoized);
+	}, [dataMemoized]);
+
+	if (error?.message) return <Error message={error.message} />;
+
+	return <>{loading ? <Loading /> : props.children}</>;
 };
 
 export const UseExerciseMode = { Client, Fetch };
