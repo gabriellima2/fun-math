@@ -1,3 +1,4 @@
+import { ApolloError } from "@apollo/client";
 import { MutableRefObject } from "react";
 
 import { CanvasElement } from ".";
@@ -12,8 +13,19 @@ export interface CanvasStyle {
 }
 
 export interface ExerciseMode {
+	id?: string;
 	text: string;
-	tip: string | null;
+	tip?: string;
 	result: string;
 	getNextExercise: () => void;
+}
+
+interface Error {
+	message: string;
+}
+
+export interface ExerciseModeReturn {
+	loading?: boolean;
+	error?: ApolloError | Error;
+	data?: ExerciseMode;
 }

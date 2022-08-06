@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { SelectedOperator } from "../../contexts/UserSelectedOptionsContext";
 
-import { ExerciseMode } from "../../types/hooks";
+import { ExerciseModeReturn } from "../../types/hooks";
 import { operators } from "../../constants";
 import {
 	generateRandomNumber,
@@ -46,7 +46,9 @@ const calculationByOperators = {
 		firstNumber * secondNumber,
 };
 
-export function useExerciseClient(operator: SelectedOperator): ExerciseMode {
+export function useExerciseClient(
+	operator: SelectedOperator
+): ExerciseModeReturn {
 	const [numbersData, setNumbersData] = useState<NumbersData>(
 		{} as NumbersData
 	);
@@ -103,10 +105,19 @@ export function useExerciseClient(operator: SelectedOperator): ExerciseMode {
 
 	useEffect(() => getDataForExercise(), []);
 
-	return {
+	if (!numbersData.result) {
+		return {
+			error: {
+				message: "Erro ao gerar exercício, verifique se escolheu as opções ",
+			},
+		};
+	}
+
+	const data = {
 		text: `Qual o resultado de ${numbersData.firstNumber} ${operator.symbol} ${numbersData.secondNumber}?`,
-		tip: null,
 		result: numbersData.result?.toString() || "",
 		getNextExercise: getDataForExercise,
 	};
+
+	return { data };
 }
