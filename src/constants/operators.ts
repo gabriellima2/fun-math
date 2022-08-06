@@ -1,9 +1,21 @@
+interface Numbers {
+	YNumber: number;
+	XNumber: number;
+}
+
 enum type {
-	addition = "addition",
 	subtraction = "subtraction",
+	addition = "addition",
 	division = "division",
 	multiply = "multiply",
 }
+
+const calculations = {
+	[type.subtraction]: ({ YNumber, XNumber }: Numbers) => YNumber - XNumber,
+	[type.addition]: ({ YNumber, XNumber }: Numbers) => YNumber + XNumber,
+	[type.division]: ({ YNumber, XNumber }: Numbers) => YNumber / XNumber,
+	[type.multiply]: ({ YNumber, XNumber }: Numbers) => YNumber * XNumber,
+};
 
 const data = [
 	{
@@ -32,4 +44,4 @@ const data = [
 	},
 ];
 
-export const operators = { type, data };
+export const operators = { type, data, calculations };
