@@ -54,8 +54,8 @@ export function useExerciseClient(
 	// Lida com o resultado do exercicio, fazendo um tratamento.
 	const handleResult = (firstNumber: number, secondNumber: number) => {
 		const calculationResult = getCalculationResult({
-			XNumber: firstNumber,
-			YNumber: secondNumber,
+			YNumber: firstNumber,
+			XNumber: secondNumber,
 		}).toString();
 
 		if (isFloat(calculationResult)) {
