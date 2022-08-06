@@ -1,5 +1,11 @@
-import { useExercise } from "./useExercise";
+import { useExerciseUtils } from "./useExerciseUtils";
 import { useExerciseClient } from "./useExerciseClient";
 import { useExerciseFetch } from "./useExerciseFetch";
+import { useExerciseDataHandler } from "./useExerciseDataHandler";
 
-export { useExercise, useExerciseClient, useExerciseFetch };
+export {
+	useExerciseUtils,
+	useExerciseClient,
+	useExerciseFetch,
+	useExerciseDataHandler,
+};

@@ -24,7 +24,7 @@ interface Error {
 	message: string;
 }
 
-export interface ExerciseModeReturn {
+export interface ExerciseResponse {
 	loading?: boolean;
 	error?: ApolloError | Error;
 	data?: ExerciseMode;

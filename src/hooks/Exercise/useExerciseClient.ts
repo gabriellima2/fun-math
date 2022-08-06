@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 
 import { SelectedOperator } from "../../contexts/UserSelectedOptionsContext";
 
-import { ExerciseModeReturn } from "../../types/hooks";
-import { operators } from "../../constants";
 import {
 	generateRandomNumber,
 	limitDecimalPlaces,
 	isFloat,
 } from "../../utils/handleNumbers";
+import { ExerciseResponse } from "../../types/hooks";
+import { operators } from "../../constants";
 
 type NumberState = number | null;
 
@@ -35,25 +35,14 @@ const SPECIFIC_LIMITATIONS: Limitations = {
 	min: 10,
 };
 
-const calculationByOperators = {
-	[operators.type.addition]: (firstNumber: number, secondNumber: number) =>
-		firstNumber + secondNumber,
-	[operators.type.subtraction]: (firstNumber: number, secondNumber: number) =>
-		firstNumber - secondNumber,
-	[operators.type.division]: (firstNumber: number, secondNumber: number) =>
-		firstNumber / secondNumber,
-	[operators.type.multiply]: (firstNumber: number, secondNumber: number) =>
-		firstNumber * secondNumber,
-};
-
 export function useExerciseClient(
 	operator: SelectedOperator
-): ExerciseModeReturn {
+): ExerciseResponse {
 	const [numbersData, setNumbersData] = useState<NumbersData>(
 		{} as NumbersData
 	);
 
-	const getCalculationResult = calculationByOperators[operator.id];
+	const getCalculationResult = operators.calculations[operator.id];
 
 	const isDivisionOrMultiply = () => {
 		return (
@@ -62,11 +51,12 @@ export function useExerciseClient(
 		);
 	};
 
+	// Lida com o resultado do exercicio, fazendo um tratamento.
 	const handleResult = (firstNumber: number, secondNumber: number) => {
-		const calculationResult = getCalculationResult(
-			firstNumber,
-			secondNumber
-		).toString();
+		const calculationResult = getCalculationResult({
+			XNumber: firstNumber,
+			YNumber: secondNumber,
+		}).toString();
 
 		if (isFloat(calculationResult)) {
 			return Number(limitDecimalPlaces(calculationResult, MIN_DECIMAL_PLACES));
@@ -83,6 +73,7 @@ export function useExerciseClient(
 		let firstNumber: number;
 		let secondNumber: number;
 
+		// "Deixa o exercício no modo fácil", limitando de forma específica os números.
 		if (isDivisionOrMultiply()) {
 			firstNumber = generateNumber(SPECIFIC_LIMITATIONS);
 			secondNumber = generateNumber({ max: SPECIFIC_LIMITATIONS.min, min: 2 });
@@ -113,11 +104,11 @@ export function useExerciseClient(
 		};
 	}
 
-	const data = {
-		text: `Qual o resultado de ${numbersData.firstNumber} ${operator.symbol} ${numbersData.secondNumber}?`,
-		result: numbersData.result?.toString() || "",
-		getNextExercise: getDataForExercise,
+	return {
+		data: {
+			text: `Qual o resultado de ${numbersData.firstNumber} ${operator.symbol} ${numbersData.secondNumber}?`,
+			result: numbersData.result?.toString(),
+			getNextExercise: getDataForExercise,
+		},
 	};
-
-	return { data };
 }

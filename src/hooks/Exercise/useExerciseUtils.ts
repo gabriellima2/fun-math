@@ -2,13 +2,14 @@ import { useState } from "react";
 
 import { isFloat, replaceCommaWithDot } from "../../utils/handleNumbers";
 
-export interface Exercise {
+interface ExerciseUtils {
 	userAnswerIsCorrect: boolean | undefined;
 	checkUserAnswer: (userAnswer: string, result: string) => void;
 	clearUserAnswerIsCorrect: () => void;
 }
 
-export function useExercise(): Exercise {
+// Disponibiliza funções e estados para manipular os exercicios.
+export function useExerciseUtils(): ExerciseUtils {
 	const [userAnswerIsCorrect, setUserAnswerIsCorrect] = useState<
 		boolean | undefined
 	>(undefined);

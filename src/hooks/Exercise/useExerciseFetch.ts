@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import { useLazyFetch } from "../useFetch";
 
-import { ExerciseMode, ExerciseModeReturn } from "../../types/hooks";
+import { ExerciseMode, ExerciseResponse } from "../../types/hooks";
 
 interface ExerciseData {
 	problem: Omit<ExerciseMode, "getNextExercise"> & {
@@ -15,16 +15,10 @@ interface ExerciseDataVars {
 	number: number;
 }
 
-interface UseExerciseFetchProps {
-	queryName: string;
-}
-
-export function useExerciseFetch({
-	queryName,
-}: UseExerciseFetchProps): ExerciseModeReturn {
+export function useExerciseFetch(queryFieldName: string): ExerciseResponse {
 	const GET_EXERCISE_DATA = gql`
 		query GetExerciseData($number: Int!) {
-			${queryName}(where: { number: $number }) {
+			${queryFieldName}(where: { number: $number }) {
 				id
 				text
 				tip
@@ -33,19 +27,20 @@ export function useExerciseFetch({
 		}
 	`;
 
-	const [currentNumber, setCurrentNumber] = useState(1);
-	const [getNextExerciseData, { loading, error, data }] = useLazyFetch<
+	const [currentExerciseNumber, setCurrentExerciseNumber] = useState(1);
+	const [getExerciseData, { loading, error, data }] = useLazyFetch<
 		ExerciseData,
 		ExerciseDataVars
-	>(GET_EXERCISE_DATA, { variables: { number: currentNumber } });
+	>(GET_EXERCISE_DATA, { variables: { number: currentExerciseNumber } });
 
-	const getNextExercise = () => setCurrentNumber((prevState) => prevState + 1);
+	const getNextExercise = () =>
+		setCurrentExerciseNumber((prevState) => prevState + 1);
 
 	useEffect(() => {
-		const getData = async () => await getNextExerciseData();
+		const getData = async () => await getExerciseData();
 
 		getData();
-	}, [currentNumber]);
+	}, [currentExerciseNumber]);
 
 	return { loading, error, data: { ...data?.problem, getNextExercise } };
 }

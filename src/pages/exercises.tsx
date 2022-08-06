@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import React, { useContext, useRef } from "react";
 
 import { Canvas } from "../components/Draw";
-import { UseExerciseMode, ExerciseContent } from "../components/Exercise";
+import { ExerciseMode, ExerciseContent } from "../components/Exercise";
 import { Helpers } from "../components/Helpers";
 import { WithOptionSelected } from "../HOC/WithOptionSelected";
 
@@ -25,21 +25,21 @@ const Exercises: NextPage = () => {
 					className="w-full flex-center--col gap-2 sticky top-0 py-3 bg-main/60"
 				>
 					{userSelectedOptions.exercise?.mode == exercises.mode.fetch ? (
-						<UseExerciseMode.Fetch
+						<ExerciseMode.Fetch
 							queryName={userSelectedOptions.exercise.queryName!}
 						>
 							<>
 								<Helpers />
 								<ExerciseContent canvasUtilsRef={canvasUtilsRef} />
 							</>
-						</UseExerciseMode.Fetch>
+						</ExerciseMode.Fetch>
 					) : (
-						<UseExerciseMode.Client operator={userSelectedOptions.operator!}>
+						<ExerciseMode.Client operator={userSelectedOptions.operator!}>
 							<>
 								<Helpers />
 								<ExerciseContent canvasUtilsRef={canvasUtilsRef} />
 							</>
-						</UseExerciseMode.Client>
+						</ExerciseMode.Client>
 					)}
 				</main>
 

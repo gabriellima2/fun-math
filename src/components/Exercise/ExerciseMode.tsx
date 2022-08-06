@@ -1,6 +1,10 @@
-import React, { useContext, useEffect, useMemo, ReactNode } from "react";
+import React, { useContext, ReactNode } from "react";
 
-import { useExerciseFetch, useExerciseClient } from "../../hooks/Exercise";
+import {
+	useExerciseFetch,
+	useExerciseClient,
+	useExerciseDataHandler,
+} from "../../hooks/Exercise";
 
 import { Error, Loading } from "../Infra";
 
@@ -19,41 +23,28 @@ interface FetchProps extends Children {
 	queryName: string;
 }
 
-// Gerar exercícios no Client
+// Lida com exercícios gerados no Client
 const Client = (props: ClientProps) => {
 	const { addCurrentExercise } = useContext(CurrentExerciseContext);
 	const { data, error } = useExerciseClient(props.operator);
 
-	const dataMemoized = useMemo(() => data, [data?.result]);
-
-	// Usa-se o Objeto Memoizado para evitar loops, assim adicionando os dados atualizados.
-	useEffect(() => {
-		if (!dataMemoized) return;
-
-		addCurrentExercise(dataMemoized);
-	}, [dataMemoized]);
+	useExerciseDataHandler(data, addCurrentExercise);
 
 	if (error?.message) return <Error message={error.message} />;
 
 	return <>{props.children}</>;
 };
 
-// Pegar exercícios de API
+// Lida com exercícios vindos da API
 const Fetch = ({ queryName, ...props }: FetchProps) => {
 	const { addCurrentExercise } = useContext(CurrentExerciseContext);
-	const { loading, error, data } = useExerciseFetch({ queryName });
+	const { loading, error, data } = useExerciseFetch(queryName);
 
-	const dataMemoized = useMemo(() => data, [data?.result]);
-
-	useEffect(() => {
-		if (!dataMemoized) return;
-
-		addCurrentExercise(dataMemoized);
-	}, [dataMemoized]);
+	useExerciseDataHandler(data, addCurrentExercise);
 
 	if (error?.message) return <Error message={error.message} />;
 
 	return <>{loading ? <Loading /> : props.children}</>;
 };
 
-export const UseExerciseMode = { Client, Fetch };
+export const ExerciseMode = { Client, Fetch };
