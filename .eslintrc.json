@@ -43,6 +43,9 @@
         ],
 			"prettier/prettier": "error",
 			"react/prop-types": "off",
-			"react/react-in-jsx-scope": "off"
+			"react/react-in-jsx-scope": "off",
+			"react/display-name": "off",
+			"@typescript-eslint/no-non-null-assertion": "off",
+			"@typescript-eslint/no-empty-interface": "off"
     }
 }
