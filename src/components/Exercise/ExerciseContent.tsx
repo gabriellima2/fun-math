@@ -33,7 +33,7 @@ interface ChangeExerciseProps {
 
 const InsertAnswer = (props: InsertAnswerProps) => (
 	<Input.Text
-		type="number"
+		type="text"
 		id="insert-answer"
 		name="answer"
 		value={props.value}

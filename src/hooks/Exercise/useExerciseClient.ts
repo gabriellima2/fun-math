@@ -2,11 +2,7 @@ import { useEffect, useState } from "react";
 
 import { SelectedOperator } from "../../contexts/UserSelectedOptionsContext";
 
-import {
-	generateRandomNumber,
-	limitDecimalPlaces,
-	isFloat,
-} from "../../utils/handleNumbers";
+import { generateRandomNumber } from "../../utils/handleNumbers";
 import { ExerciseResponse } from "../../types/hooks";
 import { operators } from "../../constants";
 
@@ -22,8 +18,6 @@ interface NumbersData {
 	secondNumber: NumberState;
 	result: NumberState;
 }
-
-const MIN_DECIMAL_PLACES = 3;
 
 const DEFAULT_LIMITATIONS: Limitations = {
 	max: 100,
@@ -56,13 +50,9 @@ export function useExerciseClient(
 		const calculationResult = getCalculationResult({
 			YNumber: firstNumber,
 			XNumber: secondNumber,
-		}).toString();
+		});
 
-		if (isFloat(calculationResult)) {
-			return Number(limitDecimalPlaces(calculationResult, MIN_DECIMAL_PLACES));
-		}
-
-		return Number(calculationResult);
+		return calculationResult;
 	};
 
 	const generateNumber = (limitations: Limitations) => {
