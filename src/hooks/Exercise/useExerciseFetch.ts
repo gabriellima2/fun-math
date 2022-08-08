@@ -42,5 +42,9 @@ export function useExerciseFetch(queryFieldName: string): ExerciseResponse {
 		getData();
 	}, [currentExerciseNumber]);
 
-	return { loading, error, data: { ...data?.problem, getNextExercise } };
+	return {
+		loading,
+		error,
+		data: { ...data?.problem, getNextExercise },
+	};
 }

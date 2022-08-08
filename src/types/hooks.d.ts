@@ -14,9 +14,9 @@ export interface StylesForCanvasContext {
 
 export interface ExerciseMode {
 	id?: string;
-	text: string;
+	text: string | undefined;
 	tip?: string;
-	result: string;
+	result: string | undefined;
 	getNextExercise: () => void;
 }
 

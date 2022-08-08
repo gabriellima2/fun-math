@@ -60,6 +60,8 @@ export function useExerciseClient(
 	};
 
 	const getDataForExercise = () => {
+		if (!operator.id) return;
+
 		let firstNumber: number;
 		let secondNumber: number;
 
@@ -84,12 +86,18 @@ export function useExerciseClient(
 		});
 	};
 
-	useEffect(() => getDataForExercise(), []);
+	const isValid = () => !!operator.id;
 
-	if (!numbersData.result) {
+	useEffect(() => {
+		if (!isValid()) return;
+
+		getDataForExercise();
+	}, []);
+
+	if (!isValid()) {
 		return {
 			error: {
-				message: "Erro ao gerar exercício, verifique se escolheu as opções ",
+				message: "Verifique se escolheu as opções corretamente",
 			},
 		};
 	}

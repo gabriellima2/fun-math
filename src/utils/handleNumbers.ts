@@ -63,3 +63,7 @@ export function floatNumberIsValid(value: string, decimalPlaces: number) {
 
 	return decimalPlacesOfValue >= decimalPlaces;
 }
+
+export function removeNumberSeparators(value: string) {
+	return value.replaceAll(".", "").replaceAll(",", "");
+}
