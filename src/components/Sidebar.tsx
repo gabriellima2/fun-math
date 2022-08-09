@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Dialog } from "@headlessui/react";
-import { BsFillGrid3X3GapFill, BsXLg } from "react-icons/bs";
+import { BsFillGrid3X3GapFill, BsFillGridFill, BsXLg } from "react-icons/bs";
 
 import { Copyright } from "./Infra";
 
@@ -31,10 +31,11 @@ export const Sidebar = () => {
 	if (!isOpen) {
 		return (
 			<button
+				title="Menu de Navegação"
 				onClick={() => setIsOpen(true)}
 				className="justify-self-end text-2xl text-pink-50"
 			>
-				<BsFillGrid3X3GapFill />
+				<BsFillGridFill />
 			</button>
 		);
 	}
@@ -47,6 +48,7 @@ export const Sidebar = () => {
 				<Dialog.Panel className="w-full md:max-w-md h-fit flex-center--col bg-black-700 relative py-20">
 					<Dialog.Title className="hidden">Barra de navegação</Dialog.Title>
 					<button
+						title="Fechar Menu de Navegação"
 						onClick={() => setIsOpen(false)}
 						className="absolute top-8 right-8 text-2xl text-pink-50"
 					>

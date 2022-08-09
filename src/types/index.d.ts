@@ -51,6 +51,7 @@ export interface LinkDefaultProps extends WithChildren {
 	href: string;
 	icon: IconDefaultProps;
 	title?: Title;
+	className?: ClassName;
 }
 
 export interface InputDefaultProps extends WithChildren, InputHTMLAttributes {

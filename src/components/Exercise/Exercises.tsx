@@ -5,6 +5,26 @@ import { Radio } from "../Infra/Accessibility/Radio";
 import { UserSelectedOptionsContext } from "../../contexts/UserSelectedOptionsContext";
 
 import { exercises } from "../../constants";
+import { ExerciseType } from "../../types";
+
+interface ItemProps {
+	exercise: ExerciseType;
+}
+
+const Item = ({ exercise, ...props }: ItemProps) => (
+	<Radio.Option
+		value={exercise.id}
+		key={exercise.id}
+		className="w-full options__text"
+	>
+		<>
+			<i className="text-3xl md:text-4xl">
+				{React.createElement(exercise.icon, null)}
+			</i>
+			<span>{exercise.name}</span>
+		</>
+	</Radio.Option>
+);
 
 export const Exercises = React.memo(() => {
 	const { userSelectedOptions, selectExercise } = useContext(
@@ -19,18 +39,7 @@ export const Exercises = React.memo(() => {
 			className="flex flex-col gap-2 sm:flex-row"
 		>
 			{exercises.data.map((exercise) => (
-				<Radio.Option
-					value={exercise.id}
-					key={exercise.id}
-					className="w-full options__text"
-				>
-					<>
-						<i className="text-3xl md:text-4xl">
-							{React.createElement(exercise.icon, null)}
-						</i>
-						<span>{exercise.name}</span>
-					</>
-				</Radio.Option>
+				<Item exercise={exercise} key={exercise.id} />
 			))}
 		</Radio.Group>
 	);
