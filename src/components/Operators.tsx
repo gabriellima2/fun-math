@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-import { Radio, GroupProps, OptionProps } from "./Infra/Accessibility/Radio";
+import { Radio, GroupProps } from "./Infra/Accessibility/Radio";
 
 import { ClassName, OperatorType } from "../types";
 import { operators } from "../constants";

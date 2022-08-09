@@ -51,7 +51,7 @@ const ChangeExercise = (props: ChangeExerciseProps) => (
 		onClick={props.onClick}
 		className={`${
 			props.exerciseIsCorrect && "text-green-400"
-		} mt-4 text-xs md:text-sm font-util tracking-wider pointer-events-auto`}
+		} mt-4 text-xs md:text-sm font-main tracking-wider pointer-events-auto`}
 	>
 		<span aria-live="polite" aria-atomic="true">
 			{props.exerciseIsCorrect ? "Próximo" : "Pular"}{" "}
@@ -78,8 +78,10 @@ export const ExerciseContent = (props: ExerciseContentProps) => {
 			exerciseUtils.clearUserAnswerIsCorrect();
 		}
 
+		if (!currentExercise?.result) return;
+
 		debounce(
-			() => exerciseUtils.checkUserAnswer(typedAnswer, currentExercise.result),
+			() => exerciseUtils.checkUserAnswer(typedAnswer, currentExercise.result!),
 			950
 		);
 	}, [typedAnswer]);

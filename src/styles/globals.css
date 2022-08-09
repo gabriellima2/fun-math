@@ -10,10 +10,6 @@ body {
 	@apply bg-main text-pink-100 font-main;
 }
 
-body h1 {
-	@apply text-pink-200 font-accent;
-}
-
 ::-webkit-scrollbar {
 	width: 6px;
 	height: 4px;
