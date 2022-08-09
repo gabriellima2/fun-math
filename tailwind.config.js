@@ -41,9 +41,8 @@ module.exports = {
 				},
 			},
 			fontFamily: {
-				main: ["Poppins", "sans-serif"],
-				accent: ["Staatliches", "cursive"],
-				util: ["Coda, cursive"],
+				main: ["Noto Sans", "sans-serif"],
+				accent: ["Coda, cursive"],
 			},
 			fontSize: {
 				"2xs": ".6rem",

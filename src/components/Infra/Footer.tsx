@@ -21,6 +21,7 @@ export const Footer = () => (
 					<a
 						key={link.text}
 						href={link.href}
+						rel="noreferrer"
 						target="_blank"
 						className="font-medium text-sm capitalize hover--default"
 					>

@@ -16,6 +16,12 @@ export function replaceCommaWithDot(value: string) {
 	return value.replace(",", ".");
 }
 
+/**
+ * Pegar informações de um número flutuante como Indíce do Ponto Decimal
+ * e Números antes e depois do Ponto Decimal.
+ * @param value [string] Número desejado.
+ * @returns [object] Informações do número.
+ */
 export function getFloatNumberProperties(value: string): FloatNumberProperties {
 	const formattedValue = replaceCommaWithDot(value);
 
@@ -30,6 +36,12 @@ export function getFloatNumberProperties(value: string): FloatNumberProperties {
 	};
 }
 
+/**
+ * Limita as casas decimais de um número.
+ * @param value [string] Número para limitar.
+ * @param decimalPlaces [number] Quantidade de casas decimais para manter no valor.
+ * @returns Valor com casas decimais limitadas, ou o próprio valor se houver erro.
+ */
 export function limitDecimalPlaces(value: string, decimalPlaces: number) {
 	const { decimalPointIndex, numbersAfterDecimalPoint } =
 		getFloatNumberProperties(value);
@@ -39,9 +51,19 @@ export function limitDecimalPlaces(value: string, decimalPlaces: number) {
 	return value.slice(0, decimalPointIndex + decimalPlaces);
 }
 
+/**
+ * Verifica se um número flutuante tem quantidade de casas decimais desejadas.
+ * @param value [string] Número para verificar.
+ * @param decimalPlaces [number] Quantidade de casas decimais desejadas.
+ * @returns [boolean] É válido ou não.
+ */
 export function floatNumberIsValid(value: string, decimalPlaces: number) {
 	const { numbersAfterDecimalPoint } = getFloatNumberProperties(value);
 	const decimalPlacesOfValue = numbersAfterDecimalPoint.length;
 
 	return decimalPlacesOfValue >= decimalPlaces;
+}
+
+export function removeNumberSeparators(value: string) {
+	return value.replaceAll(".", "").replaceAll(",", "");
 }

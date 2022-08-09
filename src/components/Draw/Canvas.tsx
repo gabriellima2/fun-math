@@ -22,7 +22,7 @@ export interface CanvasUtils {
 export const Canvas = forwardRef<CanvasUtils, {}>((props, ref) => {
 	const [isDrawing, setIsDrawing] = useState(false);
 	const canvasRef = useRef<null | HTMLCanvasElement>(null);
-	const { contextRef } = useBasicCanvas(canvasRef);
+	const { context2DRef, updateCanvasContext2D } = useBasicCanvas(canvasRef);
 
 	useEffect(() => {
 		const html = document.documentElement;
@@ -39,11 +39,11 @@ export const Canvas = forwardRef<CanvasUtils, {}>((props, ref) => {
 
 		if (!isDrawing || !boundingRect) return;
 
-		contextRef.current?.lineTo(
+		context2DRef.current?.lineTo(
 			clientX - boundingRect.left,
 			clientY - boundingRect.top
 		);
-		contextRef.current?.stroke();
+		context2DRef.current?.stroke();
 	};
 
 	const startDrawing = ({ clientX, clientY }: CanvasEvent) => {
@@ -51,8 +51,8 @@ export const Canvas = forwardRef<CanvasUtils, {}>((props, ref) => {
 
 		if (!boundingRect) return;
 
-		contextRef.current?.beginPath();
-		contextRef.current?.moveTo(
+		context2DRef.current?.beginPath();
+		context2DRef.current?.moveTo(
 			clientX - boundingRect.left,
 			clientY - boundingRect.top
 		);
@@ -61,7 +61,7 @@ export const Canvas = forwardRef<CanvasUtils, {}>((props, ref) => {
 	};
 
 	const stopDrawing = () => {
-		contextRef.current?.closePath();
+		context2DRef.current?.closePath();
 
 		setIsDrawing(false);
 	};
@@ -101,11 +101,9 @@ export const Canvas = forwardRef<CanvasUtils, {}>((props, ref) => {
 			/>
 			<Tools
 				canvasRef={canvasRef}
-				contextRef={contextRef}
-				canvasUtils={{ clearCanvas }}
+				context2DRef={context2DRef}
+				utils={{ clearCanvas, updateCanvasContext2D }}
 			/>
 		</>
 	);
 });
-
-Canvas.displayName = "Canvas";

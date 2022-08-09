@@ -27,9 +27,7 @@ export type CanvasElement = DefaultRefType<HTMLCanvasElement>;
 
 export type CanvasUtilsRef = DefaultRefType<CanvasUtils>;
 
-export type P = object;
-
-export type ComponentType = React.ComponentType<P>;
+export type ComponentType<P = object> = React.ComponentType<P>;
 
 export type WithChildren<T = unknown> = {
 	children: ReactNode;

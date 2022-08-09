@@ -1,19 +1,17 @@
 import { NextPage } from "next";
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useRef } from "react";
 
 import { Canvas } from "../components/Draw";
-import { UseExerciseMode, ExerciseContent } from "../components/Exercise";
+import { ExerciseMode, ExerciseContent } from "../components/Exercise";
 import { Helpers } from "../components/Helpers";
 import { WithOptionSelected } from "../HOC/WithOptionSelected";
 
 import { UserSelectedOptionsContext } from "../contexts/UserSelectedOptionsContext";
-import { CanvasUtils } from "../components/Draw/Canvas";
 import { exercises } from "../constants";
-import { CanvasElement, CanvasUtilsRef } from "../types";
+import { CanvasUtilsRef } from "../types";
 
 const Exercises: NextPage = () => {
 	const canvasUtilsRef = useRef<CanvasUtilsRef>(null);
-	const canvasElementRef = useRef<CanvasElement>(null);
 	const { userSelectedOptions } = useContext(UserSelectedOptionsContext);
 
 	if (Object.keys(userSelectedOptions).length <= 0) return null;
@@ -27,12 +25,22 @@ const Exercises: NextPage = () => {
 					className="w-full flex-center--col gap-2 sticky top-0 py-3 bg-main/60"
 				>
 					{userSelectedOptions.exercise?.mode == exercises.mode.fetch ? (
-						<UseExerciseMode.Fetch query={null} />
+						<ExerciseMode.Fetch
+							queryName={userSelectedOptions.exercise.queryName!}
+						>
+							<>
+								<Helpers />
+								<ExerciseContent canvasUtilsRef={canvasUtilsRef} />
+							</>
+						</ExerciseMode.Fetch>
 					) : (
-						<UseExerciseMode.Client operator={userSelectedOptions.operator!} />
+						<ExerciseMode.Client operator={userSelectedOptions.operator!}>
+							<>
+								<Helpers />
+								<ExerciseContent canvasUtilsRef={canvasUtilsRef} />
+							</>
+						</ExerciseMode.Client>
 					)}
-					<Helpers />
-					<ExerciseContent canvasUtilsRef={canvasUtilsRef} />
 				</main>
 
 				<section className="flex-center--col gap-3">

@@ -1,9 +1,7 @@
 import { createContext, useState } from "react";
 
 import { OperatorType, ExerciseType, WithChildren } from "../types";
-import { exercises } from "../constants";
-import { getOperatorData } from "../utils/getOperatorData";
-import { getExerciseData } from "../utils/getExerciseData";
+import { exercises, operators } from "../constants";
 
 export type SelectedOperator = Pick<OperatorType, "id" | "symbol">;
 export type SelectedExercise = ExerciseType;
@@ -33,7 +31,7 @@ export const UserSelectedOptionsContextProvider = ({
 	const selectOperator = (selectedOperatorName: string) => {
 		setUserSelectedOptions((prevState) => ({
 			...prevState,
-			operator: getOperatorData(selectedOperatorName),
+			operator: operators.search(selectedOperatorName),
 		}));
 	};
 
@@ -42,13 +40,13 @@ export const UserSelectedOptionsContextProvider = ({
 			return setUserSelectedOptions((prevState) => ({
 				...prevState,
 				operator: null,
-				exercise: getExerciseData(selectedExerciseName),
+				exercise: exercises.search(selectedExerciseName),
 			}));
 		}
 
 		setUserSelectedOptions((prevState) => ({
 			...prevState,
-			exercise: getExerciseData(selectedExerciseName),
+			exercise: exercises.search(selectedExerciseName),
 		}));
 	};
 

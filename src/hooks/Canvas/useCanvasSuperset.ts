@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { DrawingTool } from "../../types";
-import { CanvasRef, ContextRef } from "../../types/hooks";
-import { setCanvasContext } from "../../utils/setCanvasContext";
 
 import { tools } from "../../constants";
 
@@ -13,15 +11,15 @@ interface CanvasSuperset {
 	changeCurrentTool: (tool: string) => void;
 }
 
-export function useCanvasSuperset(
-	canvasRef: CanvasRef,
-	contextRef: ContextRef
-): CanvasSuperset {
+// Superset, funções, para deixar o Canvas mais completo.
+export function useCanvasSuperset(): CanvasSuperset {
+	// Salvar a ferramenta atual e anterior com suas propriedades correspondentes.
 	const [prevTool, setPrevTool] = useState(tools.initialEraser as DrawingTool);
 	const [currentTool, setCurrentTool] = useState(
 		tools.initialPencil as DrawingTool
 	);
 
+	// Muda a ferramenta, mas "salvando" as propriedades dela.
 	const changeCurrentTool = (tool: string) => {
 		if (tool === currentTool.type) return;
 
@@ -37,14 +35,6 @@ export function useCanvasSuperset(
 
 	const changeWidth = (newWidth: number) =>
 		setCurrentTool((prevState) => ({ ...prevState, width: newWidth }));
-
-	// Quando mudar algo adiciona os novos estilos ao contexto do canvas.
-	useEffect(() => {
-		setCanvasContext(canvasRef, contextRef, {
-			color: currentTool.color,
-			width: currentTool.width,
-		});
-	}, [currentTool]);
 
 	return {
 		currentTool,

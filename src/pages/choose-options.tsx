@@ -6,7 +6,6 @@ import { Operators } from "../components/Operators";
 import { Exercises } from "../components/Exercise";
 import { BackButton, MainButton } from "../components/Buttons";
 import { Icon } from "../components/Icon";
-import { Helpers } from "../components/Helpers";
 
 import { Customized } from "../layouts/Customized";
 

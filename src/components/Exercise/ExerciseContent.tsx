@@ -5,7 +5,7 @@ import React, {
 	MutableRefObject,
 } from "react";
 
-import { useExercise } from "../../hooks/Exercise/useExercise";
+import { useExerciseUtils } from "../../hooks/Exercise/useExerciseUtils";
 
 import { TextButton } from "../../components/Buttons";
 import { Status } from "../../components/Status";
@@ -33,7 +33,7 @@ interface ChangeExerciseProps {
 
 const InsertAnswer = (props: InsertAnswerProps) => (
 	<Input.Text
-		type="number"
+		type="text"
 		id="insert-answer"
 		name="answer"
 		value={props.value}
@@ -51,7 +51,7 @@ const ChangeExercise = (props: ChangeExerciseProps) => (
 		onClick={props.onClick}
 		className={`${
 			props.exerciseIsCorrect && "text-green-400"
-		} mt-4 text-xs md:text-sm font-util tracking-wider pointer-events-auto`}
+		} mt-4 text-xs md:text-sm font-main tracking-wider pointer-events-auto`}
 	>
 		<span aria-live="polite" aria-atomic="true">
 			{props.exerciseIsCorrect ? "Próximo" : "Pular"}{" "}
@@ -61,25 +61,27 @@ const ChangeExercise = (props: ChangeExerciseProps) => (
 );
 
 export const ExerciseContent = (props: ExerciseContentProps) => {
-	const exercise = useExercise();
+	const exerciseUtils = useExerciseUtils();
 	const [typedAnswer, setTypedAnswer] = useState("");
 	const { currentExercise } = useContext(CurrentExerciseContext);
 
 	const preparationsForTheNextExercise = () => {
 		setTypedAnswer("");
-		exercise.clearUserAnswerIsCorrect();
+		exerciseUtils.clearUserAnswerIsCorrect();
 		props.canvasUtilsRef?.current?.clearCanvas();
 
 		currentExercise.getNextExercise();
 	};
 
 	useEffect(() => {
-		if (exercise.userAnswerIsCorrect !== undefined) {
-			exercise.clearUserAnswerIsCorrect();
+		if (exerciseUtils.userAnswerIsCorrect !== undefined) {
+			exerciseUtils.clearUserAnswerIsCorrect();
 		}
 
+		if (!currentExercise?.result) return;
+
 		debounce(
-			() => exercise.checkUserAnswer(typedAnswer, currentExercise.result),
+			() => exerciseUtils.checkUserAnswer(typedAnswer, currentExercise.result!),
 			950
 		);
 	}, [typedAnswer]);
@@ -93,15 +95,17 @@ export const ExerciseContent = (props: ExerciseContentProps) => {
 				<InsertAnswer
 					value={typedAnswer}
 					onChange={setTypedAnswer}
-					inInvalid={!exercise.userAnswerIsCorrect}
+					inInvalid={!exerciseUtils.userAnswerIsCorrect}
 				/>
-				{exercise.userAnswerIsCorrect !== undefined && (
-					<Status type={exercise.userAnswerIsCorrect ? "success" : "error"} />
+				{exerciseUtils.userAnswerIsCorrect !== undefined && (
+					<Status
+						type={exerciseUtils.userAnswerIsCorrect ? "success" : "error"}
+					/>
 				)}
 			</section>
 			<ChangeExercise
 				onClick={preparationsForTheNextExercise}
-				exerciseIsCorrect={exercise.userAnswerIsCorrect}
+				exerciseIsCorrect={exerciseUtils.userAnswerIsCorrect}
 			/>
 		</>
 	);

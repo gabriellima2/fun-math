@@ -7,7 +7,10 @@ interface TextProps extends InputDefaultProps {
 export const Text = (props: TextProps) => {
 	return (
 		<div className="flex-center--row gap-2">
-			<label htmlFor={props.id} className="mr-1 font-util text-base md:text-lg">
+			<label
+				htmlFor={props.id}
+				className="mr-1 font-accent text-base md:text-lg"
+			>
 				{props.children}
 			</label>
 			<input
@@ -18,7 +21,7 @@ export const Text = (props: TextProps) => {
 				aria-invalid={props.isInvalid}
 				onChange={(e) => props.onChange(e)}
 				placeholder={props.placeholder}
-				className={`${props.className} p-1 px-2 font-util text-sm md:text-base font-medium tracking-wide rounded-lg bg-transparent border-2 border-white/30 transition-all outline-custom--focus focus:border-transparent`}
+				className={`${props.className} p-1 px-2 font-accent text-sm md:text-base font-medium tracking-wide rounded-lg bg-transparent border-2 border-white/30 transition-all outline-custom--focus focus:border-transparent`}
 			/>
 		</div>
 	);
