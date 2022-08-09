@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 import type { NextPage } from "next";
 import { GetStaticProps } from "next";
-import { BsArrowRight } from "react-icons/bs";
+import { BsBoxArrowInRight } from "react-icons/bs";
 
 import { Card } from "../components/Card";
 import { TextLink, MainLink } from "../components/Links";
@@ -43,7 +43,12 @@ const Home: NextPage<HomeProps> = ({ cards }) => {
 				</section>
 				<MainLink
 					href="/choose-options"
-					icon={{ element: BsArrowRight, label: "Seta para direita" }}
+					icon={{
+						element: BsBoxArrowInRight,
+						label: "Seta para direita",
+						className: "text-xl sm:text-2xl",
+					}}
+					className="rounded-sm mb-36 lg:mb-36"
 				>
 					comece agora
 				</MainLink>
@@ -65,7 +70,7 @@ const Home: NextPage<HomeProps> = ({ cards }) => {
 						</p>
 					</section>
 					<section className="mt-12 mb-8">
-						<ul className="flex-center--col sm:overflow-x-auto sm:flex-row sm:justify-start xl:grid xl:grid-cols-2 xl:grid-rows-4 xl:place-items-center gap-4 xl:gap-3">
+						<ul className="flex-center--col sm:overflow-x-auto sm:flex-row sm:justify-start xl:grid xl:grid-cols-2 xl:grid-rows-4 xl:place-items-center gap-5 xl:gap-4 sm:pb-4 md:pb-0">
 							{cards.map((card, index) => (
 								<Card {...card} index={index} key={card.title} />
 							))}

@@ -6,7 +6,9 @@ interface TextLinkProps extends LinkDefaultProps {}
 
 export const TextLink = (props: Omit<TextLinkProps, "icon">) => (
 	<Link href={props.href}>
-		<a className="text-accents-pink-100 font-semibold underline focus:brightness-75 hover:brightness-50 transition-hover">
+		<a
+			className={`${props.className} text-accents-pink-100 font-semibold underline focus:brightness-75 hover:brightness-50 transition-hover`}
+		>
 			{props.children}
 		</a>
 	</Link>
