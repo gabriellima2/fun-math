@@ -2,13 +2,14 @@ import { NextPage } from "next";
 import React, { useContext, useRef } from "react";
 
 import { Canvas } from "../components/Draw";
-import { ExerciseMode, ExerciseContent } from "../components/Exercise";
+import { GenerateExercise, ExerciseContent } from "../components/Exercise";
 import { Helpers } from "../components/Helpers";
 import { WithOptionSelected } from "../HOC/WithOptionSelected";
 
 import { UserSelectedOptionsContext } from "../contexts/UserSelectedOptionsContext";
-import { exercises } from "../constants";
 import { CanvasUtilsRef } from "../types";
+import { Icon } from "../components/Icon";
+import { BsArrowBarDown, BsArrowDown, BsPencilSquare } from "react-icons/bs";
 
 const Exercises: NextPage = () => {
 	const canvasUtilsRef = useRef<CanvasUtilsRef>(null);
@@ -18,32 +19,29 @@ const Exercises: NextPage = () => {
 
 	return (
 		<>
-			<div className="flex-center--col gap-8 px-2 py-6">
+			<GenerateExercise generateMode={userSelectedOptions.exercise!.mode}>
 				<main
 					aria-live="polite"
 					aria-atomic="true"
-					className="w-full flex-center--col gap-2 sticky top-0 py-3 bg-main/60"
+					className="h-screen flex-center--col relative bg-exercise bg-cover bg-no-repeat bg-center"
 				>
-					{userSelectedOptions.exercise?.mode == exercises.mode.fetch ? (
-						<ExerciseMode.Fetch
-							queryName={userSelectedOptions.exercise.queryName!}
-						>
-							<>
-								<Helpers />
-								<ExerciseContent canvasUtilsRef={canvasUtilsRef} />
-							</>
-						</ExerciseMode.Fetch>
-					) : (
-						<ExerciseMode.Client operator={userSelectedOptions.operator!}>
-							<>
-								<Helpers />
-								<ExerciseContent canvasUtilsRef={canvasUtilsRef} />
-							</>
-						</ExerciseMode.Client>
-					)}
+					<span className="fixed top-12 right-12">
+						<Helpers />
+					</span>
+					<section className="w-full flex-center--col px-8">
+						<ExerciseContent canvasUtilsRef={canvasUtilsRef} />
+					</section>
+					<p className="flex-center--col gap-2 absolute bottom-12 animate-bounce text-sm describe-text">
+						Área de Rascunhos
+						<Icon
+							element={BsArrowDown}
+							label="Seta para baixo indicando a Área de Desenho"
+							className="text-xl"
+						/>
+					</p>
 				</main>
 
-				<section className="flex-center--col gap-3">
+				<section>
 					<div className="w-[95vw] xl:w-[70vw] max-w-fit md:max-h-[1/2] overflow-hidden">
 						<span className="w-full flex justify-between pointer-events-none p-4">
 							<p className="text-sm pointer-events-none font-medium text-white/50">
@@ -53,7 +51,7 @@ const Exercises: NextPage = () => {
 						<Canvas ref={canvasUtilsRef} />
 					</div>
 				</section>
-			</div>
+			</GenerateExercise>
 		</>
 	);
 };

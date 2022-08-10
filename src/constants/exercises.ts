@@ -6,7 +6,7 @@ enum type {
 	problem = "problem",
 }
 
-enum mode {
+export enum mode {
 	client = "client",
 	fetch = "fetch",
 }

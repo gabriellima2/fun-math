@@ -1,5 +1,5 @@
 import { Exercises } from "./Exercises";
 import { ExerciseContent } from "./ExerciseContent";
-import { ExerciseMode } from "./ExerciseMode";
+import { GenerateExercise } from "./GenerateExercise";
 
-export { Exercises, ExerciseContent, ExerciseMode };
+export { Exercises, ExerciseContent, GenerateExercise };

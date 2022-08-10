@@ -28,12 +28,12 @@ const Options = ({ Helper }: OptionsProps) => (
 export const Helpers = () => {
 	return (
 		<Popover.Group>
-			<Popover.Button className="text-xl md:text-2xl">
+			<Popover.Button className="text-2xl md:text-3xl">
 				<BsFillQuestionCircleFill />
 			</Popover.Button>
-			<Popover.Panel className="absolute z-50">
+			<Popover.Panel className="absolute right-0 z-50">
 				<div className="w-min-auto w-[270px] sm:w-96 flex-center--col max-w-md rounded-xl px-3 py-4 bg-black-400 z-50 border-2 border-black-100">
-					<h1 className="text-2xl">Ajuda</h1>
+					<h1 className="text-2xl font-semibold mb-2">Ajuda</h1>
 
 					{HelperComponents.map((Helper, index) => (
 						<Options Helper={Helper} key={index} />

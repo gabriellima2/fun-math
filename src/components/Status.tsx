@@ -1,7 +1,10 @@
 import { BsFillCheckSquareFill, BsFillXSquareFill } from "react-icons/bs";
 
+import { ClassName } from "../types";
+
 interface StatusProps {
 	type: "success" | "error";
+	className?: ClassName;
 }
 
 const Success = () => (
@@ -25,7 +28,7 @@ const Error = () => (
 );
 
 export const Status = (props: StatusProps) => (
-	<div id="status" role="status" className="text-3xl">
+	<div id="status" role="status" className={`${props.className} text-3xl`}>
 		{props.type == "success" ? <Success /> : <Error />}
 	</div>
 );

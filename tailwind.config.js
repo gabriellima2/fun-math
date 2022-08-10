@@ -9,6 +9,7 @@ module.exports = {
 			backgroundImage: {
 				"home-desktop": "url('../../public/dk-home-bg.png')",
 				"home-mobile": "url('../../public/mb-home-bg.png')",
+				"exercise": "url('../../public/bg-exercises.png')"
 			},
 			colors: {
 				main: "#0A0A0A",

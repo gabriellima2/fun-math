@@ -98,3 +98,7 @@ input[type="range"]::-ms-thumb {
 .outline-custom--focus {
 	@apply focus:outline-none focus:ring-2 focus:ring-accents-purple focus:ring-offset-1 focus:ring-offset-transparent;
 }
+
+.describe-text {
+	@apply font-semibold text-pink-100/60;
+}
