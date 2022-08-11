@@ -12,11 +12,11 @@ export interface StylesForCanvasContext {
 	color: string;
 }
 
-export interface ExerciseMode {
+export interface ExerciseData {
 	id?: string;
-	text: string | undefined;
+	text?: string | undefined;
 	tip?: string;
-	result: string | undefined;
+	result?: string | undefined;
 	getNextExercise: () => void;
 }
 
@@ -27,5 +27,5 @@ interface Error {
 export interface ExerciseResponse {
 	loading?: boolean;
 	error?: ApolloError | Error;
-	data?: ExerciseMode;
+	data?: ExerciseData;
 }

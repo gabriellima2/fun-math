@@ -3,15 +3,15 @@ import { useEffect, useState } from "react";
 
 import { useLazyFetch } from "../useFetch";
 
-import { ExerciseMode, ExerciseResponse } from "../../types/hooks";
+import { ExerciseData, ExerciseResponse } from "../../types/hooks";
 
-interface ExerciseData {
-	problem: Omit<ExerciseMode, "getNextExercise"> & {
+interface ExerciseProperties {
+	problem: Omit<ExerciseData, "getNextExercise"> & {
 		id: string;
 	};
 }
 
-interface ExerciseDataVars {
+interface ExercisePropertiesVars {
 	number: number;
 }
 
@@ -29,8 +29,8 @@ export function useExerciseFetch(queryFieldName: string): ExerciseResponse {
 
 	const [currentExerciseNumber, setCurrentExerciseNumber] = useState(1);
 	const [getExerciseData, { loading, error, data }] = useLazyFetch<
-		ExerciseData,
-		ExerciseDataVars
+		ExerciseProperties,
+		ExercisePropertiesVars
 	>(GET_EXERCISE_DATA, { variables: { number: currentExerciseNumber } });
 
 	const getNextExercise = () =>
@@ -45,6 +45,9 @@ export function useExerciseFetch(queryFieldName: string): ExerciseResponse {
 	return {
 		loading,
 		error,
-		data: { ...data?.problem, getNextExercise },
+		data: {
+			...data?.problem,
+			getNextExercise,
+		},
 	};
 }
