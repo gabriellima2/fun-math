@@ -9,7 +9,8 @@ module.exports = {
 			backgroundImage: {
 				"home-desktop": "url('../../public/dk-home-bg.png')",
 				"home-mobile": "url('../../public/mb-home-bg.png')",
-				"exercise": "url('../../public/bg-exercises.png')"
+				"exercise-desktop": "url('../../public/dk-exercises-bg.png')",
+				"exercise-mobile": "url('../../public/mb-exercises-bg.png')"
 			},
 			colors: {
 				main: "#0A0A0A",
@@ -37,7 +38,7 @@ module.exports = {
 					},
 				},
 				canvas: {
-					area: "#262626",
+					area: "#141414",
 					tools: "#171717",
 				},
 			},

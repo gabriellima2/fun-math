@@ -25,20 +25,6 @@ export function useBasicCanvas(canvasRef: CanvasRef) {
 		canvas.style.height = `${clientHeight}px;`;
 	};
 
-	// Faz "backup" do conteúdo do canvas e redimensiona-o.
-	const handleResized = (
-		canvas: HTMLCanvasElement,
-		context: CanvasRenderingContext2D
-	) => {
-		const canvasWidth = canvas.width;
-		const canvasHeight = canvas.height;
-
-		const canvasBackup = context.getImageData(0, 0, canvasWidth, canvasHeight);
-
-		setCanvasSize(canvas);
-		context.putImageData(canvasBackup, 0, 0);
-	};
-
 	// Adiciona novos estilos ao Canvas atualizando o Contexto2D dele.
 	const updateCanvasContext2D = (
 		canvasRef: CanvasRef,
@@ -57,6 +43,25 @@ export function useBasicCanvas(canvasRef: CanvasRef) {
 		context2DRef.current = ctx;
 	};
 
+	// Faz "backup" do conteúdo do canvas e redimensiona-o.
+	const handleResized = (
+		canvas: HTMLCanvasElement,
+		context: CanvasRenderingContext2D
+	) => {
+		const canvasWidth = canvas.width;
+		const canvasHeight = canvas.height;
+
+		const canvasBackup = context.getImageData(0, 0, canvasWidth, canvasHeight);
+
+		setCanvasSize(canvas);
+		context.putImageData(canvasBackup, 0, 0);
+
+		updateCanvasContext2D(canvasRef, context2DRef, {
+			color: tools.initialPencil.color,
+			width: tools.initialPencil.width,
+		});
+	};
+
 	useEffect(() => {
 		const canvas = canvasRef.current;
 		const context = canvas?.getContext("2d");
@@ -69,10 +74,10 @@ export function useBasicCanvas(canvasRef: CanvasRef) {
 			width: tools.initialPencil.width,
 		});
 
-		canvas.addEventListener("resize", () => handleResized(canvas, context));
+		window.addEventListener("resize", () => handleResized(canvas, context));
 
 		return () =>
-			canvas.removeEventListener("resize", () =>
+			window.removeEventListener("resize", () =>
 				handleResized(canvas, context)
 			);
 	}, []);

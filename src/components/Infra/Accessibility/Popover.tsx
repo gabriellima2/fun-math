@@ -1,9 +1,11 @@
 import { Popover as HeadlessPopover } from "@headlessui/react";
 
-import { Props } from "../../../types";
+import { Props, Title } from "../../../types";
 
 interface GroupProps extends Props {}
-interface ButtonProps extends Props {}
+interface ButtonProps extends Props {
+	title?: Title;
+}
 interface PanelProps extends Props {}
 
 const Group = (props: GroupProps) => (
@@ -13,7 +15,7 @@ const Group = (props: GroupProps) => (
 );
 
 const Button = (props: ButtonProps) => (
-	<HeadlessPopover.Button className={props.className}>
+	<HeadlessPopover.Button title={props.title} className={props.className}>
 		{props.children}
 	</HeadlessPopover.Button>
 );

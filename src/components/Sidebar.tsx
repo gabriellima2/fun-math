@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Dialog } from "@headlessui/react";
-import { BsFillGrid3X3GapFill, BsFillGridFill, BsXLg } from "react-icons/bs";
+import { BsFillGridFill, BsXLg } from "react-icons/bs";
 
 import { Copyright } from "./Infra";
 
