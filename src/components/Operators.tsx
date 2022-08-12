@@ -39,9 +39,7 @@ const Item = ({ operator, ...props }: ItemProps) => (
 				/>
 			</div>
 			{props.showOperatorName && (
-				<span className="uppercase hidden options__text sm:inline">
-					{operator.name}
-				</span>
+				<span className="hidden options__text sm:inline">{operator.name}</span>
 			)}
 		</>
 	</Radio.Option>

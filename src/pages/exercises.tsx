@@ -27,8 +27,10 @@ const ANCHORS_STYLE = "flex-center--row gap-2 text-sm describe-text";
 
 const Exercises: NextPage = () => {
 	const exerciseUtils = useExerciseUtils();
-	const canvasUtilsRef = useRef<CanvasUtilsRef>(null);
 	const [typedAnswer, setTypedAnswer] = useState("");
+
+	const canvasUtilsRef = useRef<CanvasUtilsRef>(null);
+
 	const { currentExercise } = useContext(CurrentExerciseContext);
 	const { userSelectedOptions } = useContext(UserSelectedOptionsContext);
 
@@ -69,12 +71,12 @@ const Exercises: NextPage = () => {
 					</span>
 
 					<section className="w-full flex-center--col px-8">
-						<div className="w-full max-w-[1000px] flex-center--col bg-black-800/40 rounded-md border-black-600/30 border-8 p-6 px-8">
+						<div className="w-full max-w-[1000px] max-h-[90vh] sm:max-h-fit flex-center--col bg-black-800/40 rounded-md border-black-600/30 border-8 p-6 px-8">
 							<div className="flex-center--col gap-2">
 								<span className="text-sm md:text-base describe-text capitalize">
 									Responda
 								</span>
-								<h1 className="text-2xl md:text-4xl font-bold text-center">
+								<h1 className="text-xl max-h-[30vh] sm:max-h-fit overflow-y-auto sm:overflow-y-hidden md:text-4xl font-bold text-left">
 									{currentExercise.text}
 								</h1>
 							</div>
@@ -111,7 +113,7 @@ const Exercises: NextPage = () => {
 					</section>
 
 					<a
-						href="#canvas"
+						href="#canvas-area"
 						className={`${ANCHORS_STYLE} animate-bounce absolute bottom-12`}
 					>
 						Área de Rascunhos
@@ -123,8 +125,11 @@ const Exercises: NextPage = () => {
 					</a>
 				</main>
 
-				<section id="canvas" className="w-full h-screen flex-center--col p-6">
-					<div className="w-[95vw] xl:w-[70vw] max-w-fit md:max-h-[1/2] flex-center--col overflow-hidden">
+				<section
+					id="canvas-area"
+					className="w-full h-screen flex-center--col p-6"
+				>
+					<div className="w-[95vw] xl:w-[70vw] max-w-fit md:max-h-[1/2] flex-center--col">
 						<section className="w-full flex items-center justify-evenly px-2 py-4">
 							<ExerciseTextPreview />
 							<a href="#top" className={`${ANCHORS_STYLE}`}>
@@ -136,7 +141,12 @@ const Exercises: NextPage = () => {
 								Responder
 							</a>
 						</section>
-						<Canvas ref={canvasUtilsRef} />
+						<div
+							id="canvas"
+							className="w-full h-full flex-center--col overflow-x-hidden"
+						>
+							<Canvas ref={canvasUtilsRef} />
+						</div>
 					</div>
 				</section>
 			</GenerateExercise>
