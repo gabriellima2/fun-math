@@ -6,7 +6,15 @@ interface FloatNumberProperties {
 	numbersAfterDecimalPoint: string;
 }
 
-export function generateRandomNumber(max: number, min: number, Math: Math) {
+export interface RandomNumberLimits {
+	max: number;
+	min: number;
+}
+
+export function generateRandomNumber(
+	{ max, min }: RandomNumberLimits,
+	Math: Math
+) {
 	return Math.floor(Math.random() * max + min);
 }
 

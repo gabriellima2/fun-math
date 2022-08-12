@@ -1,33 +1,16 @@
 import { useEffect, useState } from "react";
 
 import { SelectedOperator } from "../../contexts/UserSelectedOptionsContext";
-
-import { generateRandomNumber } from "../../utils/handleNumbers";
+import { calculationGenerators } from "../../utils/calculationGenerators";
 import { ExerciseResponse } from "../../types/hooks";
-import { operators } from "../../constants";
 
 type NumberState = number | null;
-
-interface Limitations {
-	max: number;
-	min: number;
-}
 
 interface NumbersData {
 	firstNumber: NumberState;
 	secondNumber: NumberState;
 	result: NumberState;
 }
-
-const DEFAULT_LIMITATIONS: Limitations = {
-	max: 100,
-	min: 1,
-};
-
-const SPECIFIC_LIMITATIONS: Limitations = {
-	max: 80,
-	min: 10,
-};
 
 export function useExerciseClient(
 	operator: SelectedOperator
@@ -36,48 +19,19 @@ export function useExerciseClient(
 		{} as NumbersData
 	);
 
-	const getCalculationResult = operators.calculations[operator.id];
+	const getCalculationData = () => {
+		// Chama a função responsável por retornar os dados de cálculos para cada operador.
+		const { firstNumber, secondNumber, result } =
+			calculationGenerators[operator.id]();
 
-	const isDivisionOrMultiply = () => {
-		return (
-			operator.id === operators.type.division ||
-			operator.id === operators.type.multiply
-		);
-	};
-
-	// Lida com o resultado do exercicio, fazendo um tratamento.
-	const handleResult = (firstNumber: number, secondNumber: number) => {
-		const calculationResult = getCalculationResult({
-			YNumber: firstNumber,
-			XNumber: secondNumber,
-		});
-
-		return calculationResult;
-	};
-
-	const generateNumber = (limitations: Limitations) => {
-		return generateRandomNumber(limitations.max, limitations.min, Math);
-	};
-
-	const getDataForExercise = () => {
-		if (!operator.id) return;
-
-		let firstNumber: number;
-		let secondNumber: number;
-
-		// "Deixa o exercício no modo fácil", limitando de forma específica os números.
-		if (isDivisionOrMultiply()) {
-			firstNumber = generateNumber(SPECIFIC_LIMITATIONS);
-			secondNumber = generateNumber({ max: SPECIFIC_LIMITATIONS.min, min: 2 });
-		} else {
-			firstNumber = generateNumber(DEFAULT_LIMITATIONS);
-			secondNumber = generateNumber({
-				...DEFAULT_LIMITATIONS,
-				max: firstNumber,
-			});
+		// Gerar novos números se os números gerados forem iguais aos atuais.
+		if (
+			firstNumber === numbersData.firstNumber ||
+			secondNumber === numbersData.secondNumber
+		) {
+			getCalculationData();
+			return;
 		}
-
-		const result = handleResult(firstNumber, secondNumber);
 
 		setNumbersData({
 			firstNumber,
@@ -91,7 +45,7 @@ export function useExerciseClient(
 	useEffect(() => {
 		if (!isValid()) return;
 
-		getDataForExercise();
+		getCalculationData();
 	}, []);
 
 	if (!isValid()) {
@@ -106,7 +60,7 @@ export function useExerciseClient(
 		data: {
 			text: `Qual o resultado de ${numbersData.firstNumber} ${operator.symbol} ${numbersData.secondNumber}?`,
 			result: numbersData.result?.toString(),
-			getNextExercise: getDataForExercise,
+			getNextExercise: getCalculationData,
 		},
 	};
 }
