@@ -59,7 +59,7 @@ export function currencyConvertBRL(value: string) {
 		return Number(value);
 	};
 
-	handleValueFormatting().toLocaleString("pt-BR", {
+	return handleValueFormatting().toLocaleString("pt-BR", {
 		minimumFractionDigits: MIN_NUMBERS_AFTER_POINT,
 	});
 }
