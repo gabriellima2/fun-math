@@ -1,19 +1,21 @@
+import { replaceCommaToDot } from "./formatNumbers";
+
 interface FloatNumberProperties {
 	decimalPointIndex: number;
 	numbersBeforeDecimalPoint: string;
 	numbersAfterDecimalPoint: string;
 }
 
-export function generateRandomNumber(max: number, min: number, Math: Math) {
+export interface RandomNumberLimits {
+	max: number;
+	min: number;
+}
+
+export function generateRandomNumber(
+	{ max, min }: RandomNumberLimits,
+	Math: Math
+) {
 	return Math.floor(Math.random() * max + min);
-}
-
-export function isFloat(value: string) {
-	return value.includes(".") || value.includes(",");
-}
-
-export function replaceCommaWithDot(value: string) {
-	return value.replace(",", ".");
 }
 
 /**
@@ -23,7 +25,7 @@ export function replaceCommaWithDot(value: string) {
  * @returns [object] Informações do número.
  */
 export function getFloatNumberProperties(value: string): FloatNumberProperties {
-	const formattedValue = replaceCommaWithDot(value);
+	const formattedValue = replaceCommaToDot(value);
 
 	const decimalPointIndex = formattedValue.indexOf(".") + 1;
 	const numbersBeforeDecimalPoint = value.slice(0, decimalPointIndex);
@@ -34,36 +36,4 @@ export function getFloatNumberProperties(value: string): FloatNumberProperties {
 		numbersBeforeDecimalPoint,
 		numbersAfterDecimalPoint,
 	};
-}
-
-/**
- * Limita as casas decimais de um número.
- * @param value [string] Número para limitar.
- * @param decimalPlaces [number] Quantidade de casas decimais para manter no valor.
- * @returns Valor com casas decimais limitadas, ou o próprio valor se houver erro.
- */
-export function limitDecimalPlaces(value: string, decimalPlaces: number) {
-	const { decimalPointIndex, numbersAfterDecimalPoint } =
-		getFloatNumberProperties(value);
-
-	if (numbersAfterDecimalPoint.length < decimalPlaces) return value;
-
-	return value.slice(0, decimalPointIndex + decimalPlaces);
-}
-
-/**
- * Verifica se um número flutuante tem quantidade de casas decimais desejadas.
- * @param value [string] Número para verificar.
- * @param decimalPlaces [number] Quantidade de casas decimais desejadas.
- * @returns [boolean] É válido ou não.
- */
-export function floatNumberIsValid(value: string, decimalPlaces: number) {
-	const { numbersAfterDecimalPoint } = getFloatNumberProperties(value);
-	const decimalPlacesOfValue = numbersAfterDecimalPoint.length;
-
-	return decimalPlacesOfValue >= decimalPlaces;
-}
-
-export function removeNumberSeparators(value: string) {
-	return value.replaceAll(".", "").replaceAll(",", "");
 }

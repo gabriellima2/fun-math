@@ -8,7 +8,7 @@ const Content = () => {
 	const { currentExercise } = useContext(CurrentExerciseContext);
 
 	return (
-		<h2>
+		<h2 className="text-sm md:text-base">
 			{currentExercise.tip
 				? currentExercise.tip
 				: "Desculpe, no momento não temos dicas específicas para esse exercício."}

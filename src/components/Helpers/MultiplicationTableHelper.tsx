@@ -33,7 +33,7 @@ const Content = () => {
 
 	return (
 		<div className="flex-center--col gap-6 p-2">
-			<header>
+			<header className="flex-center-col sm:flex-row">
 				<Input.Text
 					type="number"
 					id="number"
@@ -41,9 +41,9 @@ const Content = () => {
 					value={currentNumber}
 					onChange={handleChange}
 				>
-					<p className="relative">
+					<p className="relative mb-1 sm:mb-0 ml-1 sm:ml-0">
 						Número
-						<span className="w-fit text-xs lg:text-sm opacity-50 absolute -bottom-4 left-0">
+						<span className="w-fit text-xs lg:text-sm opacity-50">
 							(0 à 100)
 						</span>
 					</p>
@@ -52,9 +52,9 @@ const Content = () => {
 			<main
 				aria-live="polite"
 				aria-atomic="true"
-				className="w-full p-4 text-center rounded-md bg-black-200"
+				className="w-full p-2 sm:p-4 text-center rounded-md bg-black-200"
 			>
-				<h1 className="text-xl tracking-wide">
+				<h1 className="font-semibold uppercase text-sm sm:text-lg tracking-wide p-2 sm:p-0">
 					{currentNumber
 						? `Tabuada do ${currentNumber}:`
 						: "Digite o número acima!"}

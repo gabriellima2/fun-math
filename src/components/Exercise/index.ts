@@ -1,5 +1,6 @@
 import { Exercises } from "./Exercises";
-import { ExerciseContent } from "./ExerciseContent";
-import { ExerciseMode } from "./ExerciseMode";
+import { ChangeExercise } from "./ChangeExercise";
+import { GenerateExercise } from "./GenerateExercise";
+import { ExerciseTextPreview } from "./ExerciseTextPreview";
 
-export { Exercises, ExerciseContent, ExerciseMode };
+export { Exercises, ChangeExercise, GenerateExercise, ExerciseTextPreview };

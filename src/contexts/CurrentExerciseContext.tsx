@@ -1,9 +1,9 @@
 import { useState, createContext } from "react";
 
 import { WithChildren } from "../types";
-import { ExerciseMode } from "../types/hooks";
+import { ExerciseData } from "../types/hooks";
 
-type CurrentExercise = ExerciseMode;
+type CurrentExercise = ExerciseData;
 
 interface CurrentExerciseContextProperties {
 	currentExercise: CurrentExercise;

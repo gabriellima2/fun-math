@@ -1,18 +1,15 @@
 import { useState } from "react";
 
-import { isFloat, removeNumberSeparators } from "../../utils/handleNumbers";
+import {
+	currencyConvertBRL,
+	replaceCommaToDot,
+} from "../../utils/formatNumbers";
+import { isCurrency, isDecimal } from "../../utils/handleExerciseResultType";
 
 interface ExerciseUtils {
 	userAnswerIsCorrect: boolean | undefined;
 	checkUserAnswer: (userAnswer: string, result: string) => void;
 	clearUserAnswerIsCorrect: () => void;
-}
-
-const MIN_EMPTY_SPACE = 2;
-const VALUE_TO_FILL_EMPTY_SPACE = "0";
-
-function getTotalEmptySpace(mainValue: string, valueToCompare: string) {
-	return mainValue.length - valueToCompare.length;
 }
 
 // Disponibiliza funções e estados para manipular os exercicios.
@@ -29,25 +26,18 @@ export function useExerciseUtils(): ExerciseUtils {
 	const checkUserAnswer = (userAnswer: string, result: string) => {
 		if (userAnswer === "") return;
 
-		if (isFloat(result)) {
-			const userAnswerFormatted = removeNumberSeparators(userAnswer);
-			const resultFormatted = removeNumberSeparators(result);
+		if (isCurrency(result)) {
+			const userAnswerFormatted = currencyConvertBRL(userAnswer);
 
-			const totalEmptySpace = getTotalEmptySpace(
-				resultFormatted,
-				userAnswerFormatted
-			);
+			if (!userAnswerFormatted) return setUserAnswerIsCorrect(false);
 
-			if (totalEmptySpace <= MIN_EMPTY_SPACE) {
-				const filledUserAnswer = userAnswerFormatted.padEnd(
-					userAnswerFormatted.length + totalEmptySpace,
-					VALUE_TO_FILL_EMPTY_SPACE
-				);
+			return compareResult(userAnswerFormatted, result);
+		}
 
-				return compareResult(filledUserAnswer, resultFormatted);
-			}
+		if (isDecimal(result)) {
+			const userAnswerFormatted = replaceCommaToDot(userAnswer);
 
-			return compareResult(userAnswerFormatted, resultFormatted);
+			return compareResult(userAnswerFormatted, result);
 		}
 
 		compareResult(userAnswer, result);

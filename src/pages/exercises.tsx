@@ -1,59 +1,145 @@
 import { NextPage } from "next";
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { BsArrowDown, BsArrowUp } from "react-icons/bs";
 
-import { Canvas } from "../components/Draw";
-import { ExerciseMode, ExerciseContent } from "../components/Exercise";
+import { useExerciseUtils } from "../hooks/Exercise";
+
+import {
+	ExerciseTextPreview,
+	ChangeExercise,
+	GenerateExercise,
+} from "../components/Exercise";
+import { InsertAnswer } from "../components/InsertAnswer";
 import { Helpers } from "../components/Helpers";
+import { Status } from "../components/Status";
+import { Canvas } from "../components/Draw";
+import { Icon } from "../components/Icon";
+
 import { WithOptionSelected } from "../HOC/WithOptionSelected";
 
+import { CurrentExerciseContext } from "../contexts/CurrentExerciseContext";
 import { UserSelectedOptionsContext } from "../contexts/UserSelectedOptionsContext";
-import { exercises } from "../constants";
+import { debounce } from "../utils/debounce";
+
 import { CanvasUtilsRef } from "../types";
 
+const ANCHORS_STYLE = "flex-center--row gap-2 text-sm describe-text";
+
 const Exercises: NextPage = () => {
+	const exerciseUtils = useExerciseUtils();
 	const canvasUtilsRef = useRef<CanvasUtilsRef>(null);
+	const [typedAnswer, setTypedAnswer] = useState("");
+	const { currentExercise } = useContext(CurrentExerciseContext);
 	const { userSelectedOptions } = useContext(UserSelectedOptionsContext);
+
+	const preparationsForTheNextExercise = () => {
+		setTypedAnswer("");
+		exerciseUtils.clearUserAnswerIsCorrect();
+		canvasUtilsRef?.current?.clearCanvas();
+
+		currentExercise.getNextExercise();
+	};
+
+	useEffect(() => {
+		if (exerciseUtils.userAnswerIsCorrect !== undefined) {
+			exerciseUtils.clearUserAnswerIsCorrect();
+		}
+
+		if (!currentExercise?.result) return;
+
+		debounce(
+			() => exerciseUtils.checkUserAnswer(typedAnswer, currentExercise.result!),
+			950
+		);
+	}, [typedAnswer]);
 
 	if (Object.keys(userSelectedOptions).length <= 0) return null;
 
 	return (
 		<>
-			<div className="flex-center--col gap-8 px-2 py-6">
+			<GenerateExercise generateMode={userSelectedOptions.exercise!.mode}>
 				<main
+					id="top"
 					aria-live="polite"
 					aria-atomic="true"
-					className="w-full flex-center--col gap-2 sticky top-0 py-3 bg-main/60"
+					className="h-screen flex-center--col relative bg-exercise-mobile md:bg-exercise-desktop bg-cover bg-no-repeat bg-center"
 				>
-					{userSelectedOptions.exercise?.mode == exercises.mode.fetch ? (
-						<ExerciseMode.Fetch
-							queryName={userSelectedOptions.exercise.queryName!}
-						>
-							<>
-								<Helpers />
-								<ExerciseContent canvasUtilsRef={canvasUtilsRef} />
-							</>
-						</ExerciseMode.Fetch>
-					) : (
-						<ExerciseMode.Client operator={userSelectedOptions.operator!}>
-							<>
-								<Helpers />
-								<ExerciseContent canvasUtilsRef={canvasUtilsRef} />
-							</>
-						</ExerciseMode.Client>
-					)}
+					<span className="fixed top-12 right-12">
+						<Helpers />
+					</span>
+
+					<section className="w-full flex-center--col px-8">
+						<div className="w-full max-w-[1000px] flex-center--col bg-black-800/40 rounded-md border-black-600/30 border-8 p-6 px-8">
+							<div className="flex-center--col gap-2">
+								<span className="text-sm md:text-base describe-text capitalize">
+									Responda
+								</span>
+								<h1 className="text-2xl md:text-4xl font-bold text-center">
+									{currentExercise.text}
+								</h1>
+							</div>
+
+							<section
+								className={`${
+									exerciseUtils.userAnswerIsCorrect === undefined
+										? "from-black-700 via-black-800"
+										: exerciseUtils.userAnswerIsCorrect
+										? "from-green-800/30"
+											: "from-red-800/30"
+								} bg-gradient-to-l w-full flex-center--row gap-4 mt-12 p-6 md:p-10 rounded-md`}
+							>
+								<InsertAnswer
+									value={typedAnswer}
+									onChange={setTypedAnswer}
+									isInvalid={!exerciseUtils.userAnswerIsCorrect}
+								/>
+								{exerciseUtils.userAnswerIsCorrect !== undefined && (
+									<Status
+										type={
+											exerciseUtils.userAnswerIsCorrect ? "success" : "error"
+										}
+									/>
+								)}
+							</section>
+
+							<ChangeExercise
+								onClick={preparationsForTheNextExercise}
+								exerciseIsCorrect={exerciseUtils.userAnswerIsCorrect}
+								className="self-end mr-4"
+							/>
+						</div>
+					</section>
+
+					<a
+						href="#canvas"
+						className={`${ANCHORS_STYLE} animate-bounce absolute bottom-12`}
+					>
+						Área de Rascunhos
+						<Icon
+							element={BsArrowDown}
+							label="Seta para baixo indicando a Área de Desenho"
+							className="text-xl"
+						/>
+					</a>
 				</main>
 
-				<section className="flex-center--col gap-3">
-					<div className="w-[95vw] xl:w-[70vw] max-w-fit md:max-h-[1/2] overflow-hidden">
-						<span className="w-full flex justify-between pointer-events-none p-4">
-							<p className="text-sm pointer-events-none font-medium text-white/50">
-								Espaço para rascunho
-							</p>
-						</span>
+				<section id="canvas" className="w-full h-screen flex-center--col p-6">
+					<div className="w-[95vw] xl:w-[70vw] max-w-fit md:max-h-[1/2] flex-center--col overflow-hidden">
+						<section className="w-full flex items-center justify-evenly px-2 py-4">
+							<ExerciseTextPreview />
+							<a href="#top" className={`${ANCHORS_STYLE}`}>
+								<Icon
+									element={BsArrowUp}
+									label="Seta para cima indicando a área de responder"
+									className="text-xl"
+								/>
+								Responder
+							</a>
+						</section>
 						<Canvas ref={canvasUtilsRef} />
 					</div>
 				</section>
-			</div>
+			</GenerateExercise>
 		</>
 	);
 };

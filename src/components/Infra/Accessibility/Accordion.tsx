@@ -19,7 +19,7 @@ const Button = (props: ButtonProps) => {
 			onClick={() => setWasClicked(!wasClicked)}
 		>
 			{props.children}
-			<i className={`${wasClicked && "rotate-180"} text-xl`}>
+			<i className={`${!wasClicked && "rotate-180"} text-lg sm:text-xl`}>
 				<BsChevronCompactUp />
 			</i>
 		</Disclosure.Button>

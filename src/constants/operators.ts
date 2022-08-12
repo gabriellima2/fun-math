@@ -1,21 +1,9 @@
-interface Numbers {
-	YNumber: number;
-	XNumber: number;
-}
-
 enum type {
 	subtraction = "subtraction",
 	addition = "addition",
 	division = "division",
 	multiply = "multiply",
 }
-
-const calculations = {
-	[type.subtraction]: ({ YNumber, XNumber }: Numbers) => YNumber - XNumber,
-	[type.addition]: ({ YNumber, XNumber }: Numbers) => YNumber + XNumber,
-	[type.division]: ({ YNumber, XNumber }: Numbers) => YNumber / XNumber,
-	[type.multiply]: ({ YNumber, XNumber }: Numbers) => YNumber * XNumber,
-};
 
 const data = [
 	{
@@ -50,4 +38,4 @@ function search(id: string) {
 	return operator;
 }
 
-export const operators = { type, data, calculations, search };
+export const operators = { type, data, search };

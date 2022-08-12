@@ -14,9 +14,11 @@ import { exercises } from "../constants";
 
 const ChooseOptions = () => {
 	const router = useRouter();
-	const { userSelectedOptions, userSelectedOptionsAreNotValid } = useContext(
-		UserSelectedOptionsContext
-	);
+	const {
+		userSelectedOptions,
+		selectOperator,
+		userSelectedOptionsAreNotValid,
+	} = useContext(UserSelectedOptionsContext);
 
 	const handleSubmit = () => {
 		if (userSelectedOptionsAreNotValid()) return;
@@ -47,7 +49,18 @@ const ChooseOptions = () => {
 							{userSelectedOptions.exercise?.id !== exercises.type.problem ? (
 								<>
 									<h2 className="subtitle">Tipo de operador</h2>
-									<Operators />
+									<Operators.Container
+										handleChange={selectOperator}
+										currentActiveOption={
+											userSelectedOptions.operator?.id || null
+										}
+										className="grid grid-cols-[repeat(2,_1fr)] grid-rows-2 gap-2"
+									>
+										<Operators.List
+											showOperatorName={true}
+											imageSize="w-8 md:w-12 h-8 md:h-12"
+										/>
+									</Operators.Container>
 								</>
 							) : (
 								<h2 className="subtitle mt-5 flex-center--row gap-4">

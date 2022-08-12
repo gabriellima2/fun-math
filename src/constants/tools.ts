@@ -8,8 +8,8 @@ enum typeOfTools {
 
 const initialEraser: DrawingTool = {
 	type: typeOfTools.eraser,
-	color: "#262626",
-	width: 5,
+	color: "#141414",
+	width: 15,
 };
 
 const initialPencil: DrawingTool = {
