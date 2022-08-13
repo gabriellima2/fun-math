@@ -29,8 +29,10 @@ export type CanvasUtilsRef = DefaultRefType<CanvasUtils>;
 
 export type ComponentType<P = object> = React.ComponentType<P>;
 
+export type Children = ReactNode;
+
 export type WithChildren<T = unknown> = {
-	children: ReactNode;
+	children: Children;
 } & T;
 
 export interface IconDefaultProps {

@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 import { useEffect, useState } from "react";
+import * as nookies from "nookies";
 
 import { useLazyFetch } from "../useFetch";
 
@@ -15,7 +16,11 @@ interface ExercisePropertiesVars {
 	number: number;
 }
 
-export function useExerciseFetch(queryFieldName: string): ExerciseResponse {
+export function useExerciseFetch(
+	queryFieldName: string,
+	initialID: number,
+	cookieName: string
+): ExerciseResponse {
 	const GET_EXERCISE_DATA = gql`
 		query GetExerciseData($number: Int!) {
 			${queryFieldName}(where: { number: $number }) {
@@ -27,7 +32,9 @@ export function useExerciseFetch(queryFieldName: string): ExerciseResponse {
 		}
 	`;
 
-	const [currentExerciseNumber, setCurrentExerciseNumber] = useState(1);
+	const [currentExerciseNumber, setCurrentExerciseNumber] = useState(
+		Number(initialID)
+	);
 	const [getExerciseData, { loading, error, data }] = useLazyFetch<
 		ExerciseProperties,
 		ExercisePropertiesVars
@@ -40,6 +47,8 @@ export function useExerciseFetch(queryFieldName: string): ExerciseResponse {
 		const getData = async () => await getExerciseData();
 
 		getData();
+
+		nookies.setCookie(null, cookieName, currentExerciseNumber.toString());
 	}, [currentExerciseNumber]);
 
 	return {
