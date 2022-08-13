@@ -64,7 +64,7 @@ const Exercises: NextPage = () => {
 					id="top"
 					aria-live="polite"
 					aria-atomic="true"
-					className="h-screen flex-center--col relative bg-exercise-mobile md:bg-exercise-desktop bg-cover bg-no-repeat bg-center"
+					className="relative gradient-background"
 				>
 					<span className="fixed top-12 right-12">
 						<Helpers />
@@ -86,8 +86,8 @@ const Exercises: NextPage = () => {
 									exerciseUtils.userAnswerIsCorrect === undefined
 										? "from-black-700 via-black-800"
 										: exerciseUtils.userAnswerIsCorrect
-											? "from-green-800/30"
-										: "from-red-800/30"
+										? "from-green-800/30"
+											: "from-red-800/30"
 								} bg-gradient-to-l w-full flex-center--row gap-4 mt-12 p-6 md:p-10 rounded-md`}
 							>
 								<InsertAnswer

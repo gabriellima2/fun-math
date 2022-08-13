@@ -9,8 +9,8 @@ module.exports = {
 			backgroundImage: {
 				"home-desktop": "url('../../public/dk-home-bg.png')",
 				"home-mobile": "url('../../public/mb-home-bg.png')",
-				"exercise-desktop": "url('../../public/dk-exercises-bg.png')",
-				"exercise-mobile": "url('../../public/mb-exercises-bg.png')"
+				"gradient-desktop": "url('../../public/dk-gradient-bg.png')",
+				"gradient-mobile": "url('../../public/mb-gradient-bg.png')"
 			},
 			colors: {
 				main: "#0A0A0A",

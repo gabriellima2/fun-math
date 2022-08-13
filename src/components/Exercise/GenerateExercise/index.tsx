@@ -26,9 +26,13 @@ export const GenerateExercise = ({
 
 		return (
 			<Fetch
-				cookieName={`exercise-${queryName}-id.funMath!`}
-				defaultValue={"1"}
 				queryName={queryName}
+				cookies={{
+					name: `exercise-${queryName}-id.funMath!`,
+					defaultValue: "1",
+					showDialog: true,
+				}}
+				injectedProps={null} // Essa props vai ser injetada pelo HOC.
 			>
 				{props.children}
 			</Fetch>

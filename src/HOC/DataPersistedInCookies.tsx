@@ -1,43 +1,57 @@
 import { useEffect, useState } from "react";
 import * as nookies from "nookies";
 
-import { PersistedData } from "../components/PersistedData";
+import { CookiesDialog } from "../components/CookiesDialog";
 
 import { ComponentType, WithChildren } from "../types";
 
 export interface DataPersistedInCookiesProps extends WithChildren {
-	defaultValue: string;
-	cookieName: string;
+	cookies: {
+		name: string;
+		defaultValue: string;
+		showDialog: boolean;
+	};
 }
 
 export interface InjectedPersistedDataProps {
-	dataInCookies: string;
+	injectedProps: {
+		currentValueCookies: string;
+	} | null;
 }
 
 export function DataPersistedInCookies<P extends InjectedPersistedDataProps>(
 	Component: ComponentType<P>
 ) {
-	return function HighOrder(props: P & DataPersistedInCookiesProps) {
-		const [dataInCookies, setDataInCookies] = useState<null | string>(null);
+	return function HighOrder({
+		cookies,
+		...props
+	}: P & DataPersistedInCookiesProps) {
+		const [currentValueCookies, setCurrentValueCookies] = useState<
+			null | string
+		>(null);
 
-		const { [props.cookieName]: persistedExerciseID } = nookies.parseCookies();
+		const { [cookies.name]: persistedExerciseID } = nookies.parseCookies();
 
+		// Usuário escolher se quer usar os dados armazenados ou começar novamente.
 		const handlePersistedData = (continueWithPersistedData: boolean) => {
 			if (continueWithPersistedData)
-				return setDataInCookies(persistedExerciseID);
+				return setCurrentValueCookies(persistedExerciseID);
 
-			return setDataInCookies(props.defaultValue);
+			return setCurrentValueCookies(cookies.defaultValue);
 		};
 
+		// Caso não tenha valor nos Cookies adiciona o valor padrão ao estado.
 		useEffect(() => {
 			if (persistedExerciseID) return;
 
-			setDataInCookies(props.defaultValue);
+			setCurrentValueCookies(cookies.defaultValue);
 		}, []);
 
-		if (!dataInCookies)
-			return <PersistedData handlePersistedData={handlePersistedData} />;
+		if (!currentValueCookies && cookies.showDialog)
+			return <CookiesDialog handlePersistedData={handlePersistedData} />;
 
-		return <Component {...(props as P)} dataInCookies={dataInCookies} />;
+		return (
+			<Component {...(props as P)} injectedProps={{ currentValueCookies }} />
+		);
 	};
 }

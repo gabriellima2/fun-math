@@ -18,7 +18,7 @@ interface ExercisePropertiesVars {
 
 export function useExerciseFetch(
 	queryFieldName: string,
-	initialID: number,
+	exerciseID: string,
 	cookieName: string
 ): ExerciseResponse {
 	const GET_EXERCISE_DATA = gql`
@@ -33,12 +33,14 @@ export function useExerciseFetch(
 	`;
 
 	const [currentExerciseNumber, setCurrentExerciseNumber] = useState(
-		Number(initialID)
+		Number(exerciseID)
 	);
 	const [getExerciseData, { loading, error, data }] = useLazyFetch<
 		ExerciseProperties,
 		ExercisePropertiesVars
-	>(GET_EXERCISE_DATA, { variables: { number: currentExerciseNumber } });
+	>(GET_EXERCISE_DATA, {
+		variables: { number: Number(currentExerciseNumber) },
+	});
 
 	const getNextExercise = () =>
 		setCurrentExerciseNumber((prevState) => prevState + 1);
