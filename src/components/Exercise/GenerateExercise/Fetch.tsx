@@ -5,16 +5,15 @@ import {
 	useExerciseFetch,
 } from "../../../hooks/Exercise";
 
-import { Error, Loading } from "../../Infra";
-
 import {
 	DataPersistedInCookies,
 	DataPersistedInCookiesProps,
 	InjectedPersistedDataProps,
 } from "../../../HOC/DataPersistedInCookies";
-import { CurrentExerciseContext } from "../../../contexts/CurrentExerciseContext";
+import { Error, Loading } from "../../Infra";
 
-import { Children, WithChildren } from "../../../types";
+import { CurrentExerciseContext } from "../../../contexts/CurrentExerciseContext";
+import { Children } from "../../../types";
 
 interface FetchProps
 	extends InjectedPersistedDataProps,
@@ -23,39 +22,20 @@ interface FetchProps
 	children?: Children;
 }
 
-const Container = ({ children }: WithChildren) => (
-	<main className="gradient-background">{children}</main>
-);
-
 // Lida com exercícios vindos da API usando dados do exercicio dos cookies.
 export const Fetch = DataPersistedInCookies(
-	({ injectedProps, ...props }: FetchProps) => {
+	({ cookies, injectedProps, ...props }: FetchProps) => {
 		const { addCurrentExercise } = useContext(CurrentExerciseContext);
 		const { loading, error, data } = useExerciseFetch(
 			props.queryName!,
-			injectedProps!.currentValueCookies!,
-			props.cookies.name
+			cookies.name,
+			injectedProps?.currentValueCookies || cookies.defaultValue
 		);
 
 		useExerciseDataHandler(data, addCurrentExercise);
 
-		if (error?.message)
-			return (
-				<Container>
-					<Error message={error.message} />
-				</Container>
-			);
+		if (error?.message) return <Error.FullScreen message={error.message} />;
 
-		return (
-			<>
-				{loading ? (
-					<Container>
-						<Loading />
-					</Container>
-				) : (
-					props.children
-				)}
-			</>
-		);
+		return <>{loading ? <Loading.FullScreen /> : props.children}</>;
 	}
 );

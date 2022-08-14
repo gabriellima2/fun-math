@@ -18,8 +18,8 @@ interface ExercisePropertiesVars {
 
 export function useExerciseFetch(
 	queryFieldName: string,
-	exerciseID: string,
-	cookieName: string
+	cookieName: string,
+	exerciseID: string
 ): ExerciseResponse {
 	const GET_EXERCISE_DATA = gql`
 		query GetExerciseData($number: Int!) {
@@ -33,13 +33,13 @@ export function useExerciseFetch(
 	`;
 
 	const [currentExerciseNumber, setCurrentExerciseNumber] = useState(
-		Number(exerciseID)
+		Number(exerciseID) || 1
 	);
 	const [getExerciseData, { loading, error, data }] = useLazyFetch<
 		ExerciseProperties,
 		ExercisePropertiesVars
 	>(GET_EXERCISE_DATA, {
-		variables: { number: Number(currentExerciseNumber) },
+		variables: { number: currentExerciseNumber },
 	});
 
 	const getNextExercise = () =>
@@ -50,6 +50,7 @@ export function useExerciseFetch(
 
 		getData();
 
+		nookies.destroyCookie(null, cookieName);
 		nookies.setCookie(null, cookieName, currentExerciseNumber.toString());
 	}, [currentExerciseNumber]);
 

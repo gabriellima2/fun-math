@@ -22,27 +22,29 @@ export interface InjectedPersistedDataProps {
 export function DataPersistedInCookies<P extends InjectedPersistedDataProps>(
 	Component: ComponentType<P>
 ) {
-	return function HighOrder({
-		cookies,
-		...props
-	}: P & DataPersistedInCookiesProps) {
+	return function HighOrder(props: P & DataPersistedInCookiesProps) {
 		const [currentValueCookies, setCurrentValueCookies] = useState<
 			null | string
 		>(null);
 
-		const { [cookies.name]: persistedExerciseID } = nookies.parseCookies();
+		const { cookies } = props;
+
+		const { [cookies.name]: valuePersisted } = nookies.parseCookies();
 
 		// Usuário escolher se quer usar os dados armazenados ou começar novamente.
 		const handlePersistedData = (continueWithPersistedData: boolean) => {
 			if (continueWithPersistedData)
-				return setCurrentValueCookies(persistedExerciseID);
+				return setCurrentValueCookies(valuePersisted);
+
+			nookies.destroyCookie(null, cookies.name);
+			nookies.setCookie(null, cookies.name, cookies.defaultValue);
 
 			return setCurrentValueCookies(cookies.defaultValue);
 		};
 
 		// Caso não tenha valor nos Cookies adiciona o valor padrão ao estado.
 		useEffect(() => {
-			if (persistedExerciseID) return;
+			if (valuePersisted) return;
 
 			setCurrentValueCookies(cookies.defaultValue);
 		}, []);

@@ -1,10 +1,11 @@
 import { useContext } from "react";
+import { useRouter } from "next/router";
 
 import { Client } from "./Client";
 import { Fetch } from "./Fetch";
+import { WithOptionSelected } from "../../../HOC/WithOptionSelected";
 
 import { UserSelectedOptionsContext } from "../../../contexts/UserSelectedOptionsContext";
-
 import { mode } from "../../../constants/exercises";
 import { Children } from "../../../types";
 
@@ -13,33 +14,32 @@ interface GenerateExerciseProps {
 	children?: Children;
 }
 
-export const GenerateExercise = ({
-	generateMode,
-	...props
-}: GenerateExerciseProps) => {
-	const { userSelectedOptions } = useContext(UserSelectedOptionsContext);
+export const GenerateExercise = WithOptionSelected(
+	(props: GenerateExerciseProps) => {
+		const { query } = useRouter();
 
-	if (Object.keys(userSelectedOptions).length <= 0) return null;
+		const { userSelectedOptions } = useContext(UserSelectedOptionsContext);
 
-	if (generateMode === mode.fetch) {
-		const queryName = userSelectedOptions.exercise!.queryName!;
+		if (Object.keys(userSelectedOptions).length <= 0) return null;
+
+		if (props.generateMode === mode.fetch) {
+			return (
+				<Fetch
+					queryName={userSelectedOptions.exercise!.queryName!}
+					cookies={{
+						name: `exercise-${query.id}.funMath!`,
+						defaultValue: "1",
+						showDialog: true,
+					}}
+					injectedProps={null} // Props injetadas pelo HOC
+				>
+					{props.children}
+				</Fetch>
+			);
+		}
 
 		return (
-			<Fetch
-				queryName={queryName}
-				cookies={{
-					name: `exercise-${queryName}-id.funMath!`,
-					defaultValue: "1",
-					showDialog: true,
-				}}
-				injectedProps={null} // Essa props vai ser injetada pelo HOC.
-			>
-				{props.children}
-			</Fetch>
+			<Client operator={userSelectedOptions.operator!}>{props.children}</Client>
 		);
 	}
-
-	return (
-		<Client operator={userSelectedOptions.operator!}>{props.children}</Client>
-	);
-};
+);
