@@ -54,6 +54,19 @@ export function useExerciseFetch(
 		nookies.setCookie(null, cookieName, currentExerciseNumber.toString());
 	}, [currentExerciseNumber]);
 
+	if (data?.problem === null && !error) {
+		nookies.destroyCookie(null, cookieName);
+
+		return {
+			loading: false,
+			error: {
+				message:
+					"Chegou ao final, parabéns!! Em breve teremos mais exercícios...",
+			},
+			data: undefined,
+		};
+	}
+
 	return {
 		loading,
 		error,

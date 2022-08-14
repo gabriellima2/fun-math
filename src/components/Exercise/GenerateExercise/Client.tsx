@@ -5,7 +5,7 @@ import {
 	useExerciseDataHandler,
 } from "../../../hooks/Exercise";
 
-import { Error } from "../../Infra";
+import { Error, Loading } from "../../Infra";
 
 import { CurrentExerciseContext } from "../../../contexts/CurrentExerciseContext";
 import { SelectedOperator } from "../../../contexts/UserSelectedOptionsContext";
@@ -20,11 +20,18 @@ interface ClientProps {
 // Lida com exercícios gerados no Client
 export const Client = ({ operator, ...props }: ClientProps) => {
 	const { addCurrentExercise } = useContext(CurrentExerciseContext);
-	const { data, error } = useExerciseClient(operator!);
+	const { data, error, loading } = useExerciseClient(operator!);
 
 	useExerciseDataHandler(data, addCurrentExercise);
 
-	if (error?.message) return <Error message={error.message} />;
+	if (error?.message)
+		return (
+			<Error.FullScreen
+				withLogo={true}
+				message={error.message}
+				className="font-semibold text-xl md:text-2xl text-center"
+			/>
+		);
 
-	return <>{props.children}</>;
+	return <>{loading ? <Loading.FullScreen /> : props.children}</>;
 };

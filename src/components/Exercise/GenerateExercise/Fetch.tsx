@@ -11,6 +11,7 @@ import {
 	InjectedPersistedDataProps,
 } from "../../../HOC/DataPersistedInCookies";
 import { Error, Loading } from "../../Infra";
+import { TextLink } from "../../Links";
 
 import { CurrentExerciseContext } from "../../../contexts/CurrentExerciseContext";
 import { Children } from "../../../types";
@@ -34,7 +35,14 @@ export const Fetch = DataPersistedInCookies(
 
 		useExerciseDataHandler(data, addCurrentExercise);
 
-		if (error?.message) return <Error.FullScreen message={error.message} />;
+		if (error?.message)
+			return (
+				<Error.FullScreen
+					withLogo={true}
+					message={error.message}
+					className="font-semibold text-xl md:text-2xl text-center"
+				/>
+			);
 
 		return <>{loading ? <Loading.FullScreen /> : props.children}</>;
 	}
