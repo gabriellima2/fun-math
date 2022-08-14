@@ -6,7 +6,7 @@ export const CookiesDialog = (props: CookiesDialogProps) => {
 	return (
 		<div className="w-screen gradient-background p-4">
 			<main className="w-full max-h-[90vh] sm:max-h-fit flex-center--col bg-black-800/40 rounded-md border-black-600/30 border-8 p-2 py-4">
-				<h1 className="text-2xl font-semibold">
+				<h1 className="text-2xl font-semibold text-center">
 					Continuar do exercício que parou anteriormente?
 				</h1>
 
