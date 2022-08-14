@@ -2,10 +2,10 @@ import { useEffect, useMemo } from "react";
 
 import { ExerciseData } from "../../types/hooks";
 
-type data = ExerciseData | undefined;
+type Data = ExerciseData | undefined;
 type SaveData = (data: ExerciseData) => void;
 
-export function useExerciseDataHandler(data: data, saveData: SaveData) {
+export function useExerciseDataHandler(data: Data, saveData: SaveData) {
 	/* O "data" é um objeto e objetos não são iguais, não ocupam o mesmo espaço
 	na memória, assim entre renderizações vamos ter a mesma instância do objeto. */
 	const dataMemoized = useMemo(() => data, [data?.result]);
