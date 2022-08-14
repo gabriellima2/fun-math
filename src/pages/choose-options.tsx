@@ -23,7 +23,10 @@ const ChooseOptions = () => {
 	const handleSubmit = () => {
 		if (userSelectedOptionsAreNotValid()) return;
 
-		router.push("/exercises");
+		router.push({
+			pathname: "/exercises",
+			query: { id: userSelectedOptions.exercise?.id },
+		});
 	};
 
 	return (
