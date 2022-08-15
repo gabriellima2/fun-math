@@ -4,8 +4,8 @@ export const Seo = () => (
 	<Head>
 		<meta
 			name="description"
-			content="Aprender operadores matemáticos básicos de forma simples"
+			content="Cálculos com operadores básicos da matemática"
 		/>
-		<title>FunMath!</title>
+		<title>FunMath! - Pratique Matemática</title>
 	</Head>
 );
