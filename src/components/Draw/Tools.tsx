@@ -14,7 +14,7 @@ import {
 } from "../../types/hooks";
 import { CanvasUtils } from "./Canvas";
 
-import { tools } from "../../constants";
+import { tools } from "../../mocks";
 
 interface Utils extends CanvasUtils {
 	updateCanvasContext2D: (

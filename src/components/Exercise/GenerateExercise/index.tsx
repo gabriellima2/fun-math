@@ -6,7 +6,7 @@ import { Fetch } from "./Fetch";
 import { WithOptionSelected } from "../../../HOC/WithOptionSelected";
 
 import { UserSelectedOptionsContext } from "../../../contexts/UserSelectedOptionsContext";
-import { mode } from "../../../constants/exercises";
+import { mode } from "../../../mocks/exercises";
 import { Children } from "../../../types";
 
 interface GenerateExerciseProps {

@@ -6,7 +6,7 @@ import {
 	StylesForCanvasContext,
 } from "../../types/hooks";
 
-import { tools } from "../../constants";
+import { tools } from "../../mocks";
 
 const MARGIN_Y = 1.4;
 

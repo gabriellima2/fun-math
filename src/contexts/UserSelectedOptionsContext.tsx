@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 
 import { OperatorType, ExerciseType, WithChildren } from "../types";
-import { exercises, operators } from "../constants";
+import { exercises, operators } from "../mocks";
 
 export type SelectedOperator = Pick<OperatorType, "id" | "symbol">;
 export type SelectedExercise = ExerciseType;

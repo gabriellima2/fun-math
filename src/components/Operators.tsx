@@ -4,7 +4,7 @@ import React from "react";
 import { Radio, GroupProps } from "./Infra/Accessibility/Radio";
 
 import { ClassName, OperatorType } from "../types";
-import { operators } from "../constants";
+import { operators } from "../mocks";
 
 type ContainerProps = Omit<GroupProps, "label">;
 
