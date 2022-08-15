@@ -13,7 +13,7 @@
 
 <p align="center"><a href="#">Em breve</a></p>
 
-<h4 align="center">Exercícios especificos gerados no Client e outros consumidos da plataforma <a href="https://hygraph.com/" target="_blank" rel="noreferrer">Hygraph</a> com uma API GraphQL.</h4>
+<h4 align="center">Exercícios especificos gerados no Client e outros consumidos da plataforma <a href="https://hygraph.com/">Hygraph</a> com uma API GraphQL.</h4>
 
 
 <h2>Por que?</h2>
@@ -50,7 +50,7 @@ Cálculos com operadores básicos da matemática fazem parte do nosso dia-a-dia,
 
 </br>
 
-Você precisar ter o Node, o Git e algum gerenciador de pacotes(NPM / Yarn) instalados em sua máquina.
+Você precisa ter o [Node](https://nodejs.org/en/), o [Git](https://git-scm.com/) e algum gerenciador de pacotes([NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/) | [Yarn](https://classic.yarnpkg.com/lang/en/docs/install)) instalados em sua máquina.
 
 ```bash
 1. Clone o repositório:
@@ -65,7 +65,7 @@ $ yarn dev / npm run dev
 4. O servidor será aberto em http://localhost:3000
 ```
 
-Caso esteja utilizando o Hygraph: <strong>Configure as variáveis de ambiente</strong>
+Caso esteja utilizando o [Hygraph](https://hygraph.com/):  <strong>Configure as variáveis de ambiente</strong>
 ```bash
 	.env.local
 	
@@ -75,5 +75,5 @@ Caso esteja utilizando o Hygraph: <strong>Configure as variáveis de ambiente</s
 ```
 
 
-<p align="center">Projeto feito com 💙 por <a href="https://www.linkedin.com/in/gabriel-lima-860612236" target="_blank" rel="noreferrer">Gabriel Lima</a></p>
+<p align="center">Projeto feito com 💙 por <a href="https://www.linkedin.com/in/gabriel-lima-860612236">Gabriel Lima</a></p>
 
