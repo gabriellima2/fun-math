@@ -51,7 +51,11 @@ export function useExerciseFetch(
 		getData();
 
 		nookies.destroyCookie(null, cookieName);
-		nookies.setCookie(null, cookieName, currentExerciseNumber.toString());
+		nookies.setCookie(null, cookieName, currentExerciseNumber.toString(), {
+			maxAge: 60 * 120, // 2 Horas
+			path: "/",
+			sameSite: "strict",
+		});
 	}, [currentExerciseNumber]);
 
 	if (data?.problem === null && !error) {
