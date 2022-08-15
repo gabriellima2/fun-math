@@ -56,7 +56,9 @@ export interface LinkDefaultProps extends WithChildren {
 	className?: ClassName;
 }
 
-export interface InputDefaultProps extends WithChildren, InputHTMLAttributes {
+export interface InputDefaultProps
+	extends WithChildren,
+		InputHTMLAttributes<HTMLInputElement> {
 	type?: HTMLInputTypeAttribute | undefined;
 	id: string;
 	name: string;

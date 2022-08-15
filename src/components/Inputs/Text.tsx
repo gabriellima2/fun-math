@@ -1,26 +1,27 @@
 import { InputDefaultProps } from "../../types";
 
 interface TextProps extends InputDefaultProps {
-	isInvalid?: boolean | undefined;
+	customizedAttributes?: {
+		isInvalid?: boolean | undefined;
+	};
 }
 
-export const Text = (props: TextProps) => {
+export const Text = ({
+	children,
+	customizedAttributes,
+	...props
+}: TextProps) => {
 	return (
 		<>
 			<label
 				htmlFor={props.id}
 				className="mr-1 font-accent text-base md:text-lg"
 			>
-				{props.children}
+				{children}
 			</label>
 			<input
-				type={props.type}
-				name={props.name}
-				id={props.id}
-				value={props.value}
-				aria-invalid={props.isInvalid}
-				onChange={(e) => props.onChange(e)}
-				placeholder={props.placeholder}
+				{...props}
+				aria-invalid={customizedAttributes?.isInvalid || undefined}
 				className={`${props.className} p-1 px-2 font-accent text-sm md:text-base font-medium tracking-wide rounded-lg bg-transparent border-2 border-white/30 transition-all outline-custom--focus focus:border-transparent`}
 			/>
 		</>
