@@ -56,6 +56,14 @@ export function useExerciseClient(
 		};
 	}
 
+	if (!Object.values(numbersData)[0]) {
+		return {
+			error: undefined,
+			data: undefined,
+			loading: true,
+		};
+	}
+
 	return {
 		data: {
 			text: `Qual o resultado de ${numbersData.firstNumber} ${operator.symbol} ${numbersData.secondNumber}?`,

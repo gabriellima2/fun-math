@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { DrawingTool } from "../../types";
 
-import { tools } from "../../constants";
+import { tools } from "../../mocks";
 
 interface CanvasSuperset {
 	currentTool: DrawingTool;

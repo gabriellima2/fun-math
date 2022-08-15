@@ -58,7 +58,7 @@ const Content = () => {
 		getData();
 	}, [currentOperatorName]);
 
-	if (error) return <Error message="Ocorreu um erro, tente novamente!" />;
+	if (error) return <Error.Text message="Ocorreu um erro, tente novamente!" />;
 
 	return (
 		<>
@@ -76,7 +76,7 @@ const Content = () => {
 				</Operators.Container>
 			</section>
 			<section className="p-2 pt-3 md:pt-4">
-				{loading ? <Loading /> : <AboutOperator data={data} />}
+				{loading ? <Loading.Default /> : <AboutOperator data={data} />}
 			</section>
 		</>
 	);

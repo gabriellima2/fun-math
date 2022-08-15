@@ -3,8 +3,11 @@ import React, { useContext, useEffect } from "react";
 
 import { ComponentType } from "../types";
 import { UserSelectedOptionsContext } from "../contexts/UserSelectedOptionsContext";
+import { NextPage } from "next";
 
-export function WithOptionSelected<P extends object>(Component: ComponentType) {
+export function WithOptionSelected<P extends object>(
+	Component: ComponentType<P> | NextPage<P>
+) {
 	return function HighOrder(props: P) {
 		const { userSelectedOptionsAreNotValid } = useContext(
 			UserSelectedOptionsContext

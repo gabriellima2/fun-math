@@ -1,4 +1,4 @@
-import { operators } from "../constants";
+import { operators } from "../mocks";
 import { generateRandomNumber, RandomNumberLimits } from "./handleNumbers";
 
 /**

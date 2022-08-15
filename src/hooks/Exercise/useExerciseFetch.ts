@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 import { useEffect, useState } from "react";
+import * as nookies from "nookies";
 
 import { useLazyFetch } from "../useFetch";
 
@@ -15,7 +16,11 @@ interface ExercisePropertiesVars {
 	number: number;
 }
 
-export function useExerciseFetch(queryFieldName: string): ExerciseResponse {
+export function useExerciseFetch(
+	queryFieldName: string,
+	cookieName: string,
+	exerciseID: string
+): ExerciseResponse {
 	const GET_EXERCISE_DATA = gql`
 		query GetExerciseData($number: Int!) {
 			${queryFieldName}(where: { number: $number }) {
@@ -27,11 +32,15 @@ export function useExerciseFetch(queryFieldName: string): ExerciseResponse {
 		}
 	`;
 
-	const [currentExerciseNumber, setCurrentExerciseNumber] = useState(1);
+	const [currentExerciseNumber, setCurrentExerciseNumber] = useState(
+		Number(exerciseID) || 1
+	);
 	const [getExerciseData, { loading, error, data }] = useLazyFetch<
 		ExerciseProperties,
 		ExercisePropertiesVars
-	>(GET_EXERCISE_DATA, { variables: { number: currentExerciseNumber } });
+	>(GET_EXERCISE_DATA, {
+		variables: { number: currentExerciseNumber },
+	});
 
 	const getNextExercise = () =>
 		setCurrentExerciseNumber((prevState) => prevState + 1);
@@ -40,7 +49,23 @@ export function useExerciseFetch(queryFieldName: string): ExerciseResponse {
 		const getData = async () => await getExerciseData();
 
 		getData();
+
+		nookies.destroyCookie(null, cookieName);
+		nookies.setCookie(null, cookieName, currentExerciseNumber.toString());
 	}, [currentExerciseNumber]);
+
+	if (data?.problem === null && !error) {
+		nookies.destroyCookie(null, cookieName);
+
+		return {
+			loading: false,
+			error: {
+				message:
+					"Chegou ao final, parabéns!! Em breve teremos mais exercícios...",
+			},
+			data: undefined,
+		};
+	}
 
 	return {
 		loading,

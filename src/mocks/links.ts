@@ -19,7 +19,7 @@ export const links = [
 	},
 	{
 		id: 2,
-		name: "Praticar",
+		name: "Área de Rascunhos",
 		href: "/draw",
 		icon: BsVectorPen,
 	},

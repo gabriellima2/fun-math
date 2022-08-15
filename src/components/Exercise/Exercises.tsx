@@ -4,7 +4,7 @@ import { Radio } from "../Infra/Accessibility/Radio";
 
 import { UserSelectedOptionsContext } from "../../contexts/UserSelectedOptionsContext";
 
-import { exercises } from "../../constants";
+import { exercises } from "../../mocks";
 import { ExerciseType } from "../../types";
 
 interface ItemProps {

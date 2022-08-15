@@ -4,7 +4,7 @@ import React from "react";
 import { Radio, GroupProps } from "./Infra/Accessibility/Radio";
 
 import { ClassName, OperatorType } from "../types";
-import { operators } from "../constants";
+import { operators } from "../mocks";
 
 type ContainerProps = Omit<GroupProps, "label">;
 
@@ -39,9 +39,7 @@ const Item = ({ operator, ...props }: ItemProps) => (
 				/>
 			</div>
 			{props.showOperatorName && (
-				<span className="uppercase hidden options__text sm:inline">
-					{operator.name}
-				</span>
+				<span className="hidden options__text sm:inline">{operator.name}</span>
 			)}
 		</>
 	</Radio.Option>

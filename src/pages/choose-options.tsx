@@ -10,7 +10,7 @@ import { Icon } from "../components/Icon";
 import { Customized } from "../layouts/Customized";
 
 import { UserSelectedOptionsContext } from "../contexts/UserSelectedOptionsContext";
-import { exercises } from "../constants";
+import { exercises } from "../mocks";
 
 const ChooseOptions = () => {
 	const router = useRouter();
@@ -23,7 +23,10 @@ const ChooseOptions = () => {
 	const handleSubmit = () => {
 		if (userSelectedOptionsAreNotValid()) return;
 
-		router.push("/exercises");
+		router.push({
+			pathname: "/exercises",
+			query: { id: userSelectedOptions.exercise?.id },
+		});
 	};
 
 	return (
@@ -37,7 +40,7 @@ const ChooseOptions = () => {
 						}}
 						className="w-full flex-center--col gap-6 text-center"
 					>
-						<h1 className="text-xl md:text-3xl mb-4">
+						<h1 className="text-xl md:text-3xl mb-4 font-semibold">
 							Selecione as opções para praticar
 						</h1>
 						<fieldset className="container bg-black-600/80">
