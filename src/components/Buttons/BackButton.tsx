@@ -3,13 +3,19 @@ import { BsArrowLeftShort } from "react-icons/bs";
 
 import { Icon } from "../Icon";
 
-export const BackButton = () => {
+interface BackButtonProps {
+	specificRoute?: string;
+}
+
+export const BackButton = ({ specificRoute, ...props }: BackButtonProps) => {
 	const route = useRouter();
 
 	return (
 		<button
 			title="Voltar"
-			onClick={() => route.back()}
+			onClick={
+				specificRoute ? () => route.push(specificRoute) : () => route.back()
+			}
 			className="flex-center--row text-sm lg:text-base text-white/80 uppercase font-medium transition-colors hover:text-accents-pink-100"
 		>
 			<Icon

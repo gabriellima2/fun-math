@@ -10,6 +10,7 @@ import {
 	GenerateExercise,
 } from "../components/Exercise";
 import { InsertAnswer } from "../components/InsertAnswer";
+import { BackButton } from "../components/Buttons";
 import { Helpers } from "../components/Helpers";
 import { Status } from "../components/Status";
 import { Loading } from "../components/Infra";
@@ -64,19 +65,19 @@ const Exercises: NextPage = () => {
 					<Loading.FullScreen />
 				) : (
 					<>
-						<main
-							id="top"
-							aria-live="polite"
-							aria-atomic="true"
-							className="relative gradient-background"
-						>
-							<span className="fixed top-12 right-12">
+						<main id="top" className="relative gradient-background">
+							<section className="w-screen flex items-center justify-between fixed top-12 px-12">
+								<BackButton specificRoute="/choose-options" />
 								<Helpers />
-							</span>
+							</section>
 
 							<section className="w-full flex-center--col px-8">
 								<div className="w-full max-w-[1000px] max-h-[90vh] sm:max-h-fit flex-center--col bg-black-800/40 rounded-md border-black-600/30 border-8 p-6 px-8">
-									<div className="flex-center--col gap-2">
+									<div
+										aria-live="polite"
+										aria-atomic="true"
+										className="flex-center--col gap-2"
+									>
 										<span className="text-sm md:text-base describe-text capitalize">
 											Responda
 										</span>
@@ -114,11 +115,8 @@ const Exercises: NextPage = () => {
 							</a>
 						</main>
 
-						<section
-							id="canvas-area"
-							className="w-full h-screen flex-center--col p-6"
-						>
-							<div className="w-[95vw] xl:w-[70vw] max-w-fit md:max-h-[1/2] flex-center--col">
+						<section id="canvas-area" className="w-full flex-center--col p-6">
+							<div className="w-[95vw] max-w-fit lg:w-[70vw] flex-center--col overflow-x-hidden">
 								<section className="w-full flex items-center justify-evenly px-2 py-4">
 									<ExerciseTextPreview />
 									<a href="#top" className={`${ANCHORS_STYLE}`}>
@@ -130,12 +128,7 @@ const Exercises: NextPage = () => {
 										Responder
 									</a>
 								</section>
-								<div
-									id="canvas"
-									className="w-full h-full flex-center--col overflow-x-hidden"
-								>
-									<Canvas ref={canvasUtilsRef} />
-								</div>
+								<Canvas ref={canvasUtilsRef} />
 							</div>
 						</section>
 					</>
