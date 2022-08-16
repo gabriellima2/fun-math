@@ -29,7 +29,7 @@ export function useBasicCanvas(canvasRef: CanvasRef) {
 	const updateCanvasContext2D = (
 		canvasRef: CanvasRef,
 		context2DRef: Context2DRef,
-		styles: StylesForCanvasContext
+		styles?: StylesForCanvasContext
 	) => {
 		const ctx = canvasRef.current?.getContext("2d");
 
@@ -37,8 +37,8 @@ export function useBasicCanvas(canvasRef: CanvasRef) {
 
 		ctx.scale(1, 1);
 		ctx.lineCap = "round";
-		ctx.strokeStyle = styles.color;
-		ctx.lineWidth = styles.width;
+		ctx.strokeStyle = styles?.color || ctx.strokeStyle;
+		ctx.lineWidth = styles?.width || ctx.lineWidth;
 
 		context2DRef.current = ctx;
 	};
@@ -60,10 +60,7 @@ export function useBasicCanvas(canvasRef: CanvasRef) {
 
 		context.putImageData(canvasBackup, 0, 0);
 
-		updateCanvasContext2D(canvasRef, context2DRef, {
-			color: tools.initialPencil.color,
-			width: tools.initialPencil.width,
-		});
+		updateCanvasContext2D(canvasRef, context2DRef);
 	};
 
 	useEffect(() => {
