@@ -53,11 +53,6 @@ export function useBasicCanvas(canvasRef: CanvasRef) {
 
 		const canvasBackup = context.getImageData(0, 0, canvasWidth, canvasHeight);
 
-		// Somente redimensiona a largura, assim não cortando o Canvas caso abra o teclado.
-		const clientWidth = window.innerWidth;
-		canvas.width = clientWidth;
-		canvas.style.width = `${clientWidth}px;`;
-
 		context.putImageData(canvasBackup, 0, 0);
 
 		updateCanvasContext2D(canvasRef, context2DRef);
@@ -75,10 +70,10 @@ export function useBasicCanvas(canvasRef: CanvasRef) {
 			width: tools.initialPencil.width,
 		});
 
-		window.addEventListener("resize", () => handleResized(canvas, context));
+		canvas.addEventListener("resize", () => handleResized(canvas, context));
 
 		return () =>
-			window.removeEventListener("resize", () =>
+			canvas.removeEventListener("resize", () =>
 				handleResized(canvas, context)
 			);
 	}, []);
