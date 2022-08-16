@@ -14,6 +14,7 @@ import { CanvasEvent } from "../../types";
 import { createMouseEvent } from "../../utils/createMouseEvent";
 
 const CLASS_SCROLL_BLOCK = "scroll--block";
+const CLASS_SCROLL_BLOCK_BODY = "scroll--block--body";
 
 export interface CanvasUtils {
 	clearCanvas: () => void;
@@ -26,12 +27,15 @@ export const Canvas = forwardRef<CanvasUtils, {}>((props, ref) => {
 
 	useEffect(() => {
 		const html = document.documentElement;
+		const body = document.body;
 
-		if (html.classList.contains(CLASS_SCROLL_BLOCK)) {
-			return html.classList.remove(CLASS_SCROLL_BLOCK);
+		if (isDrawing) {
+			html.classList.add(CLASS_SCROLL_BLOCK);
+			return body.classList.add(CLASS_SCROLL_BLOCK_BODY);
 		}
 
-		html.classList.add(CLASS_SCROLL_BLOCK);
+		html.classList.remove(CLASS_SCROLL_BLOCK);
+		return body.classList.remove(CLASS_SCROLL_BLOCK_BODY);
 	}, [isDrawing]);
 
 	const draw = ({ clientX, clientY }: CanvasEvent) => {
