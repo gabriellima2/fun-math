@@ -28,11 +28,14 @@ const Options = ({ Helper }: OptionsProps) => (
 export const Helpers = () => {
 	return (
 		<Popover.Group>
-			<Popover.Button title="Menu de Ajuda" className="text-2xl md:text-3xl">
+			<Popover.Button
+				title="Menu de Ajuda"
+				className="flex-center--row text-2xl md:text-3xl"
+			>
 				<BsFillQuestionCircleFill />
 			</Popover.Button>
-			<Popover.Panel className="absolute right-0 z-50 h-[50vh] overflow-y-auto overflow-x-hidden">
-				<div className="w-min-auto w-64 md:w-96 sm:w-80 flex-center--col max-w-md rounded-xl px-3 py-4 bg-black-400 z-50 border-2 border-black-100">
+			<Popover.Panel className="absolute right-10 top-8 z-50">
+				<div className="w-min-auto w-64 md:w-96 sm:w-80 max-h-[55vh] overflow-y-auto overflow-x-hidden flex-center--col max-w-md rounded-xl px-3 py-4 bg-black-400 border-2 border-black-100">
 					<h1 className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold mb-2">
 						Ajuda
 					</h1>
