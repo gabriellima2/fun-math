@@ -53,7 +53,11 @@ export function useBasicCanvas(canvasRef: CanvasRef) {
 
 		const canvasBackup = context.getImageData(0, 0, canvasWidth, canvasHeight);
 
-		setCanvasSize(canvas);
+		// Somente redimensiona a largura, assim não cortando o Canvas caso abra o teclado.
+		const clientWidth = window.innerWidth;
+		canvas.width = clientWidth;
+		canvas.style.width = `${clientWidth}px;`;
+
 		context.putImageData(canvasBackup, 0, 0);
 
 		updateCanvasContext2D(canvasRef, context2DRef, {
