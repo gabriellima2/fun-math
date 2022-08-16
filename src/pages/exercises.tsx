@@ -85,30 +85,13 @@ const Exercises: NextPage = () => {
 										</h1>
 									</div>
 
-									<section
-										className={`${
-											exerciseUtils.userAnswerIsCorrect === undefined
-												? "from-black-700 via-black-800"
-												: exerciseUtils.userAnswerIsCorrect
-													? "from-green-800/30"
-													: "from-red-800/30"
-										} bg-gradient-to-l w-full flex-center--row gap-4 mt-12 p-6 md:p-10 rounded-md`}
-									>
+									<Status isCorrect={exerciseUtils.userAnswerIsCorrect}>
 										<InsertAnswer
 											value={typedAnswer}
 											onChange={setTypedAnswer}
 											isInvalid={!exerciseUtils.userAnswerIsCorrect}
 										/>
-										{exerciseUtils.userAnswerIsCorrect !== undefined && (
-											<Status
-												type={
-													exerciseUtils.userAnswerIsCorrect
-														? "success"
-														: "error"
-												}
-											/>
-										)}
-									</section>
+									</Status>
 
 									<ChangeExercise
 										onClick={preparationsForTheNextExercise}

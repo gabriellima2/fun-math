@@ -1,9 +1,10 @@
+/* eslint-disable indent */
 import { BsFillCheckSquareFill, BsFillXSquareFill } from "react-icons/bs";
 
-import { ClassName } from "../types";
+import { ClassName, WithChildren } from "../types";
 
-interface StatusProps {
-	type: "success" | "error";
+interface StatusProps extends WithChildren {
+	isCorrect: boolean | undefined;
 	className?: ClassName;
 }
 
@@ -27,8 +28,21 @@ const Error = () => (
 	</i>
 );
 
-export const Status = (props: StatusProps) => (
-	<div id="status" role="status" className={`${props.className} text-3xl`}>
-		{props.type == "success" ? <Success /> : <Error />}
-	</div>
-);
+export const Status = ({ isCorrect, ...props }: StatusProps) => {
+	return (
+		<div
+			id="status"
+			role="status"
+			className={`${props.className} ${
+				isCorrect === undefined
+					? "from-black-700 via-black-800"
+					: isCorrect
+					? "from-green-800/30"
+					: "from-red-800/30"
+			} text-3xl  bg-gradient-to-l w-full flex-center--row gap-4 mt-12 p-6 md:p-10 rounded-md`}
+		>
+			{props.children}
+			{isCorrect === undefined ? null : isCorrect ? <Success /> : <Error />}
+		</div>
+	);
+};
