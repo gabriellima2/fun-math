@@ -42,8 +42,8 @@ module.exports = {
 				},
 			},
 			fontFamily: {
-				main: ["Noto Sans", "sans-serif"],
-				accent: ["Coda, cursive"],
+				main: ["Noto Sans", "Helvetica", "sans-serif"],
+				accent: ["Coda", "monospace"],
 			},
 			fontSize: {
 				"2xs": ".6rem",
