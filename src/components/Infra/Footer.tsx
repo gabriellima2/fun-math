@@ -7,7 +7,7 @@ const links = [
 		text: "linkedin",
 	},
 	{
-		href: "https://github.com/gabriellima2",
+		href: "https://github.com/gabriellima2/fun-math",
 		text: "informações técnicas",
 	},
 ];
@@ -21,8 +21,6 @@ export const Footer = () => (
 					<a
 						key={link.text}
 						href={link.href}
-						rel="noreferrer"
-						target="_blank"
 						className="font-medium text-sm capitalize hover--default"
 					>
 						{link.text}

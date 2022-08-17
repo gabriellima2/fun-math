@@ -11,10 +11,9 @@
 </div>
 <small><strong>OBS:</strong> Contraste da imagem estranho por causa do editor</small>
 
-<p align="center"><a href="#">Em breve</a></p>
+<p align="center"><a href="https://fun-math.vercel.app/">Ver Projeto</a></p>
 
 <h4 align="center">Exercícios especificos gerados no Client e outros consumidos da plataforma <a href="https://hygraph.com/">Hygraph</a> com uma API GraphQL.</h4>
-
 
 <h2>Por que?</h2>
 
@@ -65,15 +64,14 @@ $ yarn dev / npm run dev
 4. O servidor será aberto em http://localhost:3000
 ```
 
-Caso esteja utilizando o [Hygraph](https://hygraph.com/):  <strong>Configure as variáveis de ambiente</strong>
+Caso esteja utilizando o [Hygraph](https://hygraph.com/): <strong>Configure as variáveis de ambiente</strong>
+
 ```bash
 	.env.local
-	
+
 	NEXT_PUBLIC_API_TOKEN=Seu Token de autenticação.
 	NEXT_PUBLIC_API_URL=URL da sua API.
-	
+
 ```
 
-
 <p align="center">Projeto feito com 💙 por <a href="https://www.linkedin.com/in/gabriel-lima-860612236">Gabriel Lima</a></p>
-
