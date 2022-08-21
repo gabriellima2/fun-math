@@ -39,7 +39,7 @@ Cálculos com operadores básicos da matemática fazem parte do nosso dia-a-dia,
 <h2>Prototipagem:</h2>
 
 <div align="center">
-  <img src="./public/github/funMath-figma.png" alt="demonstração do protótip do projeto" >
+  <img src="./public/github/funMath-figma.png" alt="demonstração do protótipo do projeto" >
 </div>
 
 <h4 align="center">Feito com <a href="https://www.figma.com/" target="_blank" rel="noreferrer">Figma</a></h4>
