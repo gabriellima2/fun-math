@@ -18,7 +18,7 @@ const Text = (props: ErrorProps) => (
 );
 
 const FullScreen = ({ withLogo, ...props }: FullScreenProps) => (
-	<div className="gradient-background gap-4 px-4">
+	<div className="gradient-background h-screen gap-4 px-4">
 		{withLogo && <Logo />}
 		<Text {...props} />
 		<TextLink href="/">Voltar para o início</TextLink>

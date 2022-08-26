@@ -7,7 +7,7 @@ const Default = () => (
 );
 
 const FullScreen = () => (
-	<div className="gradient-background">
+	<div className="gradient-background h-screen">
 		<Image src="/loading.gif" alt="Carregando..." width="25" height="25" />
 	</div>
 );

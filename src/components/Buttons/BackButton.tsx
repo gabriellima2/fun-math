@@ -10,12 +10,16 @@ interface BackButtonProps {
 export const BackButton = ({ specificRoute, ...props }: BackButtonProps) => {
 	const route = useRouter();
 
+	const handleClick = () => {
+		if (specificRoute) return route.push(specificRoute);
+
+		route.back();
+	};
+
 	return (
 		<button
 			title="Voltar"
-			onClick={
-				specificRoute ? () => route.push(specificRoute) : () => route.back()
-			}
+			onClick={handleClick}
 			className="flex-center--row text-sm lg:text-base text-white/80 uppercase font-medium transition-colors hover:text-accents-pink-100"
 		>
 			<Icon
