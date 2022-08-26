@@ -24,8 +24,6 @@ import { CurrentExerciseContext } from "../contexts/CurrentExerciseContext";
 import { debounce } from "../utils/debounce";
 import { CanvasUtilsRef } from "../types";
 
-const ANCHORS_STYLE = "flex-center--row gap-2 text-sm describe-text";
-
 const Exercises: NextPage = () => {
 	const exerciseUtils = useExerciseUtils();
 	const [typedAnswer, setTypedAnswer] = useState("");
@@ -66,13 +64,15 @@ const Exercises: NextPage = () => {
 				) : (
 					<>
 						<main id="top" className="relative gradient-background">
-							<section className="w-screen flex items-center justify-between fixed top-12 px-12">
+							<span className="fixed top-8 left-10">
 								<BackButton specificRoute="/choose-options" />
+							</span>
+							<span className="fixed top-8 right-10">
 								<Helpers />
-							</section>
+							</span>
 
-							<section className="w-full flex-center--col px-8">
-								<div className="w-full max-w-[1000px] max-h-[90vh] sm:max-h-fit flex-center--col bg-black-800/40 rounded-md border-black-600/30 border-8 p-6 px-8">
+							<section className="w-full max-w-[1000px] mt-28 sm:mt-36 mb-14 flex-center--col px-8">
+								<div className="w-full sm:max-h-fit flex-center--col bg-black-800/40 rounded-md border-black-600/30 border-8 p-6 px-8">
 									<div
 										aria-live="polite"
 										aria-atomic="true"
@@ -81,7 +81,7 @@ const Exercises: NextPage = () => {
 										<span className="text-sm md:text-base describe-text capitalize">
 											Responda
 										</span>
-										<h1 className="text-xl max-h-[30vh] sm:max-h-fit overflow-y-auto sm:overflow-y-hidden md:text-4xl font-bold text-left">
+										<h1 className="text-xl h-fit overflow-y-auto sm:overflow-y-hidden md:text-4xl font-bold text-left">
 											{currentExercise.text}
 										</h1>
 									</div>
@@ -101,25 +101,16 @@ const Exercises: NextPage = () => {
 									/>
 								</div>
 							</section>
-
-							<a
-								href="#canvas-area"
-								className={`${ANCHORS_STYLE} animate-bounce absolute bottom-12`}
-							>
-								Área de Rascunhos
-								<Icon
-									element={BsArrowDown}
-									label="Seta para baixo indicando a Área de Desenho"
-									className="text-xl"
-								/>
-							</a>
 						</main>
 
 						<section id="canvas-area" className="w-full flex-center--col p-6">
 							<div className="w-[95vw] max-w-fit lg:w-[70vw] flex-center--col overflow-x-hidden">
 								<section className="w-full flex items-center justify-evenly px-2 py-4">
 									<ExerciseTextPreview />
-									<a href="#top" className={`${ANCHORS_STYLE}`}>
+									<a
+										href="#top"
+										className="flex-center--row gap-2 text-sm describe-text"
+									>
 										<Icon
 											element={BsArrowUp}
 											label="Seta para cima indicando a área de responder"

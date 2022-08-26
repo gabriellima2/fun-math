@@ -113,6 +113,6 @@ input[type="range"]::-ms-thumb {
 	}
 
 	.gradient-background {
-		@apply h-screen flex-center--col bg-gradient-mobile md:bg-gradient-desktop bg-cover bg-no-repeat bg-center;
+		@apply flex-center--col bg-gradient-mobile md:bg-gradient-desktop bg-cover bg-no-repeat bg-center;
 	}
 }
