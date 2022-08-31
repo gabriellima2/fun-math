@@ -78,7 +78,7 @@ const ChooseOptions = () => {
 						</fieldset>
 
 						<section className="container flex justify-between">
-							<BackButton specificRoute="/" />
+							<BackButton href="/" />
 
 							<MainButton
 								type="submit"

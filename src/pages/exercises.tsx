@@ -65,7 +65,7 @@ const Exercises: NextPage = () => {
 					<>
 						<main id="top" className="relative gradient-background">
 							<span className="fixed top-8 left-10">
-								<BackButton specificRoute="/choose-options" />
+								<BackButton href="/choose-options" />
 							</span>
 							<span className="fixed top-8 right-10">
 								<Helpers />
