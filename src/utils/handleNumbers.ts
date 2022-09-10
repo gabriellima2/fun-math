@@ -28,7 +28,7 @@ export function getFloatNumberProperties(value: string): FloatNumberProperties {
 	const formattedValue = replaceCommaToDot(value);
 
 	const decimalPointIndex = formattedValue.indexOf(".") + 1;
-	const numbersBeforeDecimalPoint = value.slice(0, decimalPointIndex);
+	const numbersBeforeDecimalPoint = value.slice(0, decimalPointIndex - 1);
 	const numbersAfterDecimalPoint = value.slice(decimalPointIndex);
 
 	return {
