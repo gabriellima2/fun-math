@@ -4,12 +4,10 @@ import * as nookies from "nookies";
 
 import { useLazyFetch } from "../useFetch";
 
-import { ExerciseData, ExerciseResponse } from "../../types/hooks";
+import { ExerciseDataResponse } from "../../types/hooks";
 
 interface ExerciseProperties {
-	problem: Omit<ExerciseData, "getNextExercise"> & {
-		id: string;
-	};
+	problem: Omit<ExerciseDataResponse, "getNextExercise">;
 }
 
 interface ExercisePropertiesVars {
@@ -20,7 +18,7 @@ export function useExerciseFetch(
 	queryFieldName: string,
 	cookieName: string,
 	exerciseID: string
-): ExerciseResponse {
+) {
 	const GET_EXERCISE_DATA = gql`
 		query GetExerciseData($number: Int!) {
 			${queryFieldName}(where: { number: $number }) {
@@ -58,7 +56,7 @@ export function useExerciseFetch(
 		});
 	}, [currentExerciseNumber]);
 
-	if (data?.problem === null && !error) {
+	if (data && data.problem === null && !error) {
 		nookies.destroyCookie(null, cookieName);
 
 		return {
@@ -71,12 +69,20 @@ export function useExerciseFetch(
 		};
 	}
 
+	if (data) {
+		return {
+			loading,
+			error,
+			data: {
+				...data.problem,
+				getNextExercise,
+			},
+		};
+	}
+
 	return {
 		loading,
 		error,
-		data: {
-			...data?.problem,
-			getNextExercise,
-		},
+		data,
 	};
 }

@@ -11,7 +11,6 @@ import {
 	InjectedPersistedDataProps,
 } from "../../../HOC/DataPersistedInCookies";
 import { Error, Loading } from "../../Infra";
-import { TextLink } from "../../Links";
 
 import { CurrentExerciseContext } from "../../../contexts/CurrentExerciseContext";
 import { Children } from "../../../types";
@@ -28,14 +27,14 @@ export const Fetch = DataPersistedInCookies(
 	({ cookies, injectedProps, ...props }: FetchProps) => {
 		const { addCurrentExercise } = useContext(CurrentExerciseContext);
 		const { loading, error, data } = useExerciseFetch(
-			props.queryName!,
+			props.queryName,
 			cookies.name,
-			injectedProps?.currentValueCookies || cookies.defaultValue
+			injectedProps ? injectedProps.currentValueCookies : cookies.defaultValue
 		);
 
 		useExerciseDataHandler(data, addCurrentExercise);
 
-		if (error?.message)
+		if (error && error.message)
 			return (
 				<Error.FullScreen
 					withLogo={true}

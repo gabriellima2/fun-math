@@ -67,7 +67,7 @@ export function useExerciseClient(
 	return {
 		data: {
 			text: `Qual o resultado de ${numbersData.firstNumber} ${operator.symbol} ${numbersData.secondNumber}?`,
-			result: numbersData.result?.toString(),
+			result: numbersData.result!.toString(),
 			getNextExercise: getCalculationData,
 		},
 	};

@@ -20,11 +20,11 @@ interface ClientProps {
 // Lida com exercícios gerados no Client
 export const Client = ({ operator, ...props }: ClientProps) => {
 	const { addCurrentExercise } = useContext(CurrentExerciseContext);
-	const { data, error, loading } = useExerciseClient(operator!);
+	const { data, error, loading } = useExerciseClient(operator);
 
 	useExerciseDataHandler(data, addCurrentExercise);
 
-	if (error?.message)
+	if (error && error.message)
 		return (
 			<Error.FullScreen
 				withLogo={true}

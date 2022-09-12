@@ -1,8 +1,6 @@
 import { NextPage } from "next";
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { BsArrowDown, BsArrowUp } from "react-icons/bs";
-
-import { useExerciseUtils } from "../hooks/Exercise";
+import { BsArrowUp } from "react-icons/bs";
 
 import {
 	ExerciseTextPreview,
@@ -22,36 +20,38 @@ import { WithOptionSelected } from "../HOC/WithOptionSelected";
 import { UserSelectedOptionsContext } from "../contexts/UserSelectedOptionsContext";
 import { CurrentExerciseContext } from "../contexts/CurrentExerciseContext";
 import { debounce } from "../utils/debounce";
+
 import { CanvasUtilsRef } from "../types";
 
 const Exercises: NextPage = () => {
-	const exerciseUtils = useExerciseUtils();
 	const [typedAnswer, setTypedAnswer] = useState("");
 
 	const canvasUtilsRef = useRef<CanvasUtilsRef>(null);
 
-	const { currentExercise } = useContext(CurrentExerciseContext);
+	const {
+		currentExercise,
+		userAnswerIsCorrect,
+		correctExercise,
+		clearCorrection,
+	} = useContext(CurrentExerciseContext);
 	const { userSelectedOptions } = useContext(UserSelectedOptionsContext);
 
 	const preparationsForTheNextExercise = () => {
+		clearCorrection();
 		setTypedAnswer("");
-		exerciseUtils.clearUserAnswerIsCorrect();
-		canvasUtilsRef?.current?.clearCanvas();
 
+		canvasUtilsRef?.current?.clearCanvas();
 		currentExercise.getNextExercise();
 	};
 
 	useEffect(() => {
-		if (exerciseUtils.userAnswerIsCorrect !== undefined) {
-			exerciseUtils.clearUserAnswerIsCorrect();
-		}
-
 		if (!currentExercise?.result) return;
 
-		debounce(
-			() => exerciseUtils.checkUserAnswer(typedAnswer, currentExercise.result!),
-			950
-		);
+		if (userAnswerIsCorrect !== null) {
+			clearCorrection();
+		}
+
+		debounce(() => correctExercise(typedAnswer), 950);
 	}, [typedAnswer]);
 
 	if (Object.keys(userSelectedOptions).length <= 0) return null;
@@ -86,17 +86,16 @@ const Exercises: NextPage = () => {
 										</h1>
 									</div>
 
-									<Status isCorrect={exerciseUtils.userAnswerIsCorrect}>
+									<Status>
 										<InsertAnswer
 											value={typedAnswer}
 											onChange={setTypedAnswer}
-											isInvalid={!exerciseUtils.userAnswerIsCorrect}
+											isInvalid={!userAnswerIsCorrect}
 										/>
 									</Status>
 
 									<ChangeExercise
 										onClick={preparationsForTheNextExercise}
-										exerciseIsCorrect={exerciseUtils.userAnswerIsCorrect}
 										className="self-end mr-4"
 									/>
 								</div>

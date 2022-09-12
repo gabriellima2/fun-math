@@ -13,10 +13,11 @@ export interface StylesForCanvasContext {
 }
 
 export interface ExerciseData {
-	id?: string;
-	text?: string | undefined;
-	tip?: string;
-	result?: string | undefined;
+	id?: string | undefined;
+	text: string;
+	tip?: string | undefined;
+	result: string;
+	type: "currency" | "decimal" | "normal";
 	getNextExercise: () => void;
 }
 
@@ -24,8 +25,10 @@ interface Error {
 	message: string;
 }
 
+export type ExerciseDataResponse = Omit<ExerciseData, "type">;
+
 export interface ExerciseResponse {
 	loading?: boolean;
 	error?: ApolloError | Error;
-	data?: ExerciseData;
+	data?: ExerciseDataResponse;
 }
