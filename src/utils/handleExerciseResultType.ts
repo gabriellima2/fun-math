@@ -5,9 +5,7 @@ export function isDecimal(value: string) {
 	return value.includes(".");
 }
 
-// Padrão feito no GraphCMS! Valores monetários: 1,00 | 10,00 | 100,00 | 1.000,00...
+// Padrão feito no GraphCMS! Valores monetários: R$ 1,00 | R$ 10,00...
 export function isCurrency(value: string) {
-	if (value.endsWith(",") || value.startsWith(",")) return false;
-
-	return value.includes(",");
+	return value.includes("R$");
 }

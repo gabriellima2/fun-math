@@ -29,16 +29,16 @@ export function isInvalidCurrencyValue(value: string) {
 	const lastCommaIndex = value.lastIndexOf(",");
 	const lastDotIndex = value.lastIndexOf(".");
 
+	if (lastCommaIndex != -1 && lastDotIndex > lastCommaIndex) {
+		const numbersAfterDot = value.slice(lastDotIndex + 1, value.length);
+
+		return numbersAfterDot.length >= 3;
+	}
+
 	if (lastCommaIndex > lastDotIndex) {
 		const numbersAfterComma = value.slice(lastCommaIndex + 1, value.length);
 
 		return numbersAfterComma.length > MIN_NUMBERS_AFTER_POINT;
-	}
-
-	if (lastDotIndex > lastCommaIndex) {
-		const numbersAfterDot = value.slice(lastDotIndex + 1, value.length);
-
-		return numbersAfterDot.length > MIN_NUMBERS_AFTER_POINT;
 	}
 
 	return false;
@@ -59,7 +59,8 @@ export function currencyConvertBRL(value: string) {
 		return Number(value);
 	};
 
-	return handleValueFormatting().toLocaleString("pt-BR", {
+	return `R$ ${handleValueFormatting().toLocaleString("pt-BR", {
 		minimumFractionDigits: MIN_NUMBERS_AFTER_POINT,
-	});
+	})}
+		`;
 }
