@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useRef } from "react";
 import { BsArrowUp } from "react-icons/bs";
 
 import {
@@ -7,7 +7,7 @@ import {
 	ChangeExercise,
 	GenerateExercise,
 } from "../components/Exercise";
-import { InsertAnswer } from "../components/InsertAnswer";
+import { InsertAnswer, InsertAnswerRef } from "../components/InsertAnswer";
 import { BackButton } from "../components/Buttons";
 import { Helpers } from "../components/Helpers";
 import { Status } from "../components/Status";
@@ -19,40 +19,26 @@ import { WithOptionSelected } from "../HOC/WithOptionSelected";
 
 import { UserSelectedOptionsContext } from "../contexts/UserSelectedOptionsContext";
 import { CurrentExerciseContext } from "../contexts/CurrentExerciseContext";
-import { debounce } from "../utils/debounce";
 
 import { CanvasUtilsRef } from "../types";
 
 const Exercises: NextPage = () => {
-	const [typedAnswer, setTypedAnswer] = useState("");
-
+	const insertAnswerRef = useRef<null | InsertAnswerRef>(null);
 	const canvasUtilsRef = useRef<CanvasUtilsRef>(null);
 
-	const {
-		currentExercise,
-		userAnswerIsCorrect,
-		correctExercise,
-		clearCorrection,
-	} = useContext(CurrentExerciseContext);
+	const { currentExercise, clearCorrection } = useContext(
+		CurrentExerciseContext
+	);
 	const { userSelectedOptions } = useContext(UserSelectedOptionsContext);
 
 	const preparationsForTheNextExercise = () => {
 		clearCorrection();
-		setTypedAnswer("");
 
-		canvasUtilsRef?.current?.clearCanvas();
+		insertAnswerRef.current?.clearInsertAnswerValue();
+		canvasUtilsRef.current?.clearCanvas();
+
 		currentExercise.getNextExercise();
 	};
-
-	useEffect(() => {
-		if (!currentExercise?.result) return;
-
-		if (userAnswerIsCorrect !== null) {
-			clearCorrection();
-		}
-
-		debounce(() => correctExercise(typedAnswer), 950);
-	}, [typedAnswer]);
 
 	if (Object.keys(userSelectedOptions).length <= 0) return null;
 
@@ -87,11 +73,7 @@ const Exercises: NextPage = () => {
 									</div>
 
 									<Status>
-										<InsertAnswer
-											value={typedAnswer}
-											onChange={setTypedAnswer}
-											isInvalid={!userAnswerIsCorrect}
-										/>
+										<InsertAnswer ref={insertAnswerRef} />
 									</Status>
 
 									<ChangeExercise
