@@ -1,5 +1,8 @@
 import { operators } from "../mocks";
-import { generateRandomNumber, RandomNumberLimits } from "./handleNumbers";
+import {
+	generateRandomNumber,
+	RandomNumberLimits,
+} from "./generateRandomNumber";
 
 /**
  * Gera dois números. O primeiro entre 2 e 100 e o segundo sendo menor que o primeiro

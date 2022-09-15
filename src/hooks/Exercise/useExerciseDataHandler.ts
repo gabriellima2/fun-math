@@ -1,18 +1,10 @@
 import { useEffect, useMemo } from "react";
 
 import { ExerciseData, ExerciseDataResponse } from "../../types/hooks";
-import { isCurrency, isDecimal } from "../../utils/handleExerciseResultType";
+import { getExerciseType } from "../../utils/getExerciseType";
 
 type Data = ExerciseDataResponse | undefined;
 type SaveData = (data: ExerciseData) => void;
-
-function getExerciseType(value: string) {
-	if (isCurrency(value)) return "currency";
-
-	if (isDecimal(value)) return "decimal";
-
-	return "normal";
-}
 
 export function useExerciseDataHandler(data: Data, saveData: SaveData) {
 	/* O "data" é um objeto e objetos não são iguais, não ocupam o mesmo espaço
