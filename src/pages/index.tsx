@@ -4,7 +4,7 @@ import { GetStaticProps } from "next";
 import { BsBoxArrowInRight } from "react-icons/bs";
 
 import { Card } from "../components/Card";
-import { TextLink, MainLink } from "../components/Links";
+import { MainLink } from "../components/MainLink";
 
 import { Common } from "../layouts/Common";
 import { client } from "../lib/client";
@@ -78,9 +78,9 @@ const Home: NextPage<HomeProps> = ({ cards }) => {
 					</section>
 				</div>
 
-				<TextLink href="choose-options">
+				<MainLink variants="text" href="choose-options">
 					Fiquei interessado. Testar agora!
-				</TextLink>
+				</MainLink>
 			</section>
 		</Common>
 	);

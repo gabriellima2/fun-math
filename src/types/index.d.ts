@@ -51,7 +51,7 @@ export interface ButtonDefaultProps extends WithChildren {
 
 export interface LinkDefaultProps extends WithChildren {
 	href: string;
-	icon: IconDefaultProps;
+	icon?: IconDefaultProps;
 	title?: Title;
 	className?: ClassName;
 }

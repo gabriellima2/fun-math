@@ -1,4 +1,4 @@
-import { TextLink } from "../Links";
+import { MainLink } from "../MainLink";
 
 import { Logo } from "./Logo";
 
@@ -21,7 +21,9 @@ const FullScreen = ({ withLogo, ...props }: FullScreenProps) => (
 	<div className="gradient-background h-screen gap-4 px-4">
 		{withLogo && <Logo />}
 		<Text {...props} />
-		<TextLink href="/">Voltar para o início</TextLink>
+		<MainLink variants="text" href="/">
+			Voltar para o início
+		</MainLink>
 	</div>
 );
 
