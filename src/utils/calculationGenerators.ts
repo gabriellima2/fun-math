@@ -12,7 +12,10 @@ function defaultGenerator() {
 	const DEFAULT_LIMITS: RandomNumberLimits = { max: 100, min: 2 };
 
 	const firstNumber = generateRandomNumber(DEFAULT_LIMITS, Math);
-	const secondNumber = generateRandomNumber({ max: firstNumber, min: 2 }, Math);
+	const secondNumber = generateRandomNumber(
+		{ max: firstNumber - 1, min: DEFAULT_LIMITS.min },
+		Math
+	);
 
 	return {
 		firstNumber,
