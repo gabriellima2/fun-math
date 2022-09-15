@@ -1,8 +1,8 @@
 import { useState, createContext } from "react";
 
+import { formatToBRLCurrency } from "../utils/formatToBRLCurrency";
 import { WithChildren } from "../types";
 import { ExerciseData } from "../types/hooks";
-import { currencyConvertBRL, replaceCommaToDot } from "../utils/formatNumbers";
 
 type CurrentExercise = ExerciseData;
 type UserAnswerIsCorrect = null | boolean;
@@ -30,6 +30,8 @@ export const CurrentExerciseContextProvider = ({ children }: WithChildren) => {
 		setCurrentExercise(exercise);
 
 	const checkValues = (userAnswer: string, result: string) => {
+		console.log(userAnswer);
+		console.log(result);
 		setUserAnswerIsCorrect(userAnswer === result);
 	};
 
@@ -39,15 +41,13 @@ export const CurrentExerciseContextProvider = ({ children }: WithChildren) => {
 		if (userAnswer === "") return;
 
 		if (currentExercise.type === "currency") {
-			const userAnswerFormatted = currencyConvertBRL(userAnswer);
-
-			if (!userAnswerFormatted) return setUserAnswerIsCorrect(false);
+			const userAnswerFormatted = formatToBRLCurrency(userAnswer);
 
 			return checkValues(userAnswerFormatted, currentExercise.result);
 		}
 
 		if (currentExercise.type === "decimal") {
-			const userAnswerFormatted = replaceCommaToDot(userAnswer);
+			const userAnswerFormatted = userAnswer.replaceAll(",", ".");
 
 			return checkValues(userAnswerFormatted, currentExercise.result);
 		}
