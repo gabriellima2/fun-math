@@ -32,9 +32,13 @@ export const Fetch = DataPersistedInCookies(
 		);
 
 		// Para termos a mesma instância do objeto entre re-renderizações.
-		useAsyncDataMemoizer<ExerciseDataResponse>(data, addCurrentExercise, [
-			data && data.result,
-		]);
+		useAsyncDataMemoizer<ExerciseDataResponse | undefined>(
+			data,
+			(memoizedData: ExerciseDataResponse | undefined) =>
+				memoizedData && addCurrentExercise(memoizedData),
+
+			[data && data.result]
+		);
 
 		if (error && error.message)
 			return (

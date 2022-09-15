@@ -10,9 +10,5 @@ export function useAsyncDataMemoizer<TData>(
 
 	/* Usa-se o "memoizedData" como dependência ao invés do "data" para evitar
 	loops, assim adicionando os dados atualizados. */
-	useEffect(() => {
-		if (!memoizedData) return;
-
-		callback(memoizedData);
-	}, [memoizedData]);
+	useEffect(() => callback(memoizedData), [memoizedData]);
 }
