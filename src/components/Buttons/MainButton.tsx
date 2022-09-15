@@ -7,19 +7,32 @@ import { ButtonDefaultProps, IconDefaultProps } from "../../types";
 interface MainButtonProps extends ButtonDefaultProps {
 	disabled?: boolean;
 	icon?: IconDefaultProps;
+	variants: "text" | "default";
 }
 
-export const MainButton = (props: MainButtonProps) => (
+const TextStyle =
+	"bg-none capitalize font-semibold hover--default hover:underline";
+const DefaultStyle = " button--default flex items-center gap-3 font-semibold";
+
+export const MainButton = ({
+	children,
+	variants,
+	icon,
+	...props
+}: MainButtonProps) => (
 	<button
-		type={props.type}
-		title={props.title}
-		onClick={props.onClick}
-		disabled={props.disabled}
-		className={`${props.disabled && "disabled"} ${
-			props.className
-		} button--default flex items-center gap-3 font-semibold`}
+		{...props}
+		className={`${variants === "text" ? TextStyle : DefaultStyle}
+			${props.disabled && "disabled"} ${props.className}
+		`}
 	>
-		{props.children}
-		{props.icon && <Icon {...props.icon} />}
+		{children}
+		{icon && <Icon {...icon} />}
 	</button>
 );
+
+const defaultProps: Pick<MainButtonProps, "variants"> = {
+	variants: "default",
+};
+
+MainButton.defaultProps = defaultProps;

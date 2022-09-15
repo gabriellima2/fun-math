@@ -1,4 +1,4 @@
-import { TextButton } from "../Buttons";
+import { MainButton } from "../Buttons";
 
 import { ClassName } from "../../types";
 import { CurrentExerciseContext } from "../../contexts/CurrentExerciseContext";
@@ -13,8 +13,9 @@ export const ChangeExercise = (props: ChangeExerciseProps) => {
 	const { userAnswerIsCorrect } = useContext(CurrentExerciseContext);
 
 	return (
-		<TextButton
+		<MainButton
 			type="button"
+			variants="text"
 			onClick={props.onClick}
 			className={`${userAnswerIsCorrect && "text-green-400"} ${
 				props.className
@@ -24,6 +25,6 @@ export const ChangeExercise = (props: ChangeExerciseProps) => {
 				{userAnswerIsCorrect ? "Próximo" : "Pular"}{" "}
 			</span>
 			Exercício
-		</TextButton>
+		</MainButton>
 	);
 };
