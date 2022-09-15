@@ -12,7 +12,7 @@ type UserAnswerIsCorrect = null | boolean;
 interface CurrentExerciseContextProperties {
 	userAnswerIsCorrect: UserAnswerIsCorrect;
 	currentExercise: CurrentExercise;
-	addCurrentExercise: (exercise: CurrentExercise) => void;
+	addCurrentExercise: (exercise: ExerciseDataResponse) => void;
 	correctExercise: (userAnswer: string) => void;
 	clearCorrection: () => void;
 }
