@@ -1,8 +1,10 @@
 import { useState, createContext } from "react";
 
 import { formatToBRLCurrency } from "../utils/formatToBRLCurrency";
+import { getValueType } from "../utils/getValueType";
+
+import { ExerciseData, ExerciseDataResponse } from "../types/hooks";
 import { WithChildren } from "../types";
-import { ExerciseData } from "../types/hooks";
 
 type CurrentExercise = ExerciseData;
 type UserAnswerIsCorrect = null | boolean;
@@ -26,12 +28,11 @@ export const CurrentExerciseContextProvider = ({ children }: WithChildren) => {
 		{} as CurrentExercise
 	);
 
-	const addCurrentExercise = (exercise: CurrentExercise) =>
-		setCurrentExercise(exercise);
+	const addCurrentExercise = (exercise: ExerciseDataResponse) => {
+		setCurrentExercise({ ...exercise, type: getValueType(exercise.result) });
+	};
 
 	const checkValues = (userAnswer: string, result: string) => {
-		console.log(userAnswer);
-		console.log(result);
 		setUserAnswerIsCorrect(userAnswer === result);
 	};
 

@@ -1,9 +1,7 @@
 import { useContext } from "react";
 
-import {
-	useExerciseClient,
-	useExerciseDataHandler,
-} from "../../../hooks/Exercise";
+import { useExerciseClient } from "../../../hooks/Exercise";
+import { useAsyncDataMemoizer } from "../../../hooks/useAsyncDataMemoizer";
 
 import { Error, Loading } from "../../Infra";
 
@@ -11,6 +9,7 @@ import { CurrentExerciseContext } from "../../../contexts/CurrentExerciseContext
 import { SelectedOperator } from "../../../contexts/UserSelectedOptionsContext";
 
 import { Children } from "../../../types";
+import { ExerciseDataResponse } from "../../../types/hooks";
 
 interface ClientProps {
 	operator: SelectedOperator;
@@ -22,7 +21,10 @@ export const Client = ({ operator, ...props }: ClientProps) => {
 	const { addCurrentExercise } = useContext(CurrentExerciseContext);
 	const { data, error, loading } = useExerciseClient(operator);
 
-	useExerciseDataHandler(data, addCurrentExercise);
+	// Para termos a mesma instância do objeto entre re-renderizações.
+	useAsyncDataMemoizer<ExerciseDataResponse>(data, addCurrentExercise, [
+		data && data.result,
+	]);
 
 	if (error && error.message)
 		return (

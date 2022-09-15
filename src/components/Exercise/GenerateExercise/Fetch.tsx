@@ -1,9 +1,7 @@
 import { useContext } from "react";
 
-import {
-	useExerciseDataHandler,
-	useExerciseFetch,
-} from "../../../hooks/Exercise";
+import { useExerciseFetch } from "../../../hooks/Exercise";
+import { useAsyncDataMemoizer } from "../../../hooks/useAsyncDataMemoizer";
 
 import {
 	DataPersistedInCookies,
@@ -14,6 +12,7 @@ import { Error, Loading } from "../../Infra";
 
 import { CurrentExerciseContext } from "../../../contexts/CurrentExerciseContext";
 import { Children } from "../../../types";
+import { ExerciseDataResponse } from "../../../types/hooks";
 
 interface FetchProps
 	extends InjectedPersistedDataProps,
@@ -32,7 +31,10 @@ export const Fetch = DataPersistedInCookies(
 			injectedProps ? injectedProps.currentValueCookies : cookies.defaultValue
 		);
 
-		useExerciseDataHandler(data, addCurrentExercise);
+		// Para termos a mesma instância do objeto entre re-renderizações.
+		useAsyncDataMemoizer<ExerciseDataResponse>(data, addCurrentExercise, [
+			data && data.result,
+		]);
 
 		if (error && error.message)
 			return (

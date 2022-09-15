@@ -2,6 +2,7 @@ import { ApolloError } from "@apollo/client";
 import { MutableRefObject } from "react";
 
 import { CanvasElement } from ".";
+import { ValueTypes } from "../utils/getValueType";
 
 export type CanvasRef = MutableRefObject<CanvasElement>;
 
@@ -17,7 +18,7 @@ export interface ExerciseData {
 	text: string;
 	tip?: string | undefined;
 	result: string;
-	type: "currency" | "decimal" | "normal";
+	type: ValueTypes;
 	getNextExercise: () => void;
 }
 

@@ -1,3 +1,5 @@
+export type ValueTypes = "currency" | "decimal" | "normal";
+
 // Valores decimais: 0.1 | 1.0 | 10.0 | 100.0...
 function isDecimal(value: string) {
 	if (value.endsWith(".") || value.startsWith(".")) return false;
@@ -10,7 +12,7 @@ function isCurrency(value: string) {
 	return value.includes("R$");
 }
 
-export function getExerciseType(value: string) {
+export function getValueType(value: string): ValueTypes {
 	if (isCurrency(value)) return "currency";
 
 	if (isDecimal(value)) return "decimal";
