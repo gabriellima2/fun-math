@@ -1,4 +1,4 @@
-import { Sidebar } from "../Sidebar";
+import { Sidebar } from "./Sidebar";
 import { Logo } from "./Logo";
 
 export const Header = () => (

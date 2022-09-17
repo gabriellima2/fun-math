@@ -3,10 +3,10 @@ import Link from "next/link";
 import { Dialog } from "@headlessui/react";
 import { BsFillGridFill, BsXLg } from "react-icons/bs";
 
-import { Copyright } from "./Infra";
+import { Copyright } from ".";
 
-import { Links } from "../types";
-import { links } from "../mocks";
+import { Links } from "../../types";
+import { links } from "../../mocks";
 
 type NavLinkProps = Links & {
 	closeSidebar: () => void;
