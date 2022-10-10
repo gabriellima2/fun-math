@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 
-import { formatToBRLCurrency } from "../../utils/formatToBRLCurrency";
+import { formatToBRLCurrency } from "../utils/formatToBRLCurrency";
 
 const SPACE = "\xa0";
 

@@ -4,7 +4,7 @@ import React from "react";
 import userEvent from "@testing-library/user-event";
 import { render, screen } from "@testing-library/react";
 
-import { Input } from "../../../components/Inputs";
+import { Input } from "../components/Inputs";
 
 const PLACEHOLDER_TEXT = "Testing";
 const TYPED_VALUE = "Input Test";
@@ -41,6 +41,6 @@ describe("Text Input Component", () => {
 	it("should handle changes in input", async () => {
 		await userEvent.type(getTextInput(), TYPED_VALUE);
 
-		expect(setStateMock).toHaveBeenCalled();
+		expect(setStateMock).toHaveBeenCalledTimes(TYPED_VALUE.length);
 	});
 });

@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import { act } from "@testing-library/react";
 
-import { debounce } from "../../utils/debounce";
+import { debounce } from "../utils/debounce";
 
 async function wait(timerMS: number): Promise<void> {
 	await act(async () => {
