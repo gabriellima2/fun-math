@@ -12,7 +12,7 @@ interface StatusProps extends WithChildren {
 const Success = () => (
 	<i
 		aria-labelledby="status"
-		aria-label="Resposta Certa"
+		aria-label="Resposta certa"
 		className="text-green-600"
 	>
 		<BsFillCheckSquareFill />
@@ -22,7 +22,7 @@ const Success = () => (
 const Error = () => (
 	<i
 		aria-labelledby="status"
-		aria-label="Resposta Errada"
+		aria-label="Resposta errada"
 		className="text-red-600"
 	>
 		<BsFillXSquareFill />
@@ -36,6 +36,7 @@ export const Status = (props: StatusProps) => {
 		<div
 			id="status"
 			role="status"
+			aria-label="Nenhuma resposta"
 			className={`${props.className} ${
 				userAnswerIsCorrect === null
 					? "from-black-700 via-black-800"

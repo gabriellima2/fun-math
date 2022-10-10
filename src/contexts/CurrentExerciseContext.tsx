@@ -9,7 +9,7 @@ import { WithChildren } from "../types";
 type CurrentExercise = ExerciseData;
 type UserAnswerIsCorrect = null | boolean;
 
-interface CurrentExerciseContextProperties {
+export interface CurrentExerciseContextProperties {
 	userAnswerIsCorrect: UserAnswerIsCorrect;
 	currentExercise: CurrentExercise;
 	addCurrentExercise: (exercise: ExerciseDataResponse) => void;
