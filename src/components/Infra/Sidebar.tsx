@@ -5,7 +5,7 @@ import { BsFillGridFill, BsXLg } from "react-icons/bs";
 
 import { Copyright } from ".";
 
-import { Links } from "../../types";
+import type { Links } from "@globalTypes";
 import { links } from "../../mocks";
 
 type NavLinkProps = Links & {

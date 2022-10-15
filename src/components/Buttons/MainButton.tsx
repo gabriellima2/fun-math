@@ -2,7 +2,7 @@ import React from "react";
 
 import { Icon } from "../Icon";
 
-import { ButtonDefaultProps, IconDefaultProps } from "../../types";
+import type { ButtonDefaultProps, IconDefaultProps } from "@globalTypes";
 
 interface MainButtonProps extends ButtonDefaultProps {
 	disabled?: boolean;

@@ -10,7 +10,7 @@ import { useBasicCanvas } from "../../hooks/Canvas/";
 
 import { Tools } from "./Tools";
 
-import { CanvasEvent } from "../../types";
+import type { CanvasEvent } from "@globalTypes";
 import { createMouseEvent } from "../../utils/createMouseEvent";
 
 const CLASS_SCROLL_BLOCK = "scroll--block";

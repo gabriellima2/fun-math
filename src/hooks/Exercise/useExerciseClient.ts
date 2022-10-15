@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-import { SelectedOperator } from "../../contexts/UserSelectedOptionsContext";
+import { SelectedOperator } from "@contexts/UserSelectedOptionsContext";
 import { calculationGenerators } from "../../utils/calculationGenerators";
-import { ExerciseResponse } from "../../types/hooks";
+import type { ExerciseResponse } from "@hookTypes";
 
 type NumberState = number | null;
 

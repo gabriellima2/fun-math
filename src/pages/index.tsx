@@ -3,8 +3,8 @@ import type { NextPage } from "next";
 import { GetStaticProps } from "next";
 import { BsBoxArrowInRight } from "react-icons/bs";
 
-import { Card } from "../components/Card";
-import { MainLink } from "../components/MainLink";
+import { Card } from "@components/Card";
+import { MainLink } from "@components/MainLink";
 
 import { Common } from "../layouts/Common";
 import { client } from "../lib/client";

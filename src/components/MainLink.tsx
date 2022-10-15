@@ -3,7 +3,7 @@ import React from "react";
 
 import { Icon } from "./Icon";
 
-import { LinkDefaultProps } from "../types";
+import type { LinkDefaultProps } from "@globalTypes";
 
 interface MainLinkProps extends LinkDefaultProps {
 	variants: "text" | "default";

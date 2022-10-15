@@ -1,6 +1,6 @@
 import { Popover as HeadlessPopover } from "@headlessui/react";
 
-import { Props, Title } from "../../../types";
+import type { Props, Title } from "@globalTypes";
 
 interface GroupProps extends Props {}
 interface ButtonProps extends Props {

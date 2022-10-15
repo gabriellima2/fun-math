@@ -1,9 +1,9 @@
 /* eslint-disable indent */
 import { useContext } from "react";
 import { BsFillCheckSquareFill, BsFillXSquareFill } from "react-icons/bs";
-import { CurrentExerciseContext } from "../contexts/CurrentExerciseContext";
 
-import { ClassName, WithChildren } from "../types";
+import { CurrentExerciseContext } from "@contexts/CurrentExerciseContext";
+import type { ClassName, WithChildren } from "@globalTypes";
 
 interface StatusProps extends WithChildren {
 	className?: ClassName;

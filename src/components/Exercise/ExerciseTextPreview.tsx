@@ -3,7 +3,7 @@ import { BsCardText } from "react-icons/bs";
 
 import { Popover } from "../Infra/Accessibility/Popover";
 
-import { CurrentExerciseContext } from "../../contexts/CurrentExerciseContext";
+import { CurrentExerciseContext } from "@contexts/CurrentExerciseContext";
 
 export const ExerciseTextPreview = () => {
 	const { currentExercise } = useContext(CurrentExerciseContext);

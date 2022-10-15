@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import * as nookies from "nookies";
 
-import { CookiesDialog } from "../components/CookiesDialog";
+import { CookiesDialog } from "@components/CookiesDialog";
 
-import { ComponentType, WithChildren } from "../types";
+import type { ComponentType, WithChildren } from "@globalTypes";
 
 export interface DataPersistedInCookiesProps extends WithChildren {
 	cookies: {

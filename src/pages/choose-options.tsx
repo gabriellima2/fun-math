@@ -2,14 +2,14 @@ import { useContext } from "react";
 import { useRouter } from "next/router";
 import { BsArrowRightShort, BsFillExclamationCircleFill } from "react-icons/bs";
 
-import { Operators } from "../components/Operators";
-import { Exercises } from "../components/Exercise";
-import { BackButton, MainButton } from "../components/Buttons";
-import { Icon } from "../components/Icon";
+import { BackButton, MainButton } from "@components/Buttons";
+import { Operators } from "@components/Operators";
+import { Exercises } from "@components/Exercise";
+import { Icon } from "@components/Icon";
 
 import { Customized } from "../layouts/Customized";
 
-import { UserSelectedOptionsContext } from "../contexts/UserSelectedOptionsContext";
+import { UserSelectedOptionsContext } from "@contexts/UserSelectedOptionsContext";
 import { exercises } from "../mocks";
 
 const ChooseOptions = () => {

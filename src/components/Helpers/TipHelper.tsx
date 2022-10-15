@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { CurrentExerciseContext } from "../../contexts/CurrentExerciseContext";
+import { CurrentExerciseContext } from "@contexts/CurrentExerciseContext";
 
 const ButtonText = () => <>Quero alguma dica</>;
 

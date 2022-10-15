@@ -2,7 +2,7 @@ import { MainLink } from "../MainLink";
 
 import { Logo } from "./Logo";
 
-import { ClassName } from "../../types";
+import type { ClassName } from "@globalTypes";
 
 interface ErrorProps {
 	message: string;

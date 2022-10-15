@@ -9,7 +9,7 @@ import {
 
 import { Input } from "./Inputs";
 
-import { CurrentExerciseContext } from "../contexts/CurrentExerciseContext";
+import { CurrentExerciseContext } from "@contexts/CurrentExerciseContext";
 import { debounce } from "../utils/debounce";
 import { keys } from "../constants/keys";
 

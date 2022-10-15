@@ -6,21 +6,21 @@ import {
 	ExerciseTextPreview,
 	ChangeExercise,
 	GenerateExercise,
-} from "../components/Exercise";
-import { InsertAnswer, InsertAnswerRef } from "../components/InsertAnswer";
-import { BackButton } from "../components/Buttons";
-import { Helpers } from "../components/Helpers";
-import { Status } from "../components/Status";
-import { Loading } from "../components/Infra";
-import { Canvas } from "../components/Draw";
-import { Icon } from "../components/Icon";
+} from "@components/Exercise";
+import { InsertAnswer, InsertAnswerRef } from "@components/InsertAnswer";
+import { BackButton } from "@components/Buttons";
+import { Helpers } from "@components/Helpers";
+import { Status } from "@components/Status";
+import { Loading } from "@components/Infra";
+import { Canvas } from "@components/Draw";
+import { Icon } from "@components/Icon";
 
 import { WithOptionSelected } from "../HOC/WithOptionSelected";
 
-import { UserSelectedOptionsContext } from "../contexts/UserSelectedOptionsContext";
-import { CurrentExerciseContext } from "../contexts/CurrentExerciseContext";
+import { UserSelectedOptionsContext } from "@contexts/UserSelectedOptionsContext";
+import { CurrentExerciseContext } from "@contexts/CurrentExerciseContext";
 
-import { CanvasUtilsRef } from "../types";
+import { CanvasUtilsRef } from "@globalTypes";
 
 const Exercises: NextPage = () => {
 	const insertAnswerRef = useRef<null | InsertAnswerRef>(null);

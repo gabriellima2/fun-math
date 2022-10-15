@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { ComponentType } from "../types";
+import type { ComponentType } from "@globalTypes";
 
 // Usar o hook do apollo somente quando o componente for renderizado no browser
 export function ClientOnly<P extends object>(Component: ComponentType) {

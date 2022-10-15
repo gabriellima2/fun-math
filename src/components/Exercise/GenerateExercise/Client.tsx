@@ -3,13 +3,13 @@ import { useContext } from "react";
 import { useExerciseClient } from "../../../hooks/Exercise";
 import { useAsyncDataMemoizer } from "../../../hooks/useAsyncDataMemoizer";
 
-import { Error, Loading } from "../../Infra";
+import { Error, Loading } from "@components/Infra";
 
-import { CurrentExerciseContext } from "../../../contexts/CurrentExerciseContext";
-import { SelectedOperator } from "../../../contexts/UserSelectedOptionsContext";
+import { CurrentExerciseContext } from "@contexts/CurrentExerciseContext";
+import { SelectedOperator } from "@contexts/UserSelectedOptionsContext";
 
-import { Children } from "../../../types";
-import { ExerciseDataResponse } from "../../../types/hooks";
+import type { Children } from "@globalTypes";
+import type { ExerciseDataResponse } from "@hookTypes";
 
 interface ClientProps {
 	operator: SelectedOperator;

@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 
 import { Radio } from "../Infra/Accessibility/Radio";
 
-import { UserSelectedOptionsContext } from "../../contexts/UserSelectedOptionsContext";
+import { UserSelectedOptionsContext } from "@contexts/UserSelectedOptionsContext";
 
 import { exercises } from "../../mocks";
-import { ExerciseType } from "../../types";
+import type { ExerciseType } from "@globalTypes";
 
 interface ItemProps {
 	exercise: ExerciseType;

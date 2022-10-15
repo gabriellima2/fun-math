@@ -2,7 +2,7 @@ import { Disclosure } from "@headlessui/react";
 import { useState } from "react";
 import { BsChevronCompactUp } from "react-icons/bs";
 
-import { Props } from "../../../types";
+import type { Props } from "@globalTypes";
 
 interface GroupProps extends Props {}
 interface ButtonProps extends Props {}

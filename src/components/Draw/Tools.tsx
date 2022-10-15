@@ -7,11 +7,11 @@ import { MainButton } from "../Buttons";
 import { Range } from "../Range";
 import { Icon } from "../Icon";
 
-import {
+import type {
 	CanvasRef,
 	Context2DRef,
 	StylesForCanvasContext,
-} from "../../types/hooks";
+} from "@hookTypes";
 import { CanvasUtils } from "./Canvas";
 
 import { tools } from "../../mocks";

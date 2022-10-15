@@ -4,7 +4,7 @@ import * as nookies from "nookies";
 
 import { useLazyFetch } from "../useFetch";
 
-import { ExerciseDataResponse } from "../../types/hooks";
+import type { ExerciseDataResponse } from "@hookTypes";
 
 interface ExerciseProperties {
 	problem: Omit<ExerciseDataResponse, "getNextExercise">;

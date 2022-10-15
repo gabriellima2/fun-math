@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { DrawingTool } from "../../types";
+import type { DrawingTool } from "@globalTypes";
 
 import { tools } from "../../mocks";
 

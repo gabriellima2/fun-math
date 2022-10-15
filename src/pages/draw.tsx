@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 
-import { Canvas } from "../components/Draw";
+import { Canvas } from "@components/Draw";
 import { Customized } from "../layouts/Customized";
 
 const Draw: NextPage = () => {

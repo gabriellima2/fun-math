@@ -1,4 +1,4 @@
-import { InputDefaultProps } from "../../types";
+import type { InputDefaultProps } from "@globalTypes";
 
 interface TextProps extends InputDefaultProps {
 	customizedAttributes?: {

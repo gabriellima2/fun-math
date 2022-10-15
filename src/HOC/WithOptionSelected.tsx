@@ -1,9 +1,9 @@
+import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect } from "react";
 
-import { ComponentType } from "../types";
-import { UserSelectedOptionsContext } from "../contexts/UserSelectedOptionsContext";
-import { NextPage } from "next";
+import type { ComponentType } from "@globalTypes";
+import { UserSelectedOptionsContext } from "@contexts/UserSelectedOptionsContext";
 
 export function WithOptionSelected<P extends object>(
 	Component: ComponentType<P> | NextPage<P>

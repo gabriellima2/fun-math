@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
 
-import {
+import type {
 	CanvasRef,
 	Context2DRef,
 	StylesForCanvasContext,
-} from "../../types/hooks";
+} from "@hookTypes";
 
 import { tools } from "../../mocks";
 

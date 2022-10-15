@@ -1,8 +1,9 @@
+import { useContext } from "react";
+
 import { MainButton } from "../Buttons";
 
-import { ClassName } from "../../types";
-import { CurrentExerciseContext } from "../../contexts/CurrentExerciseContext";
-import { useContext } from "react";
+import { CurrentExerciseContext } from "@contexts/CurrentExerciseContext";
+import type { ClassName } from "@globalTypes";
 
 interface ChangeExerciseProps {
 	onClick: () => void;

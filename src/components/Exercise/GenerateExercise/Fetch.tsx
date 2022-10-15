@@ -8,11 +8,11 @@ import {
 	DataPersistedInCookiesProps,
 	InjectedPersistedDataProps,
 } from "../../../HOC/DataPersistedInCookies";
-import { Error, Loading } from "../../Infra";
+import { Error, Loading } from "@components/Infra";
 
-import { CurrentExerciseContext } from "../../../contexts/CurrentExerciseContext";
-import { Children } from "../../../types";
-import { ExerciseDataResponse } from "../../../types/hooks";
+import { CurrentExerciseContext } from "@contexts/CurrentExerciseContext";
+import type { Children } from "@globalTypes";
+import type { ExerciseDataResponse } from "@hookTypes";
 
 interface FetchProps
 	extends InjectedPersistedDataProps,
