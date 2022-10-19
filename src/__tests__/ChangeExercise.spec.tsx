@@ -1,14 +1,10 @@
 import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { ChangeExercise } from "../components/Exercise";
 
-import {
-	CurrentExerciseContext,
-	CurrentExerciseContextProperties,
-} from "../contexts/CurrentExerciseContext";
-import type { ExerciseData } from "../types/hooks";
+import { currentExerciseContextMock } from "src/__mocks__/currentExerciseContextMock";
 
 const EXERCISE_SKIP_TEXT = /Pular/;
 const EXERCISE_NEXT_TEXT = /Próximo/;
@@ -17,20 +13,14 @@ describe("Change Exercise Component", () => {
 	const handleClickMock = jest.fn();
 
 	function renderComponent(userAnswerIsCorrect: boolean | null) {
-		const mockFn = jest.fn();
-		const CurrentExerciseContextMock: CurrentExerciseContextProperties = {
-			userAnswerIsCorrect,
-			currentExercise: {} as ExerciseData,
-			clearCorrection: mockFn,
-			correctExercise: mockFn,
-			addCurrentExercise: mockFn,
-		};
-
-		render(
-			<CurrentExerciseContext.Provider value={CurrentExerciseContextMock}>
-				<ChangeExercise onClick={handleClickMock} />
-			</CurrentExerciseContext.Provider>
-		);
+		// Usa o mock do contexto para renderizar o componente
+		currentExerciseContextMock.renderComponent({
+			component: <ChangeExercise onClick={handleClickMock} />,
+			value: {
+				...currentExerciseContextMock.value,
+				userAnswerIsCorrect,
+			},
+		});
 	}
 
 	it("should called function when clicked", async () => {

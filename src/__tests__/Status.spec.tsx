@@ -1,30 +1,20 @@
 import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import { Status } from "../components/Status";
 
-import {
-	CurrentExerciseContext,
-	CurrentExerciseContextProperties,
-} from "../contexts/CurrentExerciseContext";
-import { ExerciseData } from "../types/hooks";
+import { currentExerciseContextMock } from "src/__mocks__/currentExerciseContextMock";
 
 describe("Status Component", () => {
 	function renderComponent(status: boolean | null) {
-		const mockFn = jest.fn();
-		const CurrentExerciseContextMock: CurrentExerciseContextProperties = {
-			userAnswerIsCorrect: status,
-			currentExercise: {} as ExerciseData,
-			clearCorrection: mockFn,
-			correctExercise: mockFn,
-			addCurrentExercise: mockFn,
-		};
-
-		render(
-			<CurrentExerciseContext.Provider value={CurrentExerciseContextMock}>
-				<Status>Testing</Status>
-			</CurrentExerciseContext.Provider>
-		);
+		// Usa o mock do contexto para renderizar o componente
+		currentExerciseContextMock.renderComponent({
+			component: <Status>Testing</Status>,
+			value: {
+				...currentExerciseContextMock.value,
+				userAnswerIsCorrect: status,
+			},
+		});
 	}
 
 	it("should render without status", () => {
