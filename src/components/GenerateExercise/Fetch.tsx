@@ -1,13 +1,13 @@
 import { useContext } from "react";
 
-import { useExerciseFetch } from "../../../hooks/Exercise";
-import { useAsyncDataMemoizer } from "../../../hooks/useAsyncDataMemoizer";
+import { useExerciseFetch } from "../../hooks/Exercise";
+import { useAsyncDataMemoizer } from "../../hooks/useAsyncDataMemoizer";
 
 import {
 	DataPersistedInCookies,
 	DataPersistedInCookiesProps,
 	InjectedPersistedDataProps,
-} from "../../../HOC/DataPersistedInCookies";
+} from "../../HOC/DataPersistedInCookies";
 import { Error, Loading } from "@components/Infra";
 
 import { CurrentExerciseContext } from "@contexts/CurrentExerciseContext";

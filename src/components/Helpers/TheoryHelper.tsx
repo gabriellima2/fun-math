@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { gql } from "@apollo/client";
 
 import { Loading, Error } from "../Infra";
-import { Operators } from "../Operators";
+import { Operators } from "../Options/OperatorsOption";
 import { useLazyFetch } from "../../hooks/useFetch";
 
 interface OperatorInformation {

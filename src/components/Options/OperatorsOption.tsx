@@ -1,10 +1,10 @@
 import Image from "next/image";
 import React from "react";
 
-import { Radio, GroupProps } from "./Infra/Accessibility/Radio";
+import { Radio, GroupProps } from "../Infra/Accessibility/Radio";
 
 import type { ClassName, OperatorType } from "@globalTypes";
-import { operators } from "../mocks";
+import { operators } from "../../mocks";
 
 type ContainerProps = Omit<GroupProps, "label">;
 
@@ -55,4 +55,4 @@ const List = React.memo((props: ListProps) => {
 	);
 });
 
-export const Operators = { Container, List };
+export const OperatorsOption = { Container, List };

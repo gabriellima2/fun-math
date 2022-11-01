@@ -1,6 +1,6 @@
 import { useState, createContext } from "react";
 
-import { formatToBRLCurrency } from "../utils/formatToBRLCurrency";
+import { handleBRLCurrency } from "../utils/handleBRLCurrency";
 import { getValueType } from "../utils/getValueType";
 
 import { ExerciseData, ExerciseDataResponse } from "../types/hooks";
@@ -42,7 +42,7 @@ export const CurrentExerciseContextProvider = ({ children }: WithChildren) => {
 		if (userAnswer === "") return;
 
 		if (currentExercise.type === "currency") {
-			const userAnswerFormatted = formatToBRLCurrency(userAnswer);
+			const userAnswerFormatted = handleBRLCurrency(userAnswer);
 
 			return checkValues(userAnswerFormatted, currentExercise.result);
 		}

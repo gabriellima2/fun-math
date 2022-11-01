@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { ChangeExercise } from "../components/Exercise";
+import { ChangeExercise } from ".";
 
 import { currentExerciseContextMock } from "src/__mocks__/currentExerciseContextMock";
 

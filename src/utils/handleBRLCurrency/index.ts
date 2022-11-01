@@ -1,4 +1,4 @@
-export function formatToBRLCurrency(value: string) {
+export function handleBRLCurrency(value: string) {
 	/* Consideramos que o formato está certo se for menor que 1000 e tiver
 	vírgula, então adicionamos o cifrão. */
 	if (value.includes(",")) {

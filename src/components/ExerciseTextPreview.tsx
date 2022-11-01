@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { BsCardText } from "react-icons/bs";
 
-import { Popover } from "../Infra/Accessibility/Popover";
+import { Popover } from "./Infra/Accessibility/Popover";
 
 import { CurrentExerciseContext } from "@contexts/CurrentExerciseContext";
 

@@ -3,11 +3,11 @@ import { useRouter } from "next/router";
 
 import { Client } from "./Client";
 import { Fetch } from "./Fetch";
-import { WithOptionSelected } from "../../../HOC/WithOptionSelected";
+import { WithOptionSelected } from "../../HOC/WithOptionSelected";
 
-import { UserSelectedOptionsContext } from "../../../contexts/UserSelectedOptionsContext";
-import { mode } from "../../../mocks/exercises";
-import { Children } from "../../../types";
+import { UserSelectedOptionsContext } from "../../contexts/UserSelectedOptionsContext";
+import { mode } from "../../mocks/exercises";
+import { Children } from "../../types";
 
 interface GenerateExerciseProps {
 	generateMode: mode;

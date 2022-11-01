@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import { screen } from "@testing-library/react";
 
-import { Status } from "../components/Status";
+import { Status } from ".";
 
 import { currentExerciseContextMock } from "src/__mocks__/currentExerciseContextMock";
 

@@ -26,7 +26,7 @@ const Item = ({ exercise, ...props }: ItemProps) => (
 	</Radio.Option>
 );
 
-export const Exercises = React.memo(() => {
+export const ExercisesOption = React.memo(() => {
 	const { userSelectedOptions, selectExercise } = useContext(
 		UserSelectedOptionsContext
 	);

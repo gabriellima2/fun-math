@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
-import { useExerciseClient } from "../../../hooks/Exercise";
-import { useAsyncDataMemoizer } from "../../../hooks/useAsyncDataMemoizer";
+import { useExerciseClient } from "../../hooks/Exercise";
+import { useAsyncDataMemoizer } from "../../hooks/useAsyncDataMemoizer";
 
 import { Error, Loading } from "@components/Infra";
 
