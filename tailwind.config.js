@@ -7,53 +7,50 @@ module.exports = {
 	theme: {
 		extend: {
 			backgroundImage: {
-				"home-desktop": "url('../../public/dk-home-bg.png')",
-				"home-mobile": "url('../../public/mb-home-bg.png')",
 				"gradient-desktop": "url('../../public/dk-gradient-bg.png')",
 				"gradient-mobile": "url('../../public/mb-gradient-bg.png')"
 			},
 			colors: {
-				main: "#0A0A0A",
-				pink: {
-					100: "#D2CEDC",
-					200: "#D9CDEA",
-				},
-				black: {
-					100: "#292929",
-					200: "#262626",
-					300: "#232323",
-					400: "#202020",
-					500: "#171717",
-					600: "#141414",
-					700: "#111111",
-					800: "#0F0F0F",
-					900: "#0A0A0A",
+				main: "#090909",
+				font:  "#FBFBFB",
+				utils: {
+					primary: "#0D0D0D",
+					secondary: "#111111"
 				},
 				accents: {
-					purple: "#9740EF",
-					pink: {
-						100: "#DCB0F0",
-						900: "#D2278E",
-					},
-				},
-				canvas: {
-					area: "#141414",
-					tools: "#171717",
+					primary: "#9740EF",
+					secondary:  "#D121EE",
 				},
 			},
 			fontFamily: {
 				main: ["Noto Sans", "Helvetica", "sans-serif"],
-				accent: ["Coda", "monospace"],
+				accent: ["Poppins", "sans-serif"],
 			},
 			fontSize: {
 				"2xs": ".6rem",
 			},
-			gridTemplateColumns: {
-				2: "repeat(2, minmax(230px, 340px))",
-			},
-			gridTemplateRows: {
-				4: "repeat(4, minmax(auto, 160px))",
-			},
+			spacing: {
+        1: '4px',
+				2: '8px',
+        3: '12px',
+        4: '16px',
+        5: '20px',
+        6: '24px',
+        7: '28px',
+        8: '32px',
+        9: '36px',
+        10: '40px',
+        11: '44px',
+        12: '48px',
+        13: '52px',
+        14: '56px',
+				15: '60px',
+        16: '64px',
+        17: '68px',
+        18: '72px',
+        19: '76px',
+        20: '80px',
+      }
 		},
 	},
 	plugins: [],

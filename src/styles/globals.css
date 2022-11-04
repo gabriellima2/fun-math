@@ -7,7 +7,11 @@ html {
 }
 
 body {
-	@apply bg-main text-pink-100 font-main;
+	@apply bg-main text-font font-main;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	@apply font-accent;
 }
 
 ::-webkit-scrollbar {
@@ -16,13 +20,13 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-	@apply bg-black-300;
+	@apply bg-utils-secondary;
 }
 
 ::-webkit-scrollbar-thumb {
 	@apply bg-white/60;
 }
-
+/*
 input[type="range"] {
 	@apply appearance-none h-1 rounded-md bg-accents-pink-100;
 }
@@ -37,7 +41,7 @@ input[type="range"]::-moz-range-thumb {
 
 input[type="range"]::-ms-thumb {
 	@apply w-4 h-4 border-none rounded-full bg-accents-pink-900 cursor-ew-resize;
-}
+}*/
 
 ::-webkit-color-swatch {
 	@apply border-none rounded-full;
@@ -48,9 +52,9 @@ input[type="range"]::-ms-thumb {
 }
 
 @layer components {
-	.button--default {
+	/*.button--default {
 		@apply bg-accents-purple text-pink-100 transition-hover hover:brightness-75;
-	}
+	}*/
 
 	.flex-center--col {
 		@apply flex flex-col items-center justify-center;
@@ -60,7 +64,7 @@ input[type="range"]::-ms-thumb {
 		@apply flex flex-row items-center justify-center;
 	}
 
-	.transition-hover {
+	/*.transition-hover {
 		transition: all 0.3s ease-in;
 	}
 
@@ -114,5 +118,6 @@ input[type="range"]::-ms-thumb {
 
 	.gradient-background {
 		@apply flex-center--col bg-gradient-mobile md:bg-gradient-desktop bg-cover bg-no-repeat bg-center;
-	}
+	}*/
 }
+
