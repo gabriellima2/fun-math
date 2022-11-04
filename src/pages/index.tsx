@@ -4,13 +4,13 @@ import { GetStaticProps } from "next";
 import { StartNowLink } from "@components/Links/StartNowLink";
 import { AccentParagraph } from "@components/AccentText";
 import { Behaviors } from "@components/Behaviors";
+import { Container } from "@components/Infra";
 import { Steps } from "@components/Steps";
 
 import { Common } from "../layouts/Common";
 
 import { getSteps } from "src/utils/GetSteps";
 import type { StepData } from "@globalTypes";
-import { Container } from "@components/Infra";
 
 interface HomeProps {
 	steps: StepData[];
