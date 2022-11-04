@@ -12,6 +12,10 @@ type NavLinkProps = Links & {
 	closeSidebar: () => void;
 };
 
+interface ButtonProps {
+	handleClick: () => void;
+}
+
 const NavLink = (props: NavLinkProps) => (
 	<li onClick={props.closeSidebar} className="w-full">
 		<Link href={props.href}>
@@ -25,19 +29,31 @@ const NavLink = (props: NavLinkProps) => (
 	</li>
 );
 
+const OpenSidebarButton = ({ handleClick }: ButtonProps) => (
+	<button
+		title="Abrir Menu de Navegação"
+		onClick={handleClick}
+		className="justify-self-end text-xl text-pink-50"
+	>
+		<BsFillGridFill />
+	</button>
+);
+
+const CloseSidebarButton = ({ handleClick }: ButtonProps) => (
+	<button
+		title="Fechar Menu de Navegação"
+		onClick={handleClick}
+		className="absolute top-6 md:top-9 right-6 md:right-9 text-xl text-pink-50"
+	>
+		<BsXLg />
+	</button>
+);
+
 export const Sidebar = () => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	if (!isOpen) {
-		return (
-			<button
-				title="Menu de Navegação"
-				onClick={() => setIsOpen(true)}
-				className="justify-self-end text-2xl text-pink-50"
-			>
-				<BsFillGridFill />
-			</button>
-		);
+		return <OpenSidebarButton handleClick={() => setIsOpen(true)} />;
 	}
 
 	return (
@@ -47,13 +63,9 @@ export const Sidebar = () => {
 			<div className="inset-0 absolute right-0 top-0 z-45 flex flex-col items-end">
 				<Dialog.Panel className="w-full md:max-w-md h-fit flex-center--col bg-black-700 relative py-20">
 					<Dialog.Title className="hidden">Barra de navegação</Dialog.Title>
-					<button
-						title="Fechar Menu de Navegação"
-						onClick={() => setIsOpen(false)}
-						className="absolute top-8 right-8 text-2xl text-pink-50"
-					>
-						<BsXLg />
-					</button>
+
+					<CloseSidebarButton handleClick={() => setIsOpen(false)} />
+
 					<nav className="w-full p-4">
 						<ul>
 							{links.map((link) => (
@@ -65,6 +77,7 @@ export const Sidebar = () => {
 							))}
 						</ul>
 					</nav>
+
 					<span className="absolute bottom-9 ">
 						<Copyright />
 					</span>

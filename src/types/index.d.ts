@@ -1,8 +1,10 @@
+import { LinkProps } from "next/link";
 import React, {
 	InputHTMLAttributes,
 	MouseEvent,
 	ReactNode,
 	ChangeEvent,
+	AnchorHTMLAttributes,
 } from "react";
 import { IconType } from "react-icons";
 
@@ -35,10 +37,8 @@ export type WithChildren<T = unknown> = {
 	children: Children;
 } & T;
 
-export interface IconDefaultProps {
+export interface IconDefaultProps extends React.HTMLAttributes<HTMLElement> {
 	element: IconType;
-	label: string;
-	className?: ClassName;
 }
 
 export interface ButtonDefaultProps extends WithChildren {
@@ -49,12 +49,9 @@ export interface ButtonDefaultProps extends WithChildren {
 	onClick?: (param?: MouseEvent<HTMLButtonElement>) => void;
 }
 
-export interface LinkDefaultProps extends WithChildren {
-	href: string;
-	icon?: IconDefaultProps;
-	title?: Title;
-	className?: ClassName;
-}
+export interface LinkDefaultProps
+	extends LinkProps,
+		AnchorHTMLAttributes<HTMLAnchorElement> {}
 
 export interface InputDefaultProps
 	extends WithChildren,
@@ -76,4 +73,12 @@ export interface DrawingTool {
 
 export interface Props extends WithChildren {
 	className?: ClassName;
+}
+
+export interface StepData {
+	title: string;
+	description: string;
+	icon: {
+		url: string;
+	};
 }

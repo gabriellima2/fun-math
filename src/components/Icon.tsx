@@ -4,10 +4,8 @@ import type { IconDefaultProps } from "@globalTypes";
 
 interface IconProps extends IconDefaultProps {}
 
-export const Icon = (props: IconProps) => (
-	<i aria-label={props.label} className={props.className}>
-		{React.createElement(props.element, null)}
-	</i>
+export const Icon = ({ element, ...props }: IconProps) => (
+	<i {...props}>{React.createElement(element, null)}</i>
 );
 
 const defaultProps: Pick<IconProps, "className"> = {

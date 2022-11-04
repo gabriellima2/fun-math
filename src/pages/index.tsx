@@ -1,86 +1,72 @@
-import { gql } from "@apollo/client";
 import type { NextPage } from "next";
 import { GetStaticProps } from "next";
-import { BsBoxArrowInRight } from "react-icons/bs";
 
-import { Card } from "@components/Card";
-import { MainLink } from "@components/MainLink";
+import { StartNowLink } from "@components/Links/StartNowLink";
+import { AccentParagraph } from "@components/AccentText";
+import { Behaviors } from "@components/Behaviors";
+import { Steps } from "@components/Steps";
 
 import { Common } from "../layouts/Common";
-import { client } from "../lib/client";
 
-export interface CardContent {
-	title: string;
-	description: string;
-	icon: {
-		url: string;
-	};
+import { getSteps } from "src/utils/GetSteps";
+import type { StepData } from "@globalTypes";
+import { Container } from "@components/Infra";
+
+interface HomeProps {
+	steps: StepData[];
 }
-
-interface CardData {
-	cards: CardContent[];
-}
-
-type HomeProps = CardData;
 
 const SECONDS_TO_REVALIDATE = 60;
 
-const Home: NextPage<HomeProps> = ({ cards }) => {
+const Home: NextPage<HomeProps> = ({ steps }) => {
 	return (
 		<Common>
-			<main
-				id="home"
-				className="min-h-full lg:w-full flex-center--col gap-8 md:gap-12 bg-home-mobile md:bg-home-desktop bg-cover bg-no-repeat bg-center p-4 pb-24"
-			>
-				<section className="mt-36 lg:mt-44 lg:ml-30 text-center px-1">
-					<h1 className="w-full min-w-auto max-w-[400px] md:max-w-[750px] lg:max-w-[800px] text-3xl md:text-6xl lg:text-7xl capitalize font-bold tracking-wide">
-						Praticar operadores matemáticos básicos
-					</h1>
-					<h2 className="w-full min-w-auto max-w-[360px] md:max-w-[450px] lg:max-w-[530px] text-base md:text-xl lg:text-2xl text-center text-pink-100/80 m-auto mt-4">
-						Use diversos exercícios para praticar e aumentar seu conhecimento em
-						matemática
-					</h2>
-				</section>
-				<MainLink
-					href="/choose-options"
-					icon={{
-						element: BsBoxArrowInRight,
-						label: "Seta para direita",
-						className: "text-xl sm:text-2xl",
-					}}
-					className="rounded-sm mb-36 lg:mb-36"
-				>
-					comece agora
-				</MainLink>
-			</main>
-			<section
-				id="howItWork"
-				className="h-full bg-black-800 p-4 lg:p-12 py-7 text-center"
-			>
-				<div className="flex-center--col xl:flex-row xl:gap-12 xl:justify-evenly">
-					<section className="flex-center--col gap-5 xl:items-start text-center xl:text-left">
-						<h1 className="text-2xl md:text-4xl xl:text-7xl text-center xl:text-left max-w-[350px] md:max-w-[550px] xl:max-w-[800px] capitalize font-semibold tracking-wide">
-							Funcionamento{" "}
-							<span className="font-semibold gradient-text">simples</span>.
-							Muito{" "}
-							<span className="font-semibold gradient-text">aprendizado</span>
+			<main id="home">
+				<Container className="flex-center--col gap-8 md:gap-10 my-[100px] md:my-[230px]">
+					<div className="flex-center--col gap-4 md:gap-5">
+						<h1 className="max-w-[400px] sm:max-w-[480px] md:max-w-[800px] text-2xl sm:text-4xl md:text-5xl xl:text-6xl font-black text-center leading-tight md:leading-[1.1]">
+							<span className="text-transparent bg-clip-text bg-gradient-to-r from-font via-accents-secondary to-accents-primary">
+								Operadores Matemáticos
+							</span>{" "}
+							Básicos na Prática
 						</h1>
-						<p className="max-w-xs md:max-w-none md:w-[430px] xl:w-[450px] text-base md:text-lg lg:text-xl">
-							Coloque em prática seus conhecimentos com exercícios da plataforma
-						</p>
-					</section>
-					<section className="mt-12 mb-8">
-						<ul className="flex-center--col sm:overflow-x-auto sm:flex-row sm:justify-start xl:grid xl:grid-cols-2 xl:grid-rows-4 xl:place-items-center gap-5 xl:gap-4 sm:pb-4 md:pb-0">
-							{cards.map((card, index) => (
-								<Card {...card} index={index} key={card.title} />
-							))}
-						</ul>
-					</section>
-				</div>
+						<h2 className="max-w-[350px] md:max-w-[470px] text-sm md:text-base lg:text-lg text-center">
+							Use diversos exercícios para praticar e aumentar seu conhecimento
+							em matemática
+						</h2>
+					</div>
+					<StartNowLink />
+				</Container>
+			</main>
 
-				<MainLink variants="text" href="choose-options">
-					Fiquei interessado. Testar agora!
-				</MainLink>
+			<section className="bg-utils-primary">
+				<Container>
+					<Steps steps={steps} />
+				</Container>
+			</section>
+
+			<section id="howItWork">
+				<Container className="flex-center--col md:flex-row gap-12 md:gap-0 justify-around xl:justify-between xl:px-20 2xl:max-w-[1400px] my-[6px] md:my-[50px] lg:my-[100px]">
+					<div className="flex flex-col gap-6 md:gap-7">
+						<h2 className="md:max-w-[400px] text-xl md:text-2xl lg:text-4xl font-bold">
+							Supere dificuldades no aprendizado
+						</h2>
+						<div className="flex flex-col gap-5 md:gap-6">
+							<AccentParagraph className="max-w-[380px]">
+								Pensando em usabilidade, desenvolvemos uma plataforma simples e
+								intuitiva.
+							</AccentParagraph>
+							<AccentParagraph className="max-w-[380px]">
+								Disponibilizamos ferramentas para ajudar os usuários na
+								conclusão do exercício.
+							</AccentParagraph>
+						</div>
+						<StartNowLink />
+					</div>
+					<div>
+						<Behaviors />
+					</div>
+				</Container>
 			</section>
 		</Common>
 	);
@@ -89,23 +75,11 @@ const Home: NextPage<HomeProps> = ({ cards }) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-	const { data } = await client.query<CardData>({
-		query: gql`
-			query GetCards {
-				cards {
-					title
-					description
-					icon {
-						url
-					}
-				}
-			}
-		`,
-	});
+	const response = await getSteps();
 
 	return {
 		props: {
-			cards: data.cards,
+			steps: response,
 		},
 		revalidate: SECONDS_TO_REVALIDATE,
 	};
