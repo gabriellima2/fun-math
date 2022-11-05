@@ -1,6 +1,5 @@
-import { WithChildren } from "../types";
-
-import { Header } from "../components/Infra";
+import { Header } from "@components/Header";
+import type { WithChildren } from "@globalTypes";
 
 export const Customized = ({ children }: WithChildren) => (
 	<>

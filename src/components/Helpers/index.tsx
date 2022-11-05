@@ -1,7 +1,7 @@
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 
-import { Popover } from "../Infra/Accessibility/Popover";
-import { Accordion } from "../Infra/Accessibility/Accordion";
+import { Popover } from "../Popover";
+import { Accordion } from "../Accordion";
 import { MultiplicationTableHelper } from "./MultiplicationTableHelper";
 import { TheoryHelper } from "./TheoryHelper";
 import { TipHelper } from "./TipHelper";

@@ -1,5 +1,5 @@
-import { Disclosure } from "@headlessui/react";
 import { useState } from "react";
+import { Disclosure } from "@headlessui/react";
 import { BsChevronCompactUp } from "react-icons/bs";
 
 import type { Props } from "@globalTypes";

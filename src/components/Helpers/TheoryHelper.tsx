@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { gql } from "@apollo/client";
 
-import { Loading, Error } from "../Infra";
-import { Operators } from "../Options/OperatorsOption";
+import { Error } from "../Error";
+import { Loading } from "../Loading";
+import { OperatorsOption } from "../Options/OperatorsOption";
 import { useLazyFetch } from "../../hooks/useFetch";
 
 interface OperatorInformation {
@@ -63,17 +64,17 @@ const Content = () => {
 	return (
 		<>
 			<section>
-				<Operators.Container
+				<OperatorsOption.Container
 					handleChange={changeCurrentOperator}
 					currentActiveOption={currentOperatorName}
 					className="flex gap-2 overflow-x-scroll p-2 md:p-3 pb-3 md:pb-4 rounded-md bg-black-600/90"
 				>
-					<Operators.List
+					<OperatorsOption.List
 						showOperatorName={false}
 						className="w-fit"
 						imageSize="w-5 md:w-6 h-5 md:h-6"
 					/>
-				</Operators.Container>
+				</OperatorsOption.Container>
 			</section>
 			<section className="p-2 pt-3 md:pt-4">
 				{loading ? <Loading.Default /> : <AboutOperator data={data} />}

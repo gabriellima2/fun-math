@@ -1,6 +1,7 @@
 import { WithChildren } from "../types";
 
-import { Header, Footer } from "@components/Infra";
+import { Header } from "@components/Header";
+import { Footer } from "@components/Footer";
 
 export const Common = ({ children }: WithChildren) => (
 	<>

@@ -1,5 +1,5 @@
 import { Copyright } from "./Copyright";
-import { GoToTopButton } from "../Buttons";
+import { GoToTopButton } from "./Buttons";
 
 const links = [
 	{

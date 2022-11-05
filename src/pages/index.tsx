@@ -4,7 +4,7 @@ import { GetStaticProps } from "next";
 import { StartNowLink } from "@components/Links/StartNowLink";
 import { AccentParagraph } from "@components/AccentText";
 import { Behaviors } from "@components/Behaviors";
-import { Container } from "@components/Infra";
+import { Container } from "@components/Container";
 import { Steps } from "@components/Steps";
 
 import { Common } from "../layouts/Common";
@@ -22,7 +22,7 @@ const Home: NextPage<HomeProps> = ({ steps }) => {
 	return (
 		<Common>
 			<main id="home">
-				<Container className="flex-center--col gap-8 md:gap-10 my-[100px] md:my-[230px]">
+				<Container className="flex-center--col gap-8 md:gap-10 my-[150px] md:my-[140px] lg:my-[160px]">
 					<div className="flex-center--col gap-4 md:gap-5">
 						<h1 className="max-w-[400px] sm:max-w-[480px] md:max-w-[800px] text-2xl sm:text-4xl md:text-5xl xl:text-6xl font-black text-center leading-tight md:leading-[1.1]">
 							<span className="text-transparent bg-clip-text bg-gradient-to-r from-font via-accents-secondary to-accents-primary">

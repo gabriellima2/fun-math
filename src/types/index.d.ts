@@ -5,6 +5,7 @@ import React, {
 	ReactNode,
 	ChangeEvent,
 	AnchorHTMLAttributes,
+	HTMLAttributes,
 } from "react";
 import { IconType } from "react-icons";
 
@@ -37,17 +38,11 @@ export type WithChildren<T = unknown> = {
 	children: Children;
 } & T;
 
-export interface IconDefaultProps extends React.HTMLAttributes<HTMLElement> {
+export interface IconDefaultProps extends HTMLAttributes<HTMLElement> {
 	element: IconType;
 }
 
-export interface ButtonDefaultProps extends WithChildren {
-	type: "button" | "submit" | "reset" | undefined;
-	className?: ClassName;
-	title?: Title;
-	disabled?: boolean;
-	onClick?: (param?: MouseEvent<HTMLButtonElement>) => void;
-}
+export interface ButtonDefaultProps extends HTMLAttributes<HTMLButtonElement> {}
 
 export interface LinkDefaultProps
 	extends LinkProps,

@@ -1,4 +1,4 @@
-import { BaseLink } from "../Links/BaseLink";
+import { BaseLink } from "./Links/BaseLink";
 
 import { Logo } from "./Logo";
 
