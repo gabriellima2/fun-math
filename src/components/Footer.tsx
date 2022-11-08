@@ -11,7 +11,7 @@ export const Footer = () => (
 			<div className="w-full flex flex-col lg:flex-row items-end lg:items-center justify-between gap-12 lg:gap-0">
 				<section className="flex flex-col items-start gap-5 self-start">
 					<Logo />
-					<small className="w-[400px] text-xs md:text-[0.820rem] md:leading-normal opacity-70">
+					<small className="sm:w-[400px] text-xs md:text-[0.820rem] md:leading-normal opacity-70">
 						Matemática faz parte da nossa vida, principalmente cálculos simples.
 						A FunMath é focada em disponibilizar o aprendizado de Operadores
 						Básicos da Matemática.

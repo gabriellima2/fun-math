@@ -7,7 +7,7 @@ interface StepsProps {
 
 export const Step = (props: StepData) => (
 	<li className="flex-center--col sm:flex-row gap-6">
-		<div className="w-[58px] h-14 md:w-[66px] md:h-16 relative">
+		<div className="w-[50px] h-12 md:w-[66px] md:h-16 relative">
 			<Image
 				src={props.icon.url}
 				alt={`Icone do Card ${props.title}`}
