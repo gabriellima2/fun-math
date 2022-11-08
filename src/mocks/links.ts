@@ -13,8 +13,8 @@ export const links = [
 	},
 	{
 		id: 1,
-		name: "Como Funciona?",
-		href: "/#howItWork",
+		name: "Exercícios",
+		href: "/choose-options",
 		icon: BsFillQuestionCircleFill,
 	},
 	{

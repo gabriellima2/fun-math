@@ -8,8 +8,10 @@ export const GoToTopButton = () => {
 
 	return (
 		<button
+			type="button"
+			title="Ir para o topo"
 			onClick={scrollToTop}
-			className="bg-black-500 p-1 text-2xl rounded-md transition-hover hover:text-accents-pink-100 hover:bg-transparent"
+			className="p-1 md:p-2 text-2xl rounded-md bg-utils-secondary border-2 border-transparent transition focus:bg-transparent focus:border-utils-secondary hover:bg-transparent hover:border-utils-secondary"
 		>
 			<BsArrowUpShort />
 		</button>

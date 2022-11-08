@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { Radio } from "../Infra/Accessibility/Radio";
+import { Radio } from "../Radio";
 
 import { UserSelectedOptionsContext } from "@contexts/UserSelectedOptionsContext";
 

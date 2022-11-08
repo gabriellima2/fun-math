@@ -1,34 +1,38 @@
 import { Copyright } from "./Copyright";
 import { GoToTopButton } from "./Buttons";
-
-const links = [
-	{
-		href: "https://www.linkedin.com/in/gabriel-lima-860612236",
-		text: "linkedin",
-	},
-	{
-		href: "https://github.com/gabriellima2/fun-math",
-		text: "informações técnicas",
-	},
-];
+import { Logo } from "./Logo";
+import { Container } from "./Container";
+import { Contacts } from "./Contacts";
+import { QuickNavigation } from "./QuickNavigation";
 
 export const Footer = () => (
-	<footer className="flex justify-between items-center p-6">
-		<section className="w-full flex-center--col sm:flex-row gap-8">
-			<Copyright />
-			<nav className="flex-center--row flex-wrap sm:flex-nowrap gap-8">
-				{links.map((link) => (
-					<a
-						key={link.text}
-						href={link.href}
-						className="font-medium text-sm capitalize hover--default"
-					>
-						{link.text}
-					</a>
-				))}
-			</nav>
-		</section>
+	<footer className="p-6">
+		<Container className="flex flex-col justify-between items-center gap-12 py-0 pt-12 border-t-2 border-utils-secondary">
+			<div className="w-full flex flex-col lg:flex-row items-end lg:items-center justify-between gap-12 lg:gap-0">
+				<section className="flex flex-col items-start gap-5 self-start">
+					<Logo />
+					<small className="w-[400px] text-xs md:text-[0.820rem] md:leading-normal opacity-70">
+						Matemática faz parte da nossa vida, principalmente cálculos simples.
+						A FunMath é focada em disponibilizar o aprendizado de Operadores
+						Básicos da Matemática.
+					</small>
+				</section>
 
-		<GoToTopButton />
+				<div className="w-full flex items-center justify-between md:justify-evenly flex-wrap">
+					<section>
+						<h2 className="font-semibold mb-2 text-sm md:text-base">Navegar</h2>
+						<QuickNavigation className="flex flex-col gap-2 md:gap-1" />
+					</section>
+
+					<section>
+						<Contacts className="flex gap-4 md:gap-5" />
+					</section>
+				</div>
+
+				<GoToTopButton />
+			</div>
+
+			<Copyright />
+		</Container>
 	</footer>
 );
