@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { GetStaticProps } from "next";
 
 import { StartNowLink } from "@components/Links/StartNowLink";
-import { AccentParagraph } from "@components/AccentText";
+import { AccentParagraph } from "@components/AccentParagraph";
 import { Behaviors } from "@components/Behaviors";
 import { Container } from "@components/Container";
 import { Steps } from "@components/Steps";

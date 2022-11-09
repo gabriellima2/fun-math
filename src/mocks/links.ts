@@ -8,7 +8,7 @@ export const links = [
 	{
 		id: 0,
 		name: "Início",
-		href: "/#home",
+		href: "/",
 		icon: BsFillHouseFill,
 	},
 	{
