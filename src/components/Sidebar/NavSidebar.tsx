@@ -1,9 +1,9 @@
 import Link from "next/link";
 import React from "react";
-
-import type { Links } from "@globalTypes";
-import { Icon } from "@components/Icon";
 import { useRouter } from "next/router";
+
+import { Icon } from "@components/Icon";
+import type { Links } from "@globalTypes";
 
 interface NavLinkProps extends Links {
 	closeSidebar: () => void;
@@ -19,9 +19,10 @@ export const NavLink = (props: NavLinkProps) => {
 	const isCurrentRoute = pathname === props.href;
 
 	return (
-		<li onClick={props.closeSidebar} className="w-full">
+		<li className={`${isCurrentRoute && "pointer-events-none"} w-full`}>
 			<Link href={props.href}>
 				<a
+					onClick={props.closeSidebar}
 					aria-disabled={isCurrentRoute}
 					tabIndex={isCurrentRoute ? -1 : 0}
 					className={`${
