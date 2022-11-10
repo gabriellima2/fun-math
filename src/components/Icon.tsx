@@ -1,6 +1,6 @@
 import React from "react";
 
-import type { IconDefaultProps } from "@globalTypes";
+import type { IconDefaultProps } from "@interfaces/IDefaultProps";
 
 interface IconProps extends IconDefaultProps {}
 

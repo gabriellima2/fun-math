@@ -1,9 +1,9 @@
-import { Copyright } from "./Copyright";
-import { GoToTopButton } from "./Buttons";
-import { Logo } from "./Logo";
-import { Container } from "./Container";
-import { Contacts } from "./Contacts";
 import { QuickNavigation } from "./QuickNavigation";
+import { GoToTopButton } from "./Buttons";
+import { Container } from "./Container";
+import { Copyright } from "./Copyright";
+import { Contacts } from "./Contacts";
+import { Logo } from "./Logo";
 
 export const Footer = () => (
 	<footer className="p-6">

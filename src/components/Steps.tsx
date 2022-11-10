@@ -1,11 +1,11 @@
-import { StepData } from "@globalTypes";
 import Image from "next/image";
+import { IStepData } from "@interfaces/IStepData";
 
 interface StepsProps {
-	steps: StepData[];
+	steps: IStepData[];
 }
 
-export const Step = (props: StepData) => (
+export const Step = (props: IStepData) => (
 	<li className="flex-center--col sm:flex-row gap-6">
 		<div className="w-[50px] h-12 md:w-[66px] md:h-16 relative">
 			<Image

@@ -1,15 +1,16 @@
 import { HTMLAttributes } from "react";
-import { links } from "src/mocks";
-import { BaseLink } from "./Links/BaseLink";
 
-interface NavigationType {
+import { BaseLink } from "./Links/BaseLink";
+import { links } from "src/mocks";
+
+interface INavigation {
 	name: string;
 	href: string;
 }
 
 interface QuickNavigationProps extends HTMLAttributes<HTMLUListElement> {}
 
-export const Item = (props: NavigationType) => (
+export const Item = (props: INavigation) => (
 	<BaseLink.Text
 		href={props.href}
 		title={`Ir para ${props.name}`}

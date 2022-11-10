@@ -1,6 +1,6 @@
 import { Touch } from "react";
 
-import { CanvasEvent } from "../types";
+import { CanvasEvent } from "@types/TCanvas";
 
 export function createMouseEvent(
 	pointer: Touch,

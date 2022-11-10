@@ -1,15 +1,14 @@
 import { operators } from "../mocks";
-import {
-	generateRandomNumber,
-	RandomNumberLimits,
-} from "./generateRandomNumber";
+import { generateRandomNumber } from "./generateRandomNumber";
+
+import type { INumberLimits } from "@interfaces/INumberLimits";
 
 /**
  * Gera dois números. O primeiro entre 2 e 100 e o segundo sendo menor que o primeiro
  * @returns [object] Números gerados
  */
 function defaultGenerator() {
-	const DEFAULT_LIMITS: RandomNumberLimits = { max: 100, min: 2 };
+	const DEFAULT_LIMITS: INumberLimits = { max: 100, min: 2 };
 
 	const firstNumber = generateRandomNumber(DEFAULT_LIMITS, Math);
 	const secondNumber = generateRandomNumber(
@@ -50,7 +49,7 @@ function handleSubtractionGenerator() {
  * @returns [object] Números e resultado do cálculo.
  */
 function handleDivisionGenerator() {
-	const DIVISION_LIMITS: RandomNumberLimits = { max: 12, min: 2 };
+	const DIVISION_LIMITS: INumberLimits = { max: 12, min: 2 };
 
 	const firstNumberGenerated = generateRandomNumber(DIVISION_LIMITS, Math);
 	const secondNumberGenerated = generateRandomNumber(DIVISION_LIMITS, Math);
@@ -80,7 +79,7 @@ function handleDivisionGenerator() {
 }
 
 function handleMultiplyGenerator() {
-	const MULTIPLY_LIMITS: RandomNumberLimits = { max: 50, min: 9 };
+	const MULTIPLY_LIMITS: INumberLimits = { max: 50, min: 9 };
 
 	const firstNumber = generateRandomNumber(MULTIPLY_LIMITS, Math);
 	// Limites para o segundo número ser menor que o primeiro.

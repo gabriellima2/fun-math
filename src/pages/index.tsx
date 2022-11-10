@@ -10,10 +10,10 @@ import { Steps } from "@components/Steps";
 import { Common } from "../layouts/Common";
 
 import { getSteps } from "src/utils/GetSteps";
-import type { StepData } from "@globalTypes";
+import type { IStepData } from "@interfaces/IStepData";
 
 interface HomeProps {
-	steps: StepData[];
+	steps: IStepData[];
 }
 
 const SECONDS_TO_REVALIDATE = 60;

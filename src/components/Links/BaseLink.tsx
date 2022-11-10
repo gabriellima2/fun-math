@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import type { LinkDefaultProps } from "@globalTypes";
+import type { LinkDefaultProps } from "@interfaces/IDefaultProps";
 
 export interface BaseLinkProps extends LinkDefaultProps {}
 

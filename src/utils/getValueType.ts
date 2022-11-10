@@ -1,4 +1,4 @@
-export type ValueTypes = "currency" | "decimal" | "normal";
+import type { TNumbers } from "@types/TNumbers";
 
 // Valores decimais: 0.1 | 1.0 | 10.0 | 100.0...
 function isDecimal(value: string) {
@@ -12,7 +12,7 @@ function isCurrency(value: string) {
 	return value.includes("R$");
 }
 
-export function getValueType(value: string): ValueTypes {
+export function getValueType(value: string): TNumbers {
 	if (isCurrency(value)) return "currency";
 
 	if (isDecimal(value)) return "decimal";
