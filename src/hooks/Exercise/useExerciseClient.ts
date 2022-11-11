@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
 import { SelectedOperator } from "@contexts/UserSelectedOptionsContext";
-import { calculationGenerators } from "../../utils/calculationGenerators";
-import type { ExerciseResponse } from "@hookTypes";
+import { calculationGenerators } from "@utils/calculationGenerators";
+import type { IExerciseResponse } from "@interfaces/IExercise";
 
 type NumberState = number | null;
 
@@ -14,7 +14,7 @@ interface NumbersData {
 
 export function useExerciseClient(
 	operator: SelectedOperator
-): ExerciseResponse {
+): IExerciseResponse {
 	const [numbersData, setNumbersData] = useState<NumbersData>(
 		{} as NumbersData
 	);

@@ -1,6 +1,6 @@
 import type { MouseEvent, MutableRefObject } from "react";
 import type { ICanvas } from "@interfaces/ICanvas";
-import type { RefType } from "@types/TGlobals";
+import type { RefType } from "@globalTypes/TGlobals";
 
 export type CanvasEvent = MouseEvent | globalThis.MouseEvent;
 

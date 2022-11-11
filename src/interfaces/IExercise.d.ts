@@ -1,5 +1,6 @@
 import type { ApolloError } from "@apollo/client";
-import type { TNumbers } from "@types/TNumbers";
+import type { TNumbers } from "@globalTypes/TNumbers";
+import type { IError } from "@interfaces/IError";
 
 export interface IExercise {
 	id: type;
@@ -21,8 +22,8 @@ export interface IExerciseProperties {
 export interface IExercisePropertiesResponse
 	extends Omit<IExerciseProperties, "type"> {}
 
-export interface ExerciseResponse {
+export interface IExerciseResponse {
 	loading?: boolean;
-	error?: ApolloError | Error;
+	error?: ApolloError | IError;
 	data?: IExercisePropertiesResponse;
 }

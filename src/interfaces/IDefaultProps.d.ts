@@ -6,7 +6,7 @@ import type {
 } from "react";
 import type { IconType } from "react-icons";
 import type { LinkProps } from "next/link";
-import type { WithChildren } from "@types/TGlobals";
+import type { WithChildren } from "@globalTypes/TGlobals";
 
 export interface IconDefaultProps extends HTMLAttributes<HTMLElement> {
 	element: IconType;

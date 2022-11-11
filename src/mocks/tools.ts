@@ -1,18 +1,18 @@
 import { BsFillEraserFill, BsFillPencilFill } from "react-icons/bs";
-import { DrawingTool } from "../types";
+import { IDrawingTool } from "@interfaces/IDrawingTool";
 
 enum typeOfTools {
 	eraser = "eraser",
 	pencil = "pencil",
 }
 
-const initialEraser: DrawingTool = {
+const initialEraser: IDrawingTool = {
 	type: typeOfTools.eraser,
 	color: "#141414",
 	width: 15,
 };
 
-const initialPencil: DrawingTool = {
+const initialPencil: IDrawingTool = {
 	type: typeOfTools.pencil,
 	color: "#ffffff",
 	width: 5,

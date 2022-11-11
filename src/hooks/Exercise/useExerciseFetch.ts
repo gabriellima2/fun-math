@@ -4,10 +4,10 @@ import * as nookies from "nookies";
 
 import { useLazyFetch } from "../useFetch";
 
-import type { ExerciseDataResponse } from "@hookTypes";
+import type { IExercisePropertiesResponse } from "@interfaces/IExercise";
 
 interface ExerciseProperties {
-	problem: Omit<ExerciseDataResponse, "getNextExercise">;
+	problem: Omit<IExercisePropertiesResponse, "getNextExercise">;
 }
 
 interface ExercisePropertiesVars {
