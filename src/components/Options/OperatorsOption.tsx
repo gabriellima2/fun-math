@@ -1,58 +1,47 @@
 import Image from "next/image";
 import React from "react";
 
-import { Radio, GroupProps } from "../Infra/Accessibility/Radio";
+import { useExercisePreferences } from "@contexts/ExercisePreferences";
 
-import type { ClassName, OperatorType } from "@globalTypes";
-import { operators } from "../../mocks";
+import { Radio } from "@components/Radio";
 
-type ContainerProps = Omit<GroupProps, "label">;
+import type { IOperator } from "@interfaces/IOperator";
 
-interface ItemProps {
-	operator: OperatorType;
-	className?: ClassName;
-	showOperatorName: boolean;
-	imageSize: ClassName;
+interface OperatorsOptionProps {
+	operators: IOperator[];
 }
 
-interface ListProps extends Omit<ItemProps, "operator"> {}
+interface OperatorProps
+	extends Pick<IOperator, "image" | "displayText" | "id"> {}
 
-const Container = (props: ContainerProps) => (
-	<Radio.Group
-		label="Lista de operadores"
-		handleChange={props.handleChange}
-		currentActiveOption={props.currentActiveOption}
-		className={props.className}
-	>
-		{props.children}
-	</Radio.Group>
-);
-
-const Item = ({ operator, ...props }: ItemProps) => (
-	<Radio.Option value={operator.id} className={props.className}>
-		<>
-			<div className={`${props.imageSize} relative`}>
-				<Image
-					src={operator.image}
-					alt={`Operador de ${operator.name}`}
-					layout="fill"
-				/>
-			</div>
-			{props.showOperatorName && (
-				<span className="hidden options__text sm:inline">{operator.name}</span>
-			)}
-		</>
+const Operator = (props: OperatorProps) => (
+	<Radio.Option value={props.id} className="justify-center sm:justify-start">
+		<div className="w-7 sm:w-10 h-7 sm:h-10 relative">
+			<Image
+				src={props.image}
+				alt={`Operator de ${props.displayText}`}
+				layout="fill"
+				objectFit="contain"
+			/>
+		</div>
+		<p className="hidden sm:inline-block">{props.displayText}</p>
 	</Radio.Option>
 );
 
-const List = React.memo((props: ListProps) => {
-	return (
-		<>
-			{operators.data.map((operator) => (
-				<Item operator={operator} {...props} key={operator.id} />
-			))}
-		</>
-	);
-});
+export const OperatorsOption = ({ operators }: OperatorsOptionProps) => {
+	const { exercisePreferences, setOperator } = useExercisePreferences();
 
-export const OperatorsOption = { Container, List };
+	return (
+		<Radio.Group
+			label="Tipo de operador:"
+			value={exercisePreferences.operator?.id}
+			onChange={setOperator}
+		>
+			<div className="grid grid-cols-2 grid-rows-2 gap-3 sm:gap-4">
+				{operators.map((operator) => (
+					<Operator {...operator} key={operator.id} />
+				))}
+			</div>
+		</Radio.Group>
+	);
+};

@@ -1,46 +1,41 @@
-import React, { useContext } from "react";
+import React, { memo } from "react";
 
-import { Radio } from "../Radio";
+import { useExercisePreferences } from "@contexts/ExercisePreferences";
 
-import { UserSelectedOptionsContext } from "@contexts/UserSelectedOptionsContext";
+import { Radio } from "@components/Radio";
 
-import { exercises } from "../../mocks";
-import type { ExerciseType } from "@globalTypes";
+import type { IExercise } from "@interfaces/IExercise";
 
-interface ItemProps {
-	exercise: ExerciseType;
+interface ExercisesOptionProps {
+	exercises: IExercise[];
 }
 
-const Item = ({ exercise, ...props }: ItemProps) => (
-	<Radio.Option
-		value={exercise.id}
-		key={exercise.id}
-		className="w-full options__text"
-	>
-		<>
-			<i className="text-3xl md:text-4xl">
-				{React.createElement(exercise.icon, null)}
-			</i>
-			<span>{exercise.name}</span>
-		</>
+interface ExerciseProps
+	extends Pick<IExercise, "icon" | "displayText" | "id"> {}
+
+const Exercise = (props: ExerciseProps) => (
+	<Radio.Option value={props.id}>
+		<i className="text-2xl md:text-4xl">
+			{React.createElement(props.icon, null)}
+		</i>
+		<p>{props.displayText}</p>
 	</Radio.Option>
 );
 
-export const ExercisesOption = React.memo(() => {
-	const { userSelectedOptions, selectExercise } = useContext(
-		UserSelectedOptionsContext
-	);
+export const ExercisesOption = memo(({ exercises }: ExercisesOptionProps) => {
+	const { exercisePreferences, setExercise } = useExercisePreferences();
 
 	return (
 		<Radio.Group
-			label="Tipos de exercícios disponíveis"
-			handleChange={selectExercise}
-			currentActiveOption={userSelectedOptions.exercise?.id || null}
-			className="flex flex-col gap-2 sm:flex-row"
+			label="Tipo de exercício:"
+			value={exercisePreferences.exercise?.id}
+			onChange={setExercise}
 		>
-			{exercises.data.map((exercise) => (
-				<Item exercise={exercise} key={exercise.id} />
-			))}
+			<div className="grid grid-cols-1 sm:grid-cols-2 grid-rows-2 sm:grid-rows-1 gap-3 sm:gap-4">
+				{exercises.map((exercise) => (
+					<Exercise {...exercise} key={exercise.id} />
+				))}
+			</div>
 		</Radio.Group>
 	);
 });

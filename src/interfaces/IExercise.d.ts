@@ -5,7 +5,7 @@ import type { IError } from "@interfaces/IError";
 export interface IExercise {
 	id: type;
 	mode: mode;
-	name: string;
+	displayText: string;
 	icon: IconType;
 	queryName?: string;
 }

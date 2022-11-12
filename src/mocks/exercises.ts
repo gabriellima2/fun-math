@@ -1,5 +1,5 @@
-import { IconType } from "react-icons";
 import { BsQuestionDiamondFill, BsShuffle } from "react-icons/bs";
+import type { IExercise } from "@interfaces/IExercise";
 
 enum type {
 	random = "random",
@@ -11,25 +11,17 @@ export enum mode {
 	fetch = "fetch",
 }
 
-interface Exercise {
-	id: type;
-	mode: mode;
-	name: string;
-	icon: IconType;
-	queryName?: string;
-}
-
-const data: Exercise[] = [
+const data: IExercise[] = [
 	{
 		id: type.random,
 		mode: mode.client,
-		name: "Cálculos aleatórios",
+		displayText: "Cálculos aleatórios",
 		icon: BsShuffle,
 	},
 	{
 		id: type.problem,
 		mode: mode.fetch,
-		name: "Situações-problema",
+		displayText: "Situações-problema",
 		icon: BsQuestionDiamondFill,
 		queryName: "problem",
 	},

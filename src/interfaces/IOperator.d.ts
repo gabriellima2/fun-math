@@ -1,6 +1,6 @@
 export interface IOperator {
 	id: string;
-	name: string;
+	displayText: string;
 	symbol: string;
 	image: string;
 }

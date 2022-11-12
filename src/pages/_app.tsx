@@ -4,7 +4,7 @@ import { ApolloProvider } from "@apollo/client";
 import { Seo } from "../components/Seo";
 
 import { client } from "../lib/client";
-import { UserSelectedOptionsContextProvider } from "../contexts/UserSelectedOptionsContext";
+import { ExercisePreferencesProvider } from "../contexts/ExercisePreferences";
 import { CurrentExerciseContextProvider } from "../contexts/CurrentExerciseContext";
 
 import "../styles/globals.css";
@@ -12,12 +12,12 @@ import "../styles/globals.css";
 function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<ApolloProvider client={client}>
-			<UserSelectedOptionsContextProvider>
+			<ExercisePreferencesProvider>
 				<CurrentExerciseContextProvider>
 					<Seo />
 					<Component {...pageProps} />
 				</CurrentExerciseContextProvider>
-			</UserSelectedOptionsContextProvider>
+			</ExercisePreferencesProvider>
 		</ApolloProvider>
 	);
 }

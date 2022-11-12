@@ -8,25 +8,25 @@ enum type {
 const data = [
 	{
 		id: type.addition,
-		name: "Adição",
+		displayText: "Adição",
 		symbol: "+",
 		image: "/operators/addition.svg",
 	},
 	{
 		id: type.subtraction,
-		name: "Subtração",
+		displayText: "Subtração",
 		symbol: "-",
 		image: "/operators/subtraction.svg",
 	},
 	{
 		id: type.division,
-		name: "Divisão",
+		displayText: "Divisão",
 		symbol: "÷",
 		image: "/operators/division.svg",
 	},
 	{
 		id: type.multiply,
-		name: "Multiplicação",
+		displayText: "Multiplicação",
 		symbol: "x",
 		image: "/operators/multiply.svg",
 	},
