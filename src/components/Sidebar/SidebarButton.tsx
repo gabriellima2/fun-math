@@ -1,5 +1,5 @@
 import { BsFillGridFill, BsXLg } from "react-icons/bs";
-import type { ButtonDefaultProps } from "@globalTypes";
+import type { ButtonDefaultProps } from "@interfaces/IDefaultProps";
 
 interface ButtonProps extends Pick<ButtonDefaultProps, "onClick"> {}
 

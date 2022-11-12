@@ -1,7 +1,7 @@
 import { HTMLAttributes } from "react";
 
 import { BaseLink } from "./Links/BaseLink";
-import { links } from "src/mocks";
+import { links } from "@mocks/links";
 
 interface INavigation {
 	name: string;

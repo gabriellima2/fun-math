@@ -4,7 +4,7 @@ import { BsApp } from "react-icons/bs";
 import { render, screen } from "@testing-library/react";
 
 import { NavSidebar } from "./NavSidebar";
-import type { Links } from "@globalTypes";
+import type { ILink } from "@interfaces/ILink";
 
 const ANCHOR_TEXT = "Go to test";
 
@@ -24,7 +24,7 @@ function getAnchor() {
 }
 
 describe("Nav Sidebar Component", () => {
-	const linksMock: Links[] = [
+	const linksMock: ILink[] = [
 		{ id: 1, name: ANCHOR_TEXT, href: "/", icon: BsApp },
 	];
 	const closeSidebarMock = jest.fn();

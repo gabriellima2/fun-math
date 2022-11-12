@@ -5,7 +5,7 @@ import { CloseSidebarButton, OpenSidebarButton } from "./SidebarButton";
 import { Copyright } from "../Copyright";
 import { NavSidebar } from "./NavSidebar";
 
-import { links } from "../../mocks";
+import { links } from "@mocks/links";
 
 export const Sidebar = () => {
 	const [isOpen, setIsOpen] = useState(false);

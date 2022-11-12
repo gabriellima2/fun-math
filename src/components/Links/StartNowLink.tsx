@@ -6,7 +6,7 @@ import { Icon } from "@components/Icon";
 interface StartNowLinkProps extends Omit<BaseLinkProps, "href"> {}
 
 export const StartNowLink = (props: StartNowLinkProps) => (
-	<BaseLink.Background {...props} href="/choose-options">
+	<BaseLink.Background {...props} href="/configuracoes-exercicios">
 		comece agora
 		<Icon
 			element={BsArrowRightShort}

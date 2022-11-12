@@ -6,7 +6,7 @@ import { useAsyncDataMemoizer } from "../../hooks/useAsyncDataMemoizer";
 import { Error, Loading } from "@components/Infra";
 
 import { CurrentExerciseContext } from "@contexts/CurrentExerciseContext";
-import { SelectedOperator } from "@contexts/UserSelectedOptionsContext";
+import { SelectedOperator } from "@contexts/ExercisePreferences";
 
 import type { Children } from "@globalTypes";
 import type { ExerciseDataResponse } from "@hookTypes";

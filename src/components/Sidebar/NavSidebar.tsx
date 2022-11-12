@@ -3,14 +3,14 @@ import React from "react";
 import { useRouter } from "next/router";
 
 import { Icon } from "@components/Icon";
-import type { Links } from "@globalTypes";
+import type { ILink } from "@interfaces/ILink";
 
-interface NavLinkProps extends Links {
+interface NavLinkProps extends ILink {
 	closeSidebar: () => void;
 }
 
 interface NavSidebarProps extends Pick<NavLinkProps, "closeSidebar"> {
-	links: Links[];
+	links: ILink[];
 }
 
 export const NavLink = (props: NavLinkProps) => {

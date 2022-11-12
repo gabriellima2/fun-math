@@ -1,5 +1,5 @@
+import { GoToTopButton } from "./Buttons/GoToTopButton";
 import { QuickNavigation } from "./QuickNavigation";
-import { GoToTopButton } from "./Buttons";
 import { Container } from "./Container";
 import { Copyright } from "./Copyright";
 import { Contacts } from "./Contacts";

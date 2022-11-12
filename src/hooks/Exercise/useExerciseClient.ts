@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { SelectedOperator } from "@contexts/UserSelectedOptionsContext";
+import { SelectedOperator } from "@contexts/ExercisePreferences";
 import { calculationGenerators } from "@utils/calculationGenerators";
 import type { IExerciseResponse } from "@interfaces/IExercise";
 

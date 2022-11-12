@@ -14,7 +14,7 @@ export const links = [
 	{
 		id: 1,
 		name: "Exercícios",
-		href: "/choose-options",
+		href: "/configuracoes-exercicios",
 		icon: BsFillQuestionCircleFill,
 	},
 	{

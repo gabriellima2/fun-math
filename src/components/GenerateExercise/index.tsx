@@ -5,7 +5,7 @@ import { Client } from "./Client";
 import { Fetch } from "./Fetch";
 import { WithOptionSelected } from "../../HOC/WithOptionSelected";
 
-import { UserSelectedOptionsContext } from "../../contexts/UserSelectedOptionsContext";
+import { UserSelectedOptionsContext } from "../../contexts/ExercisePreferences";
 import { mode } from "../../mocks/exercises";
 import { Children } from "../../types";
 
