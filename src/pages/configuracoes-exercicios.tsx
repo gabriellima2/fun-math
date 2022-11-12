@@ -29,13 +29,13 @@ const ExerciseSettings: NextPage = () => {
 				<main className="w-full flex-center--row">
 					<form
 						onSubmit={handleSubmit}
-						className="w-full max-w-[900px] flex-center--col gap-10"
+						className="w-full max-w-[900px] flex-center--col gap-8 sm:gap-10"
 					>
-						<label className="font-accent font-bold text-2xl">
+						<label className="font-accent font-bold text-xl sm:text-2xl">
 							Selecione as opções
 						</label>
 
-						<div className="w-full flex flex-col gap-8">
+						<div className="w-full flex flex-col gap-6 sm:gap-8">
 							<fieldset className="w-full bg-utils-primary p-5 sm:p-6 rounded-xl">
 								<ExercisesOption exercises={exercises.data} />
 							</fieldset>
