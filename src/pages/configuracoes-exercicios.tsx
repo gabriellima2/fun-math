@@ -1,9 +1,13 @@
+import { FormEvent } from "react";
 import { NextPage } from "next";
 
 import { useExercisePreferences } from "@contexts/ExercisePreferences";
 
 import { ExercisesOption, OperatorsOption } from "@components/Options";
+import { BackLink } from "@components/Links/BackLink";
 import { Container } from "@components/Container";
+import { Warning } from "@components/Warning";
+
 import { Customized } from "@layouts/Customized";
 
 import { exercises } from "@mocks/exercises";
@@ -12,11 +16,21 @@ import { operators } from "@mocks/operators";
 const ExerciseSettings: NextPage = () => {
 	const { exercisePreferences } = useExercisePreferences();
 
+	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+	};
+
+	const typeExerciseIsProblem =
+		exercisePreferences.exercise?.id === exercises.type.problem;
+
 	return (
 		<Customized>
 			<Container className="pt-6 md:pt-4">
 				<main className="w-full flex-center--row">
-					<form className="w-full max-w-[900px] flex-center--col gap-12">
+					<form
+						onSubmit={handleSubmit}
+						className="w-full max-w-[900px] flex-center--col gap-10"
+					>
 						<label className="font-accent font-bold text-2xl">
 							Selecione as opções
 						</label>
@@ -27,13 +41,19 @@ const ExerciseSettings: NextPage = () => {
 							</fieldset>
 
 							<fieldset className="w-full bg-utils-primary p-5 sm:p-6 rounded-xl">
-								<OperatorsOption operators={operators.data} />
+								{typeExerciseIsProblem ? (
+									<Warning>
+										Esse tipo de exercício usa operadores aleatórios
+									</Warning>
+								) : (
+									<OperatorsOption operators={operators.data} />
+								)}
 							</fieldset>
 						</div>
 
-						<footer>
-							<button type="button">Voltar</button>
-							<button type="button">Avançar</button>
+						<footer className="w-full flex justify-between">
+							<BackLink href="/" />
+							<button type="submit">Avançar</button>
 						</footer>
 					</form>
 				</main>
