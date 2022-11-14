@@ -1,9 +1,11 @@
 import { FormEvent } from "react";
 import { NextPage } from "next";
+import { useRouter } from "next/router";
 
 import { useExercisePreferences } from "@contexts/ExercisePreferences";
 
 import { ExercisesOption, OperatorsOption } from "@components/Options";
+import { PlayButton } from "@components/Buttons/PlayButton";
 import { BackLink } from "@components/Links/BackLink";
 import { Container } from "@components/Container";
 import { Warning } from "@components/Warning";
@@ -14,10 +16,19 @@ import { exercises } from "@mocks/exercises";
 import { operators } from "@mocks/operators";
 
 const ExerciseSettings: NextPage = () => {
-	const { exercisePreferences } = useExercisePreferences();
+	const router = useRouter();
+	const { exercisePreferences, userPreferencesIsValid } =
+		useExercisePreferences();
 
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+
+		if (!userPreferencesIsValid()) return;
+
+		router.push({
+			pathname: "/exercises",
+			query: { type: exercisePreferences.exercise!.id },
+		});
 	};
 
 	const typeExerciseIsProblem =
@@ -53,7 +64,7 @@ const ExerciseSettings: NextPage = () => {
 
 						<footer className="w-full flex justify-between">
 							<BackLink href="/" />
-							<button type="submit">Avançar</button>
+							<PlayButton disabled={!userPreferencesIsValid()} />
 						</footer>
 					</form>
 				</main>

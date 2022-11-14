@@ -10,12 +10,12 @@ interface BackLinkProps
 }
 
 export const BackLink = ({ href, ...props }: BackLinkProps) => (
-	<Link href={href} title="Voltar" {...props}>
+	<Link href={href} title="Voltar" aria-label="Voltar" {...props}>
 		<a className="flex-center--row text-sm lg:text-base text-white/80 uppercase font-medium transition hover:brightness-50">
 			<Icon
 				aria-label="Icone de seta para a esquerda"
 				element={BsArrowLeftShort}
-				className="text-3xl lg:text-4xl"
+				className="text-2xl lg:text-3xl"
 			/>
 		</a>
 	</Link>

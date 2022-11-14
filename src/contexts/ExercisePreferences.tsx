@@ -19,7 +19,7 @@ interface UserExerciseSettingsProperties {
 	exercisePreferences: Preferences;
 	setOperator: (selectedOperatorName: string) => void;
 	setExercise: (selectedExerciseName: string) => void;
-	userExerciseSettingsIsValid: () => boolean;
+	userPreferencesIsValid: () => boolean;
 }
 
 export const ExercisePreferences = createContext(
@@ -47,7 +47,7 @@ export const ExercisePreferencesProvider = ({ children }: WithChildren) => {
 		}));
 	};
 
-	const userExerciseSettingsIsValid = () => {
+	const userPreferencesIsValid = () => {
 		if (exercisePreferences.exercise) {
 			return (
 				exercisePreferences.exercise.id === exercises.type.problem ||
@@ -55,7 +55,7 @@ export const ExercisePreferencesProvider = ({ children }: WithChildren) => {
 			);
 		}
 
-		return true;
+		return false;
 	};
 
 	return (
@@ -64,7 +64,7 @@ export const ExercisePreferencesProvider = ({ children }: WithChildren) => {
 				exercisePreferences,
 				setOperator,
 				setExercise,
-				userExerciseSettingsIsValid,
+				userPreferencesIsValid,
 			}}
 		>
 			{children}
