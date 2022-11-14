@@ -26,7 +26,7 @@ const ExerciseSettings: NextPage = () => {
 		if (!userPreferencesIsValid()) return;
 
 		router.push({
-			pathname: "/exercises",
+			pathname: "/fazer-exercicio",
 			query: { type: exercisePreferences.exercise!.id },
 		});
 	};
@@ -51,7 +51,11 @@ const ExerciseSettings: NextPage = () => {
 								<ExercisesOption exercises={exercises.data} />
 							</fieldset>
 
-							<fieldset className="w-full bg-utils-primary p-5 sm:p-6 rounded-xl">
+							<fieldset
+								aria-live="polite"
+								aria-atomic="true"
+								className="w-full bg-utils-primary p-5 sm:p-6 rounded-xl"
+							>
 								{typeExerciseIsProblem ? (
 									<Warning>
 										Esse tipo de exercício usa operadores aleatórios
