@@ -7,7 +7,7 @@ const Default = () => (
 );
 
 const FullScreen = () => (
-	<div className="gradient-background h-screen">
+	<div className="h-screen flex-center--row">
 		<Image src="/loading.gif" alt="Carregando..." width="25" height="25" />
 	</div>
 );

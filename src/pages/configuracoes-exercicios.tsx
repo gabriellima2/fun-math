@@ -20,19 +20,31 @@ const ExerciseSettings: NextPage = () => {
 	const { exercisePreferences, userPreferencesIsValid } =
 		useExercisePreferences();
 
+	const typeExerciseIsProblem =
+		exercisePreferences.exercise?.id === exercises.type.problem;
+
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
 		if (!userPreferencesIsValid()) return;
 
+		if (typeExerciseIsProblem) {
+			return router.push({
+				pathname: "/fazer-exercicio",
+				query: {
+					type: exercisePreferences.exercise!.id,
+				},
+			});
+		}
+
 		router.push({
 			pathname: "/fazer-exercicio",
-			query: { type: exercisePreferences.exercise!.id },
+			query: {
+				type: exercisePreferences.exercise!.id,
+				operator: exercisePreferences.operator?.id,
+			},
 		});
 	};
-
-	const typeExerciseIsProblem =
-		exercisePreferences.exercise?.id === exercises.type.problem;
 
 	return (
 		<Customized>
