@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React from "react";
+import Error from "next/error";
 
 import type { Component } from "@globalTypes/TGlobals";
 import { exercises } from "@mocks/exercises";
@@ -49,11 +49,7 @@ export function ValidateQueriesFromURL<
 			queriesFormatIsValid() && queriesValuesIsValid();
 
 		if (!preferencesIsValid()) {
-			return (
-				<main>
-					<h1>Página não encontrada</h1>
-				</main>
-			);
+			return <Error statusCode={404} />;
 		}
 
 		return <Component {...(props as P)} injectedProps={{ type, operator }} />;
