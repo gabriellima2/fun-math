@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { ChangeExercise } from ".";
+import { ChangeExerciseButton } from ".";
 
 import { currentExerciseContextMock } from "src/__mocks__/currentExerciseContextMock";
 
@@ -15,7 +15,7 @@ describe("Change Exercise Component", () => {
 	function renderComponent(userAnswerIsCorrect: boolean | null) {
 		// Usa o mock do contexto para renderizar o componente
 		currentExerciseContextMock.renderComponent({
-			component: <ChangeExercise onClick={handleClickMock} />,
+			component: <ChangeExerciseButton onClick={handleClickMock} />,
 			value: {
 				...currentExerciseContextMock.value,
 				userAnswerIsCorrect,

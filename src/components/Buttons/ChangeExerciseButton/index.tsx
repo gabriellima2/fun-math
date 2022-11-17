@@ -1,23 +1,17 @@
 import { useContext } from "react";
 
-import { MainButton } from "../Buttons";
-
 import { CurrentExerciseContext } from "@contexts/CurrentExerciseContext";
-import type { ClassName } from "@globalTypes";
+import type { ButtonDefaultProps } from "@interfaces/IDefaultProps";
 
-interface ChangeExerciseProps {
-	onClick: () => void;
-	className?: ClassName;
-}
+interface ChangeExerciseButtonProps extends Omit<ButtonDefaultProps, "type"> {}
 
-export const ChangeExercise = (props: ChangeExerciseProps) => {
+export const ChangeExerciseButton = (props: ChangeExerciseButtonProps) => {
 	const { userAnswerIsCorrect } = useContext(CurrentExerciseContext);
 
 	return (
-		<MainButton
+		<button
+			{...props}
 			type="button"
-			variants="text"
-			onClick={props.onClick}
 			className={`${userAnswerIsCorrect && "text-green-400"} ${
 				props.className
 			} mt-4 text-xs md:text-sm font-main tracking-wider pointer-events-auto`}
@@ -26,6 +20,6 @@ export const ChangeExercise = (props: ChangeExerciseProps) => {
 				{userAnswerIsCorrect ? "Próximo" : "Pular"}{" "}
 			</span>
 			Exercício
-		</MainButton>
+		</button>
 	);
 };
