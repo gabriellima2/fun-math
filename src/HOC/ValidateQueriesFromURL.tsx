@@ -5,9 +5,16 @@ import type { Component } from "@globalTypes/TGlobals";
 import { exercises } from "@mocks/exercises";
 import { operators } from "@mocks/operators";
 
-export function ValidateExercisePreferencesFromURL<P extends object>(
-	Component: Component<P>
-) {
+export interface ValidateQueriesFromURLInjectedProps {
+	injectedProps: {
+		type: string;
+		operator: string;
+	};
+}
+
+export function ValidateQueriesFromURL<
+	P extends ValidateQueriesFromURLInjectedProps
+>(Component: Component<P>) {
 	return function HOC(props: P) {
 		const router = useRouter();
 		const { type, operator } = router.query;
@@ -21,20 +28,20 @@ export function ValidateExercisePreferencesFromURL<P extends object>(
 		};
 
 		const queriesValuesIsValid = () => {
-			const existExerciseType = exercises.search(type as string);
+			const haveExerciseType = exercises.search(type as string);
 
 			// Quando não existir o exercicio informado
-			if (!existExerciseType) return false;
+			if (!haveExerciseType) return false;
 
 			// Quando não for informado um operador e o exercicio não exigi um operador
-			if (!operator && existExerciseType.id === exercises.type.problem)
-				return false;
+			if (!operator && haveExerciseType.id === exercises.type.problem)
+				return true;
 
-			const existOperatorType = operators.search(operator as string);
+			const haveOperatorType = operators.search(operator as string);
 
 			// Se existe o operador informado e o exercicio exigi um operador
 			return (
-				!!existOperatorType && existExerciseType.id !== exercises.type.problem
+				!!haveOperatorType && haveExerciseType.id !== exercises.type.problem
 			);
 		};
 
@@ -49,6 +56,6 @@ export function ValidateExercisePreferencesFromURL<P extends object>(
 			);
 		}
 
-		return <Component {...props} />;
+		return <Component {...(props as P)} injectedProps={{ type, operator }} />;
 	};
 }

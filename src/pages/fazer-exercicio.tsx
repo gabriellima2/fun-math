@@ -1,13 +1,20 @@
 import { NextPage } from "next";
-import { useRouter } from "next/router";
-import React from "react";
 
-import { ValidateExercisePreferencesFromURL } from "../HOC/ValidateExercisePreferencesFromURL";
+import {
+	ValidateQueriesFromURL,
+	ValidateQueriesFromURLInjectedProps,
+} from "../HOC/ValidateQueriesFromURL";
 
-const DoExercise: NextPage = () => {
-	const router = useRouter();
+interface DoExerciseProps extends ValidateQueriesFromURLInjectedProps {}
 
-	return <h1>Exercicio</h1>;
+const DoExercise: NextPage<DoExerciseProps> = ({
+	injectedProps: { operator, type },
+}) => {
+	return (
+		<h1>
+			{operator} {type}
+		</h1>
+	);
 };
 
-export default ValidateExercisePreferencesFromURL(DoExercise);
+export default ValidateQueriesFromURL(DoExercise);
