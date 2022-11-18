@@ -16,7 +16,12 @@ const customJestConfig = {
   testEnvironment: 'jest-environment-jsdom',
 	moduleNameMapper: {
 		'^@components/(.*)$': '<rootDir>/src/components/$1',
+		'^@interfaces/(.*)$': '<rootDir>/src/interfaces/$1',
 		'^@contexts/(.*)$': '<rootDir>/src/contexts/$1',
+		'^@globalTypes/(.*)$': '<rootDir>/src/types/$1',
+		'^@layouts/(.*)$': '<rootDir>/src/layouts/$1',
+		'^@utils/(.*)$': '<rootDir>/src/utils/$1',
+		'^@mocks/(.*)$': '<rootDir>/src/mocks/$1',
 	}
 }
 

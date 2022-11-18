@@ -1,0 +1,80 @@
+import "@testing-library/jest-dom";
+import { render, screen } from "@testing-library/react";
+
+import { ComponentMock } from "src/__mocks__/ComponentMock";
+import { mockUseRouter } from "src/__mocks__/mockUseRouter";
+import { ValidateQueriesFromURL } from ".";
+
+interface Queries {
+	type?: string | string[];
+	operator?: string | string[];
+}
+
+function renderComponentUsingQuery(query: Queries) {
+	mockUseRouter({
+		route: "/fazer-exercicios",
+		pathname: "/fazer-exercicios",
+		query,
+		asPath: "/fazer-exercicios",
+	});
+
+	render(<Component injectedProps={{}} />);
+}
+
+const COMPONENT_MOCK_TEXT = "Success";
+const ERROR_CODE_TEXT = "404";
+
+const Component = ValidateQueriesFromURL(() => (
+	<ComponentMock text={COMPONENT_MOCK_TEXT} />
+));
+
+describe("Validate Queries From URL High Order Component", () => {
+	describe("Render Component passed", () => {
+		it("should render correctly with type 'random'", () => {
+			renderComponentUsingQuery({ type: "random", operator: "addition" });
+
+			expect(screen.getByText(COMPONENT_MOCK_TEXT)).toBeInTheDocument();
+			expect(screen.queryByText(ERROR_CODE_TEXT)).not.toBeInTheDocument();
+		});
+
+		it("should render correctly with type 'problem'", () => {
+			renderComponentUsingQuery({ type: "problem" });
+
+			expect(screen.getByText(COMPONENT_MOCK_TEXT)).toBeInTheDocument();
+			expect(screen.queryByText(ERROR_CODE_TEXT)).not.toBeInTheDocument();
+		});
+	});
+
+	describe("Render Error Page", () => {
+		it("should render error if passing array to queries", () => {
+			renderComponentUsingQuery({
+				type: ["random", "problem"],
+				operator: ["addition", "multyply"],
+			});
+
+			expect(screen.getByText(ERROR_CODE_TEXT)).toBeInTheDocument();
+			expect(screen.queryByText(COMPONENT_MOCK_TEXT)).not.toBeInTheDocument();
+		});
+
+		it("should render error if passing empty queries", () => {
+			renderComponentUsingQuery({ type: "", operator: "" });
+
+			expect(screen.getByText(ERROR_CODE_TEXT)).toBeInTheDocument();
+			expect(screen.queryByText(COMPONENT_MOCK_TEXT)).not.toBeInTheDocument();
+		});
+
+		it("should render error if passing type needs required operator", () => {
+			renderComponentUsingQuery({ type: "random", operator: "" });
+
+			expect(screen.getByText(ERROR_CODE_TEXT)).toBeInTheDocument();
+			expect(screen.queryByText(COMPONENT_MOCK_TEXT)).not.toBeInTheDocument();
+		});
+
+		it("should render error if passing type does not need operator", () => {
+			renderComponentUsingQuery({ type: "problem", operator: "addition" });
+
+			expect(screen.getByText(ERROR_CODE_TEXT)).toBeInTheDocument();
+			expect(screen.queryByText(COMPONENT_MOCK_TEXT)).not.toBeInTheDocument();
+		});
+	});
+});

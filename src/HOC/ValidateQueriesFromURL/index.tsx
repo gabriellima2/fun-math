@@ -7,8 +7,8 @@ import { operators } from "@mocks/operators";
 
 export interface ValidateQueriesFromURLInjectedProps {
 	injectedProps: {
-		type: string;
-		operator: string;
+		type?: string;
+		operator?: string;
 	};
 }
 
@@ -20,7 +20,7 @@ export function ValidateQueriesFromURL<
 		const { type, operator } = router.query;
 
 		const queriesFormatIsValid = () => {
-			if (type || !Array.isArray(type)) return true;
+			if (type && !Array.isArray(type)) return true;
 
 			if (!Array.isArray(operator)) return true;
 
