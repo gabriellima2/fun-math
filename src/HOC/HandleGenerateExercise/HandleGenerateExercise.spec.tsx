@@ -1,0 +1,57 @@
+import "@testing-library/jest-dom";
+import { render, screen } from "@testing-library/react";
+import { ComponentMock } from "src/__mocks__/ComponentMock";
+import { HandleGenerateExercise, HandleGenerateExerciseProps } from ".";
+
+function renderComponent({ injectedProps }: HandleGenerateExerciseProps) {
+	render(<Component injectedProps={injectedProps} />);
+}
+
+const COMPONENT_MOCK_TEXT = "Value is valid!";
+const ERROR_CODE_TEXT = "404";
+
+const Component = HandleGenerateExercise(() => (
+	<ComponentMock text={COMPONENT_MOCK_TEXT} />
+));
+
+describe("Handle Generate Exercise High Order Component", () => {
+	describe("With valid values", () => {
+		it("should render correctly if passing 'random' exercise", () => {
+			renderComponent({
+				injectedProps: { type: "random", operator: "addition" },
+			});
+
+			expect(screen.getByText(COMPONENT_MOCK_TEXT)).toBeInTheDocument();
+			expect(screen.queryByText(ERROR_CODE_TEXT)).not.toBeInTheDocument();
+		});
+
+		it("should render correctly if passing 'problem' exercise", () => {
+			renderComponent({
+				injectedProps: { type: "problem" },
+			});
+
+			expect(screen.getByText(COMPONENT_MOCK_TEXT)).toBeInTheDocument();
+			expect(screen.queryByText(ERROR_CODE_TEXT)).not.toBeInTheDocument();
+		});
+	});
+
+	describe("With invalid values", () => {
+		it("should render error if passing empty values", () => {
+			renderComponent({
+				injectedProps: { type: "", operator: "" },
+			});
+
+			expect(screen.getByText(ERROR_CODE_TEXT)).toBeInTheDocument();
+			expect(screen.queryByText(COMPONENT_MOCK_TEXT)).not.toBeInTheDocument();
+		});
+
+		it("should render error if passing unavailable values", () => {
+			renderComponent({
+				injectedProps: { type: "unavailable", operator: "value" },
+			});
+
+			expect(screen.getByText(ERROR_CODE_TEXT)).toBeInTheDocument();
+			expect(screen.queryByText(COMPONENT_MOCK_TEXT)).not.toBeInTheDocument();
+		});
+	});
+});

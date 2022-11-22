@@ -1,9 +1,11 @@
+import Error from "next/error";
+
 import type { ValidateQueriesFromURLInjectedProps } from "@hoc/ValidateQueriesFromURL";
 import type { IRenderExercise } from "@interfaces/IExercise";
 import type { Component } from "@globalTypes/TGlobals";
 import { ExerciseNames } from "@constants/index";
 
-interface HandleGenerateExerciseProps
+export interface HandleGenerateExerciseProps
 	extends ValidateQueriesFromURLInjectedProps {}
 
 export interface HandleGenerateExerciseInjectedProps {
@@ -28,6 +30,10 @@ export function HandleGenerateExercise<P extends HandleGenerateExerciseProps>(
 		const renderExercise = renderExerciseList.find((exercise) => {
 			return exercise.type === props.injectedProps.type;
 		});
+
+		if (!renderExercise) {
+			return <Error statusCode={404} />;
+		}
 
 		return (
 			<Component {...(props as P)} injectedProps={{ ...renderExercise }} />
