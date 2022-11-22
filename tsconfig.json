@@ -23,6 +23,8 @@
 			"@layouts/*": ["./src/layouts/*"],
 			"@utils/*": ["./src/utils/*"],
 			"@mocks/*": ["./src/mocks/*"],
+			"@constants/*": ["./src/constants/*"],
+			"@hoc/*": ["./src/HOC/*"],
 		}
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

@@ -1,41 +1,28 @@
-enum type {
-	subtraction = "subtraction",
-	addition = "addition",
-	division = "division",
-	multiply = "multiply",
-}
+import { OperatorNames } from "@constants/index";
 
-const data = [
+export const operators = [
 	{
-		id: type.addition,
+		id: OperatorNames.addition,
 		displayText: "Adição",
 		symbol: "+",
 		image: "/operators/addition.svg",
 	},
 	{
-		id: type.subtraction,
+		id: OperatorNames.subtraction,
 		displayText: "Subtração",
 		symbol: "-",
 		image: "/operators/subtraction.svg",
 	},
 	{
-		id: type.division,
+		id: OperatorNames.division,
 		displayText: "Divisão",
 		symbol: "÷",
 		image: "/operators/division.svg",
 	},
 	{
-		id: type.multiply,
+		id: OperatorNames.multiply,
 		displayText: "Multiplicação",
 		symbol: "x",
 		image: "/operators/multiply.svg",
 	},
 ];
-
-function search(id: string) {
-	const [operator] = operators.data.filter((operator) => operator.id === id);
-
-	return operator;
-}
-
-export const operators = { type, data, search };

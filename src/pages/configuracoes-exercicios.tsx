@@ -12,6 +12,7 @@ import { Warning } from "@components/Warning";
 
 import { Customized } from "@layouts/Customized";
 
+import { ExerciseNames } from "@constants/index";
 import { exercises } from "@mocks/exercises";
 import { operators } from "@mocks/operators";
 
@@ -21,7 +22,7 @@ const ExerciseSettings: NextPage = () => {
 		useExercisePreferences();
 
 	const typeExerciseIsProblem =
-		exercisePreferences.exercise?.id === exercises.type.problem;
+		exercisePreferences.exercise?.id === ExerciseNames.problem;
 
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -60,7 +61,7 @@ const ExerciseSettings: NextPage = () => {
 
 						<div className="w-full flex flex-col gap-6 sm:gap-8">
 							<fieldset className="w-full bg-utils-primary p-5 sm:p-6 rounded-xl">
-								<ExercisesOption exercises={exercises.data} />
+								<ExercisesOption exercises={exercises} />
 							</fieldset>
 
 							<fieldset
@@ -73,7 +74,7 @@ const ExerciseSettings: NextPage = () => {
 										Esse tipo de exercício usa operadores aleatórios
 									</Warning>
 								) : (
-									<OperatorsOption operators={operators.data} />
+									<OperatorsOption operators={operators} />
 								)}
 							</fieldset>
 						</div>

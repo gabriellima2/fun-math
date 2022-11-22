@@ -1,36 +1,17 @@
 import { BsQuestionDiamondFill, BsShuffle } from "react-icons/bs";
+
 import type { IExercise } from "@interfaces/IExercise";
+import { ExerciseNames } from "@constants/index";
 
-enum type {
-	random = "random",
-	problem = "problem",
-}
-
-export enum mode {
-	client = "client",
-	fetch = "fetch",
-}
-
-const data: IExercise[] = [
+export const exercises: IExercise[] = [
 	{
-		id: type.random,
-		mode: mode.client,
+		id: ExerciseNames.random,
 		displayText: "Cálculos aleatórios",
 		icon: BsShuffle,
 	},
 	{
-		id: type.problem,
-		mode: mode.fetch,
+		id: ExerciseNames.problem,
 		displayText: "Situações-problema",
 		icon: BsQuestionDiamondFill,
-		queryName: "problem",
 	},
 ];
-
-function search(id: string) {
-	const [exercise] = exercises.data.filter((exercise) => exercise.id === id);
-
-	return exercise;
-}
-
-export const exercises = { type, data, mode, search };

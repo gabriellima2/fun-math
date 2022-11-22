@@ -4,10 +4,8 @@ import type { IError } from "@interfaces/IError";
 
 export interface IExercise {
 	id: type;
-	mode: mode;
 	displayText: string;
 	icon: IconType;
-	queryName?: string;
 }
 
 export interface IExerciseProperties {
@@ -26,4 +24,9 @@ export interface IExerciseResponse {
 	loading?: boolean;
 	error?: ApolloError | IError;
 	data?: IExercisePropertiesResponse;
+}
+
+export interface IRenderExercise {
+	type: string;
+	Render: () => JSX.Element;
 }

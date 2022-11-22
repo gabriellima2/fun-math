@@ -6,6 +6,8 @@ import { operators } from "@mocks/operators";
 import type { WithChildren } from "@globalTypes/TGlobals";
 import type { IOperator } from "@interfaces/IOperator";
 import type { IExercise } from "@interfaces/IExercise";
+import { getById } from "@utils/getById";
+import { ExerciseNames } from "@constants/index";
 
 export type SelectedOperator = Omit<IOperator, "image">;
 export type SelectedExercise = Omit<IExercise, "icon">;
@@ -32,25 +34,32 @@ export const ExercisePreferencesProvider = ({ children }: WithChildren) => {
 	);
 
 	const setOperator = (selectedOperatorName: string) => {
+		const hasSelectedOperator = getById(operators, selectedOperatorName);
+
+		if (!hasSelectedOperator) return;
+
 		setExercisePreferences((prevState) => ({
 			...prevState,
-			operator: operators.search(selectedOperatorName),
+			operator: hasSelectedOperator,
 		}));
 	};
 
 	const setExercise = (selectedExerciseName: string) => {
-		const isProblem = selectedExerciseName === exercises.type.problem;
+		const isProblem = selectedExerciseName === ExerciseNames.problem;
+		const hasSelectedExercise = getById(exercises, selectedExerciseName);
+
+		if (!hasSelectedExercise) return;
 
 		setExercisePreferences((prevState) => ({
 			operator: isProblem ? null : prevState.operator,
-			exercise: exercises.search(selectedExerciseName),
+			exercise: getById(exercises, selectedExerciseName)!,
 		}));
 	};
 
 	const userPreferencesIsValid = () => {
 		if (exercisePreferences.exercise) {
 			return (
-				exercisePreferences.exercise.id === exercises.type.problem ||
+				exercisePreferences.exercise.id === ExerciseNames.problem ||
 				!!exercisePreferences.operator
 			);
 		}

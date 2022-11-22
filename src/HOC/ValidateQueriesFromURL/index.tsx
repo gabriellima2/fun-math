@@ -2,8 +2,10 @@ import { useRouter } from "next/router";
 import Error from "next/error";
 
 import type { Component } from "@globalTypes/TGlobals";
+import { ExerciseNames } from "@constants/index";
 import { exercises } from "@mocks/exercises";
 import { operators } from "@mocks/operators";
+import { getById } from "@utils/getById";
 
 export interface ValidateQueriesFromURLInjectedProps {
 	injectedProps: {
@@ -28,20 +30,20 @@ export function ValidateQueriesFromURL<
 		};
 
 		const queriesValuesIsValid = () => {
-			const haveExerciseType = exercises.search(type as string);
+			const haveExerciseType = getById(exercises, type as string);
 
 			// Quando não existir o exercicio informado
 			if (!haveExerciseType) return false;
 
 			// Quando não for informado um operador e o exercicio não exigi um operador
-			if (!operator && haveExerciseType.id === exercises.type.problem)
+			if (!operator && haveExerciseType.id === ExerciseNames.problem)
 				return true;
 
-			const haveOperatorType = operators.search(operator as string);
+			const haveOperatorType = getById(operators, operator as string);
 
 			// Se existe o operador informado e o exercicio exigi um operador
 			return (
-				!!haveOperatorType && haveExerciseType.id !== exercises.type.problem
+				!!haveOperatorType && haveExerciseType.id !== ExerciseNames.problem
 			);
 		};
 

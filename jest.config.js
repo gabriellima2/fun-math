@@ -22,6 +22,8 @@ const customJestConfig = {
 		'^@layouts/(.*)$': '<rootDir>/src/layouts/$1',
 		'^@utils/(.*)$': '<rootDir>/src/utils/$1',
 		'^@mocks/(.*)$': '<rootDir>/src/mocks/$1',
+		"@constants/(.*)$": "<rootDir>/src/constants/$1",
+		"@hoc/(.*)$": "<rootDir>/src/HOC/$1",
 	}
 }
 

@@ -1,20 +1,24 @@
 import { NextPage } from "next";
 
 import {
-	ValidateQueriesFromURL,
-	ValidateQueriesFromURLInjectedProps,
-} from "../HOC/ValidateQueriesFromURL";
+	HandleGenerateExercise,
+	HandleGenerateExerciseInjectedProps,
+} from "@hoc/HandleGenerateExercise";
+import { ValidateQueriesFromURL } from "@hoc/ValidateQueriesFromURL";
 
-interface DoExerciseProps extends ValidateQueriesFromURLInjectedProps {}
+interface DoExerciseProps extends HandleGenerateExerciseInjectedProps {}
 
 const DoExercise: NextPage<DoExerciseProps> = ({
-	injectedProps: { operator, type },
+	injectedProps: { Render, type },
 }) => {
+	console.log(Render);
+
 	return (
-		<h1>
-			{operator} {type}
-		</h1>
+		<>
+			{Render()}
+			<h1>{type}</h1>
+		</>
 	);
 };
 
-export default ValidateQueriesFromURL(DoExercise);
+export default ValidateQueriesFromURL(HandleGenerateExercise(DoExercise));
