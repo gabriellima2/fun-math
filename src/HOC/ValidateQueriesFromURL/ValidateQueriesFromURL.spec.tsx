@@ -29,15 +29,15 @@ const Component = ValidateQueriesFromURL(() => (
 ));
 
 describe("Validate Queries From URL High Order Component", () => {
-	describe("Render Component passed", () => {
-		it("should render correctly with type 'random'", () => {
+	describe("With valid values", () => {
+		it("should render correctly if passing 'random' exercise and operator filled", () => {
 			renderComponentUsingQuery({ type: "random", operator: "addition" });
 
 			expect(screen.getByText(COMPONENT_MOCK_TEXT)).toBeInTheDocument();
 			expect(screen.queryByText(ERROR_CODE_TEXT)).not.toBeInTheDocument();
 		});
 
-		it("should render correctly with type 'problem'", () => {
+		it("should render correctly if passing 'problem' exercise", () => {
 			renderComponentUsingQuery({ type: "problem" });
 
 			expect(screen.getByText(COMPONENT_MOCK_TEXT)).toBeInTheDocument();
@@ -45,7 +45,7 @@ describe("Validate Queries From URL High Order Component", () => {
 		});
 	});
 
-	describe("Render Error Page", () => {
+	describe("With invalid values", () => {
 		it("should render error if passing array to queries", () => {
 			renderComponentUsingQuery({
 				type: ["random", "problem"],
