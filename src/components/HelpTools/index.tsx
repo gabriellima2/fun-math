@@ -16,10 +16,10 @@ const helpToolsAvailable = [
 
 const Option = ({ buttonText, Content }: OptionProps) => (
 	<Accordion.Group>
-		<Accordion.Button className="p-3 md:p-4 text-sm md:text-base">
+		<Accordion.Button className="p-2 md:p-3 text-sm md:text-base">
 			{buttonText}
 		</Accordion.Button>
-		<Accordion.Panel className="p-2 text-sm md:text-base">
+		<Accordion.Panel className="p-3 md:p-4 text-sm md:text-base">
 			<Content />
 		</Accordion.Panel>
 	</Accordion.Group>
@@ -43,9 +43,9 @@ export const HelpTools = () => {
 				<BsFillQuestionCircleFill />
 			</Popover.Button>
 
-			<Popover.Panel className="absolute -right-[5px] top-[85px] z-50">
-				<section className="w-96 flex-center--col gap-3 md:gap-4 bg-utils-secondary p-3 md:p-4 rounded-md">
-					<h1 className="font-bold text-lg md:text-xl">Menu de Ajuda</h1>
+			<Popover.Panel className="absolute right-0 sm:-right-[5px] top-[85px] z-50">
+				<section className="w-[90vw] sm:w-72 md:w-80 flex-center--col gap-2 sm:gap-3 bg-utils-secondary p-3 sm:p-2 md:p-3 rounded-md">
+					<h1 className="font-bold text-base sm:text-lg">Menu de Ajuda</h1>
 					<Options />
 				</section>
 			</Popover.Panel>

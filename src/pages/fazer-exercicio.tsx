@@ -1,15 +1,14 @@
 import { NextPage } from "next";
 
+import { BackLink } from "@components/Links/BackLink";
+import { HelpTools } from "@components/HelpTools";
+import { Status } from "@components/Status";
+
 import {
 	HandleGenerateExercise,
 	HandleGenerateExerciseInjectedProps,
 } from "@hoc/HandleGenerateExercise";
 import { ValidateQueriesFromURL } from "@hoc/ValidateQueriesFromURL";
-import { Customized } from "@layouts/Customized";
-import { BackLink } from "@components/Links/BackLink";
-import { Container } from "@components/Container";
-import { Status } from "@components/Status";
-import { HelpTools } from "@components/HelpTools";
 
 interface DoExerciseProps extends HandleGenerateExerciseInjectedProps {}
 
@@ -18,7 +17,7 @@ const DoExercise: NextPage<DoExerciseProps> = ({
 }) => {
 	return (
 		<main className="w-screen h-[89vh] flex-center--col">
-			<Container>
+			<div className="w-full max-w-[700px] px-4">
 				<header className="flex items-center justify-between relative py-12">
 					<BackLink href="/configuracoes-exercicios" />
 					<Status status="correct" />
@@ -42,7 +41,7 @@ const DoExercise: NextPage<DoExerciseProps> = ({
 				<footer>
 					<button>Pular</button>
 				</footer>
-			</Container>
+			</div>
 		</main>
 	);
 };
