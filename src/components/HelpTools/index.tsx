@@ -38,12 +38,12 @@ export const HelpTools = () => {
 		<Popover.Group>
 			<Popover.Button
 				title="Abrir menu de ajuda"
-				className="flex-center--row text-2xl"
+				className="flex-center--row text-xl sm:text-2xl"
 			>
 				<BsFillQuestionCircleFill />
 			</Popover.Button>
 
-			<Popover.Panel className="absolute right-0 sm:-right-[5px] top-[85px] z-50">
+			<Popover.Panel className="absolute right-0 sm:-right-[5px] top-[60px] sm:top-[85px] z-50">
 				<section className="w-[90vw] sm:w-72 md:w-80 flex-center--col gap-2 sm:gap-3 bg-utils-secondary p-3 sm:p-2 md:p-3 rounded-md">
 					<h1 className="font-bold text-base sm:text-lg">Menu de Ajuda</h1>
 					<Options />

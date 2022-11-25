@@ -1,23 +1,34 @@
 interface StatusProps {
-	status: "correct" | "incorrect" | "noInformation";
+	status?: "correct" | "incorrect" | null;
 }
 
-const Correct = () => <p aria-labelledby="status">Certo!</p>;
+const Correct = () => (
+	<p aria-labelledby="status" className="text-green-400">
+		👍 Certo!
+	</p>
+);
 
-const Incorrect = () => <p aria-labelledby="status">Errado!</p>;
-
-const NoInformation = () => <p aria-labelledby="status">Sem informações</p>;
+const Incorrect = () => (
+	<p aria-labelledby="status" className="text-red-400">
+		😞 Errado!
+	</p>
+);
 
 export const Status = ({ status, ...props }: StatusProps) => {
 	const render = {
 		correct: () => <Correct />,
 		incorrect: () => <Incorrect />,
-		noInformation: () => <NoInformation />,
 	};
 
 	return (
-		<div id="status" role="status">
-			{render[status]()}
+		<div
+			id="status"
+			role="status"
+			className={`${
+				!status ? "opacity-0" : "opacity-100"
+			} transition animate-pulse font-bold text-lg sm:text-xl md:text-2xl`}
+		>
+			{status && render[status]()}
 		</div>
 	);
 };
