@@ -23,14 +23,13 @@ describe("Text Input Component", () => {
 	beforeEach(() => {
 		render(
 			<Input.Text
+				label="label"
 				id="text"
 				name="text"
 				value=""
 				onChange={setStateMock}
 				placeholder={PLACEHOLDER_TEXT}
-			>
-				Test
-			</Input.Text>
+			/>
 		);
 	});
 
