@@ -1,29 +1,16 @@
+import { ButtonHTMLAttributes } from "react";
 import { Popover as HeadlessPopover } from "@headlessui/react";
 
-import type { Props, Title } from "@globalTypes";
+import type { ButtonDefaultProps } from "@interfaces/IDefaultProps";
 
-interface GroupProps extends Props {}
-interface ButtonProps extends Props {
-	title?: Title;
-}
-interface PanelProps extends Props {}
+interface GroupProps extends ButtonHTMLAttributes<HTMLDivElement> {}
+interface PanelProps extends ButtonHTMLAttributes<HTMLDivElement> {}
+interface ButtonProps extends ButtonDefaultProps {}
 
-const Group = (props: GroupProps) => (
-	<HeadlessPopover className={props.className}>
-		{props.children}
-	</HeadlessPopover>
-);
+const Button = (props: ButtonProps) => <HeadlessPopover.Button {...props} />;
 
-const Button = (props: ButtonProps) => (
-	<HeadlessPopover.Button title={props.title} className={props.className}>
-		{props.children}
-	</HeadlessPopover.Button>
-);
+const Panel = (props: PanelProps) => <HeadlessPopover.Panel {...props} />;
 
-const Panel = (props: PanelProps) => (
-	<HeadlessPopover.Panel className={props.className}>
-		{props.children}
-	</HeadlessPopover.Panel>
-);
+const Group = (props: GroupProps) => <HeadlessPopover {...props} />;
 
-export const Popover = { Group, Button, Panel };
+export const Popover = { Group, Panel, Button };

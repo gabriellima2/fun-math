@@ -25,6 +25,7 @@
 			"@mocks/*": ["./src/mocks/*"],
 			"@constants/*": ["./src/constants/*"],
 			"@hoc/*": ["./src/HOC/*"],
+			"@hooks/*": ["./src/hooks/*"],
 		}
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

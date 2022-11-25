@@ -1,35 +1,40 @@
-import { useState } from "react";
-import { Disclosure } from "@headlessui/react";
+import React, { ButtonHTMLAttributes } from "react";
 import { BsChevronCompactUp } from "react-icons/bs";
+import { Disclosure } from "@headlessui/react";
 
-import type { Props } from "@globalTypes";
+import { useToggle } from "@hooks/useToggle";
 
-interface GroupProps extends Props {}
-interface ButtonProps extends Props {}
-interface PanelProps extends Props {}
+import { Icon } from "./Icon";
 
-const Group = (props: GroupProps) => <Disclosure>{props.children}</Disclosure>;
+import type { ButtonDefaultProps } from "@interfaces/IDefaultProps";
+import { AccentParagraph } from "./AccentParagraph";
+
+interface GroupProps extends ButtonHTMLAttributes<HTMLDivElement> {}
+interface PanelProps extends ButtonHTMLAttributes<HTMLDivElement> {}
+interface ButtonProps extends ButtonDefaultProps {}
 
 const Button = (props: ButtonProps) => {
-	const [wasClicked, setWasClicked] = useState(false);
+	const { isActive, toggle } = useToggle();
 
 	return (
 		<Disclosure.Button
-			className={props.className}
-			onClick={() => setWasClicked(!wasClicked)}
+			{...props}
+			className={`${props.className} ${
+				isActive ? "border-l-accents-primary" : "border-transparent"
+			} flex items-center justify-between border-l-2 relative after:bg-gradient-to-r after:from-accents-primary/40 after:to-transparent after:rounded after:w-0 after:h-full after:absolute after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300`}
+			onClick={toggle}
 		>
 			{props.children}
-			<i className={`${!wasClicked && "rotate-180"} text-lg sm:text-xl`}>
-				<BsChevronCompactUp />
-			</i>
+			<Icon
+				element={BsChevronCompactUp}
+				className={`${!isActive && "rotate-180"} text-lg sm:text-xl`}
+			/>
 		</Disclosure.Button>
 	);
 };
 
-const Panel = (props: PanelProps) => (
-	<Disclosure.Panel className={props.className}>
-		{props.children}
-	</Disclosure.Panel>
-);
+const Panel = (props: PanelProps) => <Disclosure.Panel {...props} />;
 
-export const Accordion = { Group, Button, Panel };
+const Group = (props: GroupProps) => <Disclosure {...props} />;
+
+export const Accordion = { Group, Panel, Button };
