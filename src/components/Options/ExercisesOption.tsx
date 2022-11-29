@@ -4,7 +4,7 @@ import { useExercisePreferences } from "@contexts/ExercisePreferences";
 
 import { Radio } from "@components/Radio";
 
-import type { IExercise } from "@interfaces/IExercise";
+import type { IExercise } from "@mocks/exercises";
 
 interface ExercisesOptionProps {
 	exercises: IExercise[];

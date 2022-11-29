@@ -4,7 +4,7 @@ import { BsApp } from "react-icons/bs";
 import { render, screen } from "@testing-library/react";
 
 import { NavSidebar } from "./NavSidebar";
-import type { ILink } from "@interfaces/ILink";
+import type { ILink } from "@mocks/links";
 
 const FIRST_TEXT = "First";
 const SECOND_TEXT = "Second";

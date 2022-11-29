@@ -1,14 +1,17 @@
-import { operators } from "../mocks";
 import { generateRandomNumber } from "./generateRandomNumber";
+import { OperatorNames } from "@constants/index";
 
-import type { INumberLimits } from "@interfaces/INumberLimits";
+interface NumberLimits {
+	max: number;
+	min: number;
+}
 
 /**
  * Gera dois números. O primeiro entre 2 e 100 e o segundo sendo menor que o primeiro
  * @returns [object] Números gerados
  */
 function defaultGenerator() {
-	const DEFAULT_LIMITS: INumberLimits = { max: 100, min: 2 };
+	const DEFAULT_LIMITS: NumberLimits = { max: 100, min: 2 };
 
 	const firstNumber = generateRandomNumber(DEFAULT_LIMITS, Math);
 	const secondNumber = generateRandomNumber(
@@ -49,7 +52,7 @@ function handleSubtractionGenerator() {
  * @returns [object] Números e resultado do cálculo.
  */
 function handleDivisionGenerator() {
-	const DIVISION_LIMITS: INumberLimits = { max: 12, min: 2 };
+	const DIVISION_LIMITS: NumberLimits = { max: 12, min: 2 };
 
 	const firstNumberGenerated = generateRandomNumber(DIVISION_LIMITS, Math);
 	const secondNumberGenerated = generateRandomNumber(DIVISION_LIMITS, Math);
@@ -79,7 +82,7 @@ function handleDivisionGenerator() {
 }
 
 function handleMultiplyGenerator() {
-	const MULTIPLY_LIMITS: INumberLimits = { max: 50, min: 9 };
+	const MULTIPLY_LIMITS: NumberLimits = { max: 50, min: 9 };
 
 	const firstNumber = generateRandomNumber(MULTIPLY_LIMITS, Math);
 	// Limites para o segundo número ser menor que o primeiro.
@@ -97,8 +100,8 @@ function handleMultiplyGenerator() {
 }
 
 export const calculationGenerators = {
-	[operators.type.addition]: handleAdditionGenerator,
-	[operators.type.subtraction]: handleSubtractionGenerator,
-	[operators.type.division]: handleDivisionGenerator,
-	[operators.type.multiply]: handleMultiplyGenerator,
+	[OperatorNames.addition]: handleAdditionGenerator,
+	[OperatorNames.subtraction]: handleSubtractionGenerator,
+	[OperatorNames.division]: handleDivisionGenerator,
+	[OperatorNames.multiply]: handleMultiplyGenerator,
 };

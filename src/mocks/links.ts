@@ -3,8 +3,16 @@ import {
 	BsFillQuestionCircleFill,
 	BsVectorPen,
 } from "react-icons/bs";
+import type { IconType } from "react-icons";
 
-export const links = [
+export interface ILink {
+	id: number;
+	name: string;
+	href: string;
+	icon: IconType;
+}
+
+export const links: ILink[] = [
 	{
 		id: 0,
 		name: "Início",

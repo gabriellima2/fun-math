@@ -1,11 +1,9 @@
 import { Touch } from "react";
 
-import { CanvasEvent } from "@types/TCanvas";
-
 export function createMouseEvent(
 	pointer: Touch,
 	event: string,
-	callback: (param: CanvasEvent) => void
+	callback: (param: MouseEvent) => void
 ) {
 	const mouseEvent = new MouseEvent(event, {
 		clientX: pointer.clientX,

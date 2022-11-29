@@ -1,10 +1,10 @@
 import { gql } from "@apollo/client";
 
 import { client } from "src/lib/client";
-import type { IStepData } from "@interfaces/IStepData";
+import type { StepModel } from "@models/step-model";
 
 interface StepsQuery {
-	cards: IStepData[];
+	cards: StepModel[];
 }
 
 const query = gql`

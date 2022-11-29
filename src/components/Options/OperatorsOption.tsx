@@ -4,15 +4,14 @@ import React from "react";
 import { useExercisePreferences } from "@contexts/ExercisePreferences";
 
 import { Radio } from "@components/Radio";
-
-import type { IOperator } from "@interfaces/IOperator";
+import type { OperatorModel } from "@models/operator-model";
 
 interface OperatorsOptionProps {
-	operators: IOperator[];
+	operators: OperatorModel[];
 }
 
 interface OperatorProps
-	extends Pick<IOperator, "image" | "displayText" | "id"> {}
+	extends Pick<OperatorModel, "image" | "displayText" | "id"> {}
 
 const Operator = (props: OperatorProps) => (
 	<Radio.Option value={props.id} className="justify-center sm:justify-start">

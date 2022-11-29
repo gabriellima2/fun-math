@@ -8,15 +8,19 @@ import {
 } from "react";
 
 import type { WithChildren } from "@globalTypes/TGlobals";
-import type { ICanvasStyle } from "@interfaces/ICanvas";
 
 type CanvasEvent = MouseEvent | globalThis.MouseEvent;
+
+interface CanvasStyle {
+	width: number;
+	color: string;
+}
 
 interface DraftContextProperties {
 	isDrawing: boolean;
 	canvasRef: MutableRefObject<HTMLCanvasElement | null>;
 	context2DRef: MutableRefObject<CanvasRenderingContext2D | null>;
-	updateCanvasContext2D: (styles?: ICanvasStyle) => void;
+	updateCanvasContext2D: (styles?: CanvasStyle) => void;
 	startDrawing: (e: CanvasEvent) => void;
 	draw: (e: CanvasEvent) => void;
 	stopDrawing: () => void;
@@ -31,7 +35,7 @@ export const DraftContextProvider = ({ children }: WithChildren) => {
 	const context2DRef = useRef<null | CanvasRenderingContext2D>(null);
 
 	// Adiciona novos estilos ao Canvas atualizando o Contexto2D dele.
-	const updateCanvasContext2D = (styles?: ICanvasStyle) => {
+	const updateCanvasContext2D = (styles?: CanvasStyle) => {
 		const ctx = canvasRef.current?.getContext("2d");
 
 		if (!ctx) return;

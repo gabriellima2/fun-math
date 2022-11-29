@@ -3,14 +3,14 @@ import { HTMLAttributes } from "react";
 import { BaseLink } from "./Links/BaseLink";
 import { links } from "@mocks/links";
 
-interface INavigation {
+interface ItemProps {
 	name: string;
 	href: string;
 }
 
 interface QuickNavigationProps extends HTMLAttributes<HTMLUListElement> {}
 
-export const Item = (props: INavigation) => (
+export const Item = (props: ItemProps) => (
 	<BaseLink.Text
 		href={props.href}
 		title={`Ir para ${props.name}`}

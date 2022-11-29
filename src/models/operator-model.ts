@@ -1,4 +1,4 @@
-export interface IOperator {
+export interface OperatorModel {
 	id: string;
 	displayText: string;
 	symbol: string;

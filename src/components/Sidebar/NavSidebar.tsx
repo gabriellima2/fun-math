@@ -3,7 +3,7 @@ import React from "react";
 import { useRouter } from "next/router";
 
 import { Icon } from "@components/Icon";
-import type { ILink } from "@interfaces/ILink";
+import type { ILink } from "@mocks/links";
 
 interface NavLinkProps extends ILink {
 	closeSidebar: () => void;

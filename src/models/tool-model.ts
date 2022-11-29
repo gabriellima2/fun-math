@@ -1,6 +1,6 @@
 import type { IconType } from "react-icons";
 
-export interface ITool {
+export interface ToolModel {
 	name: string;
 	displayText: string;
 	icon: IconType;

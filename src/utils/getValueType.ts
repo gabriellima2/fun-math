@@ -1,4 +1,4 @@
-import type { TNumbers } from "@types/TNumbers";
+import type { TNumbers } from "@globalTypes/TNumbers";
 
 // Valores decimais: 0.1 | 1.0 | 10.0 | 100.0...
 function isDecimal(value: string) {

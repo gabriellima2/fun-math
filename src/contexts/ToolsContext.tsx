@@ -4,11 +4,11 @@ import { tools } from "@mocks/tools";
 import { ToolNames } from "@constants/index";
 
 import type { WithChildren } from "@globalTypes/TGlobals";
-import type { ITool } from "@interfaces/ITools";
+import type { ToolModel } from "@models/tool-model";
 
 interface Tool {
-	current: ITool;
-	prev: ITool;
+	current: ToolModel;
+	prev: ToolModel;
 }
 
 interface ToolsContextProperties {

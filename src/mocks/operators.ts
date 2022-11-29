@@ -1,6 +1,7 @@
 import { OperatorNames } from "@constants/index";
+import type { OperatorModel } from "@models/operator-model";
 
-export const operators = [
+export const operators: OperatorModel[] = [
 	{
 		id: OperatorNames.addition,
 		displayText: "Adição",

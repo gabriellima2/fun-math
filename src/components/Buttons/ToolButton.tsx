@@ -1,9 +1,9 @@
 import { useToolsContext } from "@contexts/ToolsContext";
 import { Icon } from "@components/Icon";
 
-import type { ITool } from "@interfaces/ITools";
+import type { ToolModel } from "@models/tool-model";
 
-interface ToolButtonProps extends Omit<ITool, "color" | "width"> {}
+interface ToolButtonProps extends Omit<ToolModel, "color" | "width"> {}
 
 export const ToolButton = (props: ToolButtonProps) => {
 	const { tool, changeCurrentTool } = useToolsContext();

@@ -1,5 +1,8 @@
-import type { INumberLimits } from "@interfaces/INumberLimits";
+interface NumberLimits {
+	max: number;
+	min: number;
+}
 
-export function generateRandomNumber({ max, min }: INumberLimits, Math: Math) {
+export function generateRandomNumber({ max, min }: NumberLimits, Math: Math) {
 	return Math.floor(Math.random() * max + min);
 }

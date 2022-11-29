@@ -1,16 +1,16 @@
 import { createContext, useContext, useState } from "react";
 
-import { exercises } from "@mocks/exercises";
+import { Exercise, exercises } from "@mocks/exercises";
 import { operators } from "@mocks/operators";
 
-import type { WithChildren } from "@globalTypes/TGlobals";
-import type { IOperator } from "@interfaces/IOperator";
-import type { IExercise } from "@interfaces/IExercise";
 import { getById } from "@utils/getById";
 import { ExerciseNames } from "@constants/index";
 
-export type SelectedOperator = Omit<IOperator, "image">;
-export type SelectedExercise = Omit<IExercise, "icon">;
+import type { WithChildren } from "@globalTypes/TGlobals";
+import type { OperatorModel } from "@models/operator-model";
+
+export type SelectedOperator = Omit<OperatorModel, "image">;
+export type SelectedExercise = Omit<Exercise, "icon">;
 
 export interface Preferences {
 	operator: SelectedOperator | null;
@@ -52,7 +52,7 @@ export const ExercisePreferencesProvider = ({ children }: WithChildren) => {
 
 		setExercisePreferences((prevState) => ({
 			operator: isProblem ? null : prevState.operator,
-			exercise: getById(exercises, selectedExerciseName)!,
+			exercise: hasSelectedExercise,
 		}));
 	};
 

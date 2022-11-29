@@ -1,9 +1,13 @@
 import Error from "next/error";
 
 import type { ValidateQueriesFromURLInjectedProps } from "@hoc/ValidateQueriesFromURL";
-import type { IRenderExercise } from "@interfaces/IExercise";
 import type { Component } from "@globalTypes/TGlobals";
 import { ExerciseNames } from "@constants/index";
+
+interface IRenderExercise {
+	type: string;
+	Render: () => JSX.Element;
+}
 
 export interface HandleGenerateExerciseProps
 	extends ValidateQueriesFromURLInjectedProps {}
