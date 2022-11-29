@@ -20,7 +20,7 @@ export const links = [
 	{
 		id: 2,
 		name: "Área de Rascunhos",
-		href: "/draw",
+		href: "/desenhar",
 		icon: BsVectorPen,
 	},
 ];

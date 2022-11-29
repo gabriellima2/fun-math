@@ -1,6 +1,8 @@
 import { NextPage } from "next";
 
-import { Canvas } from "@components/Draw";
+import { DraftContextProvider } from "@contexts/DraftContext";
+
+import { Draft } from "@components/DraftArea/Draft";
 import { Customized } from "../layouts/Customized";
 
 const Draw: NextPage = () => {
@@ -8,7 +10,9 @@ const Draw: NextPage = () => {
 		<Customized>
 			<main className="w-full h-full flex-center--col mt-6 sm:mt-10 overflow-hidden">
 				<div className="w-[95vw] xl:w-[70vw] max-w-fit md:max-h-[1/2] overflow-x-hidden">
-					<Canvas />
+					<DraftContextProvider>
+						<Draft />
+					</DraftContextProvider>
 				</div>
 			</main>
 		</Customized>

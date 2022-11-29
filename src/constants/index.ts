@@ -10,6 +10,11 @@ export enum OperatorNames {
 	multiply = "multiply",
 }
 
+export enum ToolNames {
+	eraser = "eraser",
+	pencil = "pencil",
+}
+
 export const KEYS = {
 	"0": 0,
 	"1": 1,

@@ -1,41 +1,23 @@
 import { BsFillEraserFill, BsFillPencilFill } from "react-icons/bs";
-import { IDrawingTool } from "@interfaces/IDrawingTool";
 
-enum typeOfTools {
-	eraser = "eraser",
-	pencil = "pencil",
-}
+import { ToolNames } from "@constants/index";
+import type { ITool } from "@interfaces/ITools";
 
-const initialEraser: IDrawingTool = {
-	type: typeOfTools.eraser,
-	color: "#141414",
-	width: 15,
-};
-
-const initialPencil: IDrawingTool = {
-	type: typeOfTools.pencil,
-	color: "#ffffff",
-	width: 5,
-};
-
-const list = [
+export const tools: ITool[] = [
 	{
-		id: typeOfTools.pencil,
-		name: "Lápis",
+		name: ToolNames.pencil,
+		displayText: "Lápis",
 		icon: BsFillPencilFill,
 		action: "Fazer rabiscos",
+		color: "#fff",
+		width: 5,
 	},
 	{
-		id: typeOfTools.eraser,
-		name: "Borracha",
+		name: ToolNames.eraser,
+		displayText: "Borracha",
 		icon: BsFillEraserFill,
 		action: "Apagar rabiscos",
+		color: "#111",
+		width: 5,
 	},
 ];
-
-export const tools = {
-	typeOfTools,
-	initialEraser,
-	initialPencil,
-	list,
-};
