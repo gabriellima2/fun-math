@@ -1,31 +1,15 @@
-import Image from "next/image";
 import React from "react";
 
 import { useExercisePreferences } from "@contexts/ExercisePreferences";
 
 import { Radio } from "@components/Radio";
+import { Operator } from "./components/Operator";
+
 import type { OperatorModel } from "@models/operator-model";
 
 interface OperatorsOptionProps {
 	operators: OperatorModel[];
 }
-
-interface OperatorProps
-	extends Pick<OperatorModel, "image" | "displayText" | "id"> {}
-
-const Operator = (props: OperatorProps) => (
-	<Radio.Option value={props.id} className="justify-center sm:justify-start">
-		<div className="w-7 sm:w-10 h-7 sm:h-10 relative">
-			<Image
-				src={props.image}
-				alt={`Operator de ${props.displayText}`}
-				layout="fill"
-				objectFit="contain"
-			/>
-		</div>
-		<p className="hidden sm:inline-block">{props.displayText}</p>
-	</Radio.Option>
-);
 
 export const OperatorsOption = ({ operators }: OperatorsOptionProps) => {
 	const { exercisePreferences, setOperator } = useExercisePreferences();

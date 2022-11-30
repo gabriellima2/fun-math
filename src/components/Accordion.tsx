@@ -6,7 +6,7 @@ import { useToggle } from "@hooks/useToggle";
 
 import { Icon } from "./Icon";
 
-import type { ButtonDefaultProps } from "@interfaces/IDefaultProps";
+import type { ButtonDefaultProps } from "src/@types/IDefaultProps";
 
 interface GroupProps extends ButtonHTMLAttributes<HTMLDivElement> {}
 interface PanelProps extends ButtonHTMLAttributes<HTMLDivElement> {}

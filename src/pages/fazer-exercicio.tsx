@@ -2,7 +2,7 @@ import { NextPage } from "next";
 
 import { ChangeExerciseButton } from "@components/Buttons/ChangeExerciseButton";
 import { BackLink } from "@components/Links/BackLink";
-import { HelpTools } from "@components/HelpTools";
+import { HelpTools } from "@components/HelpTools/HelpTools";
 import { Status } from "@components/Status";
 import { Input } from "@components/Inputs";
 

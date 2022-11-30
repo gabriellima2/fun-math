@@ -6,7 +6,7 @@ import { operators } from "@mocks/operators";
 import { getById } from "@utils/getById";
 import { ExerciseNames } from "@constants/index";
 
-import type { WithChildren } from "@globalTypes/TGlobals";
+import type { WithChildren } from "src/@types/TGlobals";
 import type { OperatorModel } from "@models/operator-model";
 
 export type SelectedOperator = Omit<OperatorModel, "image">;

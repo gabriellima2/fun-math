@@ -17,7 +17,7 @@
 		"baseUrl": ".",
 		"paths": {
 			"@interfaces/*": ["./src/interfaces/*.d.ts"],
-			"@globalTypes/*": ["./src/types/*.d.ts"],
+			"@globalTypes/*": ["./src/@types/*"],
 			"@components/*": ["./src/components/*"],
 			"@contexts/*": ["./src/contexts/*"],
 			"@layouts/*": ["./src/layouts/*"],

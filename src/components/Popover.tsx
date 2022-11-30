@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes } from "react";
 import { Popover as HeadlessPopover } from "@headlessui/react";
 
-import type { ButtonDefaultProps } from "@interfaces/IDefaultProps";
+import type { ButtonDefaultProps } from "src/@types/IDefaultProps";
 
 interface GroupProps extends ButtonHTMLAttributes<HTMLDivElement> {}
 interface PanelProps extends ButtonHTMLAttributes<HTMLDivElement> {}

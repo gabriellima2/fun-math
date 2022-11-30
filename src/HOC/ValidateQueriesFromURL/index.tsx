@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import Error from "next/error";
 
-import type { Component } from "@globalTypes/TGlobals";
+import type { Component } from "src/@types/TGlobals";
 import { ExerciseNames } from "@constants/index";
 import { exercises } from "@mocks/exercises";
 import { operators } from "@mocks/operators";

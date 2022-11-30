@@ -1,0 +1,1 @@
+export { TheoryHelpTool } from "./TheoryHelpTool";

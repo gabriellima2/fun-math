@@ -1,4 +1,4 @@
-import type { ButtonDefaultProps } from "@interfaces/IDefaultProps";
+import type { ButtonDefaultProps } from "src/@types/IDefaultProps";
 
 interface ChangeExerciseButtonProps extends Omit<ButtonDefaultProps, "type"> {}
 

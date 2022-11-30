@@ -1,0 +1,1 @@
+export { MultiplicationTableHelpTool } from "./MultiplicationTableHelpTool";

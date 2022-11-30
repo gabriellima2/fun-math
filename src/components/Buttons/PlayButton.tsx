@@ -3,7 +3,7 @@ import { BsArrowRightShort } from "react-icons/bs";
 
 import { BaseButton } from "./BaseButton";
 
-import type { ButtonDefaultProps } from "@interfaces/IDefaultProps";
+import type { ButtonDefaultProps } from "src/@types/IDefaultProps";
 
 interface PlayButtonProps
 	extends Omit<ButtonDefaultProps, "type" | "className"> {}
