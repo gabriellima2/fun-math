@@ -38,12 +38,31 @@ export const Canvas = () => {
 		updateCanvasContext2D();
 	};
 
+	const handlePageOverflow = () => {
+		const OVERFLOW_HIDDEN = "overflow-hidden";
+		const html = document.documentElement;
+		const body = document.body;
+
+		if (
+			html.classList.contains(OVERFLOW_HIDDEN) ||
+			body.classList.contains(OVERFLOW_HIDDEN)
+		) {
+			html.classList.remove(OVERFLOW_HIDDEN);
+			body.classList.remove(OVERFLOW_HIDDEN);
+			return;
+		}
+
+		html.classList.add(OVERFLOW_HIDDEN);
+		body.classList.add(OVERFLOW_HIDDEN);
+	};
+
 	useEffect(() => {
 		const canvas = canvasRef.current;
 		const context = canvas?.getContext("2d");
 
 		if (!canvas || !context) return;
 
+		handlePageOverflow();
 		setCanvasSize(canvas);
 		updateCanvasContext2D({
 			color: tools[0].color,
@@ -52,10 +71,13 @@ export const Canvas = () => {
 
 		canvas.addEventListener("resize", () => handleResized(canvas, context));
 
-		return () =>
+		return () => {
+			handlePageOverflow();
+
 			canvas.removeEventListener("resize", () =>
 				handleResized(canvas, context)
 			);
+		};
 	}, []);
 
 	return (
@@ -74,7 +96,7 @@ export const Canvas = () => {
 				onMouseUp={stopDrawing}
 				onTouchEnd={stopDrawing}
 				onMouseLeave={stopDrawing}
-				className="h-full object-contain bg-canvas-area"
+				className="h-full object-contain bg-utils-secondary"
 			/>
 			<Tools />
 		</>

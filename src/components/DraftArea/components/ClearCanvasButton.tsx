@@ -1,4 +1,3 @@
-import { BaseButton } from "@components/Buttons/BaseButton";
 import type { ButtonDefaultProps } from "src/@types/IDefaultProps";
 
 interface ClearCanvasButtonProps
@@ -8,12 +7,12 @@ interface ClearCanvasButtonProps
 	> {}
 
 export const ClearCanvasButton = (props: ClearCanvasButtonProps) => (
-	<BaseButton
+	<button
 		{...props}
 		type="button"
 		title="Limpar rabiscos"
-		className="rounded-md p-[10px] md:p-3 text-2xs md:text-xs uppercase tracking-wider"
+		className="p-2 sm:p-3 rounded-md text-xs sm:text-sm bg-accents-primary transition hover:opacity-70"
 	>
 		Limpar
-	</BaseButton>
+	</button>
 );

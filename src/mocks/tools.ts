@@ -9,7 +9,7 @@ export const tools: ToolModel[] = [
 		displayText: "Lápis",
 		icon: BsFillPencilFill,
 		action: "Fazer rabiscos",
-		color: "#fff",
+		color: "#ffffff",
 		width: 5,
 	},
 	{
@@ -17,7 +17,7 @@ export const tools: ToolModel[] = [
 		displayText: "Borracha",
 		icon: BsFillEraserFill,
 		action: "Apagar rabiscos",
-		color: "#111",
+		color: "#111111",
 		width: 5,
 	},
 ];

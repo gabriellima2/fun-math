@@ -1,22 +1,18 @@
-interface ColorPickerProps {
-	color: string;
-	changeColor: (color: string) => void;
-}
+import type { InputDefaultProps } from "@globalTypes/IDefaultProps";
 
-export const ColorPicker = (props: ColorPickerProps) => {
-	return (
-		<div className="w-fit flex-center--col">
-			<label htmlFor="colorPicker" className="hidden">
-				Selecione a cor
-			</label>
+interface ColorPickerProps
+	extends Omit<InputDefaultProps, "type" | "name" | "id"> {}
+
+export const ColorPicker = (props: ColorPickerProps) => (
+	<div className="w-fit flex-center--col">
+		<label>
 			<input
+				{...props}
 				type="color"
 				name="color"
 				id="colorPicker"
-				value={props.color}
-				onChange={(e) => props.changeColor(e.target.value)}
-				className="w-8 h-9 appearance-none border-none bg-transparent cursor-pointer"
+				className="w-7 h-8 sm:w-8 sm:h-9 appearance-none border-none bg-transparent cursor-pointer"
 			/>
-		</div>
-	);
-};
+		</label>
+	</div>
+);

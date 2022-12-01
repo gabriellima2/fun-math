@@ -18,7 +18,7 @@ export const ToolButton = ({ tool, ...props }: ToolButtonProps) => {
 			aria-pressed={isCurrentTool}
 			onClick={() => props.changeCurrentTool(props.name)}
 			className={`${
-				isCurrentTool && "bg-main/40 rounded-md text-white/40 transition-all"
+				isCurrentTool && "bg-main rounded-md text-white/30 transition-all"
 			} p-2`}
 		>
 			<Icon element={props.icon} />
