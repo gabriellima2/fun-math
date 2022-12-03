@@ -33,13 +33,17 @@ describe("Text Input Component", () => {
 		);
 	});
 
-	it("should render the component", () => {
-		expect(getTextInput()).toBeInTheDocument();
+	describe("Render", () => {
+		it("should render", () => {
+			expect(getTextInput()).toBeInTheDocument();
+		});
 	});
 
-	it("should handle changes in input", async () => {
-		await userEvent.type(getTextInput(), TYPED_VALUE);
+	describe("Interactions", () => {
+		it("should handle changes in input", async () => {
+			await userEvent.type(getTextInput(), TYPED_VALUE);
 
-		expect(setStateMock).toHaveBeenCalledTimes(TYPED_VALUE.length);
+			expect(setStateMock).toHaveBeenCalledTimes(TYPED_VALUE.length);
+		});
 	});
 });

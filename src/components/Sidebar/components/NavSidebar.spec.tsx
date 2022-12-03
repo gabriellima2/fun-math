@@ -31,23 +31,27 @@ describe("Nav Sidebar Component", () => {
 		render(<NavSidebar links={linksMock} closeSidebar={closeSidebarMock} />);
 	});
 
-	it("should render", () => {
-		expect(screen.getByText(FIRST_TEXT)).toBeInTheDocument();
+	describe("Render", () => {
+		it("should render", () => {
+			expect(screen.getByText(FIRST_TEXT)).toBeInTheDocument();
+		});
 	});
 
-	it("should be prevent focus if on current route", async () => {
-		expect(screen.getByText(FIRST_TEXT)).toHaveAttribute(
-			"aria-disabled",
-			"true"
-		);
-		expect(screen.getByText(FIRST_TEXT)).toHaveAttribute("tabindex", "-1");
-	});
+	describe("Accessibility", () => {
+		it("should be prevent focus if on current route", async () => {
+			expect(screen.getByText(FIRST_TEXT)).toHaveAttribute(
+				"aria-disabled",
+				"true"
+			);
+			expect(screen.getByText(FIRST_TEXT)).toHaveAttribute("tabindex", "-1");
+		});
 
-	it("should be default behavior if not on current route", async () => {
-		expect(screen.getByText(SECOND_TEXT)).toHaveAttribute(
-			"aria-disabled",
-			"false"
-		);
-		expect(screen.getByText(SECOND_TEXT)).toHaveAttribute("tabindex", "0");
+		it("should be default behavior if not on current route", async () => {
+			expect(screen.getByText(SECOND_TEXT)).toHaveAttribute(
+				"aria-disabled",
+				"false"
+			);
+			expect(screen.getByText(SECOND_TEXT)).toHaveAttribute("tabindex", "0");
+		});
 	});
 });

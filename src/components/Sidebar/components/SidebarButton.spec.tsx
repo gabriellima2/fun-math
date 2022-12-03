@@ -17,39 +17,47 @@ function getCloseButton() {
 }
 
 describe("Sidebar Buttons Component", () => {
-	describe("Open Button", () => {
-		const handleOpenMock = jest.fn();
+	const handleOpenMock = jest.fn();
+	const handleCloseMock = jest.fn();
 
-		beforeEach(() => {
-			render(<OpenSidebarButton onClick={handleOpenMock} />);
+	beforeEach(() => {
+		render(
+			<>
+				<OpenSidebarButton onClick={handleOpenMock} />
+				<CloseSidebarButton onClick={handleCloseMock} />
+			</>
+		);
+	});
+
+	describe("Render", () => {
+		describe("Open Button", () => {
+			it("should render", () => {
+				expect(getOpenButton()).toBeInTheDocument();
+			});
 		});
 
-		it("should render", () => {
-			expect(getOpenButton()).toBeInTheDocument();
-		});
-
-		it("should call open function when clicked", async () => {
-			await userEvent.click(getOpenButton());
-
-			expect(handleOpenMock).toBeCalled();
+		describe("Close Button", () => {
+			it("should render", () => {
+				expect(getCloseButton()).toBeInTheDocument();
+			});
 		});
 	});
 
-	describe("Open Button", () => {
-		const handleCloseMock = jest.fn();
+	describe("Interactions", () => {
+		describe("Open Button", () => {
+			it("should call open function when clicked", async () => {
+				await userEvent.click(getOpenButton());
 
-		beforeEach(() => {
-			render(<CloseSidebarButton onClick={handleCloseMock} />);
+				expect(handleOpenMock).toBeCalled();
+			});
 		});
 
-		it("should render", () => {
-			expect(getCloseButton()).toBeInTheDocument();
-		});
+		describe("Close Button", () => {
+			it("should call close function when clicked", async () => {
+				await userEvent.click(getCloseButton());
 
-		it("should call close function when clicked", async () => {
-			await userEvent.click(getCloseButton());
-
-			expect(handleCloseMock).toBeCalled();
+				expect(handleCloseMock).toBeCalled();
+			});
 		});
 	});
 });
