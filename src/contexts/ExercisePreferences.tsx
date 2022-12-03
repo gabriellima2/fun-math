@@ -1,16 +1,16 @@
 import { createContext, useContext, useState } from "react";
 
-import { Exercise, exercises } from "@mocks/exercises";
+import { IExercise, exercises } from "@mocks/exercises";
 import { operators } from "@mocks/operators";
 
-import { getById } from "@utils/getById";
+import { getById } from "@utils/get-by-id";
 import { ExerciseNames } from "@constants/index";
 
 import type { WithChildren } from "src/@types/TGlobals";
 import type { OperatorModel } from "@models/operator-model";
 
 export type SelectedOperator = Omit<OperatorModel, "image">;
-export type SelectedExercise = Omit<Exercise, "icon">;
+export type SelectedExercise = Omit<IExercise, "icon">;
 
 export interface Preferences {
 	operator: SelectedOperator | null;

@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useCanvasContext } from "@contexts/CanvasContext";
 import { Tools } from "./components/Tools";
 
-import { createMouseEvent } from "@utils/createMouseEvent";
+import { createMouseEvent } from "@utils/create-mouse-event";
 import { tools } from "@mocks/tools";
 
 const MARGIN_Y = 1.4;

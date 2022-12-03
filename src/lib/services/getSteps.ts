@@ -1,6 +1,6 @@
 import type { StepModel } from "@models/step-model";
 import { stepsQuery } from "./queries/steps-query";
-import { client } from "src/lib/client";
+import { client } from "../client";
 
 interface StepsQuery {
 	cards: StepModel[];

@@ -1,4 +1,4 @@
-import { generateRandomNumber } from "./generateRandomNumber";
+import { generateRandomNumber } from "./generate-random-number";
 import { OperatorNames } from "@constants/index";
 
 interface NumberLimits {

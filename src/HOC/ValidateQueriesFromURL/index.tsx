@@ -5,7 +5,7 @@ import type { Component } from "src/@types/TGlobals";
 import { ExerciseNames } from "@constants/index";
 import { exercises } from "@mocks/exercises";
 import { operators } from "@mocks/operators";
-import { getById } from "@utils/getById";
+import { getById } from "@utils/get-by-id";
 
 export interface ValidateQueriesFromURLInjectedProps {
 	injectedProps: {

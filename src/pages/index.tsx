@@ -3,12 +3,13 @@ import { GetStaticProps } from "next";
 
 import { StartNowLink } from "@components/Links/StartNowLink";
 import { AccentParagraph } from "@components/AccentParagraph";
-import { Steps, getSteps } from "@components/Steps";
 import { Behaviors } from "@components/Behaviors";
 import { Container } from "@components/Container";
+import { Steps } from "@components/Steps";
 
 import { Common } from "@layouts/Common";
 
+import { getSteps } from "@lib/services/getSteps";
 import type { StepModel } from "@models/step-model";
 
 interface HomeProps {

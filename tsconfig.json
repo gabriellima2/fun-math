@@ -27,6 +27,7 @@
 			"@hoc/*": ["./src/HOC/*"],
 			"@hooks/*": ["./src/hooks/*"],
 			"@models/*": ["./src/models/*"],
+			"@lib/*": ["./src/lib/*"],
 		}
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
