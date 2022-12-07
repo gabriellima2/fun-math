@@ -1,15 +1,14 @@
-import { MultiplicationTableHelpTool } from "./MultiplicationTableHelpTool";
-import { Accordion } from "@components/Accordion";
+import { Modal } from "@components/Modal";
 
-type OptionProps = typeof MultiplicationTableHelpTool;
+interface OptionProps {
+	buttonText: string;
+	Content: () => JSX.Element;
+}
 
-export const Option = ({ buttonText, Content }: OptionProps) => (
-	<Accordion.Group>
-		<Accordion.Button className="p-2 md:p-3 text-sm md:text-base">
-			{buttonText}
-		</Accordion.Button>
-		<Accordion.Panel className="p-3 md:p-4 text-sm md:text-base">
+export const Option = ({ Content, buttonText }: OptionProps) => {
+	return (
+		<Modal triggerChildren={buttonText}>
 			<Content />
-		</Accordion.Panel>
-	</Accordion.Group>
-);
+		</Modal>
+	);
+};
