@@ -1,1 +1,0 @@
-export { TipHelpTool } from "./TipHelpTool";

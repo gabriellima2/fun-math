@@ -1,14 +1,9 @@
 import { BsThreeDotsVertical } from "react-icons/bs";
 
-import {
-	Option,
-	MultiplicationTableHelpTool,
-	TheoryHelpTool,
-	TipHelpTool,
-} from "./components";
+import { Option, MultiplicationTable, Theory, Tip } from "./components";
 import { Dropdown } from "@components/Dropdown";
 
-const tools = [MultiplicationTableHelpTool, TheoryHelpTool, TipHelpTool];
+const tools = [MultiplicationTable, Theory, Tip];
 
 export const HelpTools = () => {
 	return (
@@ -16,6 +11,7 @@ export const HelpTools = () => {
 			ButtonIcon={BsThreeDotsVertical}
 			data={tools}
 			Item={Option}
+			className="w-40 sm:w-52 p-2 rounded flex flex-col gap-1 absolute right-0 top-24 bg-utils-secondary"
 		/>
 	);
 };

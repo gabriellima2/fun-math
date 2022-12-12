@@ -1,24 +1,31 @@
-import React, { ReactNode, useState } from "react";
+import React from "react";
 import { Dialog } from "@headlessui/react";
+import { BsXLg } from "react-icons/bs";
 
-interface ModalProps {
-	triggerChildren: ReactNode;
-	children: ReactNode;
-}
+import { useModalContext } from "@contexts/ModalContext";
 
-export const Modal = ({ triggerChildren, ...props }: ModalProps) => {
-	const [isOpen, setIsOpen] = useState(false);
+export const Modal = () => {
+	const { handleClose, isOpen, children } = useModalContext();
 
-	if (!isOpen)
-		return <button onClick={() => setIsOpen(true)}>{triggerChildren}</button>;
+	if (!isOpen || !children) return null;
 
 	return (
-		<Dialog open={isOpen} onClose={() => setIsOpen(false)}>
-			<Dialog.Panel>
-				<div>{props.children}</div>
+		<Dialog open={isOpen} onClose={handleClose}>
+			<div className="fixed inset-0 bg-black/50 z-45" aria-hidden="true" />
 
-				<button>X</button>
-			</Dialog.Panel>
+			<div className="absolute right-1/2 top-1/2 translate-x-1/2 -translate-y-1/2 z-50 flex flex-col items-end">
+				<Dialog.Panel className="w-[95vw] sm:w-[80vw] lg:w-[800px] relative p-2 md:p-3 rounded bg-utils-primary">
+					<div className="p-2 md:p-4">
+						{React.createElement(children, null)}
+					</div>
+					<button
+						onClick={handleClose}
+						className="text-sm md:text-base absolute top-2 right-2"
+					>
+						<BsXLg />
+					</button>
+				</Dialog.Panel>
+			</div>
 		</Dialog>
 	);
 };

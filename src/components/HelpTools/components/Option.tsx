@@ -1,14 +1,16 @@
-import { Modal } from "@components/Modal";
+import { useModalContext } from "@contexts/ModalContext";
 
 interface OptionProps {
-	buttonText: string;
+	ButtonContent: () => JSX.Element;
 	Content: () => JSX.Element;
 }
 
-export const Option = ({ Content, buttonText }: OptionProps) => {
+export const Option = ({ Content, ButtonContent }: OptionProps) => {
+	const { handleOpen } = useModalContext();
+
 	return (
-		<Modal triggerChildren={buttonText}>
-			<Content />
-		</Modal>
+		<button onClick={() => handleOpen(Content)}>
+			<ButtonContent />
+		</button>
 	);
 };

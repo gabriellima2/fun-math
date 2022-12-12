@@ -1,22 +1,30 @@
 import React from "react";
-import { Menu } from "@headlessui/react";
+import { Popover } from "@headlessui/react";
 import type { IconType } from "react-icons";
 
-interface DropdownProps<TData> {
+interface DropdownProps<TData>
+	extends Omit<React.HTMLAttributes<HTMLDivElement>, "children"> {
 	ButtonIcon: IconType;
 	Item: (props: TData) => JSX.Element;
 	data: TData[];
 }
 
-export const Dropdown = <TData extends {}>(props: DropdownProps<TData>) => (
-	<Menu>
-		<Menu.Button>{React.createElement(props.ButtonIcon, null)}</Menu.Button>
-		<Menu.Items>
-			{props.data.map((tool, index) => (
-				<Menu.Item key={index}>
-					{React.createElement(props.Item, { ...tool })}
-				</Menu.Item>
-			))}
-		</Menu.Items>
-	</Menu>
-);
+export const Dropdown = <TData extends {}>({
+	ButtonIcon,
+	Item,
+	data,
+	...props
+}: DropdownProps<TData>) => {
+	return (
+		<Popover>
+			<Popover.Button className="rounded-full p-3 hover:bg-white/5">
+				{React.createElement(ButtonIcon, null)}
+			</Popover.Button>
+			<Popover.Panel {...props}>
+				{data.map((tool, index) => (
+					<Item {...tool} key={index} />
+				))}
+			</Popover.Panel>
+		</Popover>
+	);
+};

@@ -1,12 +1,18 @@
 import { useState } from "react";
 
 export function useToggle() {
-	const [isActive, setIsActive] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
 
-	const toggle = () => setIsActive((prevState) => !prevState);
+	const handleOpen = () => setIsOpen(true);
+
+	const handleClose = () => setIsOpen(false);
+
+	const handleToggle = () => setIsOpen((prevState) => !prevState);
 
 	return {
-		isActive,
-		toggle,
+		isOpen,
+		handleToggle,
+		handleClose,
+		handleOpen,
 	};
 }
