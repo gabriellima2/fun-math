@@ -11,7 +11,7 @@ export const HelpTools = () => {
 			ButtonIcon={BsThreeDotsVertical}
 			data={tools}
 			Item={Option}
-			className="w-40 sm:w-52 p-2 rounded flex flex-col gap-1 absolute right-0 top-24 bg-utils-secondary"
+			className="w-44 sm:w-52 p-2 rounded flex flex-col gap-1 absolute right-0 top-18 sm:top-[87px] bg-utils-secondary"
 		/>
 	);
 };
