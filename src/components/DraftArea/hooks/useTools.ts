@@ -1,13 +1,13 @@
 import { useState } from "react";
 
 import { tools } from "@mocks/tools";
-import { ToolNames } from "@constants/index";
+import { ToolNames } from "@constants";
 
-import type { ToolModel } from "@models/tool-model";
+import type { ITool } from "@interfaces/itool";
 
 interface Tool {
-	current: ToolModel;
-	prev: ToolModel;
+	current: ITool;
+	prev: ITool;
 }
 
 export interface IUseTools {

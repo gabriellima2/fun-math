@@ -3,6 +3,6 @@ interface NumberLimits {
 	min: number;
 }
 
-export function generateRandomNumber({ max, min }: NumberLimits, Math: Math) {
+export function generateRandomNumber({ max, min }: NumberLimits) {
 	return Math.floor(Math.random() * max + min);
 }

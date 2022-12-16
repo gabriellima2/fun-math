@@ -1,4 +1,4 @@
-export interface StepModel {
+export interface Step {
 	title: string;
 	description: string;
 	icon: {

@@ -1,7 +1,7 @@
 import Image from "next/image";
-import type { StepModel } from "@models/step-model";
+import type { Step as IStep } from "@domain/step";
 
-export const Step = (props: StepModel) => (
+export const Step = (props: IStep) => (
 	<li className="flex-center--col sm:flex-row gap-6">
 		<div className="w-[50px] h-12 md:w-[66px] md:h-16 relative">
 			<Image

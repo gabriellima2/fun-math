@@ -4,12 +4,12 @@ import { IExercise, exercises } from "@mocks/exercises";
 import { operators } from "@mocks/operators";
 
 import { getById } from "@utils/get-by-id";
-import { ExerciseNames } from "@constants/index";
+import { ExerciseNames } from "@constants";
 
 import type { WithChildren } from "src/@types/TGlobals";
-import type { OperatorModel } from "@models/operator-model";
+import type { IOperator } from "@interfaces/ioperator";
 
-export type SelectedOperator = Omit<OperatorModel, "image">;
+export type SelectedOperator = Omit<IOperator, "image">;
 export type SelectedExercise = Omit<IExercise, "icon">;
 
 export interface Preferences {

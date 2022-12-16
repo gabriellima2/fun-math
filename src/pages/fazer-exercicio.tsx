@@ -17,6 +17,8 @@ interface DoExerciseProps extends HandleGenerateExerciseInjectedProps {}
 const DoExercise: NextPage<DoExerciseProps> = ({
 	injectedProps: { Render, type },
 }) => {
+	console.log(Render);
+
 	return (
 		<main className="w-screen h-screen flex-center--col">
 			<div className="w-full max-w-[700px] px-4">

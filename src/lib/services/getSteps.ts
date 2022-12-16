@@ -1,9 +1,10 @@
-import type { StepModel } from "@models/step-model";
 import { stepsQuery } from "./queries/steps-query";
 import { client } from "../client";
 
+import type { Step } from "@domain/step";
+
 interface StepsQuery {
-	cards: StepModel[];
+	cards: Step[];
 }
 
 export async function getSteps() {

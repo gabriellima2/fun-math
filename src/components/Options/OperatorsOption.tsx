@@ -5,10 +5,10 @@ import { useExercisePreferences } from "@contexts/ExercisePreferences";
 import { Radio } from "@components/Radio";
 import { Operator } from "./components/Operator";
 
-import type { OperatorModel } from "@models/operator-model";
+import type { IOperator } from "@interfaces/ioperator";
 
 interface OperatorsOptionProps {
-	operators: OperatorModel[];
+	operators: IOperator[];
 }
 
 export const OperatorsOption = ({ operators }: OperatorsOptionProps) => {

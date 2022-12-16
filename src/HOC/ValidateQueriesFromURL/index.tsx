@@ -1,11 +1,12 @@
 import { useRouter } from "next/router";
 import Error from "next/error";
 
-import type { Component } from "src/@types/TGlobals";
-import { ExerciseNames } from "@constants/index";
+import { ExerciseNames } from "@constants";
 import { exercises } from "@mocks/exercises";
 import { operators } from "@mocks/operators";
 import { getById } from "@utils/get-by-id";
+
+import type { Component } from "@globalTypes/TGlobals";
 
 export interface ValidateQueriesFromURLInjectedProps {
 	injectedProps: {

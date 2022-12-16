@@ -1,10 +1,10 @@
 import Image from "next/image";
 
 import { Radio } from "@components/Radio";
-import type { OperatorModel } from "@models/operator-model";
+import type { IOperator } from "@interfaces/ioperator";
 
 interface OperatorProps
-	extends Pick<OperatorModel, "image" | "displayText" | "id"> {}
+	extends Pick<IOperator, "image" | "displayText" | "id"> {}
 
 export const Operator = (props: OperatorProps) => (
 	<Radio.Option value={props.id} className="justify-center sm:justify-start">

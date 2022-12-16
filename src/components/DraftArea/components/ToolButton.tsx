@@ -1,10 +1,10 @@
 import { IUseTools } from "../hooks/useTools";
 
 import { Icon } from "@components/Icon";
-import type { ToolModel } from "@models/tool-model";
+import type { ITool } from "@interfaces/itool";
 
 interface ToolButtonProps
-	extends Omit<ToolModel, "color" | "width">,
+	extends Omit<ITool, "color" | "width">,
 		Pick<IUseTools, "tool" | "changeCurrentTool"> {}
 
 export const ToolButton = ({ tool, ...props }: ToolButtonProps) => {

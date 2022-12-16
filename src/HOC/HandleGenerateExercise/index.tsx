@@ -1,8 +1,8 @@
 import Error from "next/error";
 
 import type { ValidateQueriesFromURLInjectedProps } from "@hoc/ValidateQueriesFromURL";
-import type { Component } from "src/@types/TGlobals";
-import { ExerciseNames } from "@constants/index";
+import type { Component } from "@globalTypes/TGlobals";
+import { ExerciseNames } from "@constants";
 
 interface IRenderExercise {
 	type: string;
@@ -23,11 +23,11 @@ export function HandleGenerateExercise<P extends HandleGenerateExerciseProps>(
 		const renderExerciseList: IRenderExercise[] = [
 			{
 				type: ExerciseNames.random,
-				Render: () => <h1>Gerando Aleatório</h1>,
+				Render: () => <div></div>,
 			},
 			{
 				type: ExerciseNames.problem,
-				Render: () => <h1>Gerando Problema</h1>,
+				Render: () => <div></div>,
 			},
 		];
 

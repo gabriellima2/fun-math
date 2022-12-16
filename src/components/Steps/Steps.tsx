@@ -1,8 +1,8 @@
 import { Step } from "./components/Step";
-import type { StepModel } from "@models/step-model";
+import type { Step as IStep } from "@domain/step";
 
 interface StepsProps {
-	steps: StepModel[];
+	steps: IStep[];
 }
 
 export const Steps = ({ steps }: StepsProps) => {

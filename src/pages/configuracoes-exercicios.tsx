@@ -12,7 +12,7 @@ import { Warning } from "@components/Warning";
 
 import { Customized } from "@layouts/Customized";
 
-import { ExerciseNames } from "@constants/index";
+import { ExerciseNames } from "@constants";
 import { exercises } from "@mocks/exercises";
 import { operators } from "@mocks/operators";
 

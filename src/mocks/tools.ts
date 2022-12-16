@@ -1,7 +1,7 @@
 import { BsFillEraserFill, BsFillPencilFill } from "react-icons/bs";
 
 import { ToolNames } from "@constants/index";
-import type { ToolModel } from "@models/tool-model";
+import type { ToolModel } from "@interfaces/itool";
 
 export const tools: ToolModel[] = [
 	{

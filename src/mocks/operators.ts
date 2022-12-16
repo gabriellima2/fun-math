@@ -1,5 +1,5 @@
 import { OperatorNames } from "@constants/index";
-import type { OperatorModel } from "@models/operator-model";
+import type { OperatorModel } from "@interfaces/ioperator";
 
 export const operators: OperatorModel[] = [
 	{
