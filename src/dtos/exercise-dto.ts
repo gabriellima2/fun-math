@@ -1,5 +1,5 @@
 export interface OutputExerciseDTO {
 	text: string;
-	tip?: string;
-	result: string;
+	tip?: string | null;
+	result: number;
 }

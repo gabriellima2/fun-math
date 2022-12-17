@@ -1,0 +1,121 @@
+[
+	{
+		"text": "Um açougueiro vendeu 110 quilos de carne em uma semana. Na semana seguinte vendeu 135 quilos. Quantos quilos de carne ele vendeu nas duas semanas?",
+		"result": 245,
+		"tip": "Total de quilos de carne vendidos nas duas semanas."
+	},
+
+	{
+		"text": "Num restaurante tem 43 cadeiras vazias e 22 ocupadas. Quantas cadeiras tem nesse restaurante?",
+		"result": 65,
+		"tip": null
+	},
+
+	{
+		"text": "Mamãe foi ao supermercado e comprou 1 dúzia de ovos e meia dúzia de laranja. Quantos produtos ela comprou?",
+		"result": 18,
+		"tip": "Uma dúzia equivale a 12."
+	},
+
+	{
+		"text": "Gabriel leu 37 páginas de uma revista em quadrinhos, mas ainda faltam 43 páginas para acabar. Quantas páginas tem a revista em quadrinhos?",
+		"result": 80,
+		"tip": null
+	},
+
+	{
+		"text": "Eu comi 130 gramas de doce, mas faltam 210 gramas para comer o doce completo. Qual é o peso total do doce que estou comendo?",
+		"result": 340,
+		"tip": "Junta-se a quantidade que comi com a quantidade restante, assim resultando no peso total do doce."
+	},
+
+	{
+		"text": "Luciano quer comprar um videogame que custa R$4.900, ele já tem R$2.447. Quanto que falta para ele conseguir comprar?",
+		"result": 2453,
+		"tip": "Para chegar ao resultado precisamos descobrir qual é a diferença entre R$4.900 e R$2.447"
+	},
+
+	{
+		"text": "Em uma partida de futebol esta à venda 22.360 ingressos, já foram vendidos 14.568 ingressos. Quantos ingressos ainda podem ser vendidos, sem ultrapassar a quantidade disponivel?",
+		"result": 7792,
+		"tip": "Para resolvermos, basta calcular a diferença entre os valores, pois queremos saber a quantidade restante de ingressos."
+	},
+
+	{
+		"text": "Um comércio recebeu 476 produtos, eles conseguiram vender 218 desses produtos. Quantos produtos ainda possui o comércio?",
+		"result": 258,
+		"tip": null
+	},
+
+	{
+		"text": "Sabendo que a soma entre dois números é 4.086 e um dos números é 1.748. Qual é o valor do outro?",
+		"result": 2338,
+		"tip": "Precisamos descobrir qual é o outro número que somado com 1.748 resulta em 4.086."
+	},
+
+	{
+		"text": "Roberta tem R$1.450, ela emprestou R$670 para à sua irmã. Quantos Reais Roberta ainda tem?",
+		"result": 780,
+		"tip": null
+	},
+
+	{
+		"text": "Um carteiro entregou 130 cartas no inicio semana, no meio da semana entregou o dobro e no fim da semana o triplo. Quantas cartas o carteiro entregou em toda a semana?",
+		"result": 780,
+		"tip": "Para resolvermos, primeiramente calculamos quantas cartas foram entregues em cada ponto da semana, e no final juntamos tudo. (O Dobro e o Triplo correspondem ao 130)."
+	},
+
+	{
+		"text": "Em uma cesta há 56 laranjas. Quantas laranjas terão em 7 cestas?",
+		"result": 392,
+		"tip": null
+	},
+
+	{
+		"text": "Gustavo comprou 6 pizzas com o valor de R$78,00 cada. Qual foi o valor total da compra?",
+		"result": 468,
+		"tip": null
+	},
+
+	{
+		"text": "Em uma escola existem 18 salas de aula e em cada uma possui 40 cadeiras. Quantas cadeiras existem nessa escola?",
+		"result": 720,
+		"tip": null
+	},
+
+	{
+		"text": "Em uma fábrica são produzidos 143 sofás por mês. Quantos sofás essa fábrica produzirá em 6 meses?",
+		"result": 858,
+		"tip": null
+	},
+
+	{
+		"text": "Gustavo comprou um carro por R$ 46.200, ele pagará este valor em 48 parcelas. Qual será o valor de cada parcela?",
+		"result": 96250,
+		"tip": "As 48 parcelas é a quantidade que ele dividiu o valor do carro."
+	},
+
+	{
+		"text": "Comprei um celular por R$3.400 e pagarei parcelas de R$ 425,00. Em quantas parcelas comprei este celular?",
+		"result": 8,
+		"tip": null
+	},
+
+	{
+		"text": "Preciso organizar 550 livros em 10 prateleiras. Quantos livros irei colocar, igualmente, em cada prateleira?",
+		"result": 55,
+		"tip": null
+	},
+
+	{
+		"text": "Para fazer uma surpresa ao seus 45 alunos uma professora decidiu comprar 135 pirulitos para distribuir igualmente para cada aluno. Quantos pirulitos cada aluno vai ganhar?",
+		"result": 3,
+		"tip": null
+	},
+
+	{
+		"text": "Jô fez a colheita de 684 morangos. Ela quer colocar os morangos em 18 caixas. Quantos morangos ela deverá colocar em cada caixa, em quantidades iguais?",
+		"result": 38,
+		"tip": null
+	}
+]
