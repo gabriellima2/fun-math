@@ -1,4 +1,4 @@
-import type { InputDefaultProps } from "@globalTypes/IDefaultProps";
+import type { InputDefaultProps } from "@global-types/IDefaultProps";
 
 interface RangeProps
 	extends Omit<InputDefaultProps, "onChange" | "type" | "step" | "className"> {

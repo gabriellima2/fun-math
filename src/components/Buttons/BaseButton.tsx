@@ -1,6 +1,6 @@
 import React from "react";
 
-import type { ButtonDefaultProps } from "src/@types/IDefaultProps";
+import type { ButtonDefaultProps } from "@global-types/IDefaultProps";
 
 interface BaseButtonProps extends ButtonDefaultProps {}
 

@@ -1,5 +1,5 @@
-import { Icon } from "@components/Icon";
 import type { IconType } from "react-icons";
+import { Icon } from "@components/Icon";
 
 export interface ContactProps {
 	name: string;

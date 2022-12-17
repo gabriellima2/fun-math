@@ -1,9 +1,9 @@
-import { Icon } from "@components/Icon";
 import { BsArrowRightShort } from "react-icons/bs";
 
 import { BaseButton } from "./BaseButton";
+import { Icon } from "@components/Icon";
 
-import type { ButtonDefaultProps } from "src/@types/IDefaultProps";
+import type { ButtonDefaultProps } from "@global-types/IDefaultProps";
 
 interface PlayButtonProps
 	extends Omit<ButtonDefaultProps, "type" | "className"> {}

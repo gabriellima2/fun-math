@@ -1,5 +1,5 @@
 import { createContext, useState, useContext } from "react";
-import type { WithChildren } from "@globalTypes/TGlobals";
+import type { WithChildren } from "@global-types/TGlobals";
 
 interface Properties {
 	isOpen: boolean;

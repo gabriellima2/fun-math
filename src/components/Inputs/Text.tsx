@@ -1,4 +1,4 @@
-import type { InputDefaultProps } from "@globalTypes/IDefaultProps";
+import type { InputDefaultProps } from "@global-types/IDefaultProps";
 
 interface TextProps extends Omit<InputDefaultProps, "children"> {
 	label: string;

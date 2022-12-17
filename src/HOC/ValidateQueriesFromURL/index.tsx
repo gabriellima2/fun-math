@@ -6,7 +6,7 @@ import { exercises } from "@mocks/exercises";
 import { operators } from "@mocks/operators";
 import { getById } from "@utils/get-by-id";
 
-import type { Component } from "@globalTypes/TGlobals";
+import type { Component } from "@global-types/TGlobals";
 
 export interface ValidateQueriesFromURLInjectedProps {
 	injectedProps: {
@@ -43,9 +43,7 @@ export function ValidateQueriesFromURL<
 			const haveOperatorType = getById(operators, operator as string);
 
 			// Se existe o operador informado e o exercicio exigi um operador
-			return (
-				!!haveOperatorType && haveExerciseType.id !== ExerciseNames.problem
-			);
+			return !!haveOperatorType && haveExerciseType.needOperator;
 		};
 
 		const preferencesIsValid = () =>

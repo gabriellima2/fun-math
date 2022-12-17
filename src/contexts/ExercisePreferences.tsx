@@ -1,13 +1,13 @@
 import { createContext, useContext, useState } from "react";
 
-import { IExercise, exercises } from "@mocks/exercises";
+import { exercises } from "@mocks/exercises";
 import { operators } from "@mocks/operators";
 
 import { getById } from "@utils/get-by-id";
-import { ExerciseNames } from "@constants";
 
 import type { WithChildren } from "src/@types/TGlobals";
 import type { IOperator } from "@interfaces/ioperator";
+import type { IExercise } from "@interfaces/iexercise";
 
 export type SelectedOperator = Omit<IOperator, "image">;
 export type SelectedExercise = Omit<IExercise, "icon">;
@@ -45,13 +45,12 @@ export const ExercisePreferencesProvider = ({ children }: WithChildren) => {
 	};
 
 	const setExercise = (selectedExerciseName: string) => {
-		const isProblem = selectedExerciseName === ExerciseNames.problem;
 		const hasSelectedExercise = getById(exercises, selectedExerciseName);
 
 		if (!hasSelectedExercise) return;
 
 		setExercisePreferences((prevState) => ({
-			operator: isProblem ? null : prevState.operator,
+			operator: hasSelectedExercise.needOperator ? prevState.operator : null,
 			exercise: hasSelectedExercise,
 		}));
 	};
@@ -59,7 +58,7 @@ export const ExercisePreferencesProvider = ({ children }: WithChildren) => {
 	const userPreferencesIsValid = () => {
 		if (exercisePreferences.exercise) {
 			return (
-				exercisePreferences.exercise.id === ExerciseNames.problem ||
+				!exercisePreferences.exercise.needOperator ||
 				!!exercisePreferences.operator
 			);
 		}

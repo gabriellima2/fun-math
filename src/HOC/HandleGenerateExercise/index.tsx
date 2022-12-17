@@ -1,7 +1,7 @@
 import Error from "next/error";
 
 import type { ValidateQueriesFromURLInjectedProps } from "@hoc/ValidateQueriesFromURL";
-import type { Component } from "@globalTypes/TGlobals";
+import type { Component } from "@global-types/TGlobals";
 import { ExerciseNames } from "@constants";
 
 interface IRenderExercise {

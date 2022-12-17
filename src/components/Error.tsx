@@ -1,8 +1,9 @@
-import type { IError } from "@interfaces/IError";
 import type { HTMLAttributes } from "react";
 
 import { BaseLink } from "./Links/BaseLink";
 import { Logo } from "./Logo";
+
+import type { IError } from "@global-types/IError";
 
 interface ErrorProps
 	extends Omit<HTMLAttributes<HTMLParagraphElement>, "children">,

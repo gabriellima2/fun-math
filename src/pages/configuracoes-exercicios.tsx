@@ -12,7 +12,6 @@ import { Warning } from "@components/Warning";
 
 import { Customized } from "@layouts/Customized";
 
-import { ExerciseNames } from "@constants";
 import { exercises } from "@mocks/exercises";
 import { operators } from "@mocks/operators";
 
@@ -21,19 +20,19 @@ const ExerciseSettings: NextPage = () => {
 	const { exercisePreferences, userPreferencesIsValid } =
 		useExercisePreferences();
 
-	const typeExerciseIsProblem =
-		exercisePreferences.exercise?.id === ExerciseNames.problem;
+	const needOperator = exercisePreferences.exercise?.needOperator;
 
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
 		if (!userPreferencesIsValid()) return;
 
-		if (typeExerciseIsProblem) {
+		if (needOperator) {
 			return router.push({
 				pathname: "/fazer-exercicio",
 				query: {
 					type: exercisePreferences.exercise!.id,
+					operator: exercisePreferences.operator!.id,
 				},
 			});
 		}
@@ -42,7 +41,6 @@ const ExerciseSettings: NextPage = () => {
 			pathname: "/fazer-exercicio",
 			query: {
 				type: exercisePreferences.exercise!.id,
-				operator: exercisePreferences.operator?.id,
 			},
 		});
 	};
@@ -69,12 +67,12 @@ const ExerciseSettings: NextPage = () => {
 								aria-atomic="true"
 								className="w-full bg-utils-primary p-5 sm:p-6 rounded-xl"
 							>
-								{typeExerciseIsProblem ? (
+								{needOperator ? (
+									<OperatorsOption operators={operators} />
+								) : (
 									<Warning>
 										Esse tipo de exercício usa operadores aleatórios
 									</Warning>
-								) : (
-									<OperatorsOption operators={operators} />
 								)}
 							</fieldset>
 						</div>

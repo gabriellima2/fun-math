@@ -1,4 +1,4 @@
-import type { InputDefaultProps } from "@globalTypes/IDefaultProps";
+import type { InputDefaultProps } from "@global-types/IDefaultProps";
 
 interface ColorPickerProps
 	extends Omit<InputDefaultProps, "type" | "name" | "id"> {}

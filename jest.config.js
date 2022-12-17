@@ -18,12 +18,18 @@ const customJestConfig = {
 		'^@components/(.*)$': '<rootDir>/src/components/$1',
 		'^@interfaces/(.*)$': '<rootDir>/src/interfaces/$1',
 		'^@contexts/(.*)$': '<rootDir>/src/contexts/$1',
-		'^@globalTypes/(.*)$': '<rootDir>/src/types/$1',
+		'^@global-types/(.*)$': '<rootDir>/src/types/$1',
 		'^@layouts/(.*)$': '<rootDir>/src/layouts/$1',
 		'^@utils/(.*)$': '<rootDir>/src/utils/$1',
 		'^@mocks/(.*)$': '<rootDir>/src/mocks/$1',
-		"@constants/(.*)$": "<rootDir>/src/constants/$1",
-		"@hoc/(.*)$": "<rootDir>/src/HOC/$1",
+		'^@constants': '<rootDir>/src/constants',
+		'^@hoc/(.*)$': '<rootDir>/src/HOC/$1',
+		'^@hooks/(.*)$': '<rootDir>/src/hooks/$1',
+		'^@lib/(.*)$': '<rootDir>/src/lib/$1',
+		'^@controllers/(.*)$': '<rootDir>/src/controllers/$1',
+		'^@protocols/(.*)$': '<rootDir>/src/protocols/$1',
+		'^@models/(.*)$': '<rootDir>/src/models/$1',
+		'^@dtos/(.*)$': '<rootDir>/src/dtos/$1',
 	}
 }
 

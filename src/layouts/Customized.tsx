@@ -1,5 +1,5 @@
 import { Header } from "@components/Header";
-import type { WithChildren } from "@globalTypes/TGlobals";
+import type { WithChildren } from "@global-types/TGlobals";
 
 export const Customized = ({ children }: WithChildren) => (
 	<>

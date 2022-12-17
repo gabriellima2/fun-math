@@ -16,7 +16,7 @@
     "incremental": true,
 		"baseUrl": ".",
 		"paths": {
-			"@globalTypes/*": ["./src/@types/*"],
+			"@global-types/*": ["./src/@types/*"],
 			"@components/*": ["./src/components/*"],
 			"@contexts/*": ["./src/contexts/*"],
 			"@layouts/*": ["./src/layouts/*"],
