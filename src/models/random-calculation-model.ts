@@ -5,6 +5,12 @@ import { calculationGenerator } from "@utils/calculation-generator";
 
 export class RandomCalculationModel {
 	public load(operator: OperatorNames): OutputExerciseDTO {
+		if (typeof operator !== "string")
+			throw new Error("Tipo parâmetro 'operator' inválido");
+
+		const operatorExists = OperatorNames[operator];
+		if (!operatorExists) throw new Error("Operador inexistente");
+
 		const calculations = {
 			[OperatorNames.addition]: () =>
 				calculationGenerator.addition({ max: 100, min: 1 }),
@@ -20,7 +26,7 @@ export class RandomCalculationModel {
 
 		return {
 			text: `Qual o resultado de ${calculation.firstNumber} ${calculation.operatorSymbol} ${calculation.secondNumber}`,
-			result: calculation.result.toString(),
+			result: calculation.result,
 			tip: undefined,
 		};
 	}

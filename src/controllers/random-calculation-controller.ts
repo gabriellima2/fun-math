@@ -6,8 +6,6 @@ import type {
 	RandomCalculationResponse,
 } from "@protocols/random-calculation-protocols";
 
-import { OperatorNames } from "@constants";
-
 export class RandomCalculationController {
 	private model: RandomCalculationModel;
 
@@ -19,13 +17,8 @@ export class RandomCalculationController {
 		req: RandomCalculationRequestParams,
 		res: NextApiResponse<RandomCalculationResponse>
 	) {
-		const { operator } = req.body;
-
 		try {
-			const operatorExists = OperatorNames[operator];
-			if (!operatorExists) throw new Error("Campo inválido ou vazio!");
-
-			const exercise = this.model.load(operator);
+			const exercise = this.model.load(req.body.operator);
 			res.status(200).json({ data: exercise });
 		} catch (err) {
 			res.status(500).json({ data: null, message: (err as Error).message });
