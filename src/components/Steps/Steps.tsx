@@ -1,5 +1,5 @@
 import { Step } from "./components/Step";
-import type { Step as IStep } from "@domain/step";
+import type { IStep } from "@interfaces/istep";
 
 interface StepsProps {
 	steps: IStep[];

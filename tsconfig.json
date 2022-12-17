@@ -30,7 +30,7 @@
 			"@controllers/*": ["./src/controllers/*"],
 			"@protocols/*": ["./src/protocols/*"],
 			"@models/*": ["./src/models/*"],
-			"@domain/*": ["./src/domain/*"],
+			"@dtos/*": ["./src/dtos/*"],
 		}
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

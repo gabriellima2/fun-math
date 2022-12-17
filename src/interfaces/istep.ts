@@ -1,4 +1,4 @@
-export interface Step {
+export interface IStep {
 	title: string;
 	description: string;
 	icon: {

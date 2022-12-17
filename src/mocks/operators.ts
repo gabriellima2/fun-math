@@ -1,7 +1,7 @@
-import { OperatorNames } from "@constants/index";
-import type { OperatorModel } from "@interfaces/ioperator";
+import { OperatorNames } from "@constants";
+import type { IOperator } from "@interfaces/ioperator";
 
-export const operators: OperatorModel[] = [
+export const operators: IOperator[] = [
 	{
 		id: OperatorNames.addition,
 		displayText: "Adição",

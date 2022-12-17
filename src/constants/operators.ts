@@ -4,10 +4,3 @@ export enum OperatorNames {
 	division = "division",
 	multiply = "multiply",
 }
-
-export enum OperatorSymbols {
-	subtraction = "-",
-	addition = "+",
-	division = "/",
-	multiply = "x",
-}

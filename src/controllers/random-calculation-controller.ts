@@ -25,7 +25,7 @@ export class RandomCalculationController {
 			const operatorExists = OperatorNames[operator];
 			if (!operatorExists) throw new Error("Campo inválido ou vazio!");
 
-			const exercise = this.model.generate(operator);
+			const exercise = this.model.load(operator);
 			res.status(200).json({ data: exercise });
 		} catch (err) {
 			res.status(500).json({ data: null, message: (err as Error).message });

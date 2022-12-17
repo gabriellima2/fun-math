@@ -10,10 +10,10 @@ import { Steps } from "@components/Steps";
 import { Common } from "@layouts/Common";
 
 import { getSteps } from "@lib/services/getSteps";
-import type { Step } from "@domain/step";
+import type { IStep } from "@interfaces/istep";
 
 interface HomeProps {
-	steps: Step[];
+	steps: IStep[];
 }
 
 const SECONDS_TO_REVALIDATE = 60;
