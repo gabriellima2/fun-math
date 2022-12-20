@@ -31,6 +31,8 @@
 			"@protocols/*": ["./src/protocols/*"],
 			"@models/*": ["./src/models/*"],
 			"@dtos/*": ["./src/dtos/*"],
+			"@mocks-test/*": ["./src/__mocks__/*"],
+			"@pages/*": ["./src/pages/*"],
 		}
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

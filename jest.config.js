@@ -30,6 +30,8 @@ const customJestConfig = {
 		'^@protocols/(.*)$': '<rootDir>/src/protocols/$1',
 		'^@models/(.*)$': '<rootDir>/src/models/$1',
 		'^@dtos/(.*)$': '<rootDir>/src/dtos/$1',
+		'^@mocks-test/(.*)$': '<rootDir>/src/__mocks__/$1',
+		'^@pages/(.*)$': '<rootDir>/src/pages/$1',
 	}
 }
 
