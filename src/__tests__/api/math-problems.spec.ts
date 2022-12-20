@@ -1,6 +1,7 @@
 import type { RequestOptions, ResponseOptions } from "node-mocks-http";
 
 import handler from "@pages/api/exercises/math-problems";
+import { STATUS_CODE } from "@mocks-test/status-code";
 import { mockFetch } from "@mocks-test/mock-fetch";
 
 import type {
@@ -19,12 +20,6 @@ async function mathProblemsFetch(
 	);
 }
 
-const STATUS_CODE = {
-	OK: 200,
-	SERVER_ERROR: 500,
-	NOT_ALLOWED_METHOD: 405,
-};
-
 describe("API Math Problems", () => {
 	describe("/GET math-problems", () => {
 		const validDataModel = {
@@ -40,13 +35,15 @@ describe("API Math Problems", () => {
 		};
 
 		describe("Get first exercise", () => {
-			it("should GET a math-problem exercise", async () => {
-				const { response } = await mathProblemsFetch({ method: "GET" });
+			describe("Status Code 200", () => {
+				it("should GET a math-problem exercise", async () => {
+					const { response } = await mathProblemsFetch({ method: "GET" });
 
-				expect(response._getStatusCode()).toBe(STATUS_CODE.OK);
-				expect(JSON.parse(response._getData())).toEqual(
-					expect.objectContaining(validDataModel)
-				);
+					expect(response._getStatusCode()).toBe(STATUS_CODE.OK);
+					expect(JSON.parse(response._getData())).toEqual(
+						expect.objectContaining(validDataModel)
+					);
+				});
 			});
 		});
 

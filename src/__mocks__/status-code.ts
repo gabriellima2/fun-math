@@ -1,0 +1,5 @@
+export const STATUS_CODE = {
+	OK: 200,
+	SERVER_ERROR: 500,
+	NOT_ALLOWED_METHOD: 405,
+};
