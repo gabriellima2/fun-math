@@ -3,11 +3,14 @@ import type { OutputExerciseDTO } from "@dtos/exercise-dto";
 import problems from "@mocks/math-problems.json";
 
 export class MathProblemsModel {
-	load(index: number): OutputExerciseDTO {
-		if (typeof index !== "number") throw new Error("Tipo de dado inválido");
+	load(position: string): OutputExerciseDTO {
+		const numberPosition = Number(position);
 
-		if (index > problems.length) throw new Error("Posição não encontrada");
+		if (isNaN(Number(numberPosition))) throw new Error("Tipo de dado inválido");
 
-		return problems[Math.abs(index)];
+		if (numberPosition > problems.length)
+			throw new Error("Posição não encontrada");
+
+		return problems[Math.abs(numberPosition)];
 	}
 }

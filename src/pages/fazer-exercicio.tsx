@@ -1,23 +1,27 @@
 import { NextPage } from "next";
 
 import { ChangeExerciseButton } from "@components/Buttons/ChangeExerciseButton";
-import { BackLink } from "@components/Links/BackLink";
 import { HelpTools } from "@components/HelpTools/HelpTools";
+import { BackLink } from "@components/Links/BackLink";
 import { Status } from "@components/Status";
 import { Input } from "@components/Inputs";
 
 import {
-	HandleGenerateExercise,
-	HandleGenerateExerciseInjectedProps,
-} from "@hoc/HandleGenerateExercise";
+	GetExerciseService,
+	GetExerciseServiceInjectedProps,
+} from "@hoc/GetExerciseService";
 import { ValidateQueriesFromURL } from "@hoc/ValidateQueriesFromURL";
 
-interface DoExerciseProps extends HandleGenerateExerciseInjectedProps {}
+import { useExercise } from "@hooks/useExercise";
+
+interface DoExerciseProps extends GetExerciseServiceInjectedProps {}
 
 const DoExercise: NextPage<DoExerciseProps> = ({
-	injectedProps: { Render, type },
+	injectedProps: { exerciseFetcher },
 }) => {
-	console.log(Render);
+	const { exercise, getNextExercise } = useExercise(exerciseFetcher);
+
+	if (!exercise) return null;
 
 	return (
 		<main className="w-screen h-screen flex-center--col">
@@ -30,7 +34,7 @@ const DoExercise: NextPage<DoExerciseProps> = ({
 
 				<section className="flex-center--col gap-8 sm:gap-10 md:gap-12">
 					<h1 className="font-bold text-xl sm:text-2xl md:text-4xl">
-						Qual o resultado de 10 + 10?
+						{exercise.text}
 					</h1>
 
 					<div>
@@ -44,11 +48,11 @@ const DoExercise: NextPage<DoExerciseProps> = ({
 				</section>
 
 				<footer className="w-full flex items-center justify-end py-6 sm:py-10">
-					<ChangeExerciseButton />
+					<ChangeExerciseButton onClick={getNextExercise} />
 				</footer>
 			</div>
 		</main>
 	);
 };
 
-export default ValidateQueriesFromURL(HandleGenerateExercise(DoExercise));
+export default ValidateQueriesFromURL(GetExerciseService(DoExercise));

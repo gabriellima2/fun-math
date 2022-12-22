@@ -32,6 +32,7 @@ const customJestConfig = {
 		'^@dtos/(.*)$': '<rootDir>/src/dtos/$1',
 		'^@mocks-test/(.*)$': '<rootDir>/src/__mocks__/$1',
 		'^@pages/(.*)$': '<rootDir>/src/pages/$1',
+		'^@services/(.*)$': '<rootDir>/src/services/$1',
 	}
 }
 

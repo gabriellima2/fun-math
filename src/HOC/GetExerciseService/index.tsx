@@ -1,33 +1,43 @@
 import Error from "next/error";
 
-import type { ValidateQueriesFromURLInjectedProps } from "@hoc/ValidateQueriesFromURL";
-import type { Component } from "@global-types/TGlobals";
+import { useMathProblems, useRandomCalculation } from "./hooks";
+
 import { ExerciseNames } from "@constants";
+import type { ValidateQueriesFromURLInjectedProps } from "@hoc/ValidateQueriesFromURL";
+import type { OutputExerciseDTO } from "@dtos/exercise-dto";
+import type { Component } from "@global-types/TGlobals";
 
 interface IRenderExercise {
 	type: string;
-	Render: () => JSX.Element;
+	exerciseFetcher: () => Promise<{
+		data: OutputExerciseDTO | null;
+		message?: string;
+	}>;
 }
 
-export interface HandleGenerateExerciseProps
+export interface GetExerciseServiceProps
 	extends ValidateQueriesFromURLInjectedProps {}
 
-export interface HandleGenerateExerciseInjectedProps {
+export interface GetExerciseServiceInjectedProps {
 	injectedProps: IRenderExercise;
 }
 
-export function HandleGenerateExercise<P extends HandleGenerateExerciseProps>(
+export function GetExerciseService<P extends GetExerciseServiceProps>(
 	Component: Component<P>
 ) {
 	return function HOC(props: P) {
+		const { handle: getRandomCalculation } = useRandomCalculation();
+		const { handle: getMathProblems } = useMathProblems();
+
 		const renderExerciseList: IRenderExercise[] = [
 			{
 				type: ExerciseNames.random,
-				Render: () => <div></div>,
+				exerciseFetcher: () =>
+					getRandomCalculation(props.injectedProps.operator!),
 			},
 			{
 				type: ExerciseNames.problem,
-				Render: () => <div></div>,
+				exerciseFetcher: () => getMathProblems(),
 			},
 		];
 

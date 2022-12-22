@@ -1,6 +1,6 @@
 import type { RequestOptions, ResponseOptions } from "node-mocks-http";
 
-import handler from "@pages/api/exercises/random-calculation";
+import handler from "@pages/api/exercises/random-calculation/[operator]";
 import { STATUS_CODE } from "@mocks-test/status-code";
 import { mockFetch } from "@mocks-test/mock-fetch";
 
@@ -37,7 +37,7 @@ describe("API Random Calculation", () => {
 			it("should return the calculation for the 'addition' operator", async () => {
 				const { response } = await randomCalculationFetch({
 					method: "GET",
-					body: {
+					query: {
 						operator: "addition",
 					},
 				});
@@ -51,7 +51,7 @@ describe("API Random Calculation", () => {
 			it("should return the calculation for the 'subtraction' operator", async () => {
 				const { response } = await randomCalculationFetch({
 					method: "GET",
-					body: {
+					query: {
 						operator: "subtraction",
 					},
 				});
@@ -65,7 +65,7 @@ describe("API Random Calculation", () => {
 			it("should return the calculation for the 'multiply' operator", async () => {
 				const { response } = await randomCalculationFetch({
 					method: "GET",
-					body: {
+					query: {
 						operator: "multiply",
 					},
 				});
@@ -79,7 +79,7 @@ describe("API Random Calculation", () => {
 			it("should return the calculation for the 'division' operator", async () => {
 				const { response } = await randomCalculationFetch({
 					method: "GET",
-					body: {
+					query: {
 						operator: "division",
 					},
 				});
@@ -95,7 +95,7 @@ describe("API Random Calculation", () => {
 			it("should throw error if passed invalid operator", async () => {
 				const { response } = await randomCalculationFetch({
 					method: "GET",
-					body: { operator: "non-existent_operator" },
+					query: { operator: "non-existent_operator" },
 				});
 
 				expect(response._getStatusCode()).toBe(STATUS_CODE.SERVER_ERROR);
@@ -107,7 +107,7 @@ describe("API Random Calculation", () => {
 			it("should throw error if passed invalid operator type", async () => {
 				const { response } = await randomCalculationFetch({
 					method: "GET",
-					body: { operator: false },
+					query: { operator: false },
 				});
 
 				expect(response._getStatusCode()).toBe(STATUS_CODE.SERVER_ERROR);

@@ -18,7 +18,7 @@ export class MathProblemsController {
 		res: NextApiResponse<MathProblemsResponse>
 	) {
 		try {
-			const exercise = this.model.load(req.body.position || 0);
+			const exercise = this.model.load(req.query.position);
 			res.status(200).json({ data: exercise });
 		} catch (err) {
 			res.status(500).json({ data: null, message: (err as Error).message });

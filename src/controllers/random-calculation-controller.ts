@@ -18,7 +18,7 @@ export class RandomCalculationController {
 		res: NextApiResponse<RandomCalculationResponse>
 	) {
 		try {
-			const exercise = this.model.load(req.body.operator);
+			const exercise = this.model.load(req.query.operator);
 			res.status(200).json({ data: exercise });
 		} catch (err) {
 			res.status(500).json({ data: null, message: (err as Error).message });

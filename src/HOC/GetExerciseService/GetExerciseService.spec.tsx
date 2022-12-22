@@ -2,13 +2,13 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 
 import { ComponentMock } from "src/__mocks__/ComponentMock";
-import { HandleGenerateExercise, HandleGenerateExerciseProps } from ".";
+import { GetExerciseService, GetExerciseServiceProps } from ".";
 
-function renderComponent({ injectedProps }: HandleGenerateExerciseProps) {
+function renderComponent({ injectedProps }: GetExerciseServiceProps) {
 	render(<Component injectedProps={injectedProps} />);
 }
 
-const Component = HandleGenerateExercise(() => (
+const Component = GetExerciseService(() => (
 	<ComponentMock text={COMPONENT_MOCK_TEXT} />
 ));
 

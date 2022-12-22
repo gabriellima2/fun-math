@@ -1,6 +1,6 @@
 import type { RequestOptions, ResponseOptions } from "node-mocks-http";
 
-import handler from "@pages/api/exercises/math-problems";
+import handler from "@pages/api/exercises/math-problems/[position]";
 import { STATUS_CODE } from "@mocks-test/status-code";
 import { mockFetch } from "@mocks-test/mock-fetch";
 
@@ -37,7 +37,12 @@ describe("API Math Problems", () => {
 		describe("Get first exercise", () => {
 			describe("Status Code 200", () => {
 				it("should GET a math-problem exercise", async () => {
-					const { response } = await mathProblemsFetch({ method: "GET" });
+					const { response } = await mathProblemsFetch({
+						method: "GET",
+						query: {
+							position: "0",
+						},
+					});
 
 					expect(response._getStatusCode()).toBe(STATUS_CODE.OK);
 					expect(JSON.parse(response._getData())).toEqual(
@@ -52,7 +57,7 @@ describe("API Math Problems", () => {
 				it("should GET a specific math-problem exercise", async () => {
 					const { response } = await mathProblemsFetch({
 						method: "GET",
-						body: { position: 2 },
+						query: { position: "2" },
 					});
 
 					expect(response._getStatusCode()).toBe(STATUS_CODE.OK);
@@ -66,7 +71,7 @@ describe("API Math Problems", () => {
 				it("should throw error if passed invalid parameter type", async () => {
 					const { response } = await mathProblemsFetch({
 						method: "GET",
-						body: { position: "Hello" },
+						query: { position: "Hello" },
 					});
 
 					expect(response._getStatusCode()).toBe(STATUS_CODE.SERVER_ERROR);
@@ -78,7 +83,7 @@ describe("API Math Problems", () => {
 				it("should throw error if passed invalid parameter", async () => {
 					const { response } = await mathProblemsFetch({
 						method: "GET",
-						body: { position: 400000 },
+						query: { position: "400000" },
 					});
 
 					expect(response._getStatusCode()).toBe(STATUS_CODE.SERVER_ERROR);

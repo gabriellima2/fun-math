@@ -1,12 +1,16 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiResponse } from "next";
 
 import { MathProblemsController } from "@controllers/math-problems-controller";
-import type { MathProblemsResponse } from "@protocols/math-problems-protocols";
+import type {
+	MathProblemsRequest,
+	MathProblemsResponse,
+} from "@protocols/math-problems-protocols";
 
 export default function handler(
-	req: NextApiRequest,
+	req: MathProblemsRequest,
 	res: NextApiResponse<MathProblemsResponse>
 ) {
+	console.log("requisição problem");
 	if (req.method !== "GET")
 		return res
 			.status(405)

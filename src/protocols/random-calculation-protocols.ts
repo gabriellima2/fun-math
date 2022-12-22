@@ -4,7 +4,7 @@ import { OperatorNames } from "@constants";
 import type { OutputExerciseDTO } from "@dtos/exercise-dto";
 
 export interface RandomCalculationRequestParams extends NextApiRequest {
-	body: { operator: OperatorNames };
+	query: { operator: OperatorNames };
 }
 
 export interface RandomCalculationResponse {
