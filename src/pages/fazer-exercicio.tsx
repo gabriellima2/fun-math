@@ -1,8 +1,12 @@
 import { NextPage } from "next";
+import Error from "next/error";
+
+import { useExercise } from "@hooks/useExercise";
 
 import { ChangeExerciseButton } from "@components/Buttons/ChangeExerciseButton";
 import { HelpTools } from "@components/HelpTools/HelpTools";
 import { BackLink } from "@components/Links/BackLink";
+import { Loading } from "@components/Loading";
 import { Status } from "@components/Status";
 import { Input } from "@components/Inputs";
 
@@ -12,16 +16,17 @@ import {
 } from "@hoc/GetExerciseService";
 import { ValidateQueriesFromURL } from "@hoc/ValidateQueriesFromURL";
 
-import { useExercise } from "@hooks/useExercise";
-
 interface DoExerciseProps extends GetExerciseServiceInjectedProps {}
 
 const DoExercise: NextPage<DoExerciseProps> = ({
 	injectedProps: { exerciseFetcher },
 }) => {
-	const { exercise, getNextExercise } = useExercise(exerciseFetcher);
+	const { exercise, getNextExercise, isLoading, error } =
+		useExercise(exerciseFetcher);
 
-	if (!exercise) return null;
+	if (error) return <Error statusCode={500} title={error} />;
+
+	if (isLoading) return <Loading variant="fullscreen" />;
 
 	return (
 		<main className="w-screen h-screen flex-center--col">
@@ -34,7 +39,7 @@ const DoExercise: NextPage<DoExerciseProps> = ({
 
 				<section className="flex-center--col gap-8 sm:gap-10 md:gap-12">
 					<h1 className="font-bold text-xl sm:text-2xl md:text-4xl">
-						{exercise.text}
+						{exercise?.text}
 					</h1>
 
 					<div>

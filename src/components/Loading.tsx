@@ -1,15 +1,15 @@
 import Image from "next/image";
 
-const Default = () => (
-	<div className="flex-center--row">
-		<Image src="/loading.gif" alt="Carregando..." width="25" height="25" />
-	</div>
-);
+interface LoadingProps {
+	variant: "small" | "fullscreen";
+}
 
-const FullScreen = () => (
-	<div className="h-screen flex-center--row">
-		<Image src="/loading.gif" alt="Carregando..." width="25" height="25" />
-	</div>
-);
-
-export const Loading = { Default, FullScreen };
+export const Loading = ({ variant }: LoadingProps) => {
+	return (
+		<div
+			className={`${variant === "fullscreen" && "h-screen"} flex-center--row`}
+		>
+			<Image src="/loading.gif" alt="Carregando..." width="25" height="25" />
+		</div>
+	);
+};
