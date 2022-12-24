@@ -1,7 +1,11 @@
 import { NextPage } from "next";
 import Error from "next/error";
+import { useDispatch } from "react-redux";
 
 import { useExercise } from "@hooks/useExercise";
+import { useAsyncMemo } from "@hooks/useAsyncMemo";
+
+import { setMessage } from "@redux/modules/tip-module/actions";
 
 import { ChangeExerciseButton } from "@components/Buttons/ChangeExerciseButton";
 import { HelpTools } from "@components/HelpTools/HelpTools";
@@ -21,8 +25,21 @@ interface DoExerciseProps extends GetExerciseServiceInjectedProps {}
 const DoExercise: NextPage<DoExerciseProps> = ({
 	injectedProps: { exerciseFetcher },
 }) => {
+	const dispatch = useDispatch();
 	const { exercise, getNextExercise, isLoading, error } =
 		useExercise(exerciseFetcher);
+
+	useAsyncMemo(
+		exercise,
+		(memoized) => {
+			dispatch(
+				setMessage({
+					message: memoized?.tip || "Desculpe, não há dicas disponíveis",
+				})
+			);
+		},
+		[exercise]
+	);
 
 	if (error) return <Error statusCode={500} title={error} />;
 
