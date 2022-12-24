@@ -14,7 +14,7 @@ import {
 	GetExerciseService,
 	GetExerciseServiceInjectedProps,
 } from "@hoc/GetExerciseService";
-import { ValidateQueriesFromURL } from "@hoc/ValidateQueriesFromURL";
+import { ValidateExerciseQueries } from "@hoc/ValidateExerciseQueries";
 
 interface DoExerciseProps extends GetExerciseServiceInjectedProps {}
 
@@ -60,4 +60,4 @@ const DoExercise: NextPage<DoExerciseProps> = ({
 	);
 };
 
-export default ValidateQueriesFromURL(GetExerciseService(DoExercise));
+export default ValidateExerciseQueries(GetExerciseService(DoExercise));

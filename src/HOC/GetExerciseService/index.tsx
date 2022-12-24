@@ -3,7 +3,7 @@ import Error from "next/error";
 import { useMathProblems, useRandomCalculation } from "./hooks";
 
 import { ExerciseNames } from "@constants";
-import type { ValidateQueriesFromURLInjectedProps } from "@hoc/ValidateQueriesFromURL";
+import type { ValidateExerciseQueriesInjectedProps } from "@hoc/ValidateExerciseQueries";
 import type { OutputExerciseDTO } from "@dtos/exercise-dto";
 import type { Component } from "@global-types/TGlobals";
 
@@ -16,7 +16,7 @@ interface IRenderExercise {
 }
 
 export interface GetExerciseServiceProps
-	extends ValidateQueriesFromURLInjectedProps {}
+	extends ValidateExerciseQueriesInjectedProps {}
 
 export interface GetExerciseServiceInjectedProps {
 	injectedProps: IRenderExercise;

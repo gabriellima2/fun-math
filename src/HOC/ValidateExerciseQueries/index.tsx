@@ -8,15 +8,15 @@ import { getById } from "@utils/get-by-id";
 
 import type { Component } from "@global-types/TGlobals";
 
-export interface ValidateQueriesFromURLInjectedProps {
+export interface ValidateExerciseQueriesInjectedProps {
 	injectedProps: {
 		type?: string;
 		operator?: string;
 	};
 }
 
-export function ValidateQueriesFromURL<
-	P extends ValidateQueriesFromURLInjectedProps
+export function ValidateExerciseQueries<
+	P extends ValidateExerciseQueriesInjectedProps
 >(Component: Component<P>) {
 	return function HOC(props: P) {
 		const router = useRouter();
@@ -50,7 +50,9 @@ export function ValidateQueriesFromURL<
 			queriesFormatIsValid() && queriesValuesIsValid();
 
 		if (!preferencesIsValid()) {
-			return <Error statusCode={404} />;
+			return (
+				<Error statusCode={404} title="Tipo de exercício não encontrado" />
+			);
 		}
 
 		return <Component {...(props as P)} injectedProps={{ type, operator }} />;

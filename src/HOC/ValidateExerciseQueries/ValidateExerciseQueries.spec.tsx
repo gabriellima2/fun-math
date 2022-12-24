@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 
 import { ComponentMock } from "src/__mocks__/ComponentMock";
 import { mockUseRouter } from "src/__mocks__/mockUseRouter";
-import { ValidateQueriesFromURL } from ".";
+import { ValidateExerciseQueries } from ".";
 
 interface Queries {
 	type?: string | string[];
@@ -24,7 +24,7 @@ function renderComponentUsingQuery(query: Queries) {
 const COMPONENT_MOCK_TEXT = "Success";
 const ERROR_CODE_TEXT = "404";
 
-const Component = ValidateQueriesFromURL(() => (
+const Component = ValidateExerciseQueries(() => (
 	<ComponentMock text={COMPONENT_MOCK_TEXT} />
 ));
 
