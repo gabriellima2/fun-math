@@ -14,8 +14,9 @@ export function useExercise(
 	fetcher: () => Promise<ExerciseResponse>
 ): UseExerciseResponse {
 	const { data, error, isLoading, mutate } = useSWR<ExerciseResponse>(
-		"exercise",
-		fetcher
+		"/api/exercise",
+		fetcher,
+		{ revalidateOnFocus: false }
 	);
 
 	const getNextExercise = () => mutate();
