@@ -1,7 +1,7 @@
+import { useTipSelect } from "@redux/modules/tip-module/hooks/useTipSelect";
+
 export const Content = () => {
-	return (
-		<h2>
-			Desculpe, no momento não temos dicas específicas para esse exercício
-		</h2>
-	);
+	const { message } = useTipSelect();
+
+	return <h2>{message}</h2>;
 };

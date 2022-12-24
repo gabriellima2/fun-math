@@ -1,7 +1,7 @@
 import { DependencyList, useEffect, useMemo } from "react";
 
 // Para lidar com dados assincronos que não ocupam o mesmo espaço de memória.
-export function useAsyncDataMemoizer<TData>(
+export function useAsyncMemo<TData>(
 	data: TData,
 	callback: (memoizedData: TData) => void,
 	deps: DependencyList
