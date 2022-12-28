@@ -27,21 +27,16 @@ const ExerciseSettings: NextPage = () => {
 
 		if (!userPreferencesIsValid()) return;
 
-		if (needOperator) {
-			return router.push({
-				pathname: "/fazer-exercicio",
-				query: {
-					type: exercisePreferences.exercise!.id,
-					operator: exercisePreferences.operator!.id,
-				},
-			});
-		}
-
 		router.push({
 			pathname: "/fazer-exercicio",
-			query: {
-				type: exercisePreferences.exercise!.id,
-			},
+			query: needOperator
+				? {
+					type: exercisePreferences.exercise!.id,
+					operator: exercisePreferences.operator!.id,
+				  }
+				: {
+					type: exercisePreferences.exercise!.id,
+				  },
 		});
 	};
 
@@ -67,7 +62,7 @@ const ExerciseSettings: NextPage = () => {
 								aria-atomic="true"
 								className="w-full bg-utils-primary p-5 sm:p-6 rounded-xl"
 							>
-								{needOperator ? (
+								{needOperator || needOperator === undefined ? (
 									<OperatorsOption operators={operators} />
 								) : (
 									<Warning>

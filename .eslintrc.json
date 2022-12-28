@@ -41,7 +41,7 @@
             "error",
             "always"
         ],
-			"prettier/prettier": "error",
+			"prettier/prettier": "off",
 			"react/prop-types": "off",
 			"react/react-in-jsx-scope": "off",
 			"react/display-name": "off",
