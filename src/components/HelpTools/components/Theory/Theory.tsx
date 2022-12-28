@@ -1,3 +1,4 @@
+import { BsInfoLg } from "react-icons/bs";
 import { Article } from "./Article";
 
 const texts = [
@@ -23,7 +24,16 @@ const texts = [
 	},
 ];
 
-export const Content = () => {
+const ButtonContent = () => (
+	<>
+		<i>
+			<BsInfoLg />
+		</i>
+		Teoria
+	</>
+);
+
+const Content = () => {
 	return (
 		<section className="flex flex-col gap-6 md:gap-8">
 			{texts.map((text, index) => (
@@ -31,4 +41,9 @@ export const Content = () => {
 			))}
 		</section>
 	);
+};
+
+export const Theory = {
+	Content,
+	ButtonContent,
 };

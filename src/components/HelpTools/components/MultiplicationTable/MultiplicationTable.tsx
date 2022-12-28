@@ -1,9 +1,19 @@
 import { useState } from "react";
+import { BsTable } from "react-icons/bs";
 
 import { Multiplication } from "./Multiplication";
 import { Input } from "@components/Inputs";
 
-export const Content = () => {
+const ButtonContent = () => (
+	<>
+		<i>
+			<BsTable />
+		</i>
+		Tabuada
+	</>
+);
+
+const Content = () => {
 	const [multiplicand, setMultiplicand] = useState("");
 
 	const handleMultiplicandChange = (value: string) => {
@@ -39,4 +49,9 @@ export const Content = () => {
 			</section>
 		</section>
 	);
+};
+
+export const MultiplicationTable = {
+	Content,
+	ButtonContent,
 };
