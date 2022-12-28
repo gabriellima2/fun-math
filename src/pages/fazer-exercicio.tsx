@@ -54,7 +54,11 @@ const DoExercise: NextPage<DoExerciseProps> = ({
 					<HelpTools />
 				</header>
 
-				<section className="flex-center--col gap-8 sm:gap-10 md:gap-12">
+				<section
+					aria-live="polite"
+					aria-atomic="true"
+					className="flex-center--col gap-8 sm:gap-10 md:gap-12"
+				>
 					<h1 className="font-bold text-xl sm:text-2xl md:text-4xl">
 						{exercise?.text}
 					</h1>
