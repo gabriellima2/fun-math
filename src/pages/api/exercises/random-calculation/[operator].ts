@@ -10,7 +10,6 @@ export default function handler(
 	req: RandomCalculationRequestParams,
 	res: NextApiResponse<RandomCalculationResponse>
 ) {
-	console.log("requisição random");
 	if (req.method !== "GET")
 		return res
 			.status(405)

@@ -10,7 +10,6 @@ export default function handler(
 	req: MathProblemsRequest,
 	res: NextApiResponse<MathProblemsResponse>
 ) {
-	console.log("requisição problem");
 	if (req.method !== "GET")
 		return res
 			.status(405)
