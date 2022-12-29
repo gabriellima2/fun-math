@@ -1,9 +1,10 @@
-import { NextPage } from "next";
 import Error from "next/error";
 import { useDispatch } from "react-redux";
+import type { NextPage } from "next";
 
 import { useExercise } from "@hooks/useExercise";
 import { useAsyncMemo } from "@hooks/useAsyncMemo";
+import { useUserAnswer } from "@hooks/useUserAnswer";
 
 import { setMessage } from "@redux/modules/tip-module/actions";
 
@@ -28,6 +29,12 @@ const DoExercise: NextPage<DoExerciseProps> = ({
 	const dispatch = useDispatch();
 	const { exercise, getNextExercise, isLoading, error } =
 		useExercise(exerciseFetcher);
+	const {
+		userAnswer,
+		handleUserAnswerChange,
+		userAnswerStatus,
+		clearUserAnswerState,
+	} = useUserAnswer(exercise?.result);
 
 	useAsyncMemo(
 		exercise,
@@ -50,7 +57,7 @@ const DoExercise: NextPage<DoExerciseProps> = ({
 			<div className="w-full max-w-[700px] px-4">
 				<header className="flex items-center justify-between relative py-6 sm:py-10">
 					<BackLink href="/configuracoes-exercicios" />
-					<Status status={null} />
+					<Status status={userAnswerStatus} />
 					<HelpTools />
 				</header>
 
@@ -65,16 +72,29 @@ const DoExercise: NextPage<DoExerciseProps> = ({
 
 					<div>
 						<Input.Text
+							type="number"
 							label="O resultado é"
 							id="user-answer"
 							name="user-answer"
 							placeholder="Digite o resultado"
+							value={userAnswer}
+							onChange={handleUserAnswerChange}
+							className={`${
+								userAnswerStatus === "correct" && "border-green-400"
+							} ${
+								userAnswerStatus === "incorrect" && "border-red-400"
+							} border-2 border-transparent`}
 						/>
 					</div>
 				</section>
 
 				<footer className="w-full flex items-center justify-end py-6 sm:py-10">
-					<ChangeExerciseButton onClick={getNextExercise} />
+					<ChangeExerciseButton
+						onClick={() => {
+							clearUserAnswerState();
+							getNextExercise();
+						}}
+					/>
 				</footer>
 			</div>
 		</main>

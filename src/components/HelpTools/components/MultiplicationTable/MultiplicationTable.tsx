@@ -31,6 +31,7 @@ const Content = () => {
 					label="Número"
 					value={multiplicand}
 					placeholder="Digite aqui o número..."
+					className="border-none"
 				/>
 			</div>
 

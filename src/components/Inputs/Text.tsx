@@ -11,7 +11,7 @@ export const Text = ({ label, ...props }: TextProps) => (
 		</label>
 		<input
 			{...props}
-			className={`${props.className} border-none outline-none p-2 sm:p-3 text-sm sm:text-base rounded-lg bg-white/5 placeholder:text-white/20`}
+			className={`${props.className} outline-none p-2 sm:p-3 text-sm sm:text-base rounded-lg bg-white/5 placeholder:text-white/20`}
 		/>
 	</>
 );
