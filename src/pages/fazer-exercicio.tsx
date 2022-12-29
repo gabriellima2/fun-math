@@ -80,10 +80,10 @@ const DoExercise: NextPage<DoExerciseProps> = ({
 							value={userAnswer}
 							onChange={handleUserAnswerChange}
 							className={`${
-								userAnswerStatus === "correct" && "border-green-400"
-							} ${
+								userAnswerStatus === null && "border-transparent"
+							} ${userAnswerStatus === "correct" && "border-green-400"} ${
 								userAnswerStatus === "incorrect" && "border-red-400"
-							} border-2 border-transparent`}
+							} border-2`}
 						/>
 					</div>
 				</section>
