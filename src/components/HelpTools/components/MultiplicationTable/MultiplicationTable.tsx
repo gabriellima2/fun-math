@@ -35,7 +35,12 @@ const Content = () => {
 				/>
 			</div>
 
-			<section aria-live="polite" aria-atomic="true" className="mt-3 md:mt-6">
+			<section
+				aria-live="polite"
+				aria-atomic="true"
+				className="mt-3 md:mt-6"
+				data-testid="numbers-section"
+			>
 				{multiplicand && (
 					<ul className="flex items-center flex-col p-2 md:p-4 rounded bg-utils-secondary">
 						{[...Array(11)].map((_, multiplier) => (
