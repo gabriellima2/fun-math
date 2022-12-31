@@ -3,9 +3,7 @@ import { ApolloProvider } from "@apollo/client";
 import { Provider } from "react-redux";
 
 import { ExercisePreferencesProvider } from "@contexts/ExercisePreferences";
-import { ModalContextProvider } from "@contexts/ModalContext";
 
-import { Modal } from "@components/Modal";
 import { Seo } from "@components/Seo";
 
 import { client } from "../lib/client";
@@ -17,13 +15,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<ApolloProvider client={client}>
 			<Provider store={store}>
-				<ModalContextProvider>
-					<ExercisePreferencesProvider>
-						<Seo />
-						<Modal />
-						<Component {...pageProps} />
-					</ExercisePreferencesProvider>
-				</ModalContextProvider>
+				<ExercisePreferencesProvider>
+					<Seo />
+					<Component {...pageProps} />
+				</ExercisePreferencesProvider>
 			</Provider>
 		</ApolloProvider>
 	);
