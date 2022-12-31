@@ -45,7 +45,8 @@ Cálculos com operadores básicos da matemática fazem parte do nosso dia-a-dia,
 <h4 align="center">Feito com <a href="https://www.figma.com/" target="_blank" rel="noreferrer">Figma</a></h4>
 
 <h2>Rodando o projeto:</h2>
-<p><strong>OBS</strong> Só é possível rodar o projeto com exercícios gerados pelo Client, pois os outros são disponibilizados por minha API privada no Hygraph, mas você pode criar seus próprios exercícios e adicioná-los em sua conta no Hygraph, se desejar. <strong>Dito isso vamos lá!!!</strong></p>
+
+<small><strong>OBS: </strong>Alguns exercícios são consumidos de uma API privada criada no [Hygraph](https://hygraph.com). Você pode fazer o mesmo, basta criar uma conta e adicionar seus projetos.</small>
 
 </br>
 
@@ -57,21 +58,27 @@ $ git clone https://github.com/gabriellima2/fun-math.git
 
 2. Acesse a pasta e instale as dependências via terminal:
 $ yarn / npm install
-
-3. Inicie a aplicação em modo de desenvolvimento:
-$ yarn dev / npm run dev
-
-4. O servidor será aberto em http://localhost:3000
 ```
 
-Caso esteja utilizando o [Hygraph](https://hygraph.com/): <strong>Configure as variáveis de ambiente</strong>
+Crie uma conta no [Hygraph](https://hygraph.com/), [clone o projeto](https://app.hygraph.com/clone/ee61533f4fd64b3a83f9b3aea51effb4?name=FunMath!) e adicione seus exercícios.
 
 ```bash
+3. Adicione as variáveis de ambiente:
+
 	.env.local
 
 	NEXT_PUBLIC_API_TOKEN=Seu Token de autenticação.
 	NEXT_PUBLIC_API_URL=URL da sua API.
 
+```
+
+Agora basta rodar o projeto:
+
+```bash
+4. Inicie a aplicação em modo de desenvolvimento:
+$ yarn dev / npm run dev
+
+5. O servidor será aberto em http://localhost:3000
 ```
 
 <p align="center">Projeto feito com 💙 por <a href="https://www.linkedin.com/in/gabriel-lima-860612236">Gabriel Lima</a></p>
