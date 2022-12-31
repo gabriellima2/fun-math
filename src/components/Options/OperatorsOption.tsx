@@ -1,17 +1,13 @@
-import React from "react";
+import React, { memo } from "react";
 
 import { useExercisePreferences } from "@contexts/ExercisePreferences";
 
-import { Radio } from "@components/Radio";
 import { Operator } from "./components/Operator";
+import { Radio } from "@components/Radio";
 
-import type { IOperator } from "@global-types/IOperator";
+import { operators } from "@mocks/operators";
 
-interface OperatorsOptionProps {
-	operators: IOperator[];
-}
-
-export const OperatorsOption = ({ operators }: OperatorsOptionProps) => {
+export const OperatorsOption = memo(() => {
 	const { exercisePreferences, setOperator } = useExercisePreferences();
 
 	return (
@@ -27,4 +23,4 @@ export const OperatorsOption = ({ operators }: OperatorsOptionProps) => {
 			</div>
 		</Radio.Group>
 	);
-};
+});

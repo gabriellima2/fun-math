@@ -5,13 +5,9 @@ import { useExercisePreferences } from "@contexts/ExercisePreferences";
 import { Exercise } from "./components/Exercise";
 import { Radio } from "@components/Radio";
 
-import type { IExercise } from "@global-types/IExercise";
+import { exercises } from "@mocks/exercises";
 
-interface ExercisesOptionProps {
-	exercises: IExercise[];
-}
-
-export const ExercisesOption = memo(({ exercises }: ExercisesOptionProps) => {
+export const ExercisesOption = memo(() => {
 	const { exercisePreferences, setExercise } = useExercisePreferences();
 
 	return (

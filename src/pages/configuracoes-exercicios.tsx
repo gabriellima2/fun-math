@@ -13,7 +13,6 @@ import { Warning } from "@components/Warning";
 import { Customized } from "@layouts/Customized";
 
 import { exercises } from "@mocks/exercises";
-import { operators } from "@mocks/operators";
 
 const ExerciseSettings: NextPage = () => {
 	const router = useRouter();
@@ -31,11 +30,11 @@ const ExerciseSettings: NextPage = () => {
 			pathname: "/fazer-exercicio",
 			query: needOperator
 				? {
-					type: exercisePreferences.exercise!.id,
-					operator: exercisePreferences.operator!.id,
+						type: exercisePreferences.exercise!.id,
+						operator: exercisePreferences.operator!.id,
 				  }
 				: {
-					type: exercisePreferences.exercise!.id,
+						type: exercisePreferences.exercise!.id,
 				  },
 		});
 	};
@@ -54,7 +53,7 @@ const ExerciseSettings: NextPage = () => {
 
 						<div className="w-full flex flex-col gap-6 sm:gap-8">
 							<fieldset className="w-full bg-utils-primary p-5 sm:p-6 rounded-xl">
-								<ExercisesOption exercises={exercises} />
+								<ExercisesOption />
 							</fieldset>
 
 							<fieldset
@@ -63,7 +62,7 @@ const ExerciseSettings: NextPage = () => {
 								className="w-full bg-utils-primary p-5 sm:p-6 rounded-xl"
 							>
 								{needOperator || needOperator === undefined ? (
-									<OperatorsOption operators={operators} />
+									<OperatorsOption />
 								) : (
 									<Warning>
 										Esse tipo de exercício usa operadores aleatórios
