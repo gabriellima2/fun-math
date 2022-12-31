@@ -3,9 +3,8 @@ import { useEffect } from "react";
 import { useCanvasContext } from "@contexts/CanvasContext";
 import { useTools } from "../hooks/useTools";
 
+import { Input } from "@components/Inputs/";
 import { ClearCanvasButton } from "./ClearCanvasButton";
-import { ColorPicker } from "@components/ColorPicker";
-import { Range } from "@components/Range";
 import { ToolButton } from "./ToolButton";
 
 import { tools } from "@mocks/tools";
@@ -27,7 +26,7 @@ export const Tools = () => {
 			className="w-full flex items-center justify-between p-2 py-3 bg-utils-primary rounded-br-md rounded-bl-md"
 		>
 			<div className="flex-center--row flex-wrap gap-3 md:gap-6">
-				<ColorPicker
+				<Input.ColorPicker
 					value={tool.current.color}
 					onChange={(e) => changeColor(e.target.value)}
 				/>
@@ -41,7 +40,7 @@ export const Tools = () => {
 					/>
 				))}
 
-				<Range
+				<Input.Range
 					id="lineWidth"
 					name="lineWidth"
 					title="Mude a largura dos traços"

@@ -11,6 +11,7 @@ import { setMessage } from "@redux/modules/tip-module/actions";
 import { ChangeExerciseButton } from "@components/Buttons/ChangeExerciseButton";
 import { HelpTools } from "@components/HelpTools/HelpTools";
 import { BackLink } from "@components/Links/BackLink";
+import { DraftModal } from "@components/DraftModal";
 import { Loading } from "@components/Loading";
 import { Status } from "@components/Status";
 import { Input } from "@components/Inputs";
@@ -20,8 +21,6 @@ import {
 	GetExerciseServiceInjectedProps,
 } from "@hoc/GetExerciseService";
 import { ValidateExerciseQueries } from "@hoc/ValidateExerciseQueries";
-import { BsPencilFill } from "react-icons/bs";
-import { DraftModal } from "@components/DraftModal";
 
 interface DoExerciseProps extends GetExerciseServiceInjectedProps {}
 

@@ -1,6 +1,6 @@
 import React from "react";
-import { Dialog } from "@headlessui/react";
 import { BsXLg } from "react-icons/bs";
+import { Dialog } from "@headlessui/react";
 
 import type { WithChildren } from "@global-types/TGlobals";
 
