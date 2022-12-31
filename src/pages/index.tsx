@@ -1,5 +1,4 @@
 import type { NextPage } from "next";
-import { GetStaticProps } from "next";
 
 import { StartNowLink } from "@components/Links/StartNowLink";
 import { AccentParagraph } from "@components/AccentParagraph";
@@ -9,16 +8,7 @@ import { Steps } from "@components/Steps";
 
 import { Common } from "@layouts/Common";
 
-import { getSteps } from "@lib/services/getSteps";
-import type { IStep } from "@interfaces/istep";
-
-interface HomeProps {
-	steps: IStep[];
-}
-
-const SECONDS_TO_REVALIDATE = 60;
-
-const Home: NextPage<HomeProps> = ({ steps }) => {
+const Home: NextPage = () => {
 	return (
 		<Common>
 			<main id="home">
@@ -41,7 +31,7 @@ const Home: NextPage<HomeProps> = ({ steps }) => {
 
 			<section className="bg-utils-primary">
 				<Container>
-					<Steps steps={steps} />
+					<Steps />
 				</Container>
 			</section>
 
@@ -73,14 +63,3 @@ const Home: NextPage<HomeProps> = ({ steps }) => {
 };
 
 export default Home;
-
-export const getStaticProps: GetStaticProps = async () => {
-	const response = await getSteps();
-
-	return {
-		props: {
-			steps: response,
-		},
-		revalidate: SECONDS_TO_REVALIDATE,
-	};
-};

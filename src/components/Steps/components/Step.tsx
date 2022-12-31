@@ -5,7 +5,7 @@ export const Step = (props: IStep) => (
 	<li className="flex-center--col sm:flex-row gap-6">
 		<div className="w-[50px] h-12 md:w-[66px] md:h-16 relative">
 			<Image
-				src={props.icon.url}
+				src={props.iconURL}
 				alt={`Icone do Card ${props.title}`}
 				layout="fill"
 			/>
