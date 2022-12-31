@@ -12,8 +12,6 @@ import { Warning } from "@components/Warning";
 
 import { Customized } from "@layouts/Customized";
 
-import { exercises } from "@mocks/exercises";
-
 const ExerciseSettings: NextPage = () => {
 	const router = useRouter();
 	const { exercisePreferences, userPreferencesIsValid } =
@@ -26,16 +24,21 @@ const ExerciseSettings: NextPage = () => {
 
 		if (!userPreferencesIsValid()) return;
 
+		if (needOperator) {
+			return router.push({
+				pathname: "/fazer-exercicio",
+				query: {
+					type: exercisePreferences.exercise!.id,
+					operator: exercisePreferences.operator!.id,
+				},
+			});
+		}
+
 		router.push({
 			pathname: "/fazer-exercicio",
-			query: needOperator
-				? {
-						type: exercisePreferences.exercise!.id,
-						operator: exercisePreferences.operator!.id,
-				  }
-				: {
-						type: exercisePreferences.exercise!.id,
-				  },
+			query: {
+				type: exercisePreferences.exercise!.id,
+			},
 		});
 	};
 
