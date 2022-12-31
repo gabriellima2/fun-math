@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 import { Radio } from "@components/Radio";
-import type { IOperator } from "@interfaces/ioperator";
+import type { IOperator } from "@global-types/IOperator";
 
 interface OperatorProps
 	extends Pick<IOperator, "image" | "displayText" | "id"> {}

@@ -1,7 +1,7 @@
 import { BsQuestionDiamondFill, BsShuffle } from "react-icons/bs";
 
 import { ExerciseNames } from "@constants";
-import type { IExercise } from "@interfaces/iexercise";
+import type { IExercise } from "@global-types/IExercise";
 
 export const exercises: IExercise[] = [
 	{

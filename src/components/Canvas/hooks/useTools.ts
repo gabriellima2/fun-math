@@ -3,7 +3,7 @@ import { useState } from "react";
 import { tools } from "@mocks/tools";
 import { ToolNames } from "@constants";
 
-import type { ITool } from "@interfaces/itool";
+import type { ITool } from "@global-types/ITool";
 
 interface Tool {
 	current: ITool;

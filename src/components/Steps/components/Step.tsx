@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { IStep } from "@interfaces/istep";
+import type { IStep } from "@global-types/IStep";
 
 export const Step = (props: IStep) => (
 	<li className="flex-center--col sm:flex-row gap-6">

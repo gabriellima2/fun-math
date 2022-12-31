@@ -5,7 +5,7 @@ import { useExercisePreferences } from "@contexts/ExercisePreferences";
 import { Radio } from "@components/Radio";
 import { Operator } from "./components/Operator";
 
-import type { IOperator } from "@interfaces/ioperator";
+import type { IOperator } from "@global-types/IOperator";
 
 interface OperatorsOptionProps {
 	operators: IOperator[];

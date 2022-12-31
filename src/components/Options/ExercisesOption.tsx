@@ -5,7 +5,7 @@ import { useExercisePreferences } from "@contexts/ExercisePreferences";
 import { Exercise } from "./components/Exercise";
 import { Radio } from "@components/Radio";
 
-import type { IExercise } from "@interfaces/iexercise";
+import type { IExercise } from "@global-types/IExercise";
 
 interface ExercisesOptionProps {
 	exercises: IExercise[];

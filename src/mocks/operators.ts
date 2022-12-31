@@ -1,5 +1,5 @@
 import { OperatorNames } from "@constants";
-import type { IOperator } from "@interfaces/ioperator";
+import type { IOperator } from "@global-types/IOperator";
 
 export const operators: IOperator[] = [
 	{

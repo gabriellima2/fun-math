@@ -1,5 +1,5 @@
 import { Step } from "./components/Step";
-import type { IStep } from "@interfaces/istep";
+import type { IStep } from "@global-types/IStep";
 
 const steps: IStep[] = [
 	{

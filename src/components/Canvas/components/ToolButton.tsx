@@ -1,7 +1,7 @@
 import { IUseTools } from "../hooks/useTools";
 
 import { Icon } from "@components/Icon";
-import type { ITool } from "@interfaces/itool";
+import type { ITool } from "@global-types/ITool";
 
 interface ToolButtonProps
 	extends Omit<ITool, "color" | "width">,
