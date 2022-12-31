@@ -7,9 +7,8 @@
 <h3 align="center">A plataforma FunMath! prover exercícios para os usuários colocar em prática e melhorar seus conhecimentos em matemática.</h3>
 
 <div align="center">
-  <img src="./public/github/preview.gif" alt="demonstração do projeto" >
+  <img src="./public/github/preview.png" alt="demonstração do projeto" >
 </div>
-<small><strong>OBS:</strong> Contraste da imagem estranho por causa do editor</small>
 
 <p align="center"><a href="https://fun-math.vercel.app/">Ver Projeto</a></p>
 
