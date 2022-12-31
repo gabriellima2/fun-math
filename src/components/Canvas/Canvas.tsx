@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 
 import { useCanvasContext } from "@contexts/CanvasContext";
+
 import { Tools } from "./components/Tools";
 
 import { createMouseEvent } from "@utils/create-mouse-event";

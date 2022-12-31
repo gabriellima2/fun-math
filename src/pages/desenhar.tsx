@@ -2,7 +2,7 @@ import { NextPage } from "next";
 
 import { CanvasContextProvider } from "@contexts/CanvasContext";
 
-import { Canvas } from "@components/DraftArea";
+import { Canvas } from "@components/Canvas";
 import { Customized } from "@layouts/Customized";
 
 const Draw: NextPage = () => {
