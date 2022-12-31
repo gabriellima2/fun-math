@@ -12,8 +12,6 @@
 
 <p align="center"><a href="https://fun-math.vercel.app/">Ver Projeto</a></p>
 
-<h4 align="center">Exercícios especificos gerados no Client e outros consumidos da plataforma <a href="https://hygraph.com/">Hygraph</a> com uma API GraphQL.</h4>
-
 <h2>Por que?</h2>
 
 Cálculos com operadores básicos da matemática fazem parte do nosso dia-a-dia, mas muitas pessoas tem dificuldades, então a plataforma FunMath! possui exercícios para ajudar nessa questão, melhorando a interpretação e a lógica do usuário.
@@ -22,11 +20,13 @@ Cálculos com operadores básicos da matemática fazem parte do nosso dia-a-dia,
 
 - [NextJS](https://nextjs.org/)
 - [Typescript](https://www.typescriptlang.org/)
-- [Hygraph](https://hygraph.com/)
-- [GraphQL](https://graphql.org/)
-- [ApolloClient](https://www.apollographql.com/docs/)
+- [Redux](https://redux.js.org/)
+- [Redux Toolkit](https://redux.js.org/redux-toolkit/overview/#:~:text=What%20is%20Redux%20Toolkit%3F%20%23.%20Redux%20Toolkit%20is,common%20Redux%20use%20cases%2C%20including%20store%20setup%2C%20)
 - [TailwindCSS](https://tailwindcss.com/)
 - [HeadlessUI](https://headlessui.com/)
+- [Jest](https://jestjs.io/pt-BR/)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+- [SWR](https://swr.vercel.app/pt-BR)
 
 <h2>Maiores dificuldades:</h2>
 
@@ -45,10 +45,6 @@ Cálculos com operadores básicos da matemática fazem parte do nosso dia-a-dia,
 
 <h2>Rodando o projeto:</h2>
 
-<small><strong>OBS: </strong>Alguns exercícios são consumidos de uma API privada criada no [Hygraph](https://hygraph.com). Você pode fazer o mesmo, basta criar uma conta e adicionar seus projetos.</small>
-
-</br>
-
 Você precisa ter o [Node](https://nodejs.org/en/), o [Git](https://git-scm.com/) e algum gerenciador de pacotes([NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/) | [Yarn](https://classic.yarnpkg.com/lang/en/docs/install)) instalados em sua máquina.
 
 ```bash
@@ -57,27 +53,11 @@ $ git clone https://github.com/gabriellima2/fun-math.git
 
 2. Acesse a pasta e instale as dependências via terminal:
 $ yarn / npm install
-```
 
-Crie uma conta no [Hygraph](https://hygraph.com/), [clone o projeto](https://app.hygraph.com/clone/ee61533f4fd64b3a83f9b3aea51effb4?name=FunMath!) e adicione seus exercícios.
-
-```bash
-3. Adicione as variáveis de ambiente:
-
-	.env.local
-
-	NEXT_PUBLIC_API_TOKEN=Seu Token de autenticação.
-	NEXT_PUBLIC_API_URL=URL da sua API.
-
-```
-
-Agora basta rodar o projeto:
-
-```bash
-4. Inicie a aplicação em modo de desenvolvimento:
+3. Inicie a aplicação em modo de desenvolvimento:
 $ yarn dev / npm run dev
 
-5. O servidor será aberto em http://localhost:3000
+4. O servidor será aberto em http://localhost:3000
 ```
 
 <p align="center">Projeto feito com 💙 por <a href="https://www.linkedin.com/in/gabriel-lima-860612236">Gabriel Lima</a></p>
