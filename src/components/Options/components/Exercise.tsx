@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Radio } from "@components/Radio";
-import type { IExercise } from "@mocks/exercises";
+import type { IExercise } from "@global-types/IExercise";
 
 interface ExerciseProps
 	extends Pick<IExercise, "icon" | "displayText" | "id"> {}
