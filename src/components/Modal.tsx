@@ -21,6 +21,7 @@ export const Modal = ({ handleClose, isOpen, ...props }: ModalProps) => {
 				<Dialog.Panel className={`${props.className} rounded bg-utils-primary`}>
 					<div className="p-4 pt-8">{props.children}</div>
 					<button
+						title="Fechar"
 						onClick={handleClose}
 						className="text-sm md:text-base fixed top-3 right-5"
 					>

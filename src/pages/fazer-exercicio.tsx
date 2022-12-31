@@ -20,6 +20,8 @@ import {
 	GetExerciseServiceInjectedProps,
 } from "@hoc/GetExerciseService";
 import { ValidateExerciseQueries } from "@hoc/ValidateExerciseQueries";
+import { BsPencilFill } from "react-icons/bs";
+import { DraftModal } from "@components/DraftModal";
 
 interface DoExerciseProps extends GetExerciseServiceInjectedProps {}
 
@@ -53,51 +55,55 @@ const DoExercise: NextPage<DoExerciseProps> = ({
 	if (isLoading) return <Loading variant="fullscreen" />;
 
 	return (
-		<main className="w-screen h-screen flex-center--col">
-			<div className="w-full max-w-[700px] px-4">
-				<header className="flex items-center justify-between relative py-6 sm:py-10">
-					<BackLink href="/configuracoes-exercicios" />
-					<Status status={userAnswerStatus} />
-					<HelpTools />
-				</header>
+		<>
+			<DraftModal />
 
-				<section
-					aria-live="polite"
-					aria-atomic="true"
-					className="flex-center--col gap-8 sm:gap-10 md:gap-12"
-				>
-					<h1 className="font-bold text-xl sm:text-2xl md:text-4xl">
-						{exercise?.text}
-					</h1>
+			<main className="w-screen h-screen flex-center--col">
+				<div className="w-full max-w-[700px] px-4">
+					<header className="flex items-center justify-between relative py-6 sm:py-10">
+						<BackLink href="/configuracoes-exercicios" />
+						<Status status={userAnswerStatus} />
+						<HelpTools />
+					</header>
 
-					<div>
-						<Input.Text
-							type="number"
-							label="O resultado é"
-							id="user-answer"
-							name="user-answer"
-							placeholder="Digite o resultado"
-							value={userAnswer}
-							onChange={handleUserAnswerChange}
-							className={`${
-								userAnswerStatus === null && "border-transparent"
-							} ${userAnswerStatus === "correct" && "border-green-400"} ${
-								userAnswerStatus === "incorrect" && "border-red-400"
-							} border-2`}
+					<section
+						aria-live="polite"
+						aria-atomic="true"
+						className="flex-center--col gap-8 sm:gap-10 md:gap-12"
+					>
+						<h1 className="font-bold text-xl sm:text-2xl md:text-4xl">
+							{exercise?.text}
+						</h1>
+
+						<div>
+							<Input.Text
+								type="number"
+								label="O resultado é"
+								id="user-answer"
+								name="user-answer"
+								placeholder="Digite o resultado"
+								value={userAnswer}
+								onChange={handleUserAnswerChange}
+								className={`${
+									userAnswerStatus === null && "border-transparent"
+								} ${userAnswerStatus === "correct" && "border-green-400"} ${
+									userAnswerStatus === "incorrect" && "border-red-400"
+								} border-2`}
+							/>
+						</div>
+					</section>
+
+					<footer className="w-full flex items-center justify-end py-6 sm:py-10">
+						<ChangeExerciseButton
+							onClick={() => {
+								clearUserAnswerState();
+								getNextExercise();
+							}}
 						/>
-					</div>
-				</section>
-
-				<footer className="w-full flex items-center justify-end py-6 sm:py-10">
-					<ChangeExerciseButton
-						onClick={() => {
-							clearUserAnswerState();
-							getNextExercise();
-						}}
-					/>
-				</footer>
-			</div>
-		</main>
+					</footer>
+				</div>
+			</main>
+		</>
 	);
 };
 
