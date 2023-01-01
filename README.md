@@ -14,7 +14,12 @@
 
 <h2>Por que?</h2>
 
-Cálculos com operadores básicos da matemática fazem parte do nosso dia-a-dia, mas muitas pessoas tem dificuldades, então a plataforma FunMath! possui exercícios para ajudar nessa questão, melhorando a interpretação e a lógica do usuário.
+A matemática faz parte do nosso dia-a-dia, mas muitas pessoas tem dificuldades, especialmente com o básico, então tive a idéia de desenvolver essa plataforma, a 'FunMath!'. Nela teremos diversos exercícios usando operadores básicos da matemática (Adição, Subtração, Multiplicação e Divisão), no momento temos os seguintes tipos:
+
+- Calcúlos Aleatórios: Calcúlos comuns para aplicar o conhecimento adquirido. Gerados por um script.
+- Situações Problema: Ótimos para melhorar a interpretação e entender quando os operadores são usados em situações da vida real. Criados e/ou selecionados por mim.
+
+Estamos nas etapas iniciais do projeto, mas já esta bastante funcional. [Visite e tire suas conclusões](https://fun-math.vercel.app/).
 
 <h2>Tecnologias:</h2>
 
@@ -28,12 +33,9 @@ Cálculos com operadores básicos da matemática fazem parte do nosso dia-a-dia,
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 - [SWR](https://swr.vercel.app/pt-BR)
 
-<h2>Maiores dificuldades:</h2>
+<h2>Dificuldades:</h2>
 
-- Usar o Canvas para desenho e deixa-lo responsivo.
-- Formatar a resposta do usuário e tratar respostas incompletas.
-- Mostrar tipos diferentes de exercícios dependendo da escolha do usuário.
-- Organização do projeto, é um projeto grande, então componentizar e deixar legível é importante.
+Tive diversos tipos de dificuldades durante a idealização e criação do projeto, mas a maior foi criar algo que deixe o usuário a vontade, com uma boa experiência no uso da plataforma ou na resolução dos exercícios.
 
 <h2>Prototipagem:</h2>
 
@@ -59,5 +61,7 @@ $ yarn dev / npm run dev
 
 4. O servidor será aberto em http://localhost:3000
 ```
+
+Projeto sob a [licença MIT](https://mit-license.org/)
 
 <p align="center">Projeto feito com 💙 por <a href="https://www.linkedin.com/in/gabriel-lima-860612236">Gabriel Lima</a></p>
