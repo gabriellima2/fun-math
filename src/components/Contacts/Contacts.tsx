@@ -6,9 +6,17 @@ import { Contact, ContactProps } from "./components/Contact";
 interface ContactsProps extends HTMLAttributes<HTMLUListElement> {}
 
 const contacts: ContactProps[] = [
-	{ name: "Linkedin", icon: BsLinkedin, href: "" },
-	{ name: "Github", icon: BsGithub, href: "" },
-	{ name: "Código Fonte", icon: BsCode, href: "" },
+	{
+		name: "Linkedin",
+		icon: BsLinkedin,
+		href: "https://www.linkedin.com/in/gabriel-lima-860612236",
+	},
+	{ name: "Github", icon: BsGithub, href: "https://github.com/gabriellima2" },
+	{
+		name: "Código Fonte",
+		icon: BsCode,
+		href: "https://github.com/gabriellima2/fun-math",
+	},
 ];
 
 export const Contacts = (props: ContactsProps) => (
