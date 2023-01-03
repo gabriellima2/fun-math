@@ -8,8 +8,10 @@ export class MathProblemsModel {
 
 		if (isNaN(Number(numberPosition))) throw new Error("Tipo de dado inválido");
 
-		if (numberPosition > problems.length)
-			throw new Error("Posição não encontrada");
+		if (numberPosition >= problems.length)
+			throw new Error(
+				"Chegamos ao final dos exercícios de 'Situações-Problema' disponiveís"
+			);
 
 		return problems[Math.abs(numberPosition)];
 	}
