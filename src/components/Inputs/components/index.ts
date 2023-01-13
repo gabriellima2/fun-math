@@ -1,3 +1,3 @@
 export { ColorPicker } from "./ColorPicker";
-export { Text } from "./Text/Text";
+export { Text } from "./Text";
 export { Range } from "./Range";

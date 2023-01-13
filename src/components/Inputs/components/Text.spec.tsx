@@ -1,5 +1,4 @@
 import "@testing-library/jest-dom";
-
 import React from "react";
 import userEvent from "@testing-library/user-event";
 import { render, screen } from "@testing-library/react";
@@ -15,7 +14,6 @@ function getTextInput() {
 
 describe("Text Input Component", () => {
 	const setStateMock = jest.fn();
-
 	jest.mock("react", () => ({
 		useState: (initial: unknown) => [initial, setStateMock],
 	}));
@@ -40,10 +38,12 @@ describe("Text Input Component", () => {
 	});
 
 	describe("Interactions", () => {
-		it("should handle changes in input", async () => {
-			await userEvent.type(getTextInput(), TYPED_VALUE);
+		describe("Change", () => {
+			it("should handle the changes by calling the function", async () => {
+				await userEvent.type(getTextInput(), TYPED_VALUE);
 
-			expect(setStateMock).toHaveBeenCalledTimes(TYPED_VALUE.length);
+				expect(setStateMock).toHaveBeenCalledTimes(TYPED_VALUE.length);
+			});
 		});
 	});
 });

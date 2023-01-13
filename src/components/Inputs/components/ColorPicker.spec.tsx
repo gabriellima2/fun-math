@@ -26,7 +26,7 @@ describe("Color Picker Component", () => {
 	});
 	describe("Interaction", () => {
 		describe("Change", () => {
-			it("should handle the changes by calling the function", async () => {
+			it("should handle the changes by calling the function", () => {
 				const colorPicker = getColorPickerElement();
 				fireEvent.change(colorPicker, { target: { value: "#ffffff" } });
 
