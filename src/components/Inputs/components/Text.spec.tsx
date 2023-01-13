@@ -3,7 +3,7 @@ import React from "react";
 import userEvent from "@testing-library/user-event";
 import { render, screen } from "@testing-library/react";
 
-import { Input } from "../..";
+import { Input } from "..";
 
 const PLACEHOLDER_TEXT = "Testing";
 const TYPED_VALUE = "Input Test";
