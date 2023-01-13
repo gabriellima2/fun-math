@@ -1,7 +1,7 @@
 import { Step } from "./components/Step";
 import type { IStep } from "@global-types/IStep";
 
-const steps: IStep[] = [
+const staticSteps: IStep[] = [
 	{
 		iconURL:
 			"https://media.graphassets.com/PfRmD4i4Tb6EVNdGEz4t?_gl=1*1fqilsh*_ga*MzQxNzIyMjgzLjE2NjY2MzI3MzU.*_ga_G6FYGSYGZ4*MTY3MjUyNTIxMC4xNC4xLjE2NzI1MjUyNzMuNTcuMC4w",
@@ -23,7 +23,11 @@ const steps: IStep[] = [
 	},
 ];
 
-export const Steps = () => {
+interface StepsProps {
+	steps?: IStep[];
+}
+
+export const Steps = ({ steps = staticSteps }: StepsProps) => {
 	return (
 		<ul className="w-full flex flex-col lg:flex-row items-center justify-evenly flex-wrap gap-12 lg:gap-6">
 			{steps.map((step, index) => (
