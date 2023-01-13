@@ -28,6 +28,8 @@ interface CanvasContextProperties {
 	clearCanvas: () => void;
 }
 
+const OVERFLOW_HIDDEN = "overflow-hidden";
+
 export const CanvasContext = createContext({} as CanvasContextProperties);
 
 export const CanvasContextProvider = ({ children }: WithChildren) => {
@@ -35,22 +37,20 @@ export const CanvasContextProvider = ({ children }: WithChildren) => {
 	const canvasRef = useRef<null | HTMLCanvasElement>(null);
 	const context2DRef = useRef<null | CanvasRenderingContext2D>(null);
 
-	const handlePageOverflow = () => {
-		const OVERFLOW_HIDDEN = "overflow-hidden";
+	const hideScroll = () => {
 		const html = document.documentElement;
 		const body = document.body;
 
-		if (
-			html.classList.contains(OVERFLOW_HIDDEN) ||
-			body.classList.contains(OVERFLOW_HIDDEN)
-		) {
-			html.classList.remove(OVERFLOW_HIDDEN);
-			body.classList.remove(OVERFLOW_HIDDEN);
-			return;
-		}
-
 		html.classList.add(OVERFLOW_HIDDEN);
 		body.classList.add(OVERFLOW_HIDDEN);
+	};
+
+	const showScroll = () => {
+		const html = document.documentElement;
+		const body = document.body;
+
+		html.classList.remove(OVERFLOW_HIDDEN);
+		body.classList.remove(OVERFLOW_HIDDEN);
 	};
 
 	// Adiciona novos estilos ao Canvas atualizando o Contexto2D dele.
@@ -91,12 +91,14 @@ export const CanvasContextProvider = ({ children }: WithChildren) => {
 		);
 
 		setIsDrawing(true);
+		hideScroll();
 	};
 
 	const stopDrawing = () => {
 		context2DRef.current?.closePath();
 
 		setIsDrawing(false);
+		showScroll();
 	};
 
 	const clearCanvas = () => {
@@ -108,7 +110,9 @@ export const CanvasContextProvider = ({ children }: WithChildren) => {
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 	};
 
-	useEffect(() => handlePageOverflow(), [isDrawing]);
+	useEffect(() => {
+		return () => showScroll();
+	}, []);
 
 	return (
 		<CanvasContext.Provider
