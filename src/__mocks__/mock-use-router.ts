@@ -11,7 +11,7 @@ jest.mock("next/router", () => ({
 }));
 
 export function mockUseRouter(options: MockUseRouter) {
-	useRouter.mockImplementation(() => ({
+	(useRouter as jest.Mock).mockImplementation(() => ({
 		...options,
 	}));
 }

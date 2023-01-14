@@ -1,8 +1,7 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 
-import { ComponentMock } from "src/__mocks__/ComponentMock";
-import { mockUseRouter } from "src/__mocks__/mockUseRouter";
+import { mockUseRouter } from "@mocks-test/mock-use-router";
 import { ValidateExerciseQueries } from ".";
 
 interface Queries {
@@ -24,9 +23,7 @@ function renderComponentUsingQuery(query: Queries) {
 const COMPONENT_MOCK_TEXT = "Success";
 const ERROR_CODE_TEXT = "404";
 
-const Component = ValidateExerciseQueries(() => (
-	<ComponentMock text={COMPONENT_MOCK_TEXT} />
-));
+const Component = ValidateExerciseQueries(() => <p>{COMPONENT_MOCK_TEXT}</p>);
 
 describe("Validate Queries From URL High Order Component", () => {
 	describe("Validation", () => {

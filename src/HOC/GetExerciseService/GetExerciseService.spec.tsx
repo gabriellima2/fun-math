@@ -1,16 +1,13 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 
-import { ComponentMock } from "src/__mocks__/ComponentMock";
 import { GetExerciseService, GetExerciseServiceProps } from ".";
 
 function renderComponent({ injectedProps }: GetExerciseServiceProps) {
 	render(<Component injectedProps={injectedProps} />);
 }
 
-const Component = GetExerciseService(() => (
-	<ComponentMock text={COMPONENT_MOCK_TEXT} />
-));
+const Component = GetExerciseService(() => <p>{COMPONENT_MOCK_TEXT}</p>);
 
 const COMPONENT_MOCK_TEXT = "Value is valid!";
 const ERROR_CODE_TEXT = "404";
