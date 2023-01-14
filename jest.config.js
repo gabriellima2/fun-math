@@ -33,6 +33,7 @@ const customJestConfig = {
 		'^@mocks-test/(.*)$': '<rootDir>/src/__mocks__/$1',
 		'^@pages/(.*)$': '<rootDir>/src/pages/$1',
 		'^@services/(.*)$': '<rootDir>/src/services/$1',
+		'^@redux/(.*)$': '<rootDir>/src/redux/$1',
 	},
 	setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
 }
