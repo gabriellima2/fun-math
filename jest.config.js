@@ -33,7 +33,8 @@ const customJestConfig = {
 		'^@mocks-test/(.*)$': '<rootDir>/src/__mocks__/$1',
 		'^@pages/(.*)$': '<rootDir>/src/pages/$1',
 		'^@services/(.*)$': '<rootDir>/src/services/$1',
-	}
+	},
+	setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
 }
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
