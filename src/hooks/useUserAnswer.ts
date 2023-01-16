@@ -15,7 +15,7 @@ export function useUserAnswer(exerciseResult: number | undefined): Return {
 	const [status, setStatus] = useState<TStatus>(null);
 
 	const handleWithExerciseCorrection = () => {
-		if (!exerciseResult) return;
+		if (exerciseResult === undefined) return;
 
 		const userAnswerFormatted = Number(
 			userAnswer.replaceAll(",", "").replaceAll(".", "")
