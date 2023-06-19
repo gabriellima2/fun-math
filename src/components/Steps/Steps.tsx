@@ -3,21 +3,18 @@ import type { IStep } from "@global-types/IStep";
 
 const staticSteps: IStep[] = [
 	{
-		iconURL:
-			"https://media.graphassets.com/PfRmD4i4Tb6EVNdGEz4t?_gl=1*1fqilsh*_ga*MzQxNzIyMjgzLjE2NjY2MzI3MzU.*_ga_G6FYGSYGZ4*MTY3MjUyNTIxMC4xNC4xLjE2NzI1MjUyNzMuNTcuMC4w",
+		iconURL: "/icons/operators.svg",
 		title: "Escolha um operador",
 		description:
 			"Escolha entre os 4 operadores matemáticos básicos para praticar",
 	},
 	{
-		iconURL:
-			"https://media.graphassets.com/FmlpUmrkQlucaR8WtvAC?_gl=1*65z1kv*_ga*MzQxNzIyMjgzLjE2NjY2MzI3MzU.*_ga_G6FYGSYGZ4*MTY3MjUyNTIxMC4xNC4xLjE2NzI1MjUyNzMuNTcuMC4w",
+		iconURL: "/icons/pencil.svg",
 		title: "Pratique com exercícios",
 		description: "A prática é muito importante para o aprendizado",
 	},
 	{
-		iconURL:
-			"https://media.graphassets.com/j7y7Y6sWQiqHketkBPoY?_gl=1*65z1kv*_ga*MzQxNzIyMjgzLjE2NjY2MzI3MzU.*_ga_G6FYGSYGZ4*MTY3MjUyNTIxMC4xNC4xLjE2NzI1MjUyNzMuNTcuMC4w",
+		iconURL: "/icons/lamp.svg",
 		title: "Dica e Ajuda",
 		description: "Ferramentas para te auxiliar durante os exercícios",
 	},
